@@ -1,3 +1,5 @@
-module.exports = app => {
-  // Todo: Fill in your routes here
+const { budgetCreate } = require('../controllers/budgetControllers');
+
+module.exports = (app) => {
+  app.post('/budget', budgetCreate);
 };
