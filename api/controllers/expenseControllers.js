@@ -14,9 +14,9 @@ const expenseCreate = (req, res) => {
 
 const getAllexpenses = (req, res) => {
 	Expense.find({})
-		.then(categories => {
-		  if (categories.length === 0) throw new Error();
-		  res.json(posts)
+		.then(expenses => {
+		  if (expenses.length === 0) throw new Error();
+		  res.json(expenses)
 		})
     	.catch(err => res.status(422).json(err));
 };

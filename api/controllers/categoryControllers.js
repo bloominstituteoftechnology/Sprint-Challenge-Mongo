@@ -16,7 +16,7 @@ const getAllCategories = (req, res) => {
 	Category.find({})
 		.then(categories => {
 		  if (categories.length === 0) throw new Error();
-		  res.json(posts)
+		  res.json(categories)
 		})
     	.catch(err => res.status(422).json(err));
 };
