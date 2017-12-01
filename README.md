@@ -100,6 +100,8 @@
 * you can write a `getter` `'get'` method that simply returns all the
   categories. Filter out any un useful information here, meaning we just want
   the title of the categories.
+* create a few categories so that when you create your expenses, you can assign
+  where they go!
 
 ### `'/expense'`
 
@@ -107,6 +109,8 @@
   an expense you'll need an `'account'` `_id` and a `'category'` `_id` so that
   we can build out a relationship between those other collections and our
   expenses.
+* your expense route should also have a `'get'` method that returns all the
+  expenses with the populated data.
 
 ## Stretch Goal - Aggregation
 
