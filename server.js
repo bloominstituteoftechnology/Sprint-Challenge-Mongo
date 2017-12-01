@@ -1,11 +1,12 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const mongoose = require('mongoose');
+import bodyParser  from 'body-parser';
+import express  from 'express';
+import mongoose  from 'mongoose';
+import routes from './api/routes/routes';
+
 const server = express();
 
 const port = process.env.PORT || 3000;
 
-const routes = require('./api/routes/routes');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
 
