@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ExpenseSchema = Schema ({
+const ExpenseSchema = Schema({
     amount: {
-        Type: String,
+        type: Number,
         required: true
     },
     description: {
-        tyep: String,
-        required: true 
+        type: String,
+        required: true
     },
     budget: {
         type: Schema.Types.ObjectId,

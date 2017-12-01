@@ -1,7 +1,7 @@
 module.exports = app => {
   const budgetControllers = require('../controllers/budgetControllers');
   const categoryControllers = require('../controllers/categoryControllers');
-  // const expenseControllers = require('../controllers/expenseControllers');
+  const expenseControllers = require('../controllers/expenseControllers');
 
   app.route('/budget')
   .post(budgetControllers.budgetCreate)
@@ -10,7 +10,7 @@ module.exports = app => {
   .post(categoryControllers.categoryCreate)
   .get(categoryControllers.allCategoriesGet);
 
-  // app.route('/expenses')
-  // .post(expenseControllers.expenseCreate)
-  // .get(expenseControllers.allExpensesGet);
+  app.route('/expenses')
+  .post(expenseControllers.expenseCreate)
+  .get(expenseControllers.allExpensesGet);
 };
