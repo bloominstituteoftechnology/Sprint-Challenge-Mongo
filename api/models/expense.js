@@ -9,7 +9,10 @@ const ExpenseSchema = Schema({
       type: Schema.Types.ObjectId,
       ref: 'Budget'  
     }, //monthly spending
-    category: [CategorySchema] //groceries
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: 'Category'
+    }
 });
 
 module.exports = mongoose.model('Expense', ExpenseSchema);

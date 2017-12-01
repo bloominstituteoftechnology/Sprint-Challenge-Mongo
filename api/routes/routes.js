@@ -15,8 +15,8 @@ module.exports = app => {
 
   app
     .route('/expense')
-    .post()
-    .get();
+    .post(expenseControllers.expenseCreate)
+    .get(expenseControllers.expenseList);
 
   app
     .route('/budget/:id/summary')
