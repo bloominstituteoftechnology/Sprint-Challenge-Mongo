@@ -15,7 +15,7 @@ const createExpense = (req, res) => {
 
 const getExpenses = (req, res) => {
   Expense.find({})
-    .populate('account', 'category')
+    .populate('account category')
     .exec((err, expenses) => {
       if (err) {
         res.status(422).json(err);
