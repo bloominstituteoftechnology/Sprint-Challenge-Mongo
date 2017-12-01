@@ -1,14 +1,3 @@
-// app.route('/budget').post(controller.newBudget);
-
-// title: {
-//   type: String,
-//   required: true
-// },
-// budgetAmount: {
-//   type: Number,
-//   required: true
-// }
-
 const mongoose = require('mongoose');
 
 const Budget = require('../models/budget');

@@ -1,12 +1,3 @@
-// app
-//   .route('/category')
-//   .post(controller.makeCategory)
-//   .get(controller.returnCategories);
-
-// title: {
-//   type: String,
-//   required: true
-// }
 const mongoose = require('mongoose');
 
 const Category = require('../models/category');

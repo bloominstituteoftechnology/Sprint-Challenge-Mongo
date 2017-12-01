@@ -12,6 +12,4 @@ module.exports = app => {
     .route('/expense')
     .post(eControl.makeExpense)
     .get(eControl.returnExpenses);
-  // app.route('/budget/:id/summary')
-  // app.route('/expenses?aggregatedBy=category')
 };

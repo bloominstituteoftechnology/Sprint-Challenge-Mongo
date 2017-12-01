@@ -1,27 +1,3 @@
-// app
-//   .route('/expense')
-//   .post(controller.makeExpense)
-//   .get(controller.returnExpenses);
-
-// amount: {
-//   type: Number,
-//   required: true
-// },
-// description: {
-//   type: String,
-//   required: true
-// },
-// budget: {
-//   type: Schema.Types.ObjectId,
-//   ref: 'Budget',
-//   required: true
-// }
-// category: {
-//   type: Schema.Types.ObjectId,
-//   ref: 'Category',
-//   required: true
-// }
-
 const mongoose = require('mongoose');
 
 const Expense = require('../models/expense');
