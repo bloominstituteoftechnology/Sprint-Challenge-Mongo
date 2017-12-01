@@ -7,11 +7,11 @@ module.exports = app => {
     
   app
     .route('/catecory')
-    .get(categoryControllers.categoryFind)
+    .get(categoryControllers.categoryList)
     .post(categoryControllers.categoryCreate);
     
   app
     .route('/expense')
-    .get(expenseControllers.expenseFind)
+    .get(expenseControllers.expenseList)
     .post(expenseControllers.expenseCreate);
 };
