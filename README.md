@@ -30,7 +30,7 @@
   Documentation about _Aggregation_ in MongoDB.
   ## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
 * For this project you'll need three different models
-  #### **Account**
+  ### **Account**
 * This will be the budget that you set for Budget Tracker.
 * An account object saved to the DB should look like this:
 
