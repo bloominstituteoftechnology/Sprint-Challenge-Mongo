@@ -1,16 +1,16 @@
 module.exports = app => {
-  const budgetContollers = require('../controllers/budgetContollers');
+  const budgetControllers = require('../controllers/budgetControllers');
   const categoryControllers = require('../controllers/categoryControllers');
-  const expenseControllers = require('../controllers/expenseControllers');
+  // const expenseControllers = require('../controllers/expenseControllers');
 
   app.route('/budget')
-  .post(budgetContollers.budgetCreate)
+  .post(budgetControllers.budgetCreate)
   
   app.route('/categories')
   .post(categoryControllers.categoryCreate)
   .get(categoryControllers.allCategoriesGet);
 
-  app.route('/expenses')
-  .post(expenseControllers.expenseCreate)
-  .get(expenseControllers.allExpensesGet);
+  // app.route('/expenses')
+  // .post(expenseControllers.expenseCreate)
+  // .get(expenseControllers.allExpensesGet);
 };
