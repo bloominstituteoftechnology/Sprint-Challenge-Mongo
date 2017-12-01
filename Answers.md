@@ -1,0 +1,6 @@
+Describe the following: DataBase, Collection , Document
+    Answer: for MongoDB, databases hold collections of documents.  So, you were to create documents as part of one collection and stored in its database.
+Describe how one can achieve the pattern of relationships in MongoDB. What needs to take place at the schema level? How do we 'fill' in the appropriate relational data using mongoose?
+    Answer: when evaluating where data is handled, we are to find pattern of repetition.  We want the software to be running smoothly and efficient.  That's where references comes in.  To decide what takes place at the schema level depends on the amount of data.  If the amount of data comes in limited amount, then we are to handle within one document.  If the data is expected to come in in large amount and frequently, then doing a separate document is the best approach.
+Describe what MVC Archtecture is and how we have used it this week with Node/Express/Mongoose.
+    Answer: MVC stands for Model-View-Controller.  This week, we have utilzied the Mongoose library to help with modeling the data structures to interact with MongoDB.  The view portion is when we have written code to find data and sending back to the client using Node.  For controller, we have written code to take in user requests and respond from the model and pass it back using express library.  
