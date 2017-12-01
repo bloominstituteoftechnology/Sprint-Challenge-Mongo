@@ -1,9 +1,11 @@
-const { budgetCreate } = require('../controllers/budgetControllers');
+const { budgetCreate, budgetSummary } = require('../controllers/budgetControllers');
 const { categoryCreate, categoryGet } = require('../controllers/categoryControllers');
-const { expenseCreate, expensesGet } = require('../controllers/expenseControllers');
+const { expenseCreate, expensesGet, expensesAggregatedBy } = require('../controllers/expenseControllers');
 
 module.exports = (app) => {
   app.post('/budget', budgetCreate);
+
+  app.get('/budget/:id/summary', budgetSummary);
 
   app
     .route('/category')
@@ -14,4 +16,6 @@ module.exports = (app) => {
     .route('/expense')
     .post(expenseCreate)
     .get(expensesGet);
+
+  app.get('/expenses', expensesAggregatedBy);
 };
