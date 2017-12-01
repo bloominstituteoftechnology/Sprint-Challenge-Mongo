@@ -1,10 +1,10 @@
 # Assessing your MongoDB Fu
 
-* The purpose of this exercise is to get you used to being quizzed on _Interview
+* The purpose of this exercise is to give you practice for _Interview
   Questions_ commonly asked about Mongo.
-* Answers to your written questions will be recorded in _Answers.md_
-* This is to be worked on alone but you can use outside resources. You can
-  _reference_ any old code you may have, and the React Documentation, however,
+* Your answers to the written questions will be recorded in _Answers.md_
+* Work on this alone, but you may use outside resources. You may
+  _reference_ any old code you have and the React Documentation, however,
   please refrain from copying and pasting any of your answers. Try and
   understand the question and put your responses in your own words. Be as
   thorough as possible when explaining something.
