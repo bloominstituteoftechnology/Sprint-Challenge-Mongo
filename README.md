@@ -3,7 +3,7 @@
 * The purpose of this exercise is to give you practice for _Interview
   Questions_ commonly asked about Mongo.
 * Your answers to the written questions will be recorded in _Answers.md_
-* Work on this alone but you may use outside resources. You may
+* Work on this alone, but you may use outside resources. You may
   _reference_ any old code you have and the React Documentation, however,
   please refrain from copying and pasting any of your answers. Try and
   understand the question and put your responses in your own words. Be as
