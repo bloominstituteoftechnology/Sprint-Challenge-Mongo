@@ -10,7 +10,7 @@ module.exports = app => {
     .post(categoryControllers.createCategory)
     .get(categoryControllers.getCategories);
 
-  app.route('expense')
+  app.route('/expense')
     .post(expenseControllers.createExpense)
     .get(expenseControllers.getExpenses);
 };

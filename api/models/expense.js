@@ -8,14 +8,17 @@ const ExpenseSchema = new Schema ({
   },
   description: {
     type: String,
+    required: true,
   },
   budget: {
     type: Schema.Types.ObjectId,
     ref: 'Budget',
+    required: true,
   },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
+    required: true,
   }
 });
 
