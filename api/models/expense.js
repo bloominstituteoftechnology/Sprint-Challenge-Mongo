@@ -11,11 +11,11 @@ const ExpenseSchema = mongoose.Schema({
   },
   account: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Account',
+    ref: 'account',
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: 'category',
   },
 });
 
