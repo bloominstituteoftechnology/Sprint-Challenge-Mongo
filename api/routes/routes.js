@@ -12,16 +12,4 @@ module.exports = app => {
   	app.route('/expense')
   		.post(expenseControllers.expenseCreate)
   		.get(expenseControllers.getAllexpenses);
-
-
-
-
-  // app.route('/budget').post(budgetControllers.userCreate);
-  // app.route('/login').post(userControllers.userLogin);
-  // app.route('/new-post').post(postControllers.postCreate);
-  // app.route('/posts').get(postControllers.postsGetAll);
-  // app
-  //   .route('/posts/:id')
-  //   .get(postControllers.postGetById)
-  //   .put(postControllers.postCommentAdd);
 };
