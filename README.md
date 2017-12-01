@@ -1,4 +1,4 @@
-# Assessing your Mongo/Axios Fu
+# Assessing your MongoDB Fu
 
 * The purpose of this exercise is to get you used to being quizzed on _Interview
   Questions_ commonly asked about Mongo.
