@@ -45,16 +45,18 @@ const listExpenses = (req, res) => {
 /* eslint-disable no-console */
 const budgetSummary = (req, res) => {
   const { id } = req.params;
-  const summary = Expense.find({ 'budget._id': id })
-  .aggregate([
-    {
-      $project: {
-        totalExpenses: { $sum: '$amount' },
-        budgetedAmount: { total: 'budget.budgetAmount' }
-      }
-    }
-  ]);
-  console.log('summary:', summary);
+  console.log('budgetSummary id:', id);
+  Expense.find({ 'budget._id': { $eq: id } }).count().exec().then(count => console.log('count:', count));
+  const summary = Expense.aggregate(
+  { $match: { 'budget._id': id } },
+    { $project: {
+      totalExpenses: { $sum: '$amount' },
+      budgetedAmount: { total: '$budget.budgetAmount' }
+    } }
+  );
+  console.log('summary.totalExpenses:', summary.budgetedAmount);
+  console.log('summary.totalExpenses:', summary.totalExpenses);
+  res.json(summary.budgetedAmount);
 };
 
 module.exports = {
