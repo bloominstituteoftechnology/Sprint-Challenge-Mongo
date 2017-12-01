@@ -139,3 +139,5 @@
   amount on.
 * You may need to `$sum` up all the categories, then sort them `desc` so that we
   can use that aggregation successfully.
+
+### If you get finished early, go ahead and research Async Await and attempt to refactor your controllers to use this awesome syntactic sugar!
