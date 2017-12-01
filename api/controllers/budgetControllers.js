@@ -21,7 +21,7 @@ const makeBudget = (req, res) => {
       res.status(500).json({ '!E': err });
       return;
     }
-    res.json(('New budget': budget));
+    res.json({ 'New budget': budget });
   });
 };
 

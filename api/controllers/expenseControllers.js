@@ -33,9 +33,9 @@ const makeExpense = (req, res) => {
     if (err) {
       res.status(500).json({ '!E': err });
     }
-    res.json(('New expense': expense));
+    res.json({ 'New expense': expense });
   });
-}
+};
 const returnExpenses = (req, res) => {
   Expense.find({})
     .then(expenses => {
@@ -45,11 +45,11 @@ const returnExpenses = (req, res) => {
       res.json(expenses);
     })
     .catch(err => {
-      res.status(STATUS_USER_ERROR).json(('!E': err));
+      res.status(STATUS_USER_ERROR).json({ '!E': err });
     });
-}
+};
 
 module.exports = {
-  makeExpense
+  makeExpense,
   returnExpenses
 };

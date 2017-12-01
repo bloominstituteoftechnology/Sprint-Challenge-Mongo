@@ -19,7 +19,7 @@ const makeCategory = (req, res) => {
     if (err) {
       res.status(500).json({ '!E': err });
     }
-    res.json(('New category': category));
+    res.json({ 'New category': category });
   });
 };
 
@@ -34,11 +34,11 @@ const returnCategories = (req, res) => {
       res.json(categories);
     })
     .catch(err => {
-      res.status(STATUS_USER_ERROR).json(('!E': err));
+      res.status(STATUS_USER_ERROR).json({ '!E': err });
     });
 };
 
 module.exports = {
-  makeCategory
+  makeCategory,
   returnCategories
 };

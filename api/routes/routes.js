@@ -1,13 +1,17 @@
+const bControl = require('../controllers/budgetControllers');
+const cControl = require('../controllers/categoryControllers');
+const eControl = require('../controllers/expenseControllers');
+
 module.exports = app => {
-  app.route('/budget').post(controller.makeBudget);
+  app.route('/budget').post(bControl.makeBudget);
   app
     .route('/category')
-    .post(controller.makeCategory)
-    .get(controller.returnCategories);
+    .post(cControl.makeCategory)
+    .get(cControl.returnCategories);
   app
     .route('/expense')
-    .post(controller.makeExpense)
-    .get(controller.returnExpenses);
+    .post(eControl.makeExpense)
+    .get(eControl.returnExpenses);
   // app.route('/budget/:id/summary')
   // app.route('/expenses?aggregatedBy=category')
 };
