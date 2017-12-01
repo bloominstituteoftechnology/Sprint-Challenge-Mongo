@@ -21,4 +21,65 @@
 1. Describe what MVC Archtecture is and how we have used it this week with
    **Node/Express/Mongoose**.
 
-## Initializing Project -
+# Project description -
+
+* For this Project we're going to be building out a Backend for a `Budget
+  Tracker` app.
+* **Reading** Take note of the _aggregation_ method.
+  [This](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm)
+  Documentation about _Aggregation_ in MongoDB.
+  ## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
+* For this project you'll need three different models
+  #### **Account**
+* This will be the budget that you set for Budget Tracker.
+* An account object saved to the DB should look like this:
+
+```
+{
+  _id: ObjectId('507f1f77bcf86cd799439011'),
+  title: 'Monthly Spending',
+  amount: 300,
+}
+```
+
+### **Expense**
+
+* An expense is a purchase one would make that will affect one's budget.
+* There will be two relationships tied to an expense, the `account` it effects,
+  & `category` it belongs to.
+* An expense object can look something like this:
+
+```
+{
+  _id: '503c2b66bcf86cs793443564',
+  amount: 35,
+  description: 'potatoes',
+  account: ObjectId('507f1f77bcf86cd799439011'), // Monthly Spending
+  category: ObjectId('543d2c72gsb23cd657438921') // Groceries
+}
+```
+
+### **Category**
+
+* A category collection will consist of different places you can assign your
+  expenses to.
+* A category can be something as simple as `groceries`.
+* Your relationship to consider here is the relationship between `Expenses` and
+  `Categories`
+* An example of a category object can look somethign like this:
+
+```
+{
+  _id: '543d2c72gsb23cd657438921',
+  title: 'Groceries',
+}
+```
+
+## Step 2 - Building our Routes and Controller (API Specifications)
+
+### `/account`
+
+* Your account should have a `post` method. So you can use a controller called
+  something like `accountCreate` to save your data through.
+  #### **NOTE** We only want to `create` an account, no need to write a getter or even update the account total directly. When we call for data to see how much is left in our budget, we'll write a separate endpoint that aggregates that information for us. We want to keep our account total `'pure'` and unaffected by our queries.
+  ### `/account`
