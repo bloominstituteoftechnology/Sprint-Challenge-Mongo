@@ -30,27 +30,27 @@
 
 ## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
 
-* For this project you'll need three different models, Account, Expense and
+* For this project you'll need three different models, budget, Expense and
   Category.
 
-### **Account**
+### **Budget**
 
 * This will be the budget that you set for Budget Tracker.
-* An account object saved to the DB should look like this:
+* An budget object saved to the DB should look like this:
 
 ```
 {
   _id: ObjectId('507f1f77bcf86cd799439011'),
-  title: 'Monthly Spending',
-  amount: 300,
+  title: 'Budget',
+  budgetAmount: 3000,
 }
 ```
 
 ### **Expense**
 
 * An expense is a purchase one would make that will affect one's budget.
-* There will be two relationships tied to an expense, the `account` it effects,
-  & `category` it belongs to.
+* There will be two relationships tied to an expense, the `budget` it effects, &
+  `category` it belongs to.
 * An expense object can look something like this:
 
 ```
@@ -58,7 +58,7 @@
   _id: '503c2b66bcf86cs793443564',
   amount: 35,
   description: 'potatoes',
-  account: ObjectId('507f1f77bcf86cd799439011'), // Monthly Spending
+  budget: ObjectId('507f1f77bcf86cd799439011'), // Monthly Spending
   category: ObjectId('543d2c72gsb23cd657438921') // Groceries
 }
 ```
@@ -81,16 +81,16 @@
 
 ## Step 2 - Building our Routes and Controllers (API Specifications)
 
-### `'/account'`
+### `'/budget'`
 
-* Your account should have a `post` method. So you can use a controller called
-  something like `accountCreate` to save your data through.
-* Only worry about creating `ONE` account for now.
+* Your budget should have a `post` method. So you can use a controller called
+  something like `budgetCreate` to save your data through.
+* Only worry about creating `ONE` budget for now.
 
-* **NOTE** We only want to `create` an account, no need to write a getter or
-  even update the account total directly. When we call for data to see how much
-  is left in our budget, we'll write a separate endpoint that aggregates that
-  information for us. We want to keep our account total `'pure'` and unaffected
+* **NOTE** We only want to `create` an budget, no need to write a getter or even
+  update the budget total directly. When we call for data to see how much is
+  left in our budget, we'll write a separate endpoint that aggregates that
+  information for us. We want to keep our budget total `'pure'` and unaffected
   by our queries.
 
 ### `'/category'`
@@ -100,15 +100,16 @@
 * you can write a `getter` `'get'` method that simply returns all the
   categories. Filter out any un useful information here, meaning we just want
   the title of the categories.
-* create a few categories so that when you create your expenses, you can assign
-  where they go!
+* create a minimum of 4 categories so that when you create your expenses, you
+  can assign where they go!
+* example of categories could be: `Food/Dining` `Gas/Auto` `Date Nights`
+  `Mortgage`
 
 ### `'/expense'`
 
 * your expense should have a `'post'` method for creating the expense. To save
-  an expense you'll need an `'account'` `_id` and a `'category'` `_id` so that
-  we can build out a relationship between those other collections and our
-  expenses.
+  an expense you'll need an `'budget'` `_id` and a `'category'` `_id` so that we
+  can build out a relationship between those other collections and our expenses.
 * your expense route should also have a `'get'` method that returns all the
   expenses with the populated data.
 
@@ -124,20 +125,21 @@
   [these](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm) docs
   and [here](https://docs.mongodb.com/manual/reference/operator/aggregation/)
 
-### Budget Aggregation `'/budget'`
+### Budget Aggregation `'/budget/:id/summary'`
 
 * For this Route you'll want to write a `'/get'` that will take the `sum` of all
-  your expenses, and return the difference between the total from your account.
+  your expenses, and return the difference between the total from your budget
+  and summed up expenses.
 * consider what you'll need here.
   [$sum](https://docs.mongodb.com/manual/reference/operator/aggregation/sum/)
   will be your best friend. And you'll also want to consider that you'll need to
-  be querying for the total account.
+  be querying for the total budget.
 
-### Category Spending Aggregation `'/category-expenses'`
+### Category Spending Aggregation `'/expenses?aggregatedBy=category'`
 
-* With this route, we want to see a list of the categories you spend the most
-  amount on.
-* You may need to `$sum` up all the categories, then sort them `desc` so that we
-  can use that aggregation successfully.
+* With this route, we want to see a list of the categories and what you've spent
+  so far.
+* sum up all all expenses by category and order the response by total expense.
+* Order should be categerories with most expense at the top.
 
 ### If you get finished early, go ahead and research Async Await and attempt to refactor your controllers to use this awesome syntactic sugar!
