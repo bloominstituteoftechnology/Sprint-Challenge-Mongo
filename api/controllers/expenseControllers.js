@@ -33,7 +33,7 @@ const getExpense = (req, res) => {
       res.status(SERVER_STATUS_ERROR).json({ error: err.message });
     });
 };
-
+//still workin on the next two parts 
 const budgetAdd = (req, res) => {
   const { id } = req.params;
   const { title, budgetAmount } = req.body;
@@ -73,7 +73,7 @@ const categoryAdd = (req, res) => {
     .exec()
     .then(expense => {
       if (expense === null){
-        res.status(SERVER_STATUS_ERROR).json({ error: err.message });
+        throw new Error();
       };
       const categories = expense.categories;
       categories.push(newCategory);
