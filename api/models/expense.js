@@ -1,8 +1,3 @@
-// {
-//   _id: '543d2c72gsb23cd657438921',
-//   title: 'Groceries',
-// }
-
 const mongoose = require('mongoose');
 
 const ExpenseSchema = new mongoose.Schema({
@@ -14,8 +9,16 @@ const ExpenseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  budget: {},
-  category: {}
+  budget: {
+    type: Schema.Types.ObjectId,
+    ref: 'Budget',
+    required: true
+  }
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true
+  }
 });
 
 module.exports = mongoose.model('Expense', ExpenseSchema);
