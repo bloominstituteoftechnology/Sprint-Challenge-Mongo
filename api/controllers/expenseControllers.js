@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
 const Expense = require('../models/Expense');
-const Comment = require('../models/comment');
 
 const STATUS_USER_ERROR = 422;
 
 const expenseCreate = (req, res) => {
-  const { title } = req.body;
-  const newExpense = new Expense({ title });
+  const { amount, description, budget, category } = req.body;
+  const newExpense = new Expense({ amount, description, budget, category });
   newExpense.save()
     .then((createdExpense) => {
       res.json(createdExpense);

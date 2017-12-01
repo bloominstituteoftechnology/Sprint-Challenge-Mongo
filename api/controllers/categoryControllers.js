@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const Category = require('../models/Category');
-const Comment = require('../models/comment');
 
 const STATUS_USER_ERROR = 422;
 
