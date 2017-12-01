@@ -5,8 +5,8 @@ const Budget = require('../models/budget');
 const STATUS_USER_ERROR = 422;
 
 const budgetCreate = (req, res) => {
-  const { title, amount } = req.body;
-  const newBudget = new Budget({ title, text });
+  const { title, budgetAmount } = req.body;
+  const newBudget = new Budget({ title, budgetAmount });
   newBudget.save()
     .then((createdBudget) => {
       res.json(createdBudget);

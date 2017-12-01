@@ -6,7 +6,7 @@ module.exports = app => {
   app.route('/budget').post(budgetControllers.budgetCreate);
     
   app
-    .route('/catecory')
+    .route('/category')
     .get(categoryControllers.categoryList)
     .post(categoryControllers.categoryCreate);
     
