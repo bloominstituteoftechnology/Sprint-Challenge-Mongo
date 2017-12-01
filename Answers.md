@@ -1,0 +1,6 @@
+1.	Describe the following: DataBase, Collection , Document
+A database is where you store your data, the server. A collection is a grouping of a specific type of data. A document is one piece of the collection of data. For example a user is a document, users are a collection and the users are stored in the database.
+2.	Describe how one can achieve the pattern of relationships in MongoDB. What needs to take place at the schema level? How do we 'fill' in the appropriate relational data using mongoose?
+Each time a schema is used to create a document, mongoose gives it its own unique ID number. These unique ID numbers can be used to link or create relationships between different schema types. For instance, a user, a user’s blogpost and a user’s comment would all have unique ID numbers. In the schema design, you can link these ID numbers to one another so a User can be tied to their posts and comments and vice-versa.
+3.	Describe what MVC Architecture is and how we have used it this week with Node/Express/Mongoose.
+Model View Control architecture is a system of web development based on user interaction. The user has the ability to manipulate the model through the controller which then changes the model and therein by changes the view. 
