@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const categorySchema = mongoose.Schema({
+const expenseSchema = mongoose.Schema({
   ammount: Number,
   description: String,
   budget: {
@@ -13,4 +13,4 @@ const categorySchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('category', categorySchema);
+module.exports = mongoose.model('expense', expenseSchema);

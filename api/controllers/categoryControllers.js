@@ -1,7 +1,5 @@
 const Category = require('../models/category');
 
-// get
-
 const categoryCreate = (req, res) => {
   const { title } = req.body;
   const newCategory = Category({ title });
