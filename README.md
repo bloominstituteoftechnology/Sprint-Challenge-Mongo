@@ -23,14 +23,15 @@
 
 # Project description
 
+### Reminder this is just a backend. Testing your application will require the use of `Postman` or something simliar.
+
 * For this Project we're going to be building out a Backend for a `Budget
-  Tracker` app. Take note of the _aggregation_ method found in
-  [these](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm) docs
+  Tracker` app.
 
 ## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
 
 * For this project you'll need three different models, Account, Expense and
-  Category
+  Category.
 
 ### **Account**
 
@@ -78,11 +79,59 @@
 }
 ```
 
-## Step 2 - Building our Routes and Controller (API Specifications)
+## Step 2 - Building our Routes and Controllers (API Specifications)
 
-### `/account`
+### `'/account'`
 
 * Your account should have a `post` method. So you can use a controller called
   something like `accountCreate` to save your data through.
-  #### **NOTE** We only want to `create` an account, no need to write a getter or even update the account total directly. When we call for data to see how much is left in our budget, we'll write a separate endpoint that aggregates that information for us. We want to keep our account total `'pure'` and unaffected by our queries.
-  ### `/account`
+* Only worry about creating `ONE` account for now.
+
+* **NOTE** We only want to `create` an account, no need to write a getter or
+  even update the account total directly. When we call for data to see how much
+  is left in our budget, we'll write a separate endpoint that aggregates that
+  information for us. We want to keep our account total `'pure'` and unaffected
+  by our queries.
+
+### `'/category'`
+
+* to `create` a category you should have a `'post'` method that stores the
+  category information.
+* you can write a `getter` `'get'` method that simply returns all the
+  categories. Filter out any un useful information here, meaning we just want
+  the title of the categories.
+
+### `'/expense'`
+
+* your expense should have a `'post'` method for creating the expense. To save
+  an expense you'll need an `'account'` `_id` and a `'category'` `_id` so that
+  we can build out a relationship between those other collections and our
+  expenses.
+
+## Stretch Goal - Aggregation
+
+#### A Note about Aggregation
+
+* Aggregation is used to take data, and return back some sort of useful
+  information about the data set. This is something that people spend their
+  entire careers doing as data scientists.
+* Mongo has a very rich way of doing this called the `aggregation-pipeline`
+* Take note of the _aggregation_ method found in
+  [these](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm) docs
+  and [here](https://docs.mongodb.com/manual/reference/operator/aggregation/)
+
+### Budget Aggregation `'/budget'`
+
+* For this Route you'll want to write a `'/get'` that will take the `sum` of all
+  your expenses, and return the difference between the total from your account.
+* consider what you'll need here.
+  [$sum](https://docs.mongodb.com/manual/reference/operator/aggregation/sum/)
+  will be your best friend. And you'll also want to consider that you'll need to
+  be querying for the total account.
+
+### Category Spending Aggregation `'/category-expenses'`
+
+* With this route, we want to see a list of the categories you spend the most
+  amount on.
+* You may need to `$sum` up all the categories, then sort them `desc` so that we
+  can use that aggregation successfully.
