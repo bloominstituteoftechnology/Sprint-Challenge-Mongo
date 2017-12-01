@@ -21,16 +21,19 @@
 1. Describe what MVC Archtecture is and how we have used it this week with
    **Node/Express/Mongoose**.
 
-# Project description -
+# Project description
 
 * For this Project we're going to be building out a Backend for a `Budget
-  Tracker` app.
-* **Reading** Take note of the _aggregation_ method.
-  [This](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm)
-  Documentation about _Aggregation_ in MongoDB.
-  ## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
-* For this project you'll need three different models
-  ### **Account**
+  Tracker` app. Take note of the _aggregation_ method found in
+  [these](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm) docs
+
+## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
+
+* For this project you'll need three different models, Account, Expense and
+  Category
+
+### **Account**
+
 * This will be the budget that you set for Budget Tracker.
 * An account object saved to the DB should look like this:
 
