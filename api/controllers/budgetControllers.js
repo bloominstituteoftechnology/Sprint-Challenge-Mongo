@@ -17,7 +17,25 @@ const budgetCreate = (req, res) => {
     });
 };
 
+const budgetSummary = (req, res) => {
+  const { id } = req.params;
+  Budget.findById(id)
+    .aggregate(
+      [{$group : { _id : 'expenses' }}]
+    )
+    .exec()
+    .then(budget => {
+      if (budget === null) throw new Error();
+
+      
+
+    })
+}
+
+// app.route('/budget/:id/summary').get(budgetControllers.budgetSummary);
+
 
 module.exports = {
   budgetCreate,
+  budgetSummary
 };
