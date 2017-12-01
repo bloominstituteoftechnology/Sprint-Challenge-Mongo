@@ -32,24 +32,24 @@ const categoryList = (req, res) => {
         });
 };
 
-const categoryListById = (req, res) => {
-    const { id } = req.params;
+// const categoryListById = (req, res) => {
+//     const { id } = req.params;
 
-    Category.findById({ id })
-        .exec()
-        .then((category) => {
-            if (!category) {
-                throw new Error();
-            }
-            res.json(category);
-        })
-        .catch((err) => {
-            res.status(422).json(err);
-        });
-};
+//     Category.findById({ id })
+//         .exec()
+//         .then((category) => {
+//             if (!category) {
+//                 throw new Error();
+//             }
+//             res.json(category);
+//         })
+//         .catch((err) => {
+//             res.status(422).json(err);
+//         });
+// };
 
 module.exports = {
     categoryCreate,
-    categoryList,
-    categoryListById
+    categoryList
+    // categoryListById
 }
