@@ -17,8 +17,8 @@ module.exports = app => {
     .route('/category/:id')
     .get(categoryControllers.categoryListById);
 
-  // app
-  //   .route('/expense')
-  //   .post(expenseControllers.expenseCreate)
-  //   .get(expenseControllers.expenseList);
+  app
+    .route('/expense')
+    .post(expenseControllers.expenseCreate)
+    .get(expenseControllers.expenseList);
 };
