@@ -1,0 +1,5 @@
+1* A database is an organized collection of data that can be easily accessed, managed and updated. There is no tables in NoSQL databases instead you store your data in collections. A collection may store a number of documents. The document is the unit of storing data in a database. Document use JSON style for storing data (in a MongoDB).
+
+2* Mongoose schemas let us to store reference on another document. If you want to get more than id of that document then you can fill it with mongoose's populate method. Population is the process of automatically replacing the specified paths in the document with document from other collection.
+
+3* I think that we have used only Model Route Controller Architecture this week(not View) and have organized our code so that our model folder can export mongoose schemas to the controllers folder and then the routes can imput those controllers in a separate folder.
