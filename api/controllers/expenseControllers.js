@@ -29,6 +29,7 @@ const ExpenseController = {
             }
             const expenses = await Expense.aggregate([
                 { $group: { _id: '$category', category: { $first: '$category' }, total: { $sum: '$amount'}}, },
+                { $sort: { total: -1 } }
             ]).then(categoryExpenses => Category.populate(categoryExpenses, { path: 'category', select: 'title'}));
 
             res.json(expenses);
