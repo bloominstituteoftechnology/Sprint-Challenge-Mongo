@@ -45,23 +45,52 @@ const listExpenses = (req, res) => {
 /* eslint-disable no-console */
 const budgetSummary = (req, res) => {
   const { id } = req.params;
-  console.log('budgetSummary id:', id);
-  Expense.find({ 'budget._id': { $eq: id } }).count().exec().then(count => console.log('count:', count));
-  const summary = Expense.aggregate(
-  { $match: { 'budget._id': id } },
-    { $project: {
-      totalExpenses: { $sum: '$amount' },
-      budgetedAmount: { total: '$budget.budgetAmount' }
+  // console.log('budgetSummary id:', id);
+  let budgetAmount;
+  Budget.findById(id)
+  .exec()
+  .then((budget) => {
+    // console.log('budget:', budget);
+    budgetAmount = budget.budgetAmount;
+  })
+  .catch(err => res.status(statusCodes.userError).json({ error: `not found: ${err}` }));
+
+  Expense.aggregate(
+    { $group: {
+      _id: '$budget', totalExpenses: { $sum: '$amount' }
     } }
-  );
-  console.log('summary.totalExpenses:', summary.budgetedAmount);
-  console.log('summary.totalExpenses:', summary.totalExpenses);
-  res.json(summary.budgetedAmount);
+  )
+  .exec()
+  .then((summary) => {
+    // console.log('summary.totalExpenses:', summary[0].totalExpenses);
+    // console.log('budgetedAmount:', budgetAmount);
+    // console.log('summary', summary);
+    res.json({ budgetDelta: (budgetAmount - summary[0].totalExpenses) });
+  })
+  .catch(err => res.status(statusCodes.serverError).json({ error: err.message }));
 };
+const expenseGroupBy = (req, res) => {
+  const { aggregatedBy } = req.query;
+  if (aggregatedBy === undefined || aggregatedBy === null || !aggregatedBy.length) {
+    res.status(statusCodes.userError).json({ error: 'must provide an aggregatedBy' });
+  }
+  const by = `$${aggregatedBy}`;
+
+  Expense
+  .aggregate(
+     { $group: { _id: by, total: { $sum: '$amount' } } },
+     { $sort: { total: -1 } }
+  )
+  .exec()
+  .then(value => res.json(value))
+  .catch(err => res.status(statusCodes.serverError).json({ error: err.message }));
+};
+
 
 module.exports = {
   createExpense,
   findExpense,
   listExpenses,
-  budgetSummary
+  budgetSummary,
+  expenseGroupBy
 };

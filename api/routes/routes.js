@@ -25,5 +25,8 @@ module.exports = (app) => {
 
   app
     .route('/expense/:budget/:category')
-    .post(expenseControllerMethods.createExpense);
+    .get(expenseControllerMethods.createExpense);
+  app
+    .route('/expenses')
+    .get(expenseControllerMethods.expenseGroupBy);
 };
