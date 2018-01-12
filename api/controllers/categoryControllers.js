@@ -2,7 +2,7 @@ const category = require('../models/category.js');
 
 exports.findAll = function(req, res) {
     // Retrieve and return all categories from the database.
-    Category.find({})
+    Category.find({title})
     .then(function(categories){
         res.status(200).json(categories);
     }).catch(function(error) {

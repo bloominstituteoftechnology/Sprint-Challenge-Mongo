@@ -1,14 +1,16 @@
-const budget = require('../models/budget.js')
+const Budget = require('../models/budget.js')
 
 exports.create = function(req, res) {
-    if(!req.body.content) {
+    const {title, amount} = req.body;
+    if(!req.body.title || !req.body.amount) {
         res.status(400).send({message: "body can not be empty"});
     }
-    budget = new Budget({
-        title: req.body.title
+    const budget = new Budget({
+        title,
+        amount
     });
 
-    budget.save(function(err, data) {
+    Budget.save(function(err, data) {
         console.log(data);
         if(err) {
             console.log(err);
@@ -19,3 +21,11 @@ exports.create = function(req, res) {
     });
 };
 
+exports.showBudgets = function(req, res) {
+    Budget.find({})
+    .then(function(budgets) {
+        res.status(200).json(budgets);
+    }).catch(function(error) {
+        res.status(422).json({ message: "Error!" });
+    });
+};
