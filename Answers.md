@@ -1,0 +1,8 @@
+1. Describe the following ```DataBase```, ```collection```, ```Document```
+  * A database is a collection of information that is organized so that it can easily be accessed, nmanaged and updated.
+  * A document is a piece of written, printed or electronic matter that provides information.
+  * Collections are the way MongoDB stores documents in. this is analogous to tables in relational databases.
+2. Describe how one can achieve the pattern of relationships in MongoDB. What needs to take place at the schema level? How do we 'fill' in the appropriate relational data using mongoose?
+  * MongoDB achieves the concept of relationships by storing associated data within the same document. Schemas relates different sets of data to each other by giving them a similar structure in relational databases. Document store databases doesnt required the related data in a document to have the same kind of schema. That means that two related documents can contain a different structure and data type. By using the populate method from mongoose we can fill the appropriate relational data.
+3. Describe what MVC Archtecture is and how we have used it this week with Node/Express/Mongoose.
+  *  MVC is a software architectural pattern for user interfaces that divides an application into three interconnected parts. This is done to separate internal representations of information from the ways information is presented to, and accepted from, the user. Node is analogous to the view, the controller is express, and the model is mongoose( using the schema to model the data );
