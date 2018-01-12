@@ -18,8 +18,8 @@ const expenseCreate = (req, res) => {
 
 const listExpenses = (req, res) => {
     Expense.find()
-        .populate({ path: 'budget', select: 'title budgetAmount -_id' })
-        .populate({ path: 'category', select: 'title -_id' })
+        .populate({ path: 'budget', select: 'title budgetAmount' })
+        .populate({ path: 'category', select: 'title' })
         .then((expenses) => {
             res.status(200).json(expenses);
         })
