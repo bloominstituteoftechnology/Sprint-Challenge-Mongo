@@ -15,11 +15,16 @@
   ## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future.
 
 1. Describe the following: `DataBase`, `Collection` , `Document`
-1. Describe how one can achieve the pattern of _relationships_ in MongoDB. What
-   needs to take place at the schema level? How do we _'fill'_ in the
-   appropriate relational data using mongoose?
+  - Database: A store of data that can be accessed with queries
+  - Collection: In MongoDB, a collection is a set of documents that are (usually) related in some way.
+  - Document: A record of data stored in a BSON object.
+1. Describe how one can achieve the pattern of _relationships_ in MongoDB. What needs to take place at the schema level? How do we _'fill'_ in the appropriate relational data using mongoose?
+  - ORM schemas can connect a property of a document to another document based on the ID of the document that is desired.
 1. Describe what MVC Archtecture is and how we have used it this week with
    **Node/Express/Mongoose**.
+    -  Model: a way to describe the data we are working with (e.g. schemas, CRUD, and validation) 
+    -  Controller: Take a request in, operate on the models based on what the request is, and send a response.
+    -  View: A visual representation of the data (e.g. HTML, React, templates)
 
 # Project description
 
