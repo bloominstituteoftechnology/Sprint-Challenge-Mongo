@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const BudegtSchema= new mongoose.Schmea({
+const BudgetSchema= new mongoose.Schmea({
    
         title: { 
             type: String,
@@ -13,4 +13,4 @@ const BudegtSchema= new mongoose.Schmea({
       
 });
 
-module.exports = mongoose.model('Budget', BudgetSchema);
+module.exports = mongoose.model( 'Budget', BudgetSchema );

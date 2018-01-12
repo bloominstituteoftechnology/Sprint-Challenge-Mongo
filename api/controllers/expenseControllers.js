@@ -27,5 +27,5 @@ const getExpense =(req,res) => {
         res.json({ err });
     });
 };
-}
-}
+
+module.exports= { postExpense, getExpense }

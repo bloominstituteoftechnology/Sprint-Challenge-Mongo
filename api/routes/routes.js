@@ -1,8 +1,8 @@
 module.exports = app => {
   // Todo: Fill in your routes here
-  const budgetMethods = require('../controllers/budgetController');
+  const budgetMethods = require('../controllers/budgetControllers.js');
   const expenseMethods = require ('../controllers/expenseController');
-  const categoryMethods = require ( '../controllers/categoryController');
+  const categoryMethods = require ( '../controllers/categoryController.');
 
 
   app.route('/budget')

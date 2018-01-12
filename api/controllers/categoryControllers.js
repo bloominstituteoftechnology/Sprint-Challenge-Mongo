@@ -29,3 +29,4 @@ const returnCategories = (req, res) => {
         });
 };
 
+module.exports= { createCategory, returnCategories}
