@@ -4,7 +4,7 @@ exports.create = function(req, res) {
     if(!req.body.content) {
         res.status(400).send({message: "body can not be empty"});
     }
-    const budget = new Budget({
+    budget = new Budget({
         title: req.body.title
     });
 
