@@ -1,5 +1,6 @@
 const budgetController = require('../controllers/budgetControllers.js')
 const categoryController = require('../controllers/categoryControllers.js')
+const expenseController = require('../controllers/expenseControllers.js')
 module.exports = app => {
   // Todo: Fill in your routes here
   app.get('/', (req, res) => {
@@ -18,4 +19,12 @@ module.exports = app => {
   app.get(('/allcategorys'), (req, res) => {
     return allCategorys(req, res);
   });
+
+  app.post(('/expense'), (req, res) => {
+    return expenseCreate(req, res);
+  });
+
+  app.get(('/expense'), (req,res) => {
+    return allExpenses(req, res);
+  })
 };

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const ObjectId = Schema.Types.ObjectId;
+var ObjectId = mongoose.Schema.Types.ObjectId;
 const ExpenseSchema = new mongoose.Schema({
-  index: true,
   amount: Number,
   description: String,
   budget: {
