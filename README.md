@@ -24,7 +24,7 @@
    **Node/Express/Mongoose**.
     -  Model: a way to describe the data we are working with (e.g. schemas, CRUD, and validation) 
     -  Controller: Take a request in, operate on the models based on what the request is, and send a response.
-    -  View: A visual representation of the data (e.g. plain HTML, React, templates)
+    -  View: A visual representation of the data (e.g. HTML, React, templates)
 
 # Project description
 
