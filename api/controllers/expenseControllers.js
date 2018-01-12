@@ -4,7 +4,10 @@ const Expense = require('../models/expense');
 
 const getExpenses = (req, res) => {
   Expense.find({})
+    .populate('budget')
+    .populate('category')
     .then(expenses => {
+      console.log(expenses);
       res.status(200).json(expenses);
     })
     .catch(err => {
