@@ -1,7 +1,7 @@
 const Budget = require('../models/budget.js')
 
 exports.create = function(req, res) {
-    const {title, amount} = req.body;
+    const { title, amount } = req.body;
     if(!req.body.title || !req.body.amount) {
         res.status(400).send({message: "body can not be empty"});
     }
