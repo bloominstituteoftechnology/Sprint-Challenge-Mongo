@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Budget = require('../models/budget');
 
 const createBudget = (req, res) => {
-  console.log('creating budget');
+  
   const budget = new Budget(req.body);
 
   budget
