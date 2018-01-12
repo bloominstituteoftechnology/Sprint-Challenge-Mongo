@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Expense = mongoose.model('Expense');
+const Expense = require('../models/expense');
 
 const expenseCreate = (req, res) => {
   const expense = req.body;

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Category = mongoose.model('Category');
+const Category = require('../models/category');
 
 const categoryCreate = (req, res) => {
   const category = req.body;

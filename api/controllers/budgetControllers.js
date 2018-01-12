@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Budget = mongoose.model('Budget');
+const Budget = require('../models/budget');
 
 const budgetCreate = (req, res) => {
   const budget = req.body;
