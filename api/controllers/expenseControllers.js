@@ -3,7 +3,8 @@ const Expense = require('../models/expense');
 
 const expenseCreate = (req, res) => {
   const expense = req.body;
-  Expense.post(expense)
+  const newExpense = new Expense(expense);
+  newExpense.save()
     .then((expense) => {
       if (!expense) throw new Error('No expense created');
       res.status(201).json({ message: 'Expense created successfully' });

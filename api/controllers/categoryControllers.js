@@ -3,7 +3,8 @@ const Category = require('../models/category');
 
 const categoryCreate = (req, res) => {
   const category = req.body;
-  Category.post(category)
+  const newCategory = new Category(category);
+  newCategory.save()
     .then((category) => {
       if (!category) throw new Error('No category created');
       res.status(201).json({ message: 'Category created successfully' });
