@@ -1,0 +1,8 @@
+1. Question: Describe the following: `DataBase`, `Collection` , `Document`
+    * Database: can contain large amounts of data, and provides a way to save data permanently.
+    * Collection: a collection of documents under a cathegory, each object can usually be identified by an id.
+    * Document: a collection of information within an object that contains multiple properties, and each property can contain data of any type within it.
+2. Question: Describe how one can achieve the pattern of _relationships_ in MongoDB. What needs to take place at the schema level? How do we _'fill'_ in the appropriate relational data using mongoose?
+    * the pattern of relationships in MongoDB can be achieved by either including data within the documents themselves or pointing to the data by using ObjectId within the objects, or by nesting schemas within schemas. Then one can utilize the populate method to have mongoose automatically query those nested ObjectIds and populate the data for us.
+3. Question: Describe what MVC Archtecture is and how we have used it this week with
+    * MVC Architecture: Model View Controller Architecture is a pattern in which in the view the user performs actions which are sent to the controller, then the controller updates the model, then the model notifies the controller, and the controller sends an update back to the view. In this week we have used this architecture with Postman being the View, Mongo/Mongoose being the Model and Express/Body-Parser being the controller.
