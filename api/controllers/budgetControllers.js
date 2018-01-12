@@ -17,4 +17,15 @@ const budgetCreate = (req, res) => {
         });
 };
 
-module.exports = { budgetCreate };
+const listBudgets = (req, res) => {
+    Budget.find()
+        .then((budgets) => {
+            res.status(200).json(budgets);
+        })
+        .catch((err) => {
+            res.status(422).json(err);
+            return;
+        });
+};
+
+module.exports = { budgetCreate, listBudgets };
