@@ -9,6 +9,9 @@ module.exports = app => {
   // Retrieve all categories
   app.get('/category', category.findAll);
 
+  // create / store a category
+  app.post('/category', category.create);
+
   // Retrieve expenses
   app.get('/expense', expense.findOne);
 };
