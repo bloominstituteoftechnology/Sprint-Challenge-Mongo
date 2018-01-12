@@ -23,4 +23,5 @@ const getAllCategories = (req, res) => {
 
 module.exports = {
   categoryCreate,
-  getA
+  getAllCategories
+};
