@@ -14,7 +14,7 @@ exports.create = function(req, res) {
         console.log(data);
         if(err) {
             console.log(err);
-            res.status(500).send({message: "Some error occurred while creating the Note."});
+            res.status(500).send({message: "Some error occurred while creating the budget."});
         } else {
             res.send(data);
         }
