@@ -16,6 +16,7 @@ const expenseCreate = (req, res) => {
 
 const expenseList = (req, res) => {
   Expense.find({})
+    .populate(['budget', 'category'])
     .then((expenses) => {
       if (expenses.length === 0) throw new Error('Expenses retrieved failed');
       res.status(200).json(expenses);

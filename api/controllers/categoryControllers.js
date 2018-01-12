@@ -16,7 +16,7 @@ const categoryCreate = (req, res) => {
 
 const categoryList = (req, res) => {
   Category.find({})
-    .select('title')
+    .select({ "title": 1, "_id": 0})
     .then((categories) => {
       if (categories.length === 0) throw new Error('Categories retrieved failed');
       res.status(200).json(categories);
