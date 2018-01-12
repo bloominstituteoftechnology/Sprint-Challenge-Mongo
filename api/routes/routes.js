@@ -8,6 +8,9 @@ module.exports = app => {
   app.route('/budget')
     .post(budgetControllers.budgetCreate);
 
+  app.route('/budget/:id/summary')
+    .get(budgetControllers.budgetDifference);
+
   app.route('/category')
     .post(categoryControllers.categoryCreate)
     .get(categoryControllers.categoryList);
@@ -15,4 +18,7 @@ module.exports = app => {
   app.route('/expense')
     .post(expenseControllers.expenseCreate)
     .get(expenseControllers.expenseList);
+  
+  app.route('/expenses')
+    .get(expenseControllers.categorySpend);
 };

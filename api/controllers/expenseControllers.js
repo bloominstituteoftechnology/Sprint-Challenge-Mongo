@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Expense = require('../models/expense');
+const Category = require('../models/category');
 
 const expenseCreate = (req, res) => {
   const expense = req.body;
@@ -26,7 +27,13 @@ const expenseList = (req, res) => {
     });
 };
 
+const categorySpend = (req, res) => {
+  const category = req.query.aggregatedBy;
+
+};
+
 module.exports = {
   expenseCreate,
-  expenseList
+  expenseList,
+  categorySpend
 };
