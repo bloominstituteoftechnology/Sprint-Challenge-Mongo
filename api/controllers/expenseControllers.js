@@ -28,8 +28,31 @@ const expenseList = (req, res) => {
 };
 
 const categorySpend = (req, res) => {
-  const category = req.query.aggregatedBy;
-
+  Expense.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        category: {$first: "$category"},
+        totalExpenses: {
+          $sum: "$amount"
+        }
+      }
+    }, 
+    {
+      $sort: { totalExpenses: -1 }
+    }
+  ])
+  .then((response) => {
+    if (response.length === 0) throw new Error("No record found");
+    return Category.populate(response, { path: 'category', select: "title -_id"});
+  })
+  .then((result) => {
+    if (!result) throw new Error("No result found");
+    res.status(200).json(result);
+  })
+  .catch((error) => {
+    res.status(422).json({ error: error.message });
+  });
 };
 
 module.exports = {
