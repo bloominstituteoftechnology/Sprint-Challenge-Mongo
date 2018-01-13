@@ -35,11 +35,19 @@ const getBudgetSummary = (req, res) => {
 
 const getCategoryExpenses = (req, res) => {
   const { aggregatedBy } = req.query;
-  Expense.find({})
-    .then(expense => {
-      const categoryId = expense.map(e => e.category);
-      console.log(...categoryId);
+  Expense.aggregate([
+    {
+      $group: {
+        _id: `$${aggregatedBy}`,
+        totalExpense: { $sum: '$amount' },
+      },
+    },
+  ])
+    .sort({ total: -1 })
+    .then(results => {
+      res.status(200).json(results);
     })
+
     .catch(err => {
       res.status(500).json({ message: err });
     });
