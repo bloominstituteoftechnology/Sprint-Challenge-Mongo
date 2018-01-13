@@ -1,17 +1,18 @@
 module.exports = app => {
   // Todo: Fill in your routes here
-  const budget =  require('../controllers/expenseController.js');
-  const category =  require('../controllers/categoryControllers.js');
-  const expense = require('../controllers/expenseControllerr.js');
+ 
+  const { create, showBudgets } =  require('../controllers/budgetControllers.js');
+  const { createCategory, findAll } =  require('../controllers/categoryControllers.js');
+  const { createExpense, showExpense } = require('../controllers/expenseControllers.js');
     // Create a new budget
-  app.post('/budget', budget.create);
+  app.post('/budget', create);
 
   // Retrieve all categories
-  app.get('/category', category.findAll);
+  app.get('/category', findAll);
 
   // create / store a category
-  app.post('/category', category.create);
+  app.post('/category', createCategory);
 
   // Retrieve expenses
-  app.get('/expense', expense.findOne);
+  app.get('/expense', showExpense);
 };

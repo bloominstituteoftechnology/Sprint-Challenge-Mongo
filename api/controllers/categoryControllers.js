@@ -1,6 +1,6 @@
 const Category = require('../models/category.js');
-
-exports.create = function(req, res) {
+module.exports = exports;
+exports.createCategory = function(req, res) {
     const { title } = req.body;
     if(!req.body.title) {
         res.status(400).send({ message: "title can not be empty" });
@@ -9,7 +9,7 @@ exports.create = function(req, res) {
         title,
     });
 
-    Category.save(function(err, data) {
+    category.save(function(err, data) {
         console.log(data);
         if(err) {
             console.log(err);
@@ -22,7 +22,7 @@ exports.create = function(req, res) {
 
 exports.findAll = function(req, res) {
     // Retrieve and return all categories from the database.
-    Category.find({})
+    category.find({})
     .then(function(categories){
         res.status(200).json(categories);
     }).catch(function(error) {

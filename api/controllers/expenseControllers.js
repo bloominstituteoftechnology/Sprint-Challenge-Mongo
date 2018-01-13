@@ -1,6 +1,6 @@
 const Expense = require('../models/expense.js');
-
-exports.create = function(req, res) {
+module.exports = exports;
+exports.createExpense = function(req, res) {
     const { amount, description, budget, category } = req.body;
     if (!req.body.amount || ! req.body.description || !req.body.budget || !req.body.category) {
         res.status(400).send( { message: "Please provide all the information" });
@@ -11,7 +11,7 @@ exports.create = function(req, res) {
         budget,
         category
     });
-    Expense.save(function(err, data) {
+    expense.save(function(err, data) {
         console.log(data);
         if(err) {
             console.log(err);

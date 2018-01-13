@@ -3,11 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const server = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const routes = require('./api/routes/routes');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/budget', { useMongoClient: true });
 
 server.use(bodyParser.json());
 
