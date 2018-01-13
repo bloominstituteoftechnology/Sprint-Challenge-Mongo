@@ -7,4 +7,4 @@ const BudgetSchema = new Schema({
 });
 
 module.exports = mongoose.model('Budget', BudgetSchema);
-    
+

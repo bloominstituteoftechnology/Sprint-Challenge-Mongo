@@ -9,4 +9,6 @@ module.exports = server => {
   server.get ('/category', categoryList)
   server.post ('/expense', expenseCreate)
   server.get ('/expense', expenseList)
+  server.get ('/budget/:id/summary', expensesAggregate)
+  server.get ('/expenses?aggregatedBy=category'), expensesCategoryAggregate)
 }
