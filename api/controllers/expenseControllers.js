@@ -7,7 +7,6 @@ const getExpenses = (req, res) => {
     .populate('budget')
     .populate('category')
     .then(expenses => {
-      console.log(expenses);
       res.status(200).json(expenses);
     })
     .catch(err => {
@@ -28,7 +27,13 @@ const createExpense = (req, res) => {
     });
 };
 
+const getBudgetSummary = (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+};
+
 module.exports = {
   getExpenses,
-  createExpense
+  createExpense,
+  getBudgetSummary,
 };

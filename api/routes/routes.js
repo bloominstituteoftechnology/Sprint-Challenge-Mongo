@@ -9,6 +9,8 @@ module.exports = app => {
   // Todo: Fill in your routes here
   router.route('/budget').post(budgetControllers.createBudget);
 
+  router.route('/budget').get(budgetControllers.getBudgets);
+
   router.route('/category').post(categoryControllers.createCategory);
 
   router.route('/category').get(categoryControllers.getCategories);
@@ -16,6 +18,8 @@ module.exports = app => {
   router.route('/expense').post(expenseControllers.createExpense);
 
   router.route('/expense').get(expenseControllers.getExpenses);
+
+  router.route('/budget/:id/summary').get(budgetControllers.getBudgetSummary);
 
   app.use('/api', router);
 };
