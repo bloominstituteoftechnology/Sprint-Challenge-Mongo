@@ -11,6 +11,8 @@ module.exports = app => {
 
   router.route('/budget').get(budgetControllers.getBudgets);
 
+  router.route('/budget/:id/summary').get(budgetControllers.getBudgetSummary);
+
   router.route('/category').post(categoryControllers.createCategory);
 
   router.route('/category').get(categoryControllers.getCategories);
@@ -19,7 +21,7 @@ module.exports = app => {
 
   router.route('/expense').get(expenseControllers.getExpenses);
 
-  router.route('/budget/:id/summary').get(budgetControllers.getBudgetSummary);
+  router.route('/expenses').get(expenseControllers.getCategoryExpenses);
 
   app.use('/api', router);
 };

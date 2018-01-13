@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Expense = require('../models/expense');
+const Category = require('../models/category');
 
 const getExpenses = (req, res) => {
   Expense.find({})
@@ -32,8 +33,21 @@ const getBudgetSummary = (req, res) => {
   console.log(id);
 };
 
+const getCategoryExpenses = (req, res) => {
+  const { aggregatedBy } = req.query;
+  Expense.find({})
+    .then(expense => {
+      const categoryId = expense.map(e => e.category);
+      console.log(...categoryId);
+    })
+    .catch(err => {
+      res.status(500).json({ message: err });
+    });
+};
+
 module.exports = {
   getExpenses,
   createExpense,
   getBudgetSummary,
+  getCategoryExpenses,
 };
