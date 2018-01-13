@@ -1,29 +1,28 @@
 const Expense = require('../models/expense.js');
-module.exports = exports;
+const Budget = require('../models/budget.js');
+const mongoose = require('mongoose');
+
 exports.createExpense = function(req, res) {
     const { amount, description, budget, category } = req.body;
-    if (!req.body.amount || ! req.body.description || !req.body.budget || !req.body.category) {
-        res.status(400).send( { message: "Please provide all the information" });
-    }
-    const expense = new Expense({
+    
+    let expense = new Expense({
         amount,
         description,
         budget,
         category
     });
-    expense.save(function(err, data) {
-        console.log(data);
-        if(err) {
-            console.log(err);
-            res.status(500).send({ message: "Some error occurred while saving expense." });
-        } else {
-            res.send(data);
-        }
-    });
+    expense.save(function() {
+        }).then(function(result) {
+            res.status(200).json(result);
+            console.log(`expense created: ${result}`);
+        }).catch(function(err) {
+            res.status(500).send(err);
+            console.log("An error occurred when creating expense.", err);
+        });
 };
 
 exports.showExpense = function(req,res) {
-    Expense.find(      
+    expense.find(      
     ).populate({ path: 'budget', select: 'title' })
     .then(function(expenses) {
         res.status(200).json(expenses);

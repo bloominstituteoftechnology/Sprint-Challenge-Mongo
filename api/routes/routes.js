@@ -15,4 +15,5 @@ module.exports = app => {
 
   // Retrieve expenses
   app.get('/expense', showExpense);
+  app.post('/expense', createExpense);
 };

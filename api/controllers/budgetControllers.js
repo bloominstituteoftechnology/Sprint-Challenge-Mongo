@@ -3,9 +3,7 @@ const mongoose = require('mongoose');
 
 exports.create = function(req, res) {
     const { title, budgetAmount } = req.body;
-    // if(!req.body.title || !req.body.amount) {
-    //     res.status(400).send({message: "body can not be empty"});
-    // };
+  
     let budget = new Budget({
         title,
         budgetAmount
@@ -17,7 +15,7 @@ exports.create = function(req, res) {
           console.log(`budget created: ${result}`);
       }).catch(function(err) {
           res.status(500).send(err);
-          console.log("An error occurred when creating budget.");
+          console.log("An error occurred when creating budget.", err);
       });
     };
 exports.showBudgets = function(req, res) {
@@ -25,6 +23,6 @@ exports.showBudgets = function(req, res) {
     .then(function(budgets) {
         res.status(200).json(budgets);
     }).catch(function(error) {
-        res.status(422).json({ message: "Error!" });
+        res.status(422).json({ message: "Error finding budgets!" });
     });
     };

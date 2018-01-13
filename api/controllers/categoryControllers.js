@@ -1,28 +1,27 @@
 const Category = require('../models/category.js');
-module.exports = exports;
+const mongoose = require('mongoose');
+
 exports.createCategory = function(req, res) {
     const { title } = req.body;
-    if(!req.body.title) {
-        res.status(400).send({ message: "title can not be empty" });
-    }
-    const category = new Category({
+  
+   
+    let category = new Category({
         title,
     });
 
-    category.save(function(err, data) {
-        console.log(data);
-        if(err) {
-            console.log(err);
-            res.status(500).send({ message: "Some error occurred while creating the category." });
-        } else {
-            res.send(data);
-        }
-    });
+    category.save(function() {
+        }).then(function(result) {
+            res.status(200).json(result);
+            console.log(`category created: ${result}`);
+        }).catch(function(err) {
+            res.status(500).send(err);
+            console.log("An error occurred when creating category.");
+        });
 };
 
 exports.findAll = function(req, res) {
     // Retrieve and return all categories from the database.
-    category.find({})
+    category.find()
     .then(function(categories){
         res.status(200).json(categories);
     }).catch(function(error) {
