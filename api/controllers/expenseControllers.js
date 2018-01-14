@@ -5,16 +5,16 @@ const mongoose = require('mongoose');
 exports.createExpense = function(req, res) {
     const { amount, description, budget, category } = req.body;
     
-    let expense = new Expense({
+    const expense = new Expense({
         amount,
         description,
         budget,
         category
     });
     expense.save(function() {
-        }).then(function(result) {
-            res.status(200).json(result);
-            console.log(`expense created: ${result}`);
+        }).then(function(amount) {
+            res.status(200).json(amount);
+            console.log(`expense created: ${amount}`);
         }).catch(function(err) {
             res.status(500).send(err);
             console.log("An error occurred when creating expense.", err);
@@ -22,8 +22,8 @@ exports.createExpense = function(req, res) {
 };
 
 exports.showExpense = function(req,res) {
-    expense.find(      
-    ).populate({ path: 'budget', select: 'title' })
+    Expense.find(      
+    ).populate({ path: 'Budget', select: 'title' })
     .then(function(expenses) {
         res.status(200).json(expenses);
     }).catch(function(error) {

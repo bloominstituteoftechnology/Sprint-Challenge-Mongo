@@ -5,6 +5,7 @@ module.exports = app => {
   const { createCategory, findAll } =  require('../controllers/categoryControllers.js');
   const { createExpense, showExpense } = require('../controllers/expenseControllers.js');
     // Create a new budget
+  app.get('/budget', showBudgets);
   app.post('/budget', create);
 
   // Retrieve all categories

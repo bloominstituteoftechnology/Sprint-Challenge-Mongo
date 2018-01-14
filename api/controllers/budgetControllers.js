@@ -3,12 +3,10 @@ const mongoose = require('mongoose');
 
 exports.create = function(req, res) {
     const { title, budgetAmount } = req.body;
-  
-    let budget = new Budget({
+    const budget = new Budget({
         title,
         budgetAmount
     });
-
     budget.save(function() {
       }).then(function(result) {
           res.status(200).json(result);
@@ -18,10 +16,12 @@ exports.create = function(req, res) {
           console.log("An error occurred when creating budget.", err);
       });
     };
+
 exports.showBudgets = function(req, res) {
-    budget.find({})
-    .then(function(budgets) {
-        res.status(200).json(budgets);
+    //const { title, budgetAmount } = req.body;
+    Budget.find({})
+    .then(function(budgetAmount) {
+        res.status(200).json(budgetAmount);
     }).catch(function(error) {
         res.status(422).json({ message: "Error finding budgets!" });
     });
