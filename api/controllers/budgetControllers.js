@@ -1,6 +1,7 @@
 const Budget = require('../models/budget.js')
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 
+//create a new budget instance abstract its properties and set them as the request body, pass the properties into each method
 exports.create = function(req, res) {
     const { title, budgetAmount } = req.body;
     const budget = new Budget({
@@ -18,7 +19,7 @@ exports.create = function(req, res) {
     };
 
 exports.showBudgets = function(req, res) {
-    //const { title, budgetAmount } = req.body;
+  
     Budget.find({})
     .then(function(budgetAmount) {
         res.status(200).json(budgetAmount);

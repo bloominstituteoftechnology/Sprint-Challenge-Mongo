@@ -1,14 +1,11 @@
 const Category = require('../models/category.js');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 
 exports.createCategory = function(req, res) {
-    const { title } = req.body;
-  
-   
+    const { title } = req.body; 
     let category = new Category({
         title,
     });
-
     category.save(function() {
         }).then(function(result) {
             res.status(200).json(result);
@@ -21,7 +18,7 @@ exports.createCategory = function(req, res) {
 
 exports.findAll = function(req, res) {
     // Retrieve and return all categories from the database.
-    category.find()
+    Category.find()
     .then(function(categories){
         res.status(200).json(categories);
     }).catch(function(error) {

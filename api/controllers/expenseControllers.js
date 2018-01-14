@@ -1,10 +1,9 @@
 const Expense = require('../models/expense.js');
 const Budget = require('../models/budget.js');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 
 exports.createExpense = function(req, res) {
     const { amount, description, budget, category } = req.body;
-    
     const expense = new Expense({
         amount,
         description,
