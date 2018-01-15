@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 
 const ExpenseSchema = new mongoose.Schema({
     amount: {
@@ -11,10 +12,12 @@ const ExpenseSchema = new mongoose.Schema({
     budget: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Budget',
+        required: true,
     },
     category: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Category',
+        required: true,
     },
     
 });
