@@ -72,7 +72,6 @@ server.post('/expense',(req,res) => {
   const expenseInformation = req.body;
   if(expenseInformation.amount){
     const expense = new Expense(expenseInformation);
-    console.log(expense)
     expense.save()
       .then(newExpense => {
         res.status(200).json(newExpense)
@@ -94,9 +93,34 @@ server.post('/expense',(req,res) => {
 })
 
 server.get('/expense',(req,res) => {
-  Category.find({})
+  Expense.find({})
     .then(expenses => res.status(200).json(expenses))
     .catch(error => res.status(500).json({error: 'no categories found'}))
+})
+
+server.get('/budget/:id/summary',(req,res) => {
+  const id = req.params.id;
+  console.log(id);
+  Expense.aggregate([
+    {
+    $group: {
+      _id :'$budget',
+      sum:{$sum: '$amount'}
+    }
+  }
+  ])
+    .then(result1 => {
+      Budget.findById(id)
+        .then(result2 => {
+          res.status(200).json(result2.budgetAmount-result1[0].sum);
+        })
+        .catch(error =>{
+          res.status(500).json({error:error.message});
+        })
+      })
+    .catch(error=>{
+      res.status(500).json({error: error.message})
+    })
 })
 
 mongoose.Promise = global.Promise;
