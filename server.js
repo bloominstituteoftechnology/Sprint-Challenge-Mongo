@@ -7,6 +7,9 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/budget", { useMongoClient: true });
+const db = mongoose.connect("mongodb://localhost/budget", {
+  useMongoClient: true
+});
 
 const Budget = require("./api/models/budget");
 const Category = require("./api/models/category");
@@ -66,6 +69,28 @@ server.get("/expense", (req, res) => {
     .populate("category", "-__id")
     .then(expenses => {
       res.send(expenses);
+    })
+    .catch(err => {
+      res.send({ err });
+    });
+});
+
+// STRECH
+
+server.get("/budget/:id/summary", (req, res) => {
+  // expenses
+  const { id } = req.params;
+
+  Budget.findOne({ _id: id })
+    .then(result => {
+      const budget = result.budgetAmount;
+      Expense.aggregate([{ $group: { _id: null, total: { $sum: "$amount" } } }])
+        .then(total => {
+          res.send({ BudgetLeft: budget - total[0].total });
+        })
+        .catch(err => {
+          res.send({ err });
+        });
     })
     .catch(err => {
       res.send({ err });
