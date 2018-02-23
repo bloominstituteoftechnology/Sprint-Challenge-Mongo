@@ -7,7 +7,12 @@ const port = process.env.PORT || 3000;
 
 const routes = require('./api/routes/routes');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
+mongoose.connect('mongodb://localhost/budget')
+.then(r => {
+  console.log("Successfully connected!");
+}).catch(error => {
+  console.log(error);
+})
 
 server.use(bodyParser.json());
 
