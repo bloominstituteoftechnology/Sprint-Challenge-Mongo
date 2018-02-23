@@ -15,6 +15,12 @@ module.exports = app => {
       .catch(err => res.status(500).json(err));
   });
 
+  app.get('/budget/:id/summary', (req, res) => {
+    getExpenses(req.params.id)
+      .then(summary => res.status(200).json(summary))
+      .catch(err => res.status(500).json(err));
+  });
+
   app.post('/category', (req, res) => {
     createCategory(req.body)
       .then(savedCategory => res.status(200).json(savedCategory))
@@ -41,12 +47,15 @@ module.exports = app => {
         res.status(200).json(
           allExpenses.map(expense => {
             const { _id, amount, description, budget, category } = expense;
+
             return {
               _id,
               amount,
               description,
-              budgetTitle: budget.title,
-              budgetAmount: budget.budgetAmount,
+              budget: {
+                title: budget.title,
+                budgetAmount: budget.budgetAmount,
+              },
               category: category.title,
             };
           }),

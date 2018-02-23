@@ -4,4 +4,8 @@ const createBudget = budgetInfo => {
   return new Budget(budgetInfo).save();
 };
 
-module.exports = { createBudget };
+const getBudgetSummary = budgetId => {
+  return new Budget.find();
+};
+
+module.exports = { createBudget, getBudgetSummary };
