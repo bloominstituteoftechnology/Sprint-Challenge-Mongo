@@ -37,6 +37,22 @@ server.post('/budget', (req, res) => {
   });
 });
 
+server.post('/category', (req, res) => {
+  const {title} = req.body;
+  const category = new Category({ title });
+
+  Category.create(category)
+  .then(savedCategory => {
+    res.send(savedCategory)
+  })
+  .catch(error => {
+    res.send({ error: 'Could not create new category.' });
+  });
+});
+
+
+
+
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
