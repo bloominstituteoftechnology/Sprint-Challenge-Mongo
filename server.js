@@ -60,19 +60,6 @@ server.get("/category", (req, res) => {
   })
 });
 
-/* server.post("/expense", (req, res) => {
-  const { amount, description, budget, category } = req.body;
-  const expense = new Expense(req.body);
-
-  Expense.create(expense)
-    .then(savedExpense => {
-      res.send(savedExpense);
-    })
-    .catch(error => {
-      res.send({ error: "Could not add expense. " });
-    });
-}); */
-
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
