@@ -7,6 +7,7 @@ const {
   createExpense,
   getExpenses,
   aggregateExpenses,
+  getExpensesOf,
 } = require('../controllers/expenseControllers');
 
 module.exports = app => {
@@ -19,25 +20,55 @@ module.exports = app => {
   app.get('/budget/:id/summary', (req, res) => {
     const budgetId = req.params.id;
 
-    aggregateExpenses()
-      .then(allExpenses => {
-        getBudget(budgetId)
-          .then(budgetAmount => {
-            const budget = budgetAmount.budgetAmount;
+    Promise.all([
+      aggregateExpenses().then(allExpenses =>
+        Promise.resolve(
+          allExpenses.filter(expense => expense._id.toString() === budgetId)[0]
+            .expensesSum,
+        ).catch(err => Promise.reject(err)),
+      ),
+      getBudget(budgetId)
+        .then(budgetObj => Promise.resolve(budgetObj.budgetAmount))
+        .catch(err => Promise.reject(err)),
+      getExpensesOf(budgetId).then(expensesList =>
+        Promise.resolve(expensesList).catch(err => Promise.reject(err)),
+      ),
+    ])
+      .then(values => {
+        const expenses = values[0];
+        const budgetAmount = values[1];
+        const expensesList = values[2].map(expense => {
+          return { amount: expense.amount, description: expense.description };
+        });
 
-            const expenses = allExpenses.filter(
-              expense => expense._id.toString() !== budgetId,
-            )[0].expensesSum;
-
-            res.status(200).json({
-              summary: budget - expenses,
-              budget,
-              expenses,
-            });
-          })
-          .catch(err => res.status(422).json(err));
+        res.status(200).json({
+          summary: budgetAmount - expenses,
+          budgetAmount,
+          expenses,
+          expensesList,
+        });
       })
       .catch(err => res.status(500).json(err));
+
+    // aggregateExpenses()
+    //   .then(allExpenses => {
+    //     getBudget(budgetId)
+    //       .then(budgetAmount => {
+    //         const budget = budgetAmount.budgetAmount;
+
+    //         const expenses = allExpenses.filter(
+    //           expense => expense._id.toString() !== budgetId,
+    //         )[0].expensesSum;
+
+    //         res.status(200).json({
+    //           summary: budget - expenses,
+    //           budget,
+    //           expenses,
+    //         });
+    //       })
+    //       .catch(err => res.status(422).json(err));
+    //   })
+    //   .catch(err => res.status(500).json(err));
   });
 
   app.post('/category', (req, res) => {

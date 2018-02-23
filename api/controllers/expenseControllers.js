@@ -14,4 +14,13 @@ const aggregateExpenses = _ => {
   ]);
 };
 
-module.exports = { createExpense, getExpenses, aggregateExpenses };
+const getExpensesOf = budget => {
+  return Expense.find({ budget }).populate('budget category');
+};
+
+module.exports = {
+  createExpense,
+  getExpenses,
+  aggregateExpenses,
+  getExpensesOf,
+};
