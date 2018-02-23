@@ -4,7 +4,7 @@ const createBudget = budgetInfo => {
   return new Budget(budgetInfo).save();
 };
 
-const getBudgetSummary = budgetId => {
+const getBudgetSummary = (budgetId, expenses) => {
   return new Budget.find();
 };
 

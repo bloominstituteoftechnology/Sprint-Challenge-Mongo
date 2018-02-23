@@ -6,6 +6,7 @@ const {
 const {
   createExpense,
   getExpenses,
+  aggregateExpenses,
 } = require('../controllers/expenseControllers');
 
 module.exports = app => {
@@ -16,7 +17,7 @@ module.exports = app => {
   });
 
   app.get('/budget/:id/summary', (req, res) => {
-    getExpenses(req.params.id)
+    aggregateExpenses()
       .then(summary => res.status(200).json(summary))
       .catch(err => res.status(500).json(err));
   });
@@ -43,24 +44,7 @@ module.exports = app => {
 
   app.get('/expense', (req, res) => {
     getExpenses()
-      .then(allExpenses =>
-        res.status(200).json(
-          allExpenses.map(expense => {
-            const { _id, amount, description, budget, category } = expense;
-
-            return {
-              _id,
-              amount,
-              description,
-              budget: {
-                title: budget.title,
-                budgetAmount: budget.budgetAmount,
-              },
-              category: category.title,
-            };
-          }),
-        ),
-      )
+      .then(allExpenses => res.status(200).json(allExpenses))
       .catch(err => res.status(500).json(err));
   });
 };

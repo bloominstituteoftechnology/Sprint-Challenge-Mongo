@@ -4,8 +4,14 @@ const createExpense = expenseInfo => {
   return new Expense(expenseInfo).save();
 };
 
-const getExpenses = (budgetId = '') => {
-  return Expense.find({ budget: budgetId }).populate('budget category');
+const getExpenses = _ => {
+  return Expense.find().populate('budget category');
 };
 
-module.exports = { createExpense, getExpenses };
+const aggregateExpenses = _ => {
+  return Expense.aggregate([
+    { $group: { _id: '$budget', expensesSum: { $sum: '$amount' } } },
+  ]);
+};
+
+module.exports = { createExpense, getExpenses, aggregateExpenses };
