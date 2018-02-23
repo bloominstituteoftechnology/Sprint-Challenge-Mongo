@@ -1,3 +1,5 @@
 module.exports = app => {
-  // Todo: Fill in your routes here
+  app.get('/', (req, res) => {
+    res.status(200).send('a');
+  });
 };
