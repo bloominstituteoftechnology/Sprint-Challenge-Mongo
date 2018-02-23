@@ -55,7 +55,31 @@ servert.get('/category', (req, res) => {
   });
 });
 
-server.post('/expense')
+server.post('/expense', (req, res) => {
+  const { amount, description, budget, category } = req.body;
+  const expense = new Expense(req.body);
+  Expense.create(expense)
+  .then(savedExpense => {
+    res.send(savedExpense);
+  })
+  .catch(err => {
+    res.send({ err });
+  });
+});
+
+server.get('/expense', (req, res) => {
+  Expense.find({}, { _id: 0, _v: 0 })
+  .populate('budget', '-_id')
+  .populate('category', '-_id')
+  .then(expenses => {
+    res.send(expenses);
+  })
+  .catch(err => {
+    res.send({ err });
+  });
+});
+
+
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
