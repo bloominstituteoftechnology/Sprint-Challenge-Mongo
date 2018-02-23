@@ -3,30 +3,55 @@ const {
   createCategory,
   getCategories,
 } = require('../controllers/categoryControllers');
-const expenseController = require('../controllers/expenseControllers');
+const {
+  createExpense,
+  getExpenses,
+} = require('../controllers/expenseControllers');
 
 module.exports = app => {
   app.post('/budget', (req, res) => {
-    const { title, budgetAmount } = req.body;
-
-    createBudget({ title, budgetAmount })
-      .then(savedBudget => res.status(200).send(savedBudget))
-      .catch(err => res.status(500).send(err));
+    createBudget(req.body)
+      .then(savedBudget => res.status(200).json(savedBudget))
+      .catch(err => res.status(500).json(err));
   });
 
   app.post('/category', (req, res) => {
-    const { title } = req.body;
-
-    createCategory({ title })
-      .then(savedCategory => res.status(200).send(savedCategory))
-      .catch(err => res.status(500).send(err));
+    createCategory(req.body)
+      .then(savedCategory => res.status(200).json(savedCategory))
+      .catch(err => res.status(500).json(err));
   });
 
   app.get('/category', (req, res) => {
     getCategories()
       .then(allCategories =>
-        res.status(200).send(allCategories.map(category => category.title)),
+        res.status(200).json(allCategories.map(category => category.title)),
       )
-      .catch(err => res.status(500).send(err));
+      .catch(err => res.status(500).json(err));
+  });
+
+  app.post('/expense', (req, res) => {
+    createExpense(req.body)
+      .then(createdExpense => res.status(200).json(createdExpense))
+      .catch(err => res.status(500).json(err));
+  });
+
+  app.get('/expense', (req, res) => {
+    getExpenses()
+      .then(allExpenses =>
+        res.status(200).json(
+          allExpenses.map(expense => {
+            const { _id, amount, description, budget, category } = expense;
+            return {
+              _id,
+              amount,
+              description,
+              budgetTitle: budget.title,
+              budgetAmount: budget.budgetAmount,
+              category: category.title,
+            };
+          }),
+        ),
+      )
+      .catch(err => res.status(500).json(err));
   });
 };
