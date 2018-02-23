@@ -1,28 +1,19 @@
 const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema.Types;
+
+require('./budget');
+require('./category');
 
 const ExpenseSchema = new mongoose.Schema({
-  _id: {
-    type: Schema.ObjectId,
-    auto: true,
-    required: true
-  },
-  amount: {
-    type: Number,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
+  amount: Number,
+  description: String,
   budget: {
-    type: ObjectId.Schema,
-    auto: true,
-    required: true
+    type: ObjectId,
+    ref: 'Budget'
   },
   category: {
-    type: ObjectId.Schema,
-    auto: true,
-    required: true
+    type: ObjectId,
+    ref: 'Category'
   }
 });
 

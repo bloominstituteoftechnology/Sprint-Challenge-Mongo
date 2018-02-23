@@ -1,14 +1,8 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types;
 
 const CategorySchema = new mongoose.Schema({
-  _id: {
-    type: Schema.ObjectId,
-    required: true
-  },
-  title: {
-    type: String,
-    require: true
-  }
+  title: String
 });
 
 module.exports = mongoose.model('Category', CategorySchema);
