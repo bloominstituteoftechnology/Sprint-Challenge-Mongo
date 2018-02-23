@@ -84,8 +84,19 @@ server.post("/expense", (req, res) => {
   }
 });
 
+server.get("/expense", (req, res) => {
+  Expense.find()
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'The information could not be retrieved'});
+    });
+});
+
 server.get("/category", (req, res) => {
   Category.find()
+    .select({ 'title': 1, '_id': 0})
     .then(categories => {
       res.status(200).json(categories);
     })
