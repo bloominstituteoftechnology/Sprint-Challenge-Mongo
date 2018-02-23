@@ -1,4 +1,4 @@
-:sun:<p align="center">Answers</p>:sun:
+<p align="center">:trumpet: Answers :trumpet:</p>
 
 1. Describe the following: `DataBase`, `Collection` , `Document`
 
