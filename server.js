@@ -80,22 +80,55 @@ server.post('/category', (req, res) => {
 
 server.get('/category', (req, res) => {
   Category.find()
+    .select({'title':1, '_id':0})
     .then(results => {
-      if (results) {
-        res
-          .status(200)
-          .json(results);
-      } else {
-        res
-          .status(400)
-          .json({ errorMessage: 'There are currently no categories in the database.' });
-      }
+      res
+        .status(200)
+        .json(results);
     })
     .catch(error => {
       res
         .status(500)
         .json({ errorMessage: 'The categories could not be retrieved.' });
     })
+});
+
+server.post('/expense', (req, res) => {
+  const { amount, description, budget, category } = req.body;
+
+  if (amount && description && budget && category) {
+    const expense = new Expense(req.body);
+    expense
+      .save()
+      .then(savedExpense => {
+        res
+          .status(200)
+          .json(savedExpense);
+      })
+      .catch(error => {
+        res
+          .status(500)
+          .json({ errorMessage: 'There was a problem saving the expense to the database.' });
+      })
+  } else {
+    res
+      .status(400)
+      .json({ errorMessage: 'You must provide an amount, description, budgetId, categoryId.' });
+  }
+});
+
+server.get('/expense', (req, res) => {
+  Expense.find()
+    .then(results => {
+      res
+        .status(200)
+        .json(results);
+    })
+    .catch(error => {
+      res
+        .status(500)
+        .json({ errorMessage: 'There was a problem loading the expenses from the database.' });
+    });
 });
 
 mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
