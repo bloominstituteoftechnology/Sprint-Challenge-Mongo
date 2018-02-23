@@ -1,4 +1,4 @@
-<p align="center">Answers</p>
+:sun:<p align="center">Answers</p>:sun:
 
 1. Describe the following: `DataBase`, `Collection` , `Document`
 
