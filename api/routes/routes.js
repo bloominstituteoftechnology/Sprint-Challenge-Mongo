@@ -19,21 +19,7 @@ module.exports = app => {
   app.get('/budget/:id/summary', (req, res) => {
     const budgetId = req.params.id;
 
-    // getBudget(budgetId)
-    //   .then(budget => res.json(budget))
-    //   .catch(err => res.json(err));
-    // return;
-
     aggregateExpenses()
-      // .then(allExpenses =>
-      //   res
-      //     .status(200)
-      //     .json(
-      //       allExpenses.map(
-      //         expense => expense._id.toString() === req.params.id,
-      //       ),
-      //     ),
-      // )
       .then(allExpenses => {
         getBudget(budgetId)
           .then(budgetAmount => {
@@ -42,8 +28,6 @@ module.exports = app => {
             const expenses = allExpenses.filter(
               expense => expense._id.toString() !== budgetId,
             )[0].expensesSum;
-
-            console.log(budget);
 
             res.status(200).json({
               summary: budget - expenses,
