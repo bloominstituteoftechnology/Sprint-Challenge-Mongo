@@ -49,26 +49,6 @@ module.exports = app => {
         });
       })
       .catch(err => res.status(500).json(err));
-
-    // aggregateExpenses()
-    //   .then(allExpenses => {
-    //     getBudget(budgetId)
-    //       .then(budgetAmount => {
-    //         const budget = budgetAmount.budgetAmount;
-
-    //         const expenses = allExpenses.filter(
-    //           expense => expense._id.toString() !== budgetId,
-    //         )[0].expensesSum;
-
-    //         res.status(200).json({
-    //           summary: budget - expenses,
-    //           budget,
-    //           expenses,
-    //         });
-    //       })
-    //       .catch(err => res.status(422).json(err));
-    //   })
-    //   .catch(err => res.status(500).json(err));
   });
 
   app.post('/category', (req, res) => {
