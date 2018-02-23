@@ -52,13 +52,29 @@ server.post("/category", (req, res) => {
 
 server.get("/category", (req, res) => {
   Category.find({}, { __v: 0, _id: 0 })
-  .then(categoriesList => {
-    res.send(categoriesList);
-  })
-  .catch(err => {
-    res.send(err);
-  })
+    .then(categoriesList => {
+      res.send(categoriesList);
+    })
+    .catch(err => {
+      res.send(err);
+    });
 });
+
+
+server.post("/expense", (req, res) => {
+  const { amount, description, budget, category } = req.body;
+  const expense = new Expense(req.body);
+
+  Expense.create(expense)
+    .then(savedExpense => {
+      res.send(savedExpense);
+    })
+    .catch(error => {
+      res.send({ error: "Could not post new expense." });
+    });
+});
+
+
 
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
