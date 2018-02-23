@@ -10,5 +10,6 @@ module.exports = app => {
   app.post('/expense', expense.createExpense);
   app.get('/expense', expense.expenses);
   app.get('/budget/:id/summary', budget.budgetSummary);
+  app.get('/expenses', expense.expenseAggregation);
 
 };

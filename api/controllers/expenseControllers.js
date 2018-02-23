@@ -30,7 +30,32 @@ const expenses =  (req, res) => {
     })
 };
 
+const expenseAggregation = (req, res) => {
+  const { aggregatedBy } = req.query;
+
+  if (!aggregatedBy) {
+    res.status(500).json({error: 'You must provide an aggregation query in the search'});
+  } else {
+    Expense.aggregate([{
+      $group: {
+       _id: '$category',
+       expenses: {
+         $sum: '$amount'
+       }
+      }
+    }])
+    .sort('-expenses')
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(error => {
+      res.status(500).json({error: 'Server error getting you your aggregated categories.'});
+    })
+  }
+};
+
 module.exports = {
   createExpense,
-  expenses
+  expenses,
+  expenseAggregation
 }
