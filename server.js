@@ -22,22 +22,45 @@ server.get("/", (req, res) => {
 server.post("/budget", (req, res) => {
   const { title, startingAmount } = req.body;
   const budget = new Budget(req.body);
-  if (title && startingAmount) {
-    budget
+  budget
+    .save()
+    .then(savedBudget => {
+      res.status(201).json(savedBudget);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error saving this budget to the database"
+      });
+    });
+});
+
+server.post("/category", (req, res) => {
+  const { title } = req.body;
+  const category = new Category(req.body);
+  if (title) {
+    category
       .save()
-      .then(savedBudget => {
-        res.status(201).json(savedBudget);
+      .then(savedCategory => {
+        res.status(201).json(savedCategory);
       })
       .catch(error => {
-        res
-          .status(500)
-          .json({
-            error: "There was an error saving this budget to the database"
-          });
+        res.status(500).json({
+          error: "There was an error saving this category to the database"
+        });
       });
   } else {
-    res.status(404).json({ error: "Please provide a budget title and amount" });
+    res.status(404).json({ error: "Please provide a title to the category" });
   }
+});
+
+server.get("/category", (req, res) => {
+  Category.find()
+    .then(categories => {
+      res.status(200).json(categories);
+    })
+    .catch(error => {
+      res.status(500).json({ error: "The information could not be retrieved" });
+    });
 });
 
 server.listen(port, () => {

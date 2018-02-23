@@ -14,7 +14,7 @@ const ExpenseSchema = new mongoose.Schema({
     required: true
   },
   budget: {
-    type: OjectId,
+    type: ObjectId,
     ref: "Budget"
   },
   category: {
