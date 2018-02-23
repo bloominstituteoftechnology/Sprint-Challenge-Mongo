@@ -15,7 +15,7 @@ some text here
 
 ---
 
-<p font="2" align="center"> some text here
+some text here
 
 ---
 
