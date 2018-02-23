@@ -5,14 +5,57 @@ const server = express();
 
 const port = process.env.PORT || 3000;
 
-const routes = require('./api/routes/routes');
+// const routes = require('./api/routes/routes');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
 
+const db = mongoose.connect('mongodb://localhost/budget', {
+  useMongoClient: true
+});
+
+const Budget = require('./api/models/budget');
+const Category = require('./api/models/category');
+const Expense = require('./api/models/expense');
+
 server.use(bodyParser.json());
 
-routes(server);
+// routes(server);
 
+server.post('/budget', (req, res) => {
+  const { title, budgetAmount } = req.body;
+  const budget = new Budget(req.body);
+  Budget.create(budget)
+  .then(savedBudget => {
+    res.send(savedBudget);
+  })
+  .catch(err => {
+    res.send({ error: 'There was a problem creating a new budget.' });
+  });
+});
+
+server.post('/category', (req,res) => {
+  const { titel } = req.body;
+  const cat = new Category({ title });
+  Category.create(cat)
+  .then(savedCat => {
+    res.send(savedCat);
+  })
+  .catch(err => {
+    res.send({ err });
+  });
+});
+
+servert.get('/category', (req, res) => {
+  Category.find({}, {_id: 0, _v: 0 })
+  .then(cats => {
+    res.send(cats);
+  })
+  .catch(err => {
+    res.send(err);
+  });
+});
+
+server.post('/expense')
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
