@@ -22,16 +22,22 @@ server.get("/", (req, res) => {
 server.post("/budget", (req, res) => {
   const { title, startingAmount } = req.body;
   const budget = new Budget(req.body);
-  budget
-    .save()
-    .then(savedBudget => {
-      res.status(201).json(savedBudget);
-    })
-    .catch(error => {
-      res.status(500).json({
-        error: "There was an error saving this budget to the database"
+  if (title && startingAmount) {
+    budget
+      .save()
+      .then(savedBudget => {
+        res.status(201).json(savedBudget);
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "There was an error saving this budget to the database"
+        });
       });
-    });
+  } else {
+    res
+      .status(404)
+      .json({ error: "Please provide a title and starting Amount" });
+  }
 });
 
 server.post("/category", (req, res) => {
@@ -50,6 +56,31 @@ server.post("/category", (req, res) => {
       });
   } else {
     res.status(404).json({ error: "Please provide a title to the category" });
+  }
+});
+
+server.post("/expense", (req, res) => {
+  const { amount, description, budget, category } = req.body;
+  const expense = new Expense(req.body);
+  if (amount && description && budget && category) {
+    expense
+      .save()
+      .then(savedExpense => {
+        res.status(201).json(savedExpense);
+      })
+      .catch(error => {
+        res
+          .status(500)
+          .json({
+            error: "There was an error saving the expense to the database"
+          });
+      });
+  } else {
+    res
+      .status(400)
+      .json({
+        error: "Please prove an amound, description, budgetId, and CategoryId"
+      });
   }
 });
 
