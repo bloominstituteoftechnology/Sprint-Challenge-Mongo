@@ -1,11 +1,11 @@
 const Budget = require('../models/budget');
 
 const createBudget = budgetInfo => {
-  return new Budget(budgetInfo).save();
+  return Budget(budgetInfo).save();
 };
 
-const getBudgetSummary = (budgetId, expenses) => {
-  return new Budget.find();
+const getBudget = budgetId => {
+  return Budget.findOne({ _id: budgetId }).select('budgetAmount');
 };
 
-module.exports = { createBudget, getBudgetSummary };
+module.exports = { createBudget, getBudget };
