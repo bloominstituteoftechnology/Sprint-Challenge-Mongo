@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { ObjectId } = mongoose.Schema.Types;
 
-const BudgetSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    ref: "Expense"
-  },
+const BudgetSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
