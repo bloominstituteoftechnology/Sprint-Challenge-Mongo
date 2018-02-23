@@ -2,7 +2,7 @@
 
 ---
 
-1. Describe the following: `DataBase`, `Collection` , `Document` :arrow_down:
+1. Describe the following: `DataBase`, `Collection` , `Document` :arrow_down: :relaxed:
 
 ---
 
