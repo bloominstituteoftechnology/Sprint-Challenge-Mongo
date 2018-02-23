@@ -4,11 +4,12 @@ const Budget = require('../models/budget');
 
 const budgetCreate = (req, res) => {
   const { title, budgetAmount } = req.body;
+  const budget = new Budget(req.body);
   
   if (!title || !budgetAmount) {
     res.status(500).json({ error: "You must provide both a title and a budget amount" });
   } else {
-    Budget.create({title, budgetAmount})
+    budget
       .save()
       .then(budget => {
         res.status(200).json(budget);

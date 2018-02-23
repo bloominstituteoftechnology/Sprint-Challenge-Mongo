@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const { objectID } = mongoose.SchemaTypes
+const { ObjectId } = mongoose.SchemaTypes
 
 const ExpenseSchema = new mongoose.Schema({
   amount: Number,
   description: String,
-  budget: objectID,
-  category: objectID,
+  budget: ObjectId,
+  category: ObjectId,
 })
 
 module.exports = mongoose.model("Expense", ExpenseSchema);
