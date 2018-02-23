@@ -4,4 +4,4 @@ const createBudget = budgetInfo => {
   return new Budget(budgetInfo).save();
 };
 
-module.exports = createBudget;
+module.exports = { createBudget };
