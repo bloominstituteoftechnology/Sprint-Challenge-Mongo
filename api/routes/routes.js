@@ -8,6 +8,7 @@ const {
   getExpenses,
   aggregateExpenses,
   getExpensesOf,
+  aggregateExpensesBy,
 } = require('../controllers/expenseControllers');
 
 module.exports = app => {
@@ -35,16 +36,16 @@ module.exports = app => {
       ),
     ])
       .then(values => {
-        const expenses = values[0];
+        const budgetExpenses = values[0];
         const budgetAmount = values[1];
         const expensesList = values[2].map(expense => {
           return { amount: expense.amount, description: expense.description };
         });
 
         res.status(200).json({
-          summary: budgetAmount - expenses,
+          budgetSummary: budgetAmount - budgetExpenses,
           budgetAmount,
-          expenses,
+          budgetExpenses,
           expensesList,
         });
       })
@@ -75,5 +76,14 @@ module.exports = app => {
     getExpenses()
       .then(allExpenses => res.status(200).json(allExpenses))
       .catch(err => res.status(500).json(err));
+  });
+
+  app.get('/expenses', (req, res) => {
+    const expenseField = req.query.aggregatedBy;
+
+    aggregateExpensesBy(expenseField)
+      .then(allExpenses => res.json(allExpenses))
+      .catch(err => res.status(500).json(err));
+    return;
   });
 };
