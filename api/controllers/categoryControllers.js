@@ -8,4 +8,10 @@ const getCategories = _ => {
   return Category.find();
 };
 
-module.exports = { createCategory, getCategories };
+const populateCategoryBy = ids => {
+  return Category.find()
+    .where('_id')
+    .in(ids);
+};
+
+module.exports = { createCategory, getCategories, populateCategoryBy };

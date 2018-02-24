@@ -18,11 +18,11 @@ const getExpensesOf = budget => {
   return Expense.find({ budget }).populate('budget category');
 };
 
-const aggregateExpensesBy = field => {
+const aggregateExpensesBy = prop => {
   return Expense.aggregate([
     {
       $group: {
-        _id: '$category',
+        _id: `$${prop}`,
         totalExpenses: { $sum: '$amount' },
       },
     },

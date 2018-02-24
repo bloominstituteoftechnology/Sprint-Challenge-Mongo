@@ -2,6 +2,7 @@ const { createBudget, getBudget } = require('../controllers/budgetControllers');
 const {
   createCategory,
   getCategories,
+  populateCategoryBy,
 } = require('../controllers/categoryControllers');
 const {
   createExpense,
@@ -79,10 +80,24 @@ module.exports = app => {
   });
 
   app.get('/expenses', (req, res) => {
-    const expenseField = req.query.aggregatedBy;
+    const prop = req.query.aggregatedBy;
 
-    aggregateExpensesBy(expenseField)
-      .then(allExpenses => res.json(allExpenses))
+    aggregateExpensesBy(prop)
+      .then(allExpenses => {
+        populateCategoryBy(allExpenses)
+          .then(categoryTitles =>
+            res.json(
+              allExpenses.map(expenses => {
+                const categoryTitle = categoryTitles.find(
+                  title => title._id.toString() === expenses._id.toString(),
+                ).title;
+
+                return { categoryTitle, ...expenses };
+              }),
+            ),
+          )
+          .catch(err => res.json(err));
+      })
       .catch(err => res.status(500).json(err));
     return;
   });
