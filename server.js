@@ -131,6 +131,29 @@ server.get('/expense', (req, res) => {
     });
 });
 
+server.get('/budget/:id/summary', (req, res) => {
+  const { id } = req.params;
+  Budget.findById(id)
+    .then(result => {
+      const totalBudget = result.budgetAmount;
+      Expense.aggregate({$group: {_id: null, total: {$sum : '$amount'}}})
+        .then(result => {
+          const totalExpenses = result[0].total;
+          res.send({ budgetBalance: totalBudget - totalExpenses});
+        })
+        .catch(error => {
+          res
+            .status(500)
+            .json({ errorMessage: 'total expenses get failed' });
+        });
+    })
+    .catch(error => {
+      res
+        .status(400)
+        .json({ errorMessage: 'budget get failed' });
+    })
+});
+
 mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
 
 server.listen(port, () => {
