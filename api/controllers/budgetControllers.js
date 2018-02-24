@@ -31,7 +31,7 @@ const budgetSummary = (req, res) => {
   } else {
     Expense.aggregate([ {
       $group: {
-        _id: null,
+        _id: '$budget',
         expenseTotal: {$sum: '$amount'}
       }}])
       .then(total => {

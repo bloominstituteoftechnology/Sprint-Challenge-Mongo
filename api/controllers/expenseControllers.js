@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Expense = require('../models/expense');
+const Category = require('../models/category');
 
 const createExpense = (req, res) => {
   const expenseInfo = req.body;
@@ -42,8 +43,8 @@ const expenseAggregation = (req, res) => {
        expenses: {
          $sum: '$amount'
        }
-      }
-    }])
+      }}
+    ])
     .sort('-expenses')
     .then(expenses => {
       res.status(200).json(expenses);
