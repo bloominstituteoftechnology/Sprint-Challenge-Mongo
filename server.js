@@ -74,6 +74,28 @@ server.post("/expense", (req, res) => {
     });
 });
 
+server.get('/expense', (rew, res) => {
+  Expense.find({}, { __v: 0, _id: 0 })
+  .populate("budget", "-_id")
+  .populate("category", "-_id")
+  .then(expensesList => {
+    res.send(expensesList);
+  })
+  .catch(error => {
+    res.send({ error: "could not retrieve expenses." })
+  });
+});
+
+server.get("/category", (req, res) => {
+  Category.find({}, { __v: 0, _id: 0 })
+    .then(categoriesList => {
+      res.send(categoriesList);
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
+
 
 
 server.listen(port, () => {
