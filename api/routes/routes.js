@@ -2,7 +2,7 @@ const { createBudget, getBudget } = require('../controllers/budgetControllers');
 const {
   createCategory,
   getCategories,
-  populateCategoryBy,
+  getCategoriesBy,
 } = require('../controllers/categoryControllers');
 const {
   createExpense,
@@ -84,7 +84,7 @@ module.exports = app => {
 
     aggregateExpensesBy(prop)
       .then(allExpenses => {
-        populateCategoryBy(allExpenses)
+        getCategoriesBy(allExpenses)
           .then(categoryTitles =>
             res.json(
               allExpenses.map(expenses => {
