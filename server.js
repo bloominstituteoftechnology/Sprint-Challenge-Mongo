@@ -84,16 +84,6 @@ server.post("/expense", (req, res) => {
   }
 });
 
-server.get("/expense", (req, res) => {
-  Expense.find()
-    .then(expenses => {
-      res.status(200).json(expenses);
-    })
-    .catch(error => {
-      res.status(500).json({ error: 'The information could not be retrieved'});
-    });
-});
-
 server.get("/category", (req, res) => {
   Category.find()
     .select({ 'title': 1, '_id': 0})
@@ -104,6 +94,34 @@ server.get("/category", (req, res) => {
       res.status(500).json({ error: "The information could not be retrieved" });
     });
 });
+
+server.get("/expense", (req, res) => {
+  Expense.find()
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'The information could not be retrieved'});
+    });
+});
+
+server.get("/budget/:id/summary", (req, res) => {
+  const { id } = req.params;
+  Budget.findOne({ _id: id })
+    .then(result => {
+      const newBudget = result.budgetAmount;
+      Expense.aggregate([{ $group: {_id: null, total: { $sum: "$amount" } } }])
+      .then(total => {
+        res.status(200).json({ remainder: budget - total[0].total });
+      })
+      .catch(error => {
+        res.status(500).json({ error: 'The information could not be retrieved' });
+      })
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'THe information could not be retrived' });
+    })
+})
 
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
