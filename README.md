@@ -70,7 +70,7 @@
 * A category can be something as simple as `groceries`.
 * Your relationship to consider here is the relationship between `Expenses` and
   `Categories`
-* An example of a category object can look somethign like this:
+* An example of a category object can look something like this:
 
 ```
 {
