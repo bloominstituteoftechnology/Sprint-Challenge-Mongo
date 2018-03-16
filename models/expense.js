@@ -13,10 +13,12 @@ const Expense = mongoose.Schema({
   budget: {
     type: ObjectId,
     ref: 'Budget',
+    required: true,
   },
   category: {
     type: ObjectId,
     ref: 'Category',
+    required: true,
   },
 });
 
