@@ -27,8 +27,14 @@ server.use((req, res, next) => {
   next();
 });
 
-const routes = require("./routes/routes");
-server.use('/', routes);
+const Budget = require("./routes/budgetrouter");
+const Expense = require("./routes/expenserouter");
+const Category = require("./routes/categoryrouter");
+
+server.use('/budget', Budget);
+server.use('/expense',Expense);
+server.use('/category',Category);
+
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
