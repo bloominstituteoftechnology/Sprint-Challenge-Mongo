@@ -1,6 +1,8 @@
+//importing necessary modules
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//creating a new schema
 const BudgetSchema = new Schema({
     title: {
         type: String,
@@ -14,4 +16,5 @@ const BudgetSchema = new Schema({
     },
 });
 
+//exporting the schema as a model and naming the collection
 module.exports = mongoose.model("BudgetModel", BudgetSchema, "Budget");
