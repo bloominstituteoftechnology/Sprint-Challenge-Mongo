@@ -7,14 +7,13 @@ const db = mongoose.connect('mongodb://localhost/Budget_Tracker');
 
 budgetRouter.post('/', function(req, res){
 	const budget = new Budget(req.body);
-	budget.save(req.body).then(budget => {
+	budget.save().then(budget => {
 		res.json(budget);
 	});
 });
 
 budgetRouter.get('/:id/summary', function(req, res){
 
-	// still working on this aggregate.. unable to combine all sum
 	Expense.aggregate([{$group : {_id : "$budget", total : {$sum : "$amount"}}}])
 	.then(data => {
 		Budget.findById(data[0]._id).then(budget => {
