@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const Budget = require('./Models/BudgetModel.js');
 const Category = require('./Models/CategoryModel.js');
+const Expense = require('./Models/ExpenseModel.js');
 
 const server = express();
 
@@ -51,6 +52,24 @@ server.get('/category', (req, res) => {
 server.post('/expense', (req, res) => {
   const { amount, description, budget, category } = req.body;
 
+  const expense = new Expense({ amount, description, budget, category });
+  expense.save()
+    .then(savedExpense => {
+      res.status(200).json({ SavedExpense: savedExpense });
+    })
+    .catch(error => {
+      res.status(400).json({ error: 'Error Saving Expense' });
+    })
+})
+
+server.get('/expense', (req, res) => {
+  Expense.find({})
+    .then(expenses => {
+      res.status(200).json({ Expenses: expenses });
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'Error displaying Budgets '});
+    })
 })
 
 server.get('/', (req, res) => {
