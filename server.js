@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 
 const BudgetRouter = require('./budgets/BudgetRouter.js');
 const CategoryRouter = require('./categories/CategoryRouter.js');
+const ExpenseRouter = require('./expenses/ExpenseRouter.js');
 
 const server = express();
 
 server.use('/budget', BudgetRouter);
 server.use('/category', CategoryRouter);
+server.use('/expense', ExpenseRouter);
 
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'Running' });
