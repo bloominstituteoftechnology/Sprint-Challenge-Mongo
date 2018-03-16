@@ -56,17 +56,32 @@ app.get("/budget", (req, res) => {
   })
 })
 
-//creating and saving the category document
-// const newCategory = new CategoryModel({
-//   title: "Gaming",
-// });
-
-// newCategory.save()
-// .then(response => console.log(`The category was saved:\n ${response}`))
-// .catch(err => console.log(`There was an error: \n ${err}`))
-
 //post handler for creating and saving a new category document
-app.post("/")
+app.post("/category", (req, res) => {
+  const newTitle = req.body.title;
+
+  const newCategory = new CategoryModel({
+       title: newTitle,
+     })
+     .save()
+     .then(response => {
+       console.log(`The category was saved successfully: \n ${response}`);
+       res.send(`The category of ${response.title} was saved successfully`);
+     })
+     .catch(err => {
+       console.log(`There was an error saving the category: \n ${err}`);
+       res.send(`There was an error saving the category`);
+     })
+});
+
+//get handler that returns all category documents
+app.get("/category", (req, res) => {
+  CategoryModel.find()
+  .then(response => {
+    console.log(`The category documents were sent to the client`);
+    res.json(response);
+  })
+})
 
 //creating and saving the expense document
 // const newExpense = new ExpenseModel({
