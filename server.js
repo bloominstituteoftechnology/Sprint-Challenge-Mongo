@@ -23,7 +23,7 @@ mongoose.connect("mongodb://localhost:27017/sprint")
 app.use(bodyParser.json());
 mongoose.Promise = global.Promise;
 
-//creating and saving the budget document with a post request
+//post handler for creating and saving a new budget document
 app.post("/budget", (req, res) => {
   const newTitle = req.body.title;
   const newAmount = req.body.amount;
@@ -38,9 +38,22 @@ app.post("/budget", (req, res) => {
     res.send(`The budget was saved successfully!`);
   })
   .catch(err => {
-    console.log(`There was an error: ${err}`);
+    console.log(`There was an error posting the budget: \n ${err}`);
     res.send(`There was an error saving the budget`);
   });
+})
+
+//get handler that returns all budget documents
+app.get("/budget", (req, res) => {
+  BudgetModel.find()
+  .then(response => {
+    console.log(`The budget documents were sent to the client`);
+    res.json(response);
+  })
+  .catch(err => {
+    console.log(`There was an error getting the budget documents: \n ${err}`);
+    res.send(`There was an error getting the budget documents`);
+  })
 })
 
 //creating and saving the category document
@@ -51,6 +64,9 @@ app.post("/budget", (req, res) => {
 // newCategory.save()
 // .then(response => console.log(`The category was saved:\n ${response}`))
 // .catch(err => console.log(`There was an error: \n ${err}`))
+
+//post handler for creating and saving a new category document
+app.post("/")
 
 //creating and saving the expense document
 // const newExpense = new ExpenseModel({
