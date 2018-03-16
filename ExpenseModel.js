@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
+const Category = require('./CategoryModel.js');
+const Budget = require('./BudgetModel.js');
+
 
 const Expense = new mongoose.Schema({
   amount: {
@@ -13,10 +16,12 @@ const Expense = new mongoose.Schema({
   budget: {
     type: ObjectId,
     ref: 'Budget',
+    required: true,
   },
   category: {
     type: ObjectId,
     ref: 'Category',
+    required: true,
   }
 })
 

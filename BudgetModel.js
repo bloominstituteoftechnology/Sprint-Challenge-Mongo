@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const express = require('express');
 
 const Budget = new mongoose.Schema({
   title: {
@@ -6,9 +7,9 @@ const Budget = new mongoose.Schema({
     required: true,
   },
   budgetAmount: {
-    Number,
+    type:Number,
     required: true,
-  }
-})
+    }
+});
 
-module.exports = mongoose.model('Budget', Budget);
+module.exports = mongoose.model('BudgetModel', Budget);
