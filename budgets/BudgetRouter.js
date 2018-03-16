@@ -23,4 +23,9 @@ BudgetRouter.post('/', (req, res) => {
     });
 });
 
+//Yeah... no way I'm understanding this in 30 minutes
+//Or probably ever... but definitely not in 30 minutes
+BudgetRouter.get('/:id/summary', (req, res) => {
+  Budget.aggregate([{ $group: { _id: '$expense', totalAmount: { $sum: '$amount' } } }]);
+});
 module.exports = BudgetRouter;
