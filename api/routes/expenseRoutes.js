@@ -8,4 +8,9 @@ expenseRouter.route('/').get(expenseController.getExpenses);
 
 expenseRouter.route('/').post(expenseController.insertExpense);
 
+// This is the same than the above code.
+// expenseRouter.route('/')
+//     .get(expenseController.getExpenses)
+//     .post(expenseController.insertExpense);
+
 module.exports = expenseRouter;

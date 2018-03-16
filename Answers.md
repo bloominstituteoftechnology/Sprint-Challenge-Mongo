@@ -5,12 +5,16 @@
     
 
 ### Describe how one can achieve the pattern of relationships in MongoDB. What needs to take place at the schema level? How do we 'fill' in the appropriate relational data using mongoose?
-    We need to determine which kind of relationship we want and after that we have to add the Objectid of the referenced
-    collection into the target collection.
+    First We need to determine which kind of relationship we want:
+     One to One
+     One to Many with Embedded Documents
+     One to Many with Document References
+     After that we create a field in the collection we want the data from 
+     and add a ObjectId with the collection reference name.
 
 ### Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
     The way is separating in:
-    Controllers: Here we are have all our logic.
-    Models: Here we have the schema of the database and the connections with the Controllers.
-    Router: The router is where the endpoint where the front hit to it.
-    www: Here is where we have our front-end and this should hit our Router endpoints.
+     Controllers: Where the logic is founded.
+     Models: The schema of the database is created here and the connection with the controller is hooked up.
+     Router: The router is where the endpoints live and the place where the front-end hits to it to.
+     www: Here is where we have our front-end that hits the Routers endpoints.
