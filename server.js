@@ -1,8 +1,33 @@
 const express = require('express'); // remember to install your npm packages
+const helmet = require('helmet');
+
+const Budget = require('./Models/BudgetModel.js');
+const Category = require('./Models/CategoryModel.js');
 
 const server = express();
 
 // add your server code
+server.use(helmet());
+server.use(express.json());
+
+server.post('/budget', (req, res) => {
+  const { title, budgetAmount } = req.body;
+  
+  const budget = new Budget({ title, budgetAmount });
+  budget.save()
+    .then(savedBudget => {
+      res.status(200).json(savedBudget);
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'Error saving new Budget'})
+    })
+})
+
+server.post('/category', (req, res) => {
+  const { title } = req.body;
+
+  const category = new category({ title });
+})
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
