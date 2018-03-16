@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const PostSchema = mongoose.Schema({
+const ExpenseSchema = mongoose.Schema({
     amount: {
         type: Number,
         default: 0,
@@ -25,4 +25,4 @@ const PostSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('posts', PostSchema);
+module.exports = mongoose.model('expenses', ExpenseSchema);
