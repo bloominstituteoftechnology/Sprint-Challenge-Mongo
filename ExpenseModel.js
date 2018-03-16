@@ -7,7 +7,7 @@ const Budget = require('./BudgetModel.js');
 const Expense = new mongoose.Schema({
   amount: {
     type: Number,
-    required: True,
+    required: true,
   },
   description: {
     type: String,
@@ -25,4 +25,4 @@ const Expense = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose('Expense', Expense);
+module.exports = mongoose.model('Expense', Expense);
