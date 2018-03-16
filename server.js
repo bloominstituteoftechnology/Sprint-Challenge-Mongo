@@ -50,7 +50,27 @@ server.get('/category', (req, res) => {
   .catch(err => { res.send(err) });
 })
 
+server.post('/expense', (req, res) => {
+  const amount = req.body.amount;
+  const description = req.body.description;
+  const budget = req.body.budget;
+  const category = req.body.category;
 
+  if (!amount || !description || !budget || !category) res.send({ error: 'You are missing information! You need an amount, description, budget, and category!' });
+  
+  const expense = new Expense(req.body);
+  expense.save()
+  .then(data => { res.send(data) })
+  .catch(err => { res.send(err) });
+})
+
+server.get('/expense', (req, res) => {
+  Expense.find()
+  .populate('budget', '-_id')
+  .populate('category', '-_id')
+  .then(data => {res.json(data);})
+  .catch(err => { res.send(err) });
+})
 
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
