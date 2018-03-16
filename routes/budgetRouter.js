@@ -18,7 +18,7 @@ router.get('/:id/summary', (req, res) => {
 
   Budget.findById(id).then(budget => {
     Expense.aggregate([
-      { $group: { _id: 'amount', total: { $sum: '$amount' } } },
+      { $group: { _id: 'amount', total: { $sum: '$amount' }}},
     ])
       .then(total => {
         const totalExpenses = total[0].total;
