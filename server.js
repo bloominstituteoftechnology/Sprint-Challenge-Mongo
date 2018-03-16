@@ -1,10 +1,30 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express');
+const helmet = require('helmet');
+const mongoose = require('mongoose');
+
+const budgetRouter = require('./Budget/budgetRouter');
+const categoryRouter = require('./Category/categoryRouter');
+const expenseRouter = require('/Expense/expenseRouter');
 
 const server = express();
 
-// add your server code
+mongoose
+.connect(`mongodb://localhost/budget_tracker`)
+.then(() => console.log(`API connected...MongoDB connected...`))
+.catch(() => console.log(`Connection to API failed`));
+
+server.use(express.json());
+server.use(helmet());
+
+server.use('/budget', budgetRouter);
+server.use('/category', categoryRouter);
+server.use('/expense', expenseRouter);
+
+server.get('/', (req, res) => {
+  res.status(200).json({ status: 'API running' });
+});
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
-  console.log(`Server up and running on ${port}`);
+  console.log(`Server is running on ${port}`);
 });
