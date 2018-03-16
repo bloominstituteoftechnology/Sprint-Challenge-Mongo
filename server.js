@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const BudgetRouter = require('./budgets/BudgetRouter.js');
+const CategoryRouter = require('./categories/CategoryRouter.js');
 
 const server = express();
 
 server.use('/budget', BudgetRouter);
+server.use('/category', CategoryRouter);
 
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'Running' });
