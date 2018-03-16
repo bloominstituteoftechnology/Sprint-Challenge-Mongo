@@ -10,12 +10,12 @@ router.post('/', function(req, res) {
   const newExpense = { amount, description, budget };
   newExpense._id = ObjectId();
   Budget.findOne({title: req.body.budget})
-  .then(budget => res.send(budget))
-
-//newExpense.budget = ObjectId();
-  //const expense = new Expense(newExpense);
-//  expense.save();
-//  res.send(newExpense);
+  .then(budget => {
+    newExpense.budget = budget._id;
+    const expense = new Expense(newExpense);
+    expense.save();
+    res.send(expense)
+  })
 })
 
 module.exports = router;
