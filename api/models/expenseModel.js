@@ -4,9 +4,11 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const PostSchema = mongoose.Schema({
     amount: {
         type: Number,
+        default: 0,
     },
     description: {
         type: String,
+        index: true,
     },
     budget: {
         type: ObjectId,
