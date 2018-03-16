@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  Category.find({}).select('title')
+  Category.find({}).select('title -_id')
     .then(cat => res.json(cat))
     .catch(err => res.status(500).json({ error: err }));
 });;
