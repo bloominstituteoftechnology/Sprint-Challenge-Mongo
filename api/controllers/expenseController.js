@@ -2,7 +2,8 @@ const expenseModel = require('../models/expenseModel'); //mongoose instance
 
 const getExpenses = (req, res) => {
     expenseModel.find({})
-        .populate()
+        .populate('budget')
+        .populate('category')
         .exec((err, resp) => {
             res.status(200).send(resp)
         });
