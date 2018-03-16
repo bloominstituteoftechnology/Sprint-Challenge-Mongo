@@ -54,7 +54,7 @@ server.post('/category', (req, res) => {
 
 server.get('/category', (req, res) => {
   Category.find()
-    .select('title')
+    .select('-_id -__v')
     .then(categories => {
       res.status(200).json(categories);
     })
