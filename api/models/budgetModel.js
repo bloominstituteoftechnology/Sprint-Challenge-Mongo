@@ -7,7 +7,7 @@ const BudgetSchema = mongoose.Schema({
         required: [true, 'Please provide title.'],
     },
     budgetAmount: {
-        type: String,
+        type: Number,
     },
     createdOn: {
         type: String,
