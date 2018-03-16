@@ -1,18 +1,18 @@
 const express = require('express');
 
-const Budgets = require('./budgetModel');
-
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    const budgetInfo = req.body;
-    const budget = new budget(budgetInfo);
+    const catInfo = req.body;
+    const budget = new budget(catInfo);
 
     budget.save()
-    .then(newBudget => {
-        res.send(newBudget);
+    .then(newCat => {
+        res.send(newCat);
     })
     .catch(err => {
         res.status(500).json({ err: 'there was an error posting category'})
     })
 });
+
+module.exports = router;
