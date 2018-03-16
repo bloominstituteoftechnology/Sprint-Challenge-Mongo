@@ -1,6 +1,40 @@
 const express = require('express'); 
 const server = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+mongoose.Promise = global.Promise;
+server.use(bodyParser.json());
+
+//==============================
+//         MODEL IMPORTS
+//==============================
+
+const Budget = require('./models/BudgetModel.js');
+const Expense = require('./models/ExpenseModel.js');
+const Category = require('./models/CategoryModel.js');
+
+//==============================
+//          ENDPOINTS
+//==============================
+
+server.post('/budget', (req, res) => {
+  const { title, budgetAmount } = req.body;
+
+  if (!title || !budgetAmount) {
+    res.status(400).json({ message: 'Must provide a title and budget!' });
+  } else {
+    const budget = new Budget(req.body)
+    budget
+      .save()
+      .then(budget => {
+        res.status(201).json(budget);
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Something went wrong! ' });
+      });
+  };
+});
+
 
 //==============================
 //      SERVER INFORMATION

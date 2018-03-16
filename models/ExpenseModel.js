@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 require('./BudgetModel.js')
-require('./CatgegoryModel.js')
+require('./CategoryModel.js')
 
 
 const ExpenseSchema = new mongoose.Schema({
