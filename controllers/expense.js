@@ -30,37 +30,27 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  Expense.find()
-    .select('-_id -__v')
-    .populate('budget', '-_id -__v')
-    .populate('category', '-_id -__v')
-    .then(expenses => {
-      res.send(expenses);
-    })
-    .catch(err => {
-      res.send({ error: err });
+  const { aggregatedBy } = req.query;
+  if (!aggregatedBy) {
+    Expense.find()
+      .select('-_id -__v')
+      .populate('budget', '-_id -__v')
+      .populate('category', '-_id -__v')
+      .then(expenses => {
+        res.send(expenses);
+      })
+      .catch(err => {
+        res.send({ error: err });
+      });
+  } else { // Trying to work on the final stretch assignment
+    Expense.aggregate([
+      { $group: { _id: '$category', total: { $sum: 1 } } },
+    ]).then(response => {
+      Expense.find().then(allExpenses => {
+        res.send({ response, allExpenses });
+      });
     });
+  }
 });
-
-// router.get('?aggregatedBy=category', (req, res) => {
-
-
-
-
-
-//   // const { id } = req.params;
-//   // Budget.findById(id).then(budget => {
-//   //   Expense.aggregate([
-//   //     { $group: { _id: 'amount', total: { $sum: '$amount' } } },
-//   //   ])
-//   //     .then(total => {
-//   //       const TotalExpenses = total[0].total;
-//   //       const TotalBudget = budget.budgetAmount;
-//   //       const RemainingBudget = TotalBudget - TotalExpenses;
-//   //       res.send({ TotalBudget, TotalExpenses, RemainingBudget });
-//   //     })
-//   //     .catch(err => res.send(err));
-//   // });
-// });
 
 module.exports = router;
