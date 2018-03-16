@@ -8,6 +8,7 @@ const server = express();
 
 const Budget = require('./models/Budget.js');
 const Category = require('./models/Category.js');
+const Expense = require('./models/Expense.js');
 
 server.use(cors());
 server.use(helmet());
@@ -21,7 +22,7 @@ server.post('/budget', (req, res) => {
       res.json(budget);
     })
     .catch(err => {
-      res.status(500).json(err);
+      res.status(500).json({msg: 'There was an error saving the budget'});
     });
 });
 
@@ -33,7 +34,7 @@ server.post('/category', (req, res) => {
       res.json(cat);
     })
     .catch(err => {
-      res.status(500).json(err);
+      res.status(500).json({msg: 'There wan an error saving the category.'});
     });
 });
 
@@ -47,6 +48,18 @@ server.get('/category', (req, res) => {
       res
         .status(500)
         .json({msg: 'There was an error receiving the categories'});
+    });
+});
+
+server.post('/expense', (req, res) => {
+  const expense = new Expense(req.body);
+  expense
+    .save()
+    .then(expense => {
+      res.json(expense);
+    })
+    .catch(err => {
+      res.status(500).json({msg: 'There was an error saving the expense.'});
     });
 });
 
