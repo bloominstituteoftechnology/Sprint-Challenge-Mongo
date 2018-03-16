@@ -20,7 +20,6 @@ router.post('/', (req, res) => {
       }
       res.status(500).json({ errorMessage: 'There was an error while saving the budget to the database', err});
     });
-
 });
 
 module.exports = router;
