@@ -64,6 +64,7 @@ server.post('/expense', (req, res) => {
 
 server.get('/expense', (req, res) => {
   Expense.find({})
+    .populate('budget category', 'budgetAmount title')
     .then(expenses => {
       res.status(200).json({ Expenses: expenses });
     })
