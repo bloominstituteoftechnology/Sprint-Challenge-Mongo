@@ -2,7 +2,7 @@ const categoryModel = require('../models/categoryModel'); //mongoose instance
 
 const getCategories = (req, res) => {
     categoryModel.find({})
-        .populate()
+        .select('title')
         .exec((err, resp) => {
             res.status(200).send(resp)
         });
