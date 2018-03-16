@@ -14,7 +14,7 @@ server.use(helmet());
 server.use(bodyParser.json());
 
 server.use("/budget", budgetRouter);
-//server.use("/category", categoryRouter);
+server.use("/category", categoryRouter);
 //server.use("/expense", expenseRouter);
 
 mongoose
