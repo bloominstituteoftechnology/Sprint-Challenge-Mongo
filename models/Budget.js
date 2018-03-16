@@ -5,10 +5,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 const BudgetSchema = new mongoose.Schema ({
-  _id: {
-      type: ObjectId,
-      ref: 'Expense',
-  },
+
   title: {
       type: String,
       required: true,
