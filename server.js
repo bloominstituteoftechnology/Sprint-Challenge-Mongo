@@ -63,6 +63,18 @@ server.post('/expense', (req, res) => {
     });
 });
 
+server.get('/expense', (req, res) => {
+  Expense.find()
+    .populate('category', 'title')
+    .populate('budget', 'title budgetAmount')
+    .then(expenses => {
+      res.json(expenses);
+    })
+    .catch(err => {
+      res.status(500).json({msg: 'There was an error receiving the expenses'});
+    });
+});
+
 mongoose
   .connect('mongodb://localhost/budgets')
   .then(() => console.log('Successfully connected to MongoDB'))
