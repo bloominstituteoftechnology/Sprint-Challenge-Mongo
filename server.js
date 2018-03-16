@@ -78,6 +78,52 @@ server.get("/category", (req, res) => {
     });
 });
 
+server.post("/expense", (req, res) => {
+  const { amount, description, budget, category } = req.body;
+  if (amount && description && budget && category) {
+    const expense = new Expense(req.body);
+    expense
+      .save()
+      .then(result => {
+        res.status(201).json(result);
+      })
+      .catch(err => {
+        res.status(500).json({ message: "Unable to post expense" });
+      });
+  } else {
+    res.status(400).json({ message: "You must provide all queries" });
+  }
+});
+
+server.get("/expense", (req, res) => {
+  Expense.find()
+    .then(results => {
+      res.status(200).json(results);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Failed to get expenses" });
+    });
+});
+
+server.get("/budget/:id/summary", (req, res) => {
+  const { id } = req.params;
+  Budget.findById(id)
+    .then(result => {
+      const totalBudget = result.budgetAmount;
+      Expense.aggregate({ $group: { _id: null, total: { $sum: "$amount" } } })
+        .then(result => {
+          const totalExpenses = result[0].total;
+          res.send({ budgetBalance: totalBudget - totalExpenses });
+        })
+        .catch(error => {
+          res.status(500).json({ errorMessage: "total expenses get failed" });
+        });
+    })
+    .catch(error => {
+      res.status(400).json({ errorMessage: "budget get failed" });
+    });
+});
+
 mongoose.connect("mongodb://localhost/budget", { useMongoClient: true });
 
 const port = process.env.PORT || 8000;
