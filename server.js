@@ -1,9 +1,11 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express');
 const mongoose = require('mongoose');
+
+const BudgetRouter = require('./budgets/BudgetRouter.js');
 
 const server = express();
 
-// add your server code
+server.use('/budget', BudgetRouter);
 
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'Running' });
