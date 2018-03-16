@@ -1,18 +1,10 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express'); // remember to install your npm packages
+
 const server = express();
 
-const port = process.env.PORT || 3000;
+// add your server code
 
-const routes = require('./api/routes/routes');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/budget', { useMongoClient: true });
-
-server.use(bodyParser.json());
-
-routes(server);
-
+const port = process.env.PORT || 5000;
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });

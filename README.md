@@ -14,19 +14,17 @@
   ## Start by forking and cloning this repository.
   ## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future.
 
-1. Describe the following: `DataBase`, `Collection` , `Document`
-1. Describe how one can achieve the pattern of _relationships_ in MongoDB. What
-   needs to take place at the schema level? How do we _'fill'_ in the
-   appropriate relational data using mongoose?
-1. Describe what MVC Archtecture is and how we have used it this week with
-   **Node/Express/Mongoose**.
+1.  Describe the following: `DataBase`, `Collection` , `Document`
+1.  Describe how one can achieve the pattern of _relationships_ in MongoDB. What
+    needs to take place at the schema level? How do we _'fill'_ in the
+    appropriate relational data using mongoose?
+1.  Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
 
 # Project description
 
-### Reminder this is just a backend. Testing your application will require the use of `Postman` or something simliar.
+### Reminder this is just a backend. Testing your application will require the use of `Postman` or something similar.
 
-* For this Project we're going to be building out a Backend for a `Budget
-  Tracker` app.
+* For this Project we're going to be building out a Backend for a `Budget Tracker` app.
 
 ## Step 1 - Modeling our Data _hint_: **Three different models, three different files**
 
@@ -79,26 +77,27 @@
 }
 ```
 
-## Step 2 - Building our Routes and Controllers (API Specifications)
+## Step 2 - Endpoints
 
-### `'/budget'`
+Add your code to `server.js`. Remember to install any npm packages you need.
 
-* Your budget should have a `post` method. So you can use a controller called
-  something like `budgetCreate` to save your data through.
+### `POST to '/budget'`
+
+* Used to save a new budget to the database.
 * Only worry about creating `ONE` budget for now.
 
-* **NOTE** We only want to `create` an budget, no need to write a getter or even
+* **NOTE** We only want to `create` a budget, no need to write a getter or even
   update the budget total directly. When we call for data to see how much is
   left in our budget, we'll write a separate endpoint that aggregates that
   information for us. We want to keep our budget total `'pure'` and unaffected
   by our queries.
 
-### `'/category'`
+### `POST to '/category'`
 
 * to `create` a category you should have a `'post'` method that stores the
   category information.
 * you can write a `getter` `'get'` method that simply returns all the
-  categories. Filter out any un useful information here, meaning we just want
+  categories. Filter out any unuseful information here, meaning we just want
   the title of the categories.
 * create a minimum of 4 categories so that when you create your expenses, you
   can assign where they go!
@@ -114,6 +113,8 @@
   expenses with the populated data.
 
 ## Stretch Goal - Aggregation
+
+You are **not required** to work on the stretch goal, but if you're done with the main project go ahead an try to figure out how to use MongoDB's Aggregation Framework.
 
 #### A Note about Aggregation
 
