@@ -54,6 +54,24 @@ server.post('/category', (req, res) => {
   };
 });
 
+server.post('/expense', (req, res) => {
+  const { amount, description, budget, category } = req.body;
+
+  if (!amount || !description || !budget || !category) {
+    res.status(400).json({ message: 'All fields must be filled out! '});
+  } else {
+    const expense = new Expense(req.body);
+    expense
+      .save()
+      .then(expense => {
+        res.status(200).json(expense);
+      })
+      .catch(error => {
+        res.status(500).json({ message: 'There was an error!' });
+      });
+  };
+});
+
 
 //==============================
 //      SERVER INFORMATION
