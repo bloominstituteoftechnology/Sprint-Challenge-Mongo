@@ -1,8 +1,14 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express');
+
+const Budget = require('./routes/budgetRouter.js');
+const Category = require('./routes/categoryRouter.js');
+const Expense = require('./routes/expenseRouter.js');
 
 const server = express();
 
-// add your server code
+server.use('/budget', Budget);
+server.use('/category', Category);
+server.use('/expense', Expense);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
