@@ -12,7 +12,13 @@ const server = express();
 server.use(helmet());
 server.use(bodyParser.json);
 
+server.use('/budget', budgetRouter);
+server.use('/expense', expenseRouter);
+server.use('/category', categoryRouter);
 
+server.get('/', (req, res) => {
+ res.send('It works!');
+});
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
