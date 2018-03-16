@@ -35,7 +35,6 @@ server.post('/budget', (req, res) => {
   };
 });
 
-
 server.post('/category', (req, res) => {
   const { title } = req.body;
 
