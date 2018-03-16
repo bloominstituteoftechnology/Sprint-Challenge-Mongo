@@ -10,7 +10,7 @@ router.post('/', (req, res) => {
 
     category.save()
     .then(newCat => {
-        res.send(newCat);
+        res.json(newCat);
     })
     .catch(err => {
         res.status(500).json({ err: 'there was an error posting category'})
@@ -19,12 +19,13 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     Category.find({})
+    .select('title')
     .then(cat => {
         console.log('retrieving categories');
-        res.status(200).json(cat);
+        res.json(cat);
     })
     .catch(err => {
-        res.status(500).json({ error: 'Error retrieving categories' })
+        res.status(500).json({ 'Error retrieving categories': err })
     })
 })
 

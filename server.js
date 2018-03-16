@@ -6,18 +6,20 @@ const server = express();
 
 const budgetRouter = require('./budget/budgetRouter');
 const categoryRouter = require('./category/categoryRouter');
+const expenseRouter = require('./expense/expenseRouter')
 
 
 // add your server code
 
-server.use('api/budget', budgetRouter);
-server.use('api/category', categoryRouter);
+server.use('/budget', budgetRouter);
+server.use('/category', categoryRouter);
+server.use('/expense', expenseRouter);
 
 server.use(helmet());
 server.use(express.json());
 
 mongoose
-  .connect('mongodb://localhost/api')
+  .connect('mongodb://localhost/mongosprint')
   .then(conn => {
     console.log('connected to Mongo');
   })
