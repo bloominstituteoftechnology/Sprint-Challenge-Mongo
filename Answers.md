@@ -1,3 +1,5 @@
 1. A `DataBase` is a general collection of data. `Collections` are a certain list of data in a database, like how cats would be a collection in a database named 'animals'. `Document` represents the property of the collection shown as an object with the fields needed.
 
-2. 
+2. The first step, if the router does not require the data to be imported or a schema to be required in the router for a query, etc, would be to use `mongoose.Schema.Types.ObjectId` on the enclosing Schema needed in order to reference another Schema and export it with the enclosing Schema (establishing _relationship_). The next step involves _filling in_ `mongoose.Schema.Types.ObjectId` in the field to reference the needed Schema before moving on to the router. This process helps with the `.populate` method in the router, which helps fish out the needed referenced Schema which serves as a document for the enclosing Schema. 
+
+3. The MVC (Model, View, Controller ) Architecture helps us organize our API through collection folders. Each folder has a router (Controller), model (Schema) and view (Data phished out on browser). Sometimes a general router (Controllers) file can be used to reference the other routers in their (Controllers within Controller) collection folder. But in that case, the collection routers would need to be functions to be referenced in the general router.
