@@ -8,7 +8,7 @@ require("./BudgetModel.js");
 const ExpenseSchema = new mongoose.Schema({
   amount: {
     type: Number,
-    required
+    required: true
   },
   description: {
     type: String,
