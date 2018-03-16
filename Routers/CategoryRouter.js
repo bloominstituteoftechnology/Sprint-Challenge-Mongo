@@ -18,6 +18,9 @@ categoryRouter.get('/', (req, res) => {
 categoryRouter.post('/', (req, res) => {
   const { title } = req.body;
 
+  if (!title) {
+    res.status(500).json({ error: 'Category Title Required!' });
+  }
   const category = new Category({ title });
   category.save()
     .then(savedCategory => {

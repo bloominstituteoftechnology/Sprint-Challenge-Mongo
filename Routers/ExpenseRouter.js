@@ -18,6 +18,10 @@ expenseRouter.get('/', (req, res) => {
 expenseRouter.post('/', (req, res) => {
   const { amount, description, budget, category } = req.body;
 
+  if (!amount || !description || !budget || !category) {
+    res.status(500).json({ error: 'Amount, Description, Budget and Category required!'})
+  }
+
   const expense = new Expense({ amount, description, budget, category });
   expense.save()
     .then(savedExpense => {
