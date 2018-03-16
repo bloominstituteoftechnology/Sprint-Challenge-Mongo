@@ -9,13 +9,13 @@ router.post('/', (req, res) => {
 
   expense.save()
     .then(item => res.status(201).json(item))
-    .catch(err => res.status(500).json({ error: err}));
+    .catch(err => res.status(500).json({ error: err }).end());
 });
 
 router.get('/', (req, res) => {
   Expense.find({}).populate('budget').populate('category')
-  .then(cat => res.json(cat))
-  .catch(err => res.status(500).json({ error: err }));
+    .then(cat => res.json(cat))
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 module.exports = router;
