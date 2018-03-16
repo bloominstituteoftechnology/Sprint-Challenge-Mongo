@@ -1,12 +1,12 @@
 const express = require('express');
 
-const Budgets = require('./expenseModel');
+const Expense = require('./expenseModel');
 
 const router = express.Router();
 
 router.post('/', (req, res) => {
     const expenseInfo = req.body;
-    const expense = new expense(expenseInfo);
+    const expense = new Expense(expenseInfo);
 
     expense.save()
     .then(newexp => {

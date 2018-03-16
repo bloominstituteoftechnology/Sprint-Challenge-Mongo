@@ -8,6 +8,8 @@ const budgetRouter = require('./budget/budgetRouter');
 const categoryRouter = require('./category/categoryRouter');
 const expenseRouter = require('./expense/expenseRouter')
 
+server.use(helmet());
+server.use(express.json());
 
 // add your server code
 
@@ -15,8 +17,6 @@ server.use('/budget', budgetRouter);
 server.use('/category', categoryRouter);
 server.use('/expense', expenseRouter);
 
-server.use(helmet());
-server.use(express.json());
 
 mongoose
   .connect('mongodb://localhost/mongosprint')
