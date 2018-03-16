@@ -38,7 +38,7 @@ server.post('/budget', (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({ error: 'There was an error while saving the budget to the database.' });
-    })
+    });
 });
 
 server.post('/category', (req, res) => {
@@ -62,7 +62,7 @@ server.post('/category', (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({ error: 'There was an error while saving the category to the database.' });
-    })
+    });
 });
 
 server.get('/category', (req, res) => {
@@ -73,8 +73,8 @@ server.get('/category', (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({ error: 'The list could not be retrieved.' });
-    })
-})
+    });
+});
 
 server.post('/expense', (req, res) => {
   const ExpenseList = req.body;
@@ -98,8 +98,19 @@ server.post('/expense', (req, res) => {
     .catch(error => {
       console.log(error);
       res.status(500).json({ error: 'There was an error while saving the expense to the database.' });
-    })
+    });
 
+});
+
+server.get('/expense', (req, res) => {
+  Expense.find({})
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: 'The list could not be retrieved.' });
+    });
 });
 
 server.get('/budget/:id/summary', (req, res) => {
@@ -134,6 +145,30 @@ server.get('/budget/:id/summary', (req, res) => {
       console.log(error);
       res.status(500).json({ error: 'There was an error while aggregating the expenses.' });
     });
+});
+
+server.get('/expense', (req, res) => {
+  const {
+    aggregatedBy
+   } = req.query;
+
+  Expense.aggregate([
+    {
+      $group:
+        {
+          _id: '$category',
+          expenseTotal: { $sum: '$amount' }
+        }
+    }
+  ])
+  .sort('-expenseTotal')
+  .then(expenses => {
+    res.status(200).json(expenses);
+  })
+  .catch(error => {
+    console.log(error);
+    res.status(500).json({ error: 'There was an error while aggregating the expenses.' });
+  });
 });
 
 server.get('/', (req, res) => res.send('API Running...'));
