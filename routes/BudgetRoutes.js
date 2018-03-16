@@ -1,9 +1,9 @@
 const express = require('express');
 const Budget = require('../BudgetModel.js');
 
-const router = express.Router();
+const BudgetRouter = express.Router();
 
-router.post('/', (req, res) => {
+BudgetRouter.post('/', (req, res) => {
   const budgetData = req.body;
   const budgetNew = new Budget(budgetData);
 
@@ -17,4 +17,4 @@ router.post('/', (req, res) => {
     });
 });
 
-module.exports = router;
+module.exports = BudgetRouter;

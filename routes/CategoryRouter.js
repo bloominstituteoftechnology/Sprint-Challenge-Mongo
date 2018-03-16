@@ -1,10 +1,10 @@
 const express = require('express');
 const Category = require('../CategoryModel.js');
 
-const router = express.Router();
+const CategoryRouter = express.Router();
 
 
-router.get('/', function (req, res) {
+CategoryRouter.get('/', function (req, res) {
   Category.find()
     .select('title')
     .then(categories => res.status(200).json(categories))
@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
     );
 });
 
-router.post('/', function (req, res) {
+CategoryRouter.post('/', function (req, res) {
   Category.create(req.body)
     .then(budget => res.status(201).json(budget))
     .catch(error =>
@@ -21,4 +21,4 @@ router.post('/', function (req, res) {
     );
 });
 
-module.export = router;
+module.exports = CategoryRouter;

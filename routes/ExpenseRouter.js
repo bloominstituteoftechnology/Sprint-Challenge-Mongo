@@ -1,9 +1,9 @@
 const express = require('express');
 const Expense = require('../ExpenseModel.js');
 
-const router = express.Router();
+const ExpenseRouter = express.Router();
 
-router.get('/', function (req, res) {
+ExpenseRouter.get('/', function (req, res) {
   Expense.find()
     .populate('budget category')
     .then(expenses => res.status(200).json(expenses))
@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
     );
 })
 
-router.post('/', function (req, res) {
+ExpenseRouter.post('/', function (req, res) {
   Expense.create(req.body)
 
     .then(budget => res.status(200).json(budget))
@@ -20,4 +20,4 @@ router.post('/', function (req, res) {
       res.status(500).json({ msg: 'Could not create budget', error })
     );
 })
-module.exports = router;
+module.exports = ExpenseRouter;
