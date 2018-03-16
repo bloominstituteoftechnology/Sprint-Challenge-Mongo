@@ -11,7 +11,7 @@ const expenseRouter = require('./Routers/expenseRouter');
 
 server.use(express.json());
 
-server.use('/budget', budgetRouter);
+server.use('/budgets', budgetRouter);
 server.use('/categories', categoryRouter);
 server.use('/expenses', expenseRouter);
 
