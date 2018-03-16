@@ -8,6 +8,7 @@ const BudgetRouter = express.Router();
 // I wasted a good thirty minutes trying to debug it.
 // req.query worked fine, not sure why.
 // In the essence of time, I just went with that.
+// example: localhost:5000/budget/?title=Budget&budgetAmount=3000
 BudgetRouter.post('/', (req, res) => {
   const budgetInfo = req.query;
   const newBudget = new Budget(budgetInfo);

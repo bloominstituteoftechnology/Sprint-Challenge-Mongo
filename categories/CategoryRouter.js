@@ -7,6 +7,7 @@ const CategoryRouter = express.Router();
 //req.body is undefined again...
 //No idea what I'm doing differently
 //Just going to use req.query instead
+//example: localhost:5000/category?title=Entertainment
 CategoryRouter.post('/', (req, res) => {
   const categoryInfo = req.query;
   const newCategory = new Category(categoryInfo);
