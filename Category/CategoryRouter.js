@@ -10,7 +10,7 @@ CategoryRouter.post('/', (req, res) => {
 		category
 		  .save()
 			.then(savedCategory) => {
-			   res.status(200).json(savedCategory);
+			   res.status(201).json(savedCategory);
 			})
       .catch(err => {
 					res.status(500).json({

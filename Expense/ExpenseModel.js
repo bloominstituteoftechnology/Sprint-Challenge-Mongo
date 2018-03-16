@@ -6,20 +6,23 @@ const Budget = require('../budget/BudgetModel.js');
 
 const ExpenseSchema = new mongoose.Schema({
     amount: {
-      type: Number
+      type: Number,
+			required: true,
     },
 	  description: {
-		  type: String
+		  type: String,
+			required: true,
+
 		},
      budget: {
 		   type: ObjectId,
-			 ref: 'Budget'
-			 required: true
+			 ref: 'Budget',
+			 required: true,
 		 },
      category: {
 		    type: ObjectId,
 				ref: 'Category',
-				required: true
+				required: true,
 			}
 	});
 

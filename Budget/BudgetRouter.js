@@ -10,7 +10,7 @@ BudgetRouter.post('/', (req, res) => {
 		budget
 		 .save()
 		 .then(savedBudget) => {
-		    res.status(200).json(savedBudget);
+		    res.status(201).json(savedBudget);
 			})
       .catch(err => {
 					res.status(500).json({
