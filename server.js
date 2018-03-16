@@ -83,6 +83,15 @@ server.post('/expense', (req, res) => {
   };
 });
 
+server.get('/expense', (req, res) => {
+  Expense.find()
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'There was an error!' });
+    });
+});
 
 //==============================
 //      SERVER INFORMATION
