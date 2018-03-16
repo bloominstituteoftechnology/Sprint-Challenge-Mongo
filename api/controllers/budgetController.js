@@ -9,4 +9,13 @@ const getBudget = (req, res) => {
         });
 };
 
-module.exports = {getBudget};
+const insertBudget = (req, res) => {
+    const budget = new budgetModel(req.body);
+    budget.save()
+        .then(rsp => res.status(201).send(rsp))
+        .catch(err => {
+            res.status(500).send({error: "Something went wrong saving the budget", info: err});
+        });
+};
+
+module.exports = {getBudget, insertBudget};
