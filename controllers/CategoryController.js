@@ -19,4 +19,15 @@ categoryRouter.post('/', (req, res) => {
     });
 });
 
+categoryRouter.get('/', (req, res) => {
+  Category.find({})
+    .then(categories => {
+      const catTitles = categories.map(cat => cat.title);
+      res.status(200).json(catTitles);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Error getting categories', error: err });
+    });
+});
+
 module.exports = categoryRouter;
