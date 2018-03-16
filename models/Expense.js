@@ -20,6 +20,6 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
     category: {
          type: ObjectId, 
          ref: 'Category' 
-     }]
+     }
 });
  module.exports = mongoose.model('Expense', ExpenseSchema);
