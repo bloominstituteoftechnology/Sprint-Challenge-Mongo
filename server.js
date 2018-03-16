@@ -30,7 +30,7 @@ server.post('/budget', (req, res) => {
         res.status(201).json(budget);
       })
       .catch(err => {
-        res.status(500).json({ message: 'Something went wrong! ' });
+        res.status(500).json({ message: 'Something went wrong!' });
       });
   };
 });
@@ -54,11 +54,22 @@ server.post('/category', (req, res) => {
   };
 });
 
+server.get('/category', (req, res) => {
+  Category.find()
+    .select('title')
+    .then(categories => {
+      res.status(200).json(categories);
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'There was an error!' });
+    });
+});
+
 server.post('/expense', (req, res) => {
   const { amount, description, budget, category } = req.body;
 
   if (!amount || !description || !budget || !category) {
-    res.status(400).json({ message: 'All fields must be filled out! '});
+    res.status(400).json({ message: 'All fields must be filled out!' });
   } else {
     const expense = new Expense(req.body);
     expense
