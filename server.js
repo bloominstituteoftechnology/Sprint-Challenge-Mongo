@@ -1,8 +1,13 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express');
+const helmet = require('helmet');
 const server = express();
 const db = require('./db');
+const budgetRoutes = require('./api/routes/budgetRoutes');
 
-// add your server code
+server.use(helmet());
+server.use(express.json());
+
+server.use('/api/budget', budgetRoutes);
 
 db.connectTo('btracker')
     .then(() => console.log('\n... API Connected to Database ...\n'))
