@@ -7,3 +7,4 @@
 Relationships are formed when references within the Schema are established. This is done by connecting one Model to another through the use of IDs and 'refs'.
 
 #  Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
+If I understand this correctly, the way we were able to split our API into "Sub-Applications" is by using express.Router().
