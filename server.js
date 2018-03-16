@@ -1,11 +1,14 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const budgetRouter = require('./budget/BudgetRouter.js');
+const expenseRouter = require('./expense/ExpenseRouter.js');
+const categoryRouter = require('./category/CategoryRouter.js');
+
 const server = express();
 
-// add your server code
 server.use(helmet());
 server.use(bodyParser.json);
 
