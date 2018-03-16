@@ -4,13 +4,13 @@ const helmet = require('helmet');
 const server = express();
 
 const db = require('./src/db.js');
-const budgetRouter = require('./budget/budgetRouter.js');
-const categoryRouter = require('./category/categoryRouter.js');
-const expenseRouter = require('./expense/expenseRouter.js');
+const budgetRouter = require('./src/budget/budgetRouter.js');
+const categoryRouter = require('./src/category/categoryRouter.js');
+const expenseRouter = require('./src/expense/expenseRouter.js');
 
 
-server.use('hemet');
-server.user(express.json())
+server.use(helmet());
+server.use(express.json())
 // add your server code
 
 db
@@ -19,8 +19,8 @@ db
   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 
 server.use('/api/budget', budgetRouter);
-server.use('/api/category', budgetRouter);
-server.use('/api/expense', budgetRouter);
+server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
 
 
 
