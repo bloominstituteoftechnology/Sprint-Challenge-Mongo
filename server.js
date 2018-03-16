@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const budgetRouter = require('./Budget/budgetRouter');
 const categoryRouter = require('./Category/categoryRouter');
-const expenseRouter = require('/Expense/expenseRouter');
+const expenseRouter = require('./Expense/expenseRouter');
 
 const server = express();
 

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ObjectID = mongoose.Schema.Types.ObjectId;
+const objectID = mongoose.Schema.Types.ObjectId;
 
 const Budget = new mongoose.Schema({
   title: { type: String, required: true },
