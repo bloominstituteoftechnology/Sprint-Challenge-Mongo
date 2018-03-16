@@ -1,19 +1,27 @@
 const express = require('express'); // remember to install your npm packages
 const server = express();
 const bodyParser = require('body-parser');
-const Budget = require('./api/models/BudgetModels.js');
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
+const budgetRouter = require('./api/controllers/BudgetControllers.js');
+const expenseRouter = require('./api/controllers/ExpenseControllers.js');
 
-server.use(bodyParser.json());
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/check-book')
+  .then(conn => {
+    console.log("Successfully connected to MongoDB!");
+  })
+  .catch(err => {
+    console.log("Database connection failed....");
+})
 
 // add your server code
+server.use(bodyParser.json());
+
+server.use('/api/budget', budgetRouter);
+server.use('/api/expense', expenseRouter);
+
 server.post('/', function(req, res) {
-  const { title, budgetamount } = req.body;
-  const newBudget = { title, budgetamount };
-  newBudget._id = ObjectId();
-  const budget = new Budget(newBudget);
-  res.send(budget);
+  res.send("Main")
 })
 
 const port = process.env.PORT || 5000;
