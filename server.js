@@ -74,7 +74,7 @@ server.get('/expense', function(req, res) {
   .populate('category', 'title')
   .then(expenses => res.status(200).json(expenses))
   .catch(err => {
-    res.status(500).json({ error: "The category could not be retrieved." });
+    res.status(500).json({ error: "The expenses could not be retrieved." });
   });
 });
 
