@@ -102,6 +102,40 @@ server.post('/expense', (req, res) => {
 
 });
 
+server.get('/budget/:id/summary', (req, res) => {
+  const id = req.params.id;
+
+  Expense.aggregate([ 
+    { 
+      $group: 
+        { 
+          _id: '$budget', 
+          expenseTotal: { $sum: '$amount' } 
+        } 
+    } 
+  ])
+    .then(expenses => {
+      const expenseTotal = expenses[0].expenseTotal;
+      Budget.findById(id)
+        .then(diff => {
+          const difference = {
+            remainingAmount: diff.budgetAmount - expenseTotal,
+            budget: diff.budgetAmount,
+            expenseTotal
+          }
+          res.status(200).json(difference)
+        })
+        .catch(error => {
+          console.log(error);
+          res.status(500).json({ error: 'There was an error while retrieving the budget to the database.' });
+        });
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: 'There was an error while aggregating the expenses.' });
+    });
+});
+
 server.get('/', (req, res) => res.send('API Running...'));
 
 server.listen(port, () => {
