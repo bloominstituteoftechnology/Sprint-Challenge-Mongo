@@ -21,12 +21,13 @@ router.post('/', function(req, res) {
 router.get('/', function(req, res) {
   Category
     .find()
+    .select('title')
     .then(categories => {
       res.status(200).json(categories);
     })
-    .catch(
+    .catch(err => {
       res.status(500).json({ msg: 'error getting categories', error: err })
-    );
+    });
 });
 
 module.exports = router;
