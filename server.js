@@ -9,9 +9,9 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-// const budgetRouter = require('./budget/budgetRouter.js');
-// const expenseRouter = require('./expense/expenseRouter.js');
-// const categoryRouter = require('./category/categoryRouter.js');
+const budgetRouter = require('./budget/budgetRoutes.js');
+const expenseRouter = require('./expense/expenseRoutes.js');
+const categoryRouter = require('./category/categoryRoutes.js');
 
 mongoose
   .connect('mongodb://localhost/Budget_Tracker')
@@ -22,9 +22,9 @@ mongoose
     console.log('error connect to mongo');
 });
 
-// server.use('/api/budget', budgetRouter);
-// server.use('/api/expense', expenseRouter);
-// server.use('/api/category', categoryRouter);
+server.use('/api/budget', budgetRouter);
+server.use('/api/expense', expenseRouter);
+server.use('/api/category', categoryRouter);
 
 server.get('/', (req, res) => res.send('API Running...'));
 
