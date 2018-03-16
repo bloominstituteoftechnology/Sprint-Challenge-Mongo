@@ -1,5 +1,6 @@
 const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
+const mongoose = require('mongoose');
 
 const Budget = require('./Models/BudgetModel.js');
 const Category = require('./Models/CategoryModel.js');
@@ -26,22 +27,43 @@ server.post('/budget', (req, res) => {
 server.post('/category', (req, res) => {
   const { title } = req.body;
 
-  const category = new category({ title });
+  const category = new Category({ title });
   category.save()
     .then(savedCategory => {
-      Category.find()
-        .select('title')
-        .then(categories => {
-          res.status(200).json({ Categories: categories });
-        })
-        .catch(error => {
-          res.status(500).json({ error: 'Error' });
-        })
+      res.status(200).json({ CategorySaved: savedCategory });
     })
     .catch(error => {
-      res.status(500).json({ error: 'Error saving new Category '});
+      res.status(500).json({ error: 'Error saving new Category'});
     })
 })
+
+server.get('/category', (req, res) => {
+  Category.find({})
+    .select('title')
+    .then(categories => {
+      res.status(200).json({ Categories: categories });
+    })
+    .catch(error => {
+      res.status(500).json({ error: 'Error displaying Categories' });
+    })
+})
+
+server.post('/expense', (req, res) => {
+  const { amount, description, budget, category } = req.body;
+
+})
+
+server.get('/', (req, res) => {
+  res.status(200).json({Status: 'API Running'})
+})
+
+mongoose.connect('mongodb://localhost/store')
+  .then(conn => {
+    console.log('Successfully Connected to MongoDB');
+  })
+  .catch(error => {
+    console.log('Database connection failed')
+  })
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
