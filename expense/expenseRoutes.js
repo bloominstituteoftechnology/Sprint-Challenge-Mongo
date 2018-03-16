@@ -10,11 +10,21 @@ expenseRouter.post('/', function(req, res){
 });
 
 expenseRouter.get('/', function(req, res){
-	Expense.find()
-	.populate('budget category')
-	.then(expenses => {
+	const { aggregatedBy } = req.query;
+	if(aggregatedBy){
+		Expense.aggregate([{$group : {_id : "$category", total : {$sum : "$amount"}}}])
+		.then(data => {
+		res.json(data);
+		})
+	}
+	else {				
+		Expense.find()
+		.populate('budget category')
+		.then(expenses => {
 		res.json(expenses);
-	});
+		});
+	}
+
 });
 
 module.exports = expenseRouter;
