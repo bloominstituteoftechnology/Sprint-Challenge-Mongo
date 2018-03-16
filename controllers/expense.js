@@ -63,7 +63,7 @@ router.get('/', (req, res) => {
               array[i].expenses = [];
               for (let j = 0; j < expenses.length; j++) {
                 if (
-                  categoryTotals[i].category.title == expenses[j].category.title
+                  categoryTotals[i].category.title === expenses[j].category.title
                 )
                   array[i].expenses.push(expenses[j]);
               }
