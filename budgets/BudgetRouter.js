@@ -2,11 +2,14 @@ const express = require('express');
 
 const Budget = require('./BudgetModel.js');
 
-const BudgetRouter = express();
+const BudgetRouter = express.Router();
 
 BudgetRouter.post('/', (req, res) => {
-  const budgetInfo = req.body;
-  const newBudget = new BudgetRouter(budgetInfo);
+console.log('ReqQuery', req.query)
+  console.log('REQBODY', req.body);
+  const budgetInfo = req.query;
+  console.log('BUDGET', budgetInfo);
+  const newBudget = new Budget(budgetInfo);
 
   newBudget
     .save()

@@ -13,7 +13,7 @@ server.get('/', (req, res) => {
 
 mongoose
   .connect('mongodb://localhost/budgettracker')
-  .then(connetion => console.log('Connected to Mongo'))
+  .then(connection => console.log('Connected to Mongo'))
   .catch(error => console.log('Error Connecting to Mongo'));
 
 const port = process.env.PORT || 5000;
