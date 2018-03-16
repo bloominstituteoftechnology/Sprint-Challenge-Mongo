@@ -42,13 +42,17 @@ router.get('/', (req, res) => {
       .catch(err => {
         res.send({ error: err });
       });
-  } else { // Trying to work on the final stretch assignment
+  } else {
+    // Trying to work on the final stretch assignment
     Expense.aggregate([
       { $group: { _id: '$category', total: { $sum: 1 } } },
     ]).then(response => {
-      Expense.find().then(allExpenses => {
-        res.send({ response, allExpenses });
-      });
+      Expense.find()
+        .select('category amount')
+        .populate('category', '-_id -__v')
+        .then(allExpenses => {
+          res.send({ response, allExpenses });
+        });
     });
   }
 });
