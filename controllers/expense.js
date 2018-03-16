@@ -15,19 +15,12 @@ router.post('/', (req, res) => {
     expense
       .save()
       .then(newExpense => {
-        Budget.findById(id)
-          .then(budget => {
-            budget.budgetAmount -= newExpense.amount;
-            budget.save();
-          })
-          .then(() => {
-            Expense.find()
-              .select('-_id -__v')
-              .populate('budget', '-_id -__v')
-              .populate('category', '-_id -__v')
-              .then(expenses => {
-                res.status(201).send({ newExpense, allExpenses: expenses });
-              });
+        Expense.find()
+          .select('-_id -__v')
+          .populate('budget', '-_id -__v')
+          .populate('category', '-_id -__v')
+          .then(expenses => {
+            res.status(201).send({ newExpense, allExpenses: expenses });
           });
       })
       .catch(err => {
@@ -47,6 +40,24 @@ router.get('/', (req, res) => {
     .catch(err => {
       res.send({ error: err });
     });
+});
+
+router.get('/:id/summary', (req, res) => {
+  const { id } = req.params;
+  Budget.findById(id).then(budget => {
+    Expense.aggregate([
+      { $group: { _id: 'amount', total: { $sum: '$amount' } } },
+    ])
+      .then(total => {
+        const RemainingBudget = budget.budgetAmount - total[0].total;
+        res.send({
+          TotalBudget: budget.budgetAmount,
+          TotalExpenses: total[0].total,
+          RemainingBudget,
+        });
+      })
+      .catch(err => res.send(err));
+  });
 });
 
 module.exports = router;
