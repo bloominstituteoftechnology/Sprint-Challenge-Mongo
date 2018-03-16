@@ -4,11 +4,12 @@ const Budget = require('./BudgetModel.js');
 
 const BudgetRouter = express.Router();
 
+// req.body was undefined every time I tried it.
+// I wasted a good thirty minutes trying to debug it.
+// req.query worked fine, not sure why.
+// In the essence of time, I just went with that.
 BudgetRouter.post('/', (req, res) => {
-console.log('ReqQuery', req.query)
-  console.log('REQBODY', req.body);
   const budgetInfo = req.query;
-  console.log('BUDGET', budgetInfo);
   const newBudget = new Budget(budgetInfo);
 
   newBudget
