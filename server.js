@@ -2,8 +2,16 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 
 const server = express();
+
 server.use(express.json());
 server.use(helmet());
+
+const db = require('./data/db');
+
+db
+  .connectTo('budgetTracker')
+  .then(() => console.log('\n... API Connected to Database ...\n'))
+  .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 
 // add your server code
 
