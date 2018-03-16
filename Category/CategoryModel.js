@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const CategorySchema = new mongoose.Schema({
   title: {
-    type: string,
+    type: String,
     required: true
   }
 });
 
-module.exports = mongoos.model('Category', CategorySchema);
+module.exports = mongoose.model('Category', CategorySchema);
