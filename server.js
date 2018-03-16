@@ -65,6 +65,43 @@ server.post('/category', (req, res) => {
     })
 });
 
+server.get('/category', (req, res) => {
+  Category.find({})
+    .then(categories => {
+      res.status(200).json(categories);
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: 'The list could not be retrieved.' });
+    })
+})
+
+server.post('/expense', (req, res) => {
+  const ExpenseList = req.body;
+  const {
+    amount,
+    description
+  } = req.body;
+
+  if (!amount || !description) {
+    console.log(error);
+    res.status(400).json({ errorMessage: 'Please provide amount and description.' });
+  }
+
+  const expense = new Expense(ExpenseList);
+
+  expense
+    .save()
+    .then(newExpense => {
+      res.status(200).json(newExpense)
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ error: 'There was an error while saving the expense to the database.' });
+    })
+
+});
+
 server.get('/', (req, res) => res.send('API Running...'));
 
 server.listen(port, () => {
