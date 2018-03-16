@@ -4,9 +4,16 @@ const server = express();
 
 // add your server code
 
-
+const budgetRouter = require('./Routers/budgetRouter');
+const categoryRouter = require('./Routers/categoryRouter');
+const expenseRouter = require('./Routers/expenseRouter');
 
 server.use(express.json());
+
+server.use('/budget', budgetRouter);
+server.use('/category', categoryRouter);
+server.use('/expense', expenseRouter);
+
 mongoose.connect('mongodb://localhost/mdb-stretch')
   .then(res => {
     console.log('connected to mongo')
