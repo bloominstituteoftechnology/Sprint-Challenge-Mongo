@@ -81,23 +81,46 @@ app.get("/category", (req, res) => {
     console.log(`The category documents were sent to the client`);
     res.json(response);
   })
+  .catch(err => {
+    console.log(`There was an error getting the category documents: \n ${err}`);
+    res.send(`There was an error getting the category documents`);
+  })
 })
 
-//creating and saving the expense document
-// const newExpense = new ExpenseModel({
-//   amount: 20,
-//   description: "Switch Games",
-//   budget: mongoose.Types.ObjectId("5aac12951cc99d05ac436313"),
-//   category: mongoose.Types.ObjectId("5aac14fe8c245b0948668a47"),
-// })
-// .save()
-// .then(response => console.log(`The expense was saved: \n ${response}`))
-// .catch(err => console.log(`There was an error: \n ${err}`));
+app.post("/expense", (req, res) => {
+  const newAmount = req.body.amount;
+  const newDescription = req.body.description;
+  const newBudgetId = req.body.budgetId;
+  const newCategoryId = req.body.categoryId;
 
-//populating the expense document
-// ExpenseModel
-// .find()
-// .populate("budget")
-// .populate("category")
-// .then(response => console.log(response))
-// .catch(err => console.log(err));
+  const newExpense = new ExpenseModel({
+    amount: newAmount,
+    description: newDescription,
+    budget: newBudgetId,
+    category: newCategoryId,
+  })
+  .save()
+  .then(response => {
+    console.log(`The expense document was saved successfully: \n ${response}`);
+    res.send(`The expense document was saved successfully!`);
+  })
+  .catch(err => {
+    console.log(`There was an error saving the expense document: \n ${err}`);
+    res.send(`There was an error saving the expense document`);
+  })
+})
+
+//get handler that populates and returns all expense documents
+app.get("/expense", (req, res) => {
+  ExpenseModel.find()
+  .populate("budget")
+  .populate("category")
+  .then(response => {
+    console.log(`The expense documents were sent to the client`);
+    res.json(response);
+  })
+  .catch(err => {
+    console.log(`There was an error getting the expense documents: \n ${err}`)
+    res.send(`There was an error getting the expense documents`);
+  })
+})
