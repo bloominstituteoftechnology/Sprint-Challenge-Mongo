@@ -1,4 +1,9 @@
 
+const express = require("express");
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
+
 const BudgetSchema = new mongoose.Schema ({
   _id: {
       type: ObjectId,
@@ -9,7 +14,7 @@ const BudgetSchema = new mongoose.Schema ({
       required: true,
   },
   budgetAmount: {
-      type: String,
+      type: Number,
       required: true,
   },
 });
