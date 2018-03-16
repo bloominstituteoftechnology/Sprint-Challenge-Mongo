@@ -1,0 +1,5 @@
+1. A database is a storage system for data. The information can be organized in many different ways within the database and this forms the fundamental difference between the types. A collection is a essentially a folder within the mongo database. The collection organizes files together so that they are easily searchable and accessable. The files within these collections are called documents. These documents are essentially json objects that are each given a unique id when added to the database.
+
+2. We can acheive a percieved relationship between documents using the populate method from within mongoose. This allows us to access other documents within the database by linking them within the schemas. We use the ObjectId type and ref tags to refer to a different document and then populate it within our queries.
+
+3.

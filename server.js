@@ -2,15 +2,19 @@ const express = require('express'); // remember to install your npm packages
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+
 const server = express();
+
 const budgetRouter = require('./budget/budgetRouter.js');
+const categoryRouter = require('./category/categoryRouter.js');
 
 server.use(helmet());
 server.use(bodyParser.json());
 
 // add your server code
 
-server.use('/budget', budgetRouter);
+server.use('/api/budget', budgetRouter);
+server.use('/api/category', categoryRouter);
 
 mongoose
     .connect('mongodb://localhost/BudgetTracker')
