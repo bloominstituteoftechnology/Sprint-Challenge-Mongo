@@ -14,8 +14,13 @@ router.post('/', function(req, res) {
     newExpense.budget = budget._id;
     const expense = new Expense(newExpense);
     expense.save();
-    res.send(expense)
+    res.send(expense);
   })
 })
 
+router.get('/', function(req, res) {
+  Expense.find()
+  .populate('budget')
+  .then(expense => res.json(expense))
+})
 module.exports = router;

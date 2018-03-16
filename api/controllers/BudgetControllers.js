@@ -13,4 +13,9 @@ router.post('/', function(req, res) {
   res.send(budget);
 })
 
+router.get('/', function(req, res) {
+  Budget.find()
+  .then(budget => res.json(budget))
+})
+
 module.exports = router;
