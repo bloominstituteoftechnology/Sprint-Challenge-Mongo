@@ -9,13 +9,50 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-const budgetRouter = require('./db/BudgetRoutes');
-// const categoryRouter = require('./db/CategoryRoutes');
-// const expenseRouter = require('./db/ExpenseRoutes');
+const Budget = require('./db/BudgetModel');
+const Category = require('./db/CategoryModel');
+const Expense = require('./db/ExpenseModel');
 
-server.use('/api/budget', budgetRouter);
-// server.use('/api/category', categoryRouter);
-// server.use('/api/expense', expenseRouter);
+// const budgetRouter = express.Router();
+// const expenseRouter = express.Router();
+// const categoryRouter = express.Router();
+
+// POST to '/budget'
+server.post('/budget', function(req, res) {
+  const budgetInfo = req.body;
+  const budget = new Budget(budgetInfo);
+  budget
+  .save()
+  .then(savedBudget => {
+    if (!budgetInfo.title || !budgetInfo.budgetAmount) {
+      res.status(400).json({ errorMessage: "Please provide both title and budget amount for the new budget." });
+  }
+  res.status(201).json(savedBudget);
+  })
+});
+
+server.get('/category', function(req, res) {
+  Category.find({})
+  .then(categories => {
+    res.status(200).json(categories);
+  })
+  .catch(err => {
+    res.status(500).json({ error: "The category could not be retrieved." });
+  });
+});
+
+server.post('/category', function(req, res) {
+  const categoryInfo = req.body;
+  const category = new Category(categoryInfo);
+  category
+  .save()
+  .then(savedCategory => {
+    if (!categoryInfo.title ) {
+      res.status(400).json({ errorMessage: "Please provide a category title." });
+  }
+  res.status(201).json(savedCategory);
+  })
+});
 
 mongoose
   .connect('mongodb://localhost/BudgetTracker')
