@@ -15,7 +15,7 @@ server.use(bodyParser.json());
 
 server.use("/budget", budgetRouter);
 server.use("/category", categoryRouter);
-//server.use("/expense", expenseRouter);
+server.use("/expense", expenseRouter);
 
 mongoose
   .connect("mongodb://localhost/BudgetTracker")
