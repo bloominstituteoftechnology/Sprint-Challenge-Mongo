@@ -7,12 +7,12 @@ const server = express();
 server.use(bodyParser.json());
 // add your server code
 const budgetRouter = require('./budget/budgetRouter.js');
-// const categoryRouter = require('./category/categoryRouter.js');
-// const expenseRouter = require('./expense/expenseRouter.js');
+const categoryRouter = require('./category/categoryRouter.js');
+const expenseRouter = require('./expense/expenseRouter.js');
 
 server.use('/api/budget', budgetRouter);
-// server.use('/api/expense', expenseRouter);
-// server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
+server.use('/api/category', categoryRouter);
 
 mongoose
   .connect('mongodb://localhost/BudgetTracker')

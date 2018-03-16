@@ -1,7 +1,5 @@
 const express = require('express');
-
-const Budget = require('./budget.js');
-
+const Budget = require('./Budget.js');
 const budgetRouter = express.Router();
 
 budgetRouter.post('/', (req, res) => {
