@@ -12,7 +12,11 @@ budgetRouter.post('/', (req, res) => {
     .then(newBudget => {
       res.status(200).json(newBudget);
     })
-    .catch(err => { message: 'Error creating new Budget', error: err })
-})
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: 'Error creating new Budget', error: err });
+    });
+});
 
-module.exports = budgetRouter
+module.exports = budgetRouter;
