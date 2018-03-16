@@ -1,10 +1,16 @@
-const express = require('express'); // remember to install your npm packages
+//importing modules
+const mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const server = express();
+//import models
 
-// add your server code
-
-const port = process.env.PORT || 5000;
-server.listen(port, () => {
-  console.log(`Server up and running on ${port}`);
+//starting mongoose and express
+mongoose.connect("mongodb://localhost:27017/sprint")
+.then(() => {
+  const port = process.env.port || 3000;
+  const app = express();
+  app.listen(port)
+  console.log(`The server is listening on port ${port}`)
 });
+
