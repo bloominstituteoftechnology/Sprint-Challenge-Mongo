@@ -7,6 +7,7 @@ const server = express();
 
 const budgetRouter = require('./budget/budgetRouter.js');
 const categoryRouter = require('./category/categoryRouter.js');
+const expenseRouter = require('./expense/expenseRouter.js');
 
 server.use(helmet());
 server.use(bodyParser.json());
@@ -15,6 +16,7 @@ server.use(bodyParser.json());
 
 server.use('/api/budget', budgetRouter);
 server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
 
 mongoose
     .connect('mongodb://localhost/BudgetTracker')

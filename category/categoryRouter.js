@@ -20,6 +20,7 @@ categoryRouter.post('/', (req, res) => {
 
 categoryRouter.get('/', (req, res) => {
     Category.find({})
+        .select('title')
         .then(categories => {
             res.status(200).json(categories);
         })
