@@ -57,10 +57,9 @@ server.post('/category', function(req, res) {
 server.post('/expense', function(req, res) {
   const expenseInfo = req.body;
   const expense = new Expense(expenseInfo);
+  console.log(expense);
   expense
   .save()
-  .populate('budget')
-  .populate('category')
   .then(savedExpense => {
     if (!expenseInfo.amount ) {
       res.status(400).json({ errorMessage: "Please provide an expense amount." });
@@ -70,9 +69,10 @@ server.post('/expense', function(req, res) {
 });
 
 server.get('/expense', function(req, res) {
-  Expense.find({})
+  Expense.find()
   .populate('budget', 'title')
   .populate('category', 'title')
+  .then(expenses => res.status(200).json(expenses))
   .catch(err => {
     res.status(500).json({ error: "The category could not be retrieved." });
   });
