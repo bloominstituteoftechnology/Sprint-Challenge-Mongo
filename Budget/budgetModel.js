@@ -8,10 +8,6 @@ const BudgetSchema = new mongoose.Schema({
  budgetAmount: {
    type: Number,
    required: true,
- },
- createdOn: {
-   type: Date,
-   timestamp: Date.now,
  }
 });
 
