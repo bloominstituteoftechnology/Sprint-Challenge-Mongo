@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const server = express();
 
 const Budget = require('./models/Budget.js');
+const Category = require('./models/Category.js');
 
 server.use(cors());
 server.use(helmet());
@@ -21,6 +22,31 @@ server.post('/budget', (req, res) => {
     })
     .catch(err => {
       res.status(500).json(err);
+    });
+});
+
+server.post('/category', (req, res) => {
+  const category = new Category(req.body);
+  category
+    .save()
+    .then(cat => {
+      res.json(cat);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+server.get('/category', (req, res) => {
+  Category.find()
+    .select('title')
+    .then(cats => {
+      res.json(cats);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({msg: 'There was an error receiving the categories'});
     });
 });
 
