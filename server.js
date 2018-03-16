@@ -8,24 +8,40 @@ const BudgetModel = require("./models/Budget");
 const CategoryModel = require("./models/Category");
 const ExpenseModel = require("./models/Expense");
 
+//initializing express
+const app = express();
+
 //starting mongoose and express
 mongoose.connect("mongodb://localhost:27017/sprint")
 .then(() => {
   const port = process.env.port || 3000;
-  const app = express();
-  app.listen(port)
+  app.listen(port);
   console.log(`The server is listening on port ${port}`)
 });
 
-//creating and saving the budget document
-// const newBudget = new BudgetModel({
-//   title: "Video Game Budget",
-//   budgetAmount: 120,
-// })
+//setting middleware
+app.use(bodyParser.json());
+mongoose.Promise = global.Promise;
 
-// newBudget.save()
-// .then(response => console.log(`The budget was saved: ${response}`))
-// .catch(err =>  console.log(`There was an error: ${err}`));
+//creating and saving the budget document with a post request
+app.post("/budget", (req, res) => {
+  const newTitle = req.body.title;
+  const newAmount = req.body.amount;
+
+  const newBudget = new BudgetModel({
+    title: newTitle,
+    budgetAmount: newAmount,
+  })
+  .save()
+  .then(response => {
+    console.log(`The budget was saved: ${response}`);
+    res.send(`The budget was saved successfully!`);
+  })
+  .catch(err => {
+    console.log(`There was an error: ${err}`);
+    res.send(`There was an error saving the budget`);
+  });
+})
 
 //creating and saving the category document
 // const newCategory = new CategoryModel({
