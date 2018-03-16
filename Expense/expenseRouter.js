@@ -5,8 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   Expense.find({})
-    .populate('budget', 'title budgetAmount')
-    .populate('category', 'title')
+    .populate('budget category')
     .then(expenses => {
       res.status(200).json( { expenses: expenses });
     })
@@ -21,8 +20,8 @@ router.post('/', (req, res) => {
     res.status(400).json({ errorMessage: 'Please provide an amount and description in the request body' });
   }
   const expense = new Expense({
-    budget: budget._id,
-    category: category._id,
+    budget,
+    category,
     amount,
     description,
   });
