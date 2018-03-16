@@ -43,23 +43,39 @@ router.get('/', (req, res) => {
       .catch(err => {
         res.send({ error: err });
       });
-  } else {
-    // Trying to work on the final stretch assignment
-    Category.findOne({ title: aggregatedBy }).then(category => {
-      const id = category._id;
-      Expense.aggregate([
-        { $match: { category: id } },
-        { $group: { _id: 'amount', total: { $sum: '$amount' } } }
-      ]).then(response => {
+  } else if (aggregatedBy === 'category') {
+    Expense.aggregate([
+      { $group: { _id: '$category', total: { $sum: '$amount' } } },
+      { $project: { category: '$_id', _id: false, total: true } },
+      { $sort: { total: -1 } },
+    ]).then(response => {
+      Category.populate(response, {
+        path: 'category',
+        select: '-_id -__v',
+      }).then(categoryTotals => {
         Expense.find()
-          .select('category amount')
+          .select('-_id -__v -budget')
           .populate('category', '-_id -__v')
-          .then(allExpenses => {
-            res.send({ response, allExpenses });
+          .then(expenses => {
+            const array = [];
+            for (let i = 0; i < categoryTotals.length; i++) {
+              array.push(categoryTotals[i]);
+              array[i].expenses = [];
+              for (let j = 0; j < expenses.length; j++) {
+                if (
+                  categoryTotals[i].category.title == expenses[j].category.title
+                )
+                  array[i].expenses.push(expenses[j]);
+              }
+            }
+            res.send(array);
+          })
+          .catch(err => {
+            res.send({ error: err });
           });
       });
     });
-  }
+  } else res.send('Try: "localhost:5000/expense?aggregatedBy=category"');
 });
 
 module.exports = router;
