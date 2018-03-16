@@ -22,8 +22,9 @@ router.get('/', function (req, res) {
   
   Expense
     .find()
-    .populate('budget')
-    .populate('category')
+    .select('-__v -_id')
+    .populate('budget', '-__v -_id')
+    .populate('category', 'title -_id')
     .then(expenses => {
       res.status(200).json(expenses);
     })

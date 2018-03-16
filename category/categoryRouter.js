@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
 router.get('/', function(req, res) {
   Category
     .find()
-    .select('title')
+    .select('title -_id')
     .then(categories => {
       res.status(200).json(categories);
     })
