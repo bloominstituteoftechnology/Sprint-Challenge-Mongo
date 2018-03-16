@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const Expense = require('../models/expense');
 const Budget = require('../models/budget');
+const Category = require('../models/category');
 
 const router = express.Router();
 
@@ -44,15 +45,19 @@ router.get('/', (req, res) => {
       });
   } else {
     // Trying to work on the final stretch assignment
-    Expense.aggregate([
-      { $group: { _id: '$category', total: { $sum: 1 } } },
-    ]).then(response => {
-      Expense.find()
-        .select('category amount')
-        .populate('category', '-_id -__v')
-        .then(allExpenses => {
-          res.send({ response, allExpenses });
-        });
+    Category.findOne({ title: aggregatedBy }).then(category => {
+      const id = category._id;
+      Expense.aggregate([
+        { $match: { category: id } },
+        { $group: { _id: 'amount', total: { $sum: '$amount' } } }
+      ]).then(response => {
+        Expense.find()
+          .select('category amount')
+          .populate('category', '-_id -__v')
+          .then(allExpenses => {
+            res.send({ response, allExpenses });
+          });
+      });
     });
   }
 });
