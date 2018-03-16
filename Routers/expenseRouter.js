@@ -8,11 +8,11 @@ router.post('/', (req, res) => {
   const exp = new Expense(req.body);
 
   exp.save()
-    .then(res => {
-      res.status(200).send(res);
+    .then(exp => {
+      res.status(200).send(exp);
     })
     .catch(err => {
-      res.status(400).send('There was an error saving that budget', err);
+      err.status(400).send({ msg: 'There was an error saving that expense', error: err });
     });
 });
 
@@ -20,11 +20,11 @@ router.get('/', (req, res) => {
   Expense.find()
     .populate('budget')
     .populate('category')
-    .then(cats => {
-      res.status(200).send(cats);
+    .then(exp => {
+      res.status(200).send(exp);
     })
     .catch(err => {
-      res.status(400).send('Error fetching categories');
+      res.status(400).send({ msg: 'There was an error fetching those expenses', error: err });
     });
 });
 

@@ -8,11 +8,11 @@ router.post('/', (req, res) => {
   const bud = new Budget(req.body);
 
   bud.save()
-    .then(res => {
-      res.status(200).send(res);
+    .then(bud => {
+      res.status(200).send(bud);
     })
     .catch(err => {
-      res.status(400).send('There was an error saving that budget');
+      res.status(400).send({ msg: 'There was an error saving that budget', error: err });
     });
 });
 

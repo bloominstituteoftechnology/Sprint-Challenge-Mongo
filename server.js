@@ -1,4 +1,5 @@
 const express = require('express'); // remember to install your npm packages
+const mongoose = require('mongoose');
 
 const server = express();
 
@@ -11,8 +12,8 @@ const expenseRouter = require('./Routers/expenseRouter');
 server.use(express.json());
 
 server.use('/budget', budgetRouter);
-server.use('/category', categoryRouter);
-server.use('/expense', expenseRouter);
+server.use('/categories', categoryRouter);
+server.use('/expenses', expenseRouter);
 
 mongoose.connect('mongodb://localhost/mdb-stretch')
   .then(res => {

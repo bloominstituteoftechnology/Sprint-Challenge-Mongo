@@ -8,11 +8,11 @@ router.post('/', (req, res) => {
   const cat = new Category(req.body);
 
   cat.save()
-    .then(res => {
-      res.status(200).send(res);
+    .then(cat => {
+      res.status(200).send(cat);
     })
     .catch(err => {
-      res.status(400).send('There was an error saving that budget', err);
+      res.status(400).send({ msg: 'There was an error saving that category', error: err });
     });
 });
 
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
       res.status(200).send(cats);
     })
     .catch(err => {
-      res.status(400).send('Error fetching categories');
+      res.status(400).send({ msg: 'There was an error fetching those categories', error: err });
     });
 });
 
