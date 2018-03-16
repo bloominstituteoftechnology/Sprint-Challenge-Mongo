@@ -17,8 +17,8 @@ ExpenseRouter.post('/', (req,res) => {
 
 ExpenseRouter.get('/', (req,res) => {
   Expense.find({})
-    .populate('budget')
-    .populate('category')
+    .populate('budget', 'title')
+    .populate('category', 'title')
     .then(expenses => {
       res.status(200).json(expenses);
     })
