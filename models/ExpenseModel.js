@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Budget = require('./BudgetModel.js');
 
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const ExpenseSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   description: { type: String, required: true },
