@@ -36,6 +36,25 @@ server.post('/budget', (req, res) => {
 });
 
 
+server.post('/category', (req, res) => {
+  const { title } = req.body;
+
+  if (!title) {
+    res.status(400).json({ message: 'Must provide a title!' });
+  } else {
+    const category = new Category(req.body)
+    category
+      .save()
+      .then(category => {
+        res.status(201).json(category);
+      })
+      .catch(err => {
+        res.status(500).json({ message: 'Something went wrong!' });
+      });
+  };
+});
+
+
 //==============================
 //      SERVER INFORMATION
 //==============================
