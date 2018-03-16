@@ -10,26 +10,27 @@ router.post('/', (req, res) => {
     console.log(catInfo);
 
     category
-    .save()
-    .then(newCat => {
+        .save()
+        .then(newCat => {
         res.json(newCat);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({ err: 'there was an error posting category'})
-    })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ err: 'there was an error posting category'})
+        })
 });
 
 router.get('/', (req, res) => {
-    Category.find({})
-    .select('title')
-    .then(cat => {
-        console.log('retrieving categories');
-        res.json(cat);
-    })
-    .catch(err => {
-        res.status(500).json({ 'Error retrieving categories': err })
-    })
+    Category
+        .find({})
+        .select('title')
+        .then(cat => {
+            console.log('retrieving categories');
+            res.json(cat);
+        })
+        .catch(err => {
+            res.status(500).json({ 'Error retrieving categories': err })
+        })
 })
 
 module.exports = router;
