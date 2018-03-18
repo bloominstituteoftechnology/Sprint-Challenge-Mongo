@@ -4,7 +4,7 @@ const Category = require('../models/Category');
 const router = express.Router();
 
 
-router.post('/category',(req, res) => {
+router.post('/',(req, res) => {
     const cat = req.body;
     console.log(cat);
     const category = new Category(cat);
@@ -12,16 +12,23 @@ router.post('/category',(req, res) => {
     category
     .save()
     .then(val => {
-        res.json(val);
+        res.status(201).json(val);
     })
     .catch(err => {
-        res.json({error: "Error creating new category"});
+        res.status(500).json({error: "Error creating new category"});
     });
 
 });
 
 router.get('/',(req, res) => {
-
+    Category.find()
+    .select('title')
+    .then(categories => {
+        res.status(200).json(categories);
+    })
+    .catch(err => {
+        res.status(500).json({msg: "Could not get list of categories:", err})
+    });
 });
 
 

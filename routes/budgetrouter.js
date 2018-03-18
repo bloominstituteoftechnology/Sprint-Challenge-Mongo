@@ -5,17 +5,13 @@ const Budget = require('../models/Budget');
 const router = express.Router();
 
 
-router.post('/budget',(req, res) => {
+router.post('/',(req, res) => {
   const {title, budgetAmount} = req.body;
   
   const newBudget = new Budget({title, budgetAmount});
   if ( title && budgetAmount) {
-  } else {
-    res.status(400).json({
-      errorMessage: "Please provide Title and Budget Amount"
-    });
-  }
-  newBudget
+    console.log(newBudget);
+    newBudget
     .save()
     .then(budAmt => {
       console.log(budAmt);
@@ -24,5 +20,11 @@ router.post('/budget',(req, res) => {
     .catch(err => {
       res.status(500).json({ message: "Error creating new budget" });
     });
+  } else {
+    res.status(400).json({
+      errorMessage: "Please provide Title and Budget Amount"
+    });
+  }
+  
 });
 module.exports = router;
