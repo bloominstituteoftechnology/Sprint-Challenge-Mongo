@@ -79,7 +79,7 @@ server.post('/expense', async (req, res) => {
     if (err_c) res.status(500).json({
         error: 'Category title is missing.'
     });
-    if (!b) res.status(500).json({
+    if (!c) res.status(500).json({
         error: 'Category quary is empty.'
     });
 
