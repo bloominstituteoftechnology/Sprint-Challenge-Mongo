@@ -5,6 +5,9 @@ const helmet = require(`helmet`);
 const cors = require(`helmet`);
 
 const db = require('./data/db.js');
+const budgetRouter = require('./budgets/budgetRouter');
+const expenseRouter = require('./expenses/expenseRouter');
+const categoryRouter = require('./categories/categoryRouter');
 
 // bring in the config file;
 const config = require('./api/config.js');
@@ -35,6 +38,11 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 server.use(cors(corsOptions));
+
+// connect to the routes
+server.use('/api/budgets', budgetRouter);
+server.use('/api/expenses', expenseRouter);
+server.use('/api/categories', categoryRouter);
 
 // root get request
 server.get(`/`, (req, res) =>
