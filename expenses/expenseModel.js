@@ -15,14 +15,14 @@ const expenseSchema = new mongoose.Schema ({
         required: true,
 
     },
-    budget: {
+    budget: [{
         type: ObjectId,
         ref: 'Budget'
-    },
-    category: {
+    }],
+    category: [{
         type: ObjectId,
         ref: 'Category'
-    }
+    }]
 })
 
 const expenseModel = mongoose.model('Expense', expenseSchema);
