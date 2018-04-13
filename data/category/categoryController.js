@@ -13,6 +13,18 @@ router
   .catch(err=>{
     res.status(500).json(err);
   });
+})
+.get( (req,res)=>{
+  Category.find({})
+  .then(result=>{
+    result = result.map(e=>{
+      return e.title;
+    });
+    res.status(200).json(result);
+  })
+  .catch(err=>{
+    res.status(500).json(err);
+  });
 });
 
 
