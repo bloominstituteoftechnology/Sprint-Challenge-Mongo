@@ -19,12 +19,20 @@ router
   })
   .post((req, res) => {
     const newItem = new Budget(req.body);
-    newItem
-      .save()
-      .then(response => {
-        res.json(response);
-      })
-      .catch(err => res.status(500).json(err));
+
+    if (!newItem.title || !newItem.budgetAmount) {
+      res.status(422).json({
+        errorMessage:
+          'A title and a budgetAmount is required to create a new budget.',
+      });
+    } else {
+      newItem
+        .save()
+        .then(response => {
+          res.json(response);
+        })
+        .catch(err => res.status(500).json(err));
+    }
   });
 
 router

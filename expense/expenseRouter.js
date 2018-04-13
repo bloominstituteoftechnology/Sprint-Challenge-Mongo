@@ -26,7 +26,20 @@ router
       .then(response => {
         res.json(response);
       })
-      .catch(err => res.status(500).json(err));
+      .catch(err => {
+        if (err.errors.budget && err.errors.budget.name === 'CastError') {
+          res.status(404).json({ errorMessage: 'Invalid Budget ID entered.' });
+        } else if (
+          err.errors.category &&
+          err.errors.category.name === 'CastError'
+        ) {
+          res
+            .status(404)
+            .json({ errorMessage: 'Invalid Category ID entered.' });
+        } else {
+          res.status(500).json(err);
+        }
+      });
   });
 
 router
