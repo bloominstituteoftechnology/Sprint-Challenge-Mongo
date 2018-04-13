@@ -10,6 +10,10 @@ router
   .route('/')
   .get((req, res) => {
     Category.find({})
+      .select({
+        _id: 0,
+        title: 1,
+      })
       .then((categories) => {
         res.status(200).json(categories);
       })
