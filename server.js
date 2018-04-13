@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 mongoose
   .connect('mongodb://localhost/budgetdb')
-  .then(() => console.long('n\n=== connected to mongo ===\n'))
+  .then(() => console.log('n\n=== connected to mongo ===\n'))
   .catch(err => console.log('error connecting to mongo'));
 
 const budgetController = require('./budget/budgetController');
