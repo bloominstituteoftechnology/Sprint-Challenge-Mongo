@@ -14,4 +14,4 @@ const budgetSchema = new mongoose.Schema({
   },
 });
 
-module.exports = budgetSchema;
+module.exports = mongoose.model('Expense', budgetSchema);
