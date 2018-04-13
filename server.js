@@ -15,12 +15,12 @@ server.use(cors());
 server.use(express.json());
 
 const budgetRouter = require('./budget/budgetRouter');
-// const categoryRouter = require('./category/categoryRouter');
-// const expenseRouter = require('./expense/expenseRouter');
+const categoryRouter = require('./category/categoryRouter');
+const expenseRouter = require('./expense/expenseRouter');
 
 server.use('/api/budget', budgetRouter);
-// server.use('/api/category', categoryRouter);
-// server.use('/api/expense', expenseRouter);
+server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
 
 // add your server code
 
