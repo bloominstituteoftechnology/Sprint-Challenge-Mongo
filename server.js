@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 mongoose
   .connect('mongodb://localhost/budgetdb')
@@ -15,6 +16,7 @@ const server = express();
 
 server.use(helmet());
 server.use(express.json());
+server.use(cors());
 
 server.use('/api/budget', budgetRouter);
 server.use('/api/category', categoryRouter);

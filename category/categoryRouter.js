@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Category = require('./categoryModel');
+const Expense = require('../expense/expenseModel');
 
 router
   .route('/')
@@ -25,5 +26,12 @@ router
         res.status(500).json(error);
       });
   });
+
+// router.route('/expenses').get((req, res) => {
+//   Expense.find({ category: req.params.id })
+//     .populate('title')
+//     .select({ _id: 0 })
+//     .then(expenses => res.send(expenses));
+// });
 
 module.exports = router;
