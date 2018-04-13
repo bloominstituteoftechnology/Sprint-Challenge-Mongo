@@ -14,7 +14,7 @@ router
   })
   .post((req, res) => {
     const budget = new Budget(req.body);
-    friend.save()
+    budget.save()
     .then(saveBudget => {
       res.status(200).json(saveBudget);
     })

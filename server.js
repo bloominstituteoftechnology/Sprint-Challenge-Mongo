@@ -22,7 +22,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/budgets', budgetController);
-server.use('/api/expenses', expenseController);
+//server.use('/api/expenses', expenseController);
 server.use('/api/categories', categoryController);
  
 const port = process.env.PORT || 5000;
