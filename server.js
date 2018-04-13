@@ -1,6 +1,16 @@
+// Packages
 const express = require('express'); // remember to install your npm packages
+const helmet = require('helmet');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
+// Server Const
 const server = express();
+
+// imports
+server.use(helmet());
+server.use(cors());
+server.use(express.json());
 
 // add your server code
 
