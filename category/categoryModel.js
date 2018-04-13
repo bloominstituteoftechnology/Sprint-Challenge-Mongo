@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Schema.Type.ObjectId;
 
 const categorySchema = new mongoose.Schema({
   title: {

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const Category = './categoryModel.js';
+const Category = require('./categoryModel.js');
 
 router.get('/', (req, res) => {
-  Category.find({})
-    .select('title')
+  Category.find()
+    .select({ title: 1, _id: 0 })
     .then(response => {
       res.status(200).json(response);
     })

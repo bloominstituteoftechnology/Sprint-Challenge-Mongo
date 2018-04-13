@@ -19,9 +19,9 @@ server.use(express.json());
 server.use(cors());
 server.use(helmet());
 
-server.use('/budgets', budgetRouter);
-server.use('/categories', categoryRouter);
-server.use('/expenses', expenseRouter);
+server.use('/api/budgets', budgetRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req, res) => {
   res.json('API running');
