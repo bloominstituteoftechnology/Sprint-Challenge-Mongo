@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 module.exports = {
-  connecTo: function(database = "sandbox", host = "localhost") {
+  connectTo: function(database = "expdb", host = "localhost") {
     return mongoose.connect(`mongodb://${host}/${database}`);
   }
 };
