@@ -3,7 +3,8 @@ const express = require(`express`);
 const morgan = require(`morgan`);
 const helmet = require(`helmet`);
 const cors = require(`helmet`);
-const mongoose = require(`mongoose`);
+
+const db = require('./data/db.js');
 
 // bring in the config file;
 const config = require('./api/config.js');
@@ -13,6 +14,12 @@ const server = express();
 
 // to enable json parsing
 server.use(express.json());
+
+// bring in mongoose
+db
+  .connectTo(`budgetdb`)
+  .then(() => console.log(`\n... API Connected to Database ...\n`))
+  .catch(err => console.log(`\n*** ERROR Connecting to Database ***\n`, err));
 
 //logging, TBD: create morganOptions and pass it in, instead
 server.use(morgan(`dev`));
@@ -39,5 +46,5 @@ server.get(`/`, (req, res) =>
 const port = config.port || 5000;
 
 server.listen(port, () => {
-  console.log(`Server up and running on ${port}`);
+  console.log(`\n\nServer up and running on ${port}`);
 });
