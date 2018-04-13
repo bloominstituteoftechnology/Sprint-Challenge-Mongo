@@ -6,6 +6,7 @@ router
   .route('/')
   .get((req, res) => {
     Expense.find({})
+    .populate('budget category')
       .then(expenses => {
         res.status(200).json(expenses);
       })
@@ -28,7 +29,7 @@ router
 router
   .route('/:id')
   .get((req, res) => {
-    Expense.findById(req.params.id).populate('budget')
+    Expense.findById(req.params.id).populate('budget category')
       .then(expenses => {
         res.status(200).json(expenses);
       })
