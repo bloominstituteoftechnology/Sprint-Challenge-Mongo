@@ -8,6 +8,7 @@ mongoose
   .catch(err => console.log('error connecting to mongo'));
 
 const budgetController = require('./budget/budgetController');
+const categoryController = require('./category/categoryController');
 
 
 const server = express();
@@ -20,6 +21,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/budget', budgetController);
+server.use('/api/category', categoryController); 
 
 
 // add your server code
