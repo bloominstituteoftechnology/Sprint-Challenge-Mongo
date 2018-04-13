@@ -14,9 +14,9 @@ router
       });
   })
   .post((req, res) => {
-    const bear = new Budget(req.body);
+    const budget = new Budget(req.body);
 
-    Budget
+    budget
       .save()
       .then(savedBudget => {
         // change the save budget
