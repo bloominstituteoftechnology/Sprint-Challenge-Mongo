@@ -9,8 +9,20 @@
   "keywords": [],
   "author": "Lambda School",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "helmet": "^3.12.0"
+  },
   "devDependencies": {
-    "nodemon": "^1.17.2"
-  }
+    "nodemon": "^1.17.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lillialskye/Sprint-Challenge-Mongo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lillialskye/Sprint-Challenge-Mongo/issues"
+  },
+  "homepage": "https://github.com/lillialskye/Sprint-Challenge-Mongo#readme"
 }
