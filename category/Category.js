@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const categorySchema = new mongoose.Schema({
-  title: String,
+  title: { type: String, required: true, unique: true },
 });
 
-module.exports = mongoose.model('Category'.categorySchema);
+module.exports = mongoose.model('Category', categorySchema);
