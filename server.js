@@ -1,8 +1,19 @@
+import { SSL_OP_CIPHER_SERVER_PREFERENCE } from 'constants';
+
 const express = require('express'); // remember to install your npm packages
+const helmet = require('helmet');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
 const server = express();
 
 // add your server code
+const budgetRouter = require('./Budget/BudgetRouter');
+
+server.use(helmet);
+server.use(express.json());
+
+server.use('/api/budgets', budgetRouter);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
