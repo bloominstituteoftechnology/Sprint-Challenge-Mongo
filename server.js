@@ -9,7 +9,7 @@ mongoose
 
 const budgetController = require('./budget/budgetController');
 const categoryController = require('./category/categoryController');
-
+const expenseController = require('./expense/expenseController');
 
 const server = express();
 
@@ -22,9 +22,9 @@ server.get('/', (req, res) => {
 
 server.use('/api/budget', budgetController);
 server.use('/api/category', categoryController); 
+server.use('/api/expense', expenseController );
 
 
-// add your server code
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

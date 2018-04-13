@@ -1,9 +1,9 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const Budget = require('./budgetModel');
+const Budget = require("./budgetModel");
 
 router
-  .route('/')
+  .route("/")
   .get((req, res) => {
     Budget.find({})
       .then(budget => {
@@ -24,7 +24,5 @@ router
       })
       .catch(err => res.status(500).json(err));
   });
-
-
 
 module.exports = router;
