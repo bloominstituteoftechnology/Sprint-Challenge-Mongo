@@ -49,7 +49,7 @@
 * An expense is a purchase one would make that will affect one's budget.
 * There will be two relationships tied to an expense, the `budget` it effects, &
   `category` it belongs to.
-* An expense object can look something like this:
+* An expense object when saved to the database would look something like this:
 
 ```
 {
@@ -68,7 +68,7 @@
 * A category can be something as simple as `groceries`.
 * Your relationship to consider here is the relationship between `Expenses` and
   `Categories`
-* An example of a category object can look something like this:
+* An example of a category object after it is saved to the databse:
 
 ```
 {
@@ -112,35 +112,12 @@ Add your code to `server.js`. Remember to install any npm packages you need.
 * your expense route should also have a `'get'` method that returns all the
   expenses with the populated data.
 
-## Stretch Goal - Aggregation
+## Stretch Goal
 
 You are **not required** to work on the stretch goal, but if you're done with the main project go ahead an try to figure out how to use MongoDB's Aggregation Framework.
 
-#### A Note about Aggregation
+1. Add as many CRUD endpoints as you can and break the application into separate Routers.
+1. Validate the data at the endpoint, before saving it to the database.
+1. Add a React front end.
 
-* Aggregation is used to take data, and return back some sort of useful
-  information about the data set. This is something that people spend their
-  entire careers doing as data scientists.
-* Mongo has a very rich way of doing this called the `aggregation-pipeline`
-* Take note of the _aggregation_ method found in
-  [these](https://www.tutorialspoint.com/mongodb/mongodb_aggregation.htm) docs
-  and [here](https://docs.mongodb.com/manual/reference/operator/aggregation/)
-
-### Budget Aggregation `'/budgets/:id/summary'`
-
-* For this Route you'll want to write a `'/get'` that will take the `sum` of all
-  your expenses, and return the difference between the total from your budget
-  and summed up expenses.
-* consider what you'll need here.
-  [$sum](https://docs.mongodb.com/manual/reference/operator/aggregation/sum/)
-  will be your best friend. And you'll also want to consider that you'll need to
-  be querying for the total budget.
-
-### Category Spending Aggregation `'/expenses?aggregatedBy=category'`
-
-* With this route, we want to see a list of the categories and what you've spent
-  so far.
-* sum up all all expenses by category and order the response by total expense.
-* Order should be categerories with most expense at the top.
-
-### If you get finished early, go ahead and research Async Await and attempt to refactor your controllers to use this awesome syntactic sugar!
+**Good Luck!**
