@@ -6,14 +6,14 @@ const mongoose = require('mongoose');
 const server = express();
 
 // add your server code
-const budgetRouter = require('./Budget/BudgetRouter');
+const budgetRouter = require('./Budget/BudgetRouter.js');
 
 mongoose
   .connect('mongodb://localhost/finance')
   .then(() => console.log('\n=== connected to Mongo ===\n'))
   .catch(err => console.log('error connecting to DB'));
 
-server.use(helmet);
+server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
