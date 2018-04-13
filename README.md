@@ -104,7 +104,7 @@ Add your code to `server.js`. Remember to install any npm packages you need.
 * example of categories could be: `Food/Dining` `Gas/Auto` `Date Nights`
   `Mortgage`
 
-### `'/expenses'`
+### `POST and GET '/expenses'`
 
 * your expense should have a `'post'` method for creating the expense. To save
   an expense you'll need an `'budget'` `_id` and a `'category'` `_id` so that we
@@ -116,8 +116,8 @@ Add your code to `server.js`. Remember to install any npm packages you need.
 
 You are **not required** to work on the stretch goal, but if you're done with the main project go ahead an try to figure out how to use MongoDB's Aggregation Framework.
 
-1. Add as many CRUD endpoints as you can and break the application into separate Routers.
-1. Validate the data at the endpoint, before saving it to the database.
-1. Add a React front end.
+1.  Add as many CRUD endpoints as you can and break the application into separate Routers.
+1.  Validate the data at the endpoint, before saving it to the database.
+1.  Add a React front end.
 
 **Good Luck!**
