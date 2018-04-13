@@ -3,9 +3,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const budgetRouter = require('./budget/budgetRouter.js');
-const categoryRouter = require('./category/categoryRouter.js');
-const expenseRouter = require('./expense/expenseRouter.js');
+const budgetRouter = require('./budget/budgetController.js');
+const categoryRouter = require('./category/categoryController.js');
+const expenseRouter = require('./expense/expenseController.js');
 
 mongoose
   .connect('mongodb://localhost/5000')
