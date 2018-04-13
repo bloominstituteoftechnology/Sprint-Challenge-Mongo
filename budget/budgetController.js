@@ -18,8 +18,8 @@ router
 
     budget
       .save()
-      .then(savedBear => {
-        // change the saved bear
+      .then(savedBudget => {
+        // change the saved budget
         res.status(201).json(savedBudget);
       })
       .catch(err => res.status(500).json(err));

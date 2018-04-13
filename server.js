@@ -9,7 +9,7 @@ mongoose
   .then(() => console.log('\n=== connected to mongo ===\n'))
   .catch(err => console.log('error connecting to mongo'));
 
-  const budgetController = require('./budget/budgetController.js');
+const budgetController = require('./budget/budgetController.js');
   // const expenseController = require('./expense/expenseController.js');
   // const categoryController = require('./category/categoryController.js');
 
