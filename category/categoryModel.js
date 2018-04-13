@@ -5,9 +5,8 @@ const categorySchema = new mongoose.Schema({
   title: {
     type: String,
     required: true
-  },
-  expense: [{ type: ObjectId, ref: 'Expense' }],
-  category: [{ type: ObjectId, ref: 'Category' }]
+  }
 });
 
-module.exports = mongoose.model('Category', categorySchema);
+const categoryModel = mongoose.model('Category', categorySchema);
+module.exports = categoryModel;
