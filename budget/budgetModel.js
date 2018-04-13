@@ -7,5 +7,5 @@ const budgetSchema = mongoose.Schema({
   budgetAmount: { type: Number, required: true }
 });
 
-// const budgetModel = mongoose.model('Budget, budgetSchema');
-// module.exports = budgetModel;
+const budgetModel = mongoose.model('Budget', budgetSchema);
+module.exports = budgeModel;
