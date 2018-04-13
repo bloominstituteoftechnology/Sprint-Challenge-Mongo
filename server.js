@@ -8,6 +8,8 @@ mongoose
   .then(() => console.log("\n=== connected to  mongo ===\n"))
   .catch(err => console.log("error connecting to mongo"));
 
+const budgetController = require("./budget/budgetController");
+
 const server = express();
 
 server.use(helmet());
@@ -17,6 +19,8 @@ server.use(express.json());
 server.get("/", (req, res) => {
   res.status(200).json({ api: "running" });
 });
+
+server.use("/api/budgets", budgetController);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
