@@ -27,4 +27,14 @@ router
       });
   });
 
+router.route('/:id').get((req, res) => {
+  Budget.findById(req.params.id)
+    .then(budget => {
+      res.status(200).json(budget);
+    })
+    .catch(err => {
+      res.status(500).json(error);
+    });
+});
+
 module.exports = router;
