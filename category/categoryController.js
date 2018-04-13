@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Category = require("./categoryModel");
+const Category = require("./Category");
 
 router
   .route("/")

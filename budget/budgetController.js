@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Budget = require("./budgetModel");
+const Budget = require("./Budget");
 
 router.route("/").post((req, res) => {
   const budget = new Budget(req.body);
