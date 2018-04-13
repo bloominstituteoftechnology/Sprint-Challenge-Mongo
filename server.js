@@ -9,6 +9,7 @@ mongoose
   .catch(err => console.log("error connecting to mongo"));
 
 const budgetController = require("./budget/budgetController");
+const categoryController = require("./category/categoryController");
 
 const server = express();
 
@@ -21,6 +22,7 @@ server.get("/", (req, res) => {
 });
 
 server.use("/api/budgets", budgetController);
+server.use("/api/categories", categoryController);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
