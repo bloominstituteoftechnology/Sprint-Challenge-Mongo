@@ -1,6 +1,5 @@
 const express = require("express");
 
-const mongoose = require("mongoose");
 const Expenses = require("./expenseModel.js");
 
 const router = express.Router();
@@ -12,6 +11,13 @@ router
     .post((req, res) => {
         const expense = new Expenses(req.body);
 
+        if (!req.body.budget_id || !req.body.category_id) {
+            res
+                .status(400)
+                .json({ message: "Please provide budget_id and category_id" });
+            return;
+        }
+
         expense
             .save()
             .then(savedExpense => {
@@ -21,10 +27,10 @@ router
                 res.status(500).json(err);
             });
     })
+
     .get((req, res) => {
         Expenses.find()
-            .populate("budget")
-            .populate("category")
+            .populate("budget category", "-_id, title")
             .then(expenses => {
                 res.status(200).json(expenses);
             })

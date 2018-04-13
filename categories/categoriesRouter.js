@@ -1,6 +1,5 @@
 const express = require("express");
 
-const mongoose = require("mongoose");
 const Categories = require("./categoriesModel.js");
 
 const router = express.Router();
