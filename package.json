@@ -9,7 +9,10 @@
   "keywords": [],
   "author": "Lambda School",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "helmet": "^3.12.0",
+    "mongoose": "^5.0.14"
+  },
   "devDependencies": {
     "nodemon": "^1.17.2"
   }
