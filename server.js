@@ -17,6 +17,7 @@ server.get("/", (req, res) => res.send("Api running..."));
 
 server.use("/api/budget", budgetRouter);
 server.use("/api/categories", categoryRouter);
+server.use("/api/expenses", expenseRouter);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
