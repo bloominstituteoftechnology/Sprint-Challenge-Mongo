@@ -38,9 +38,9 @@ server.get('/', (req, res) => {
 });
 
 // Routes
-server.use('/api/budgets', budgetRoute);
-// server.use('/api/categoryRoute', categoryRoute);
-// server.use('/api/expenseRoute', expenseRoute);
+server.use('/api/budget', budgetRoute);
+// server.use('/api/category', categoryRoute);
+// server.use('/api/expense', expenseRoute);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
