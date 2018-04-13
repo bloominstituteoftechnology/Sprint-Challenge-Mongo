@@ -8,4 +8,4 @@ const budgetSchema = mongoose.Schema({
 });
 
 const budgetModel = mongoose.model('Budget', budgetSchema);
-module.exports = budgeModel;
+module.exports = budgetModel;
