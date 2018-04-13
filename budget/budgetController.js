@@ -4,7 +4,8 @@ const Budget = require('./budgetModel');
 router
   .route('/')
   .get((req, res) => {
-    Budget.find({})
+    Budget
+    .find({})
     .then(budgets => {
       res.status(200).json(budgets);
     })
@@ -14,7 +15,8 @@ router
   })
   .post((req, res) => {
     const budget = new Budget(req.body);
-    budget.save()
+    budget
+    .save()
     .then(saveBudget => {
       res.status(200).json(saveBudget);
     })

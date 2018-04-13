@@ -4,12 +4,10 @@ const budgetSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        unique: false,
     },
     budgetAmount: {
         type: Number,
         require:true,
-        unique: false,
     },
 });
 
