@@ -28,4 +28,26 @@ router
       .catch(err => res.status(500).json(err));
   });
 
+router
+  .route('/:id')
+  .get((req, res) => {
+    const { id } = req.params;
+    Category.findById(id)
+      .then(response => {
+        res.json(response);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  })
+  .delete((req, res) => {
+    const { id } = req.params;
+    Category.findByIdAndRemove(id)
+      .then(response => {
+        res.json(response);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  });
 module.exports = router;
