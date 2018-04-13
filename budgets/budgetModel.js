@@ -9,6 +9,7 @@ const Budget = new mongoose.Schema(
     },
     budgetAmount: {
       type: Number,
+      required: true,
     },
   },
   { timestamps: true }

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const ExpenseRouter = require('./expenseRouter');
+const ExpenseModel = require('./expenseModel');
 
 console.log('here');
 // add endpoints here
