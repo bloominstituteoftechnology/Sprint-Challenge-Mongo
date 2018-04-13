@@ -10,6 +10,7 @@ router
   .route('/')
   .get((req, res) => {
     Category.find()
+      .select('title')
       .then(response => {
         res.json(queryFilter(response, req.query));
       })
