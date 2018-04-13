@@ -1,1 +1,3 @@
- s
+Describe the following: DataBase, Collection , Document ::  a Database hosts the collections of each document's data records.
+Describe how one can achieve the pattern of relationships in MongoDB. What needs to take place at the schema level? How do we 'fill' in the appropriate relational data using mongoose? :: You can 'ref' other collections in a schema via the types property mongoose utilises, such as ObjectId.  In this manner, you may insert a document into another and then .populate() it's own schema fields.
+Explain a way to break up an API into Sub-Applications, which tool did we use to do that?  :: Why, Express, of course.  When you .use() it in Node server.js, you can create separate modules that apply to the resource their accessing in a browser.
