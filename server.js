@@ -1,12 +1,55 @@
-const express = require('express'); // remember to install your npm packages
+ const express = require('express'); // remember to install your npm packages
+ const helmet = require('helmet');
+ //const server = express();const port = process.env.PORT || 5000;
+ //const router = require('express').Router();
+
+//const Budget = require('./budgetModel.js');
+//const Expense = require('./expenseModel.js');
+//const Category = require('./CategoryModel.js');
+
+const server =express()
+
+server.use(helmet());
+server.use(express.json());
+
+server.get('/', (req, res) => res.send('Api Running ...'));
+
+
+const port = process.env.PORT || 5000;
+ server.listen(port, () => {
+   console.log(`\n\nAPI running on http://localhost:${port}`);
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const express = require('express'); // remember to install your npm packages
 const helmet = require ('helmet');
 const bodyParser = require ('body-parser');
 const server = express();
 const mongoose = require ('mongoose');
 
-import "budgetmodel";
-import "enxpensemodel";
-import "categorymodel";
+//import "budgetmodel";
+//import "expensemodel";
+//import "categorymodel";
 
 
 server.use (helmet());
@@ -47,3 +90,4 @@ server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
 
+*/
