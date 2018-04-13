@@ -18,7 +18,6 @@ db
 server.use(helmet());
 server.use(express.json());
 
-// server.use('/api/characters', charactersRouter);
 server.use('/budget', budgetRouter);
 server.use('/category', categoryRouter);
 server.use('/expense', expenseRouter);
