@@ -48,6 +48,17 @@ router
       .catch(err => {
         res.status(500).json(err);
       });
+  })
+  .put((req, res) => {
+    const { id } = req.params;
+    const updateInfo = req.body;
+    Budget.findByIdAndUpdate(id, updateInfo)
+      .then(response => {
+        res.json(response);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
   });
 
 module.exports = router;
