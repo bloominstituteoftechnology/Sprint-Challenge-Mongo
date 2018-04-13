@@ -25,3 +25,5 @@ router
         res.status(500).json(error);
       });
   });
+
+module.exports = router;
