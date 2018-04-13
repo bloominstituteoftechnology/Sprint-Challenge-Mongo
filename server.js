@@ -1,7 +1,11 @@
 const express = require('express'); // remember to install your npm packages
 const mongoose = require('mongoose');
-const morgan = require('morgan');
+const logger = require('morgan');
 const helmet = require('helmet');
+
+const budgetsRouter = require('./budgets/budgetsRouter');
+const expensesRouter = require('./expenses/expensesRouter');
+const categoriesRouter = require('./categories/categoriesRouter');
 
 mongoose
   .connect('mongodb://localhost/budgettracker')
@@ -11,9 +15,13 @@ mongoose
 const server = express();
 
 // add your server code
-server.use(morgan('dev'));
+server.use(logger('dev'));
 server.use(helmet());
 server.use(express.json());
+
+server.use('/api/budgets', budgetsRouter);
+server.use('/api/expenses', expensesRouter);
+server.use('/api/categories', categoriesRouter);
 
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' });
