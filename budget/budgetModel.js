@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const Budget = new mongoose.Schema({
-  budget: {
+  title: {
     type: String,
     required: true
   },
-  budgetAmount: {
+  budget: {
     type: Number,
     required: true
   }

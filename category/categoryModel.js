@@ -1,5 +1,3 @@
-import { model } from 'mongoose';
-
 const mongoose = require('mongoose');
 
 const Category = new mongoose.Schema({
@@ -8,6 +6,5 @@ const Category = new mongoose.Schema({
     required: true
   }
 });
-
 
 module.exports = mongoose.model('Category', Category);
