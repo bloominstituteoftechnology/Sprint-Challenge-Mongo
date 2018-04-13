@@ -7,7 +7,7 @@ mongoose
   .then(() => console.log('\n=== Connected to Budget Database ===\n'))
   .catch(err => console.log('\n=== Error Connecting to Budget Database ===\n'))
 
-const budgetController = require('./budget/budgetController');
+const budgetController = require('./budgets/budgetController');
 const categoryController = require('./categories/categoryController');
 const expenseController = require('./expenses/expenseController');
 
@@ -21,7 +21,7 @@ server
     res.status(200).json({ api: "Server Running...."});
   })
 
-server.use('/api/budget', budgetController);
+server.use('/api/budgets', budgetController);
 server.use('/api/categories', categoryController);
 server.use('/api/expenses', expenseController);
 
