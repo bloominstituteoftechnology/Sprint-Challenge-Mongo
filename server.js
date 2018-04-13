@@ -10,8 +10,8 @@ mongoose
   .catch(err => console.log('error connecting to mongo'));
 
 const budgetController = require('./budget/budgetController.js');
-  // const expenseController = require('./expense/expenseController.js');
-  // const categoryController = require('./category/categoryController.js');
+const expenseController = require('./expense/expenseController.js');
+const categoryController = require('./category/categoryController.js');
 
 // add your server code
 const server = express();
@@ -19,8 +19,8 @@ server.use(helmet());
 server.use(express.json());
 
 server.use('/api/budget', budgetController);
-// server.use('/api/expense', expenseController);
-// server.use('/api/category', categoryController);
+server.use('/api/expense', expenseController);
+server.use('/api/category', categoryController);
 
 server.get('/', function(req, res) {
   res.status(200).json({ api: 'running' });
