@@ -9,6 +9,7 @@ const Expense = new mongoose.Schema(
     },
     description: {
       type: String,
+      required: true,
     },
     category: [{ type: ObjectId, ref: 'Category' }],
     budget: [{ type: ObjectId, ref: 'Budget' }],
