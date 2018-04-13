@@ -17,10 +17,10 @@ server.use(helmet());
 server.use(express.json());
 
 server.use('/api/budget', budgetRouter);
-server.use('api/category', categoryRouter);
-server.use('api/expense', expenseRouter);
+server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
 
-server.get('/', (req, res) => res.sent('API RUNNING...'));
+server.get('/', (req, res) => res.send('API RUNNING...'));
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

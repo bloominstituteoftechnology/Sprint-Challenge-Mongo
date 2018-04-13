@@ -5,8 +5,8 @@ const Category = require('./categoryModel');
 router
   .route('/')
   .get((req, res) => {
-    let query = Category.find({})
-      .populate({ titles: 1, _id: 0 })
+    Category.find({})
+      .select({ title: 1, _id: 0 })
       .then(category => {
         res.status(200).json(category);
       })
