@@ -12,7 +12,7 @@ mongoose
 
 // Routes
 const budgetRoute = require('./models/budget/budgetRoute');
-// const categoryRoute = require('./models/category/categoryRoute');
+const categoryRoute = require('./models/category/categoryRoute');
 // const expenseRoute = require('./models/expense/expenseRoute');
 
 // Server Const
@@ -39,7 +39,7 @@ server.get('/', (req, res) => {
 
 // Routes
 server.use('/api/budget', budgetRoute);
-// server.use('/api/category', categoryRoute);
+server.use('/api/category', categoryRoute);
 // server.use('/api/expense', expenseRoute);
 
 const port = process.env.PORT || 5000;
