@@ -7,7 +7,8 @@ router
   .route("/")
   .get((req, res) => {
     Category.find({})
-      .populate("budget category")
+      .select({ title: 1, _id: 0 })
+
       .then(categories => {
         res.json(categories);
       });
