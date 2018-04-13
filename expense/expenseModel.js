@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const expenseSchema = new mongoose.Schema({
-  _Id: { type: ObjectId },
+  // _Id: { type: ObjectId },
   amount: { type: Number, required: true },
   description: { type: String, required: true },
   budget: { type: ObjectId, ref: 'Budget' },

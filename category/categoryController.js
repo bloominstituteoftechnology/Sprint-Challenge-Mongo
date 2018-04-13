@@ -16,7 +16,7 @@ router
   })
 
   .post((req, res) => {
-    const newCategory = newCategory(req.body);
+    const newCategory = new Category(req.body);
     newCategory
       .save()
       .then(saveCategory => {

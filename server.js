@@ -8,7 +8,7 @@ const categoryRouter = require('./category/categoryController.js');
 const expenseRouter = require('./expense/expenseController.js');
 
 mongoose
-  .connect('mongodb://localhost/5000')
+  .connect('mongodb://localhost/savemoneys')
   .then(() => console.log('\n... API dancing with Database ...\n\n'))
   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n\n', err));
 
@@ -18,9 +18,9 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-// server.use('/api/budget', budgetRouter);
-// server.use('/api/category', categoryRouter);
-// server.use('/api/expense', expenseRouter);
+server.use('/api/budget', budgetRouter);
+server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
 
 // routes will go here
 
