@@ -7,7 +7,7 @@ const db_thrown_error = require(`./db_thrown_error`);
 router
   .route(`/`)
   .get((req, res) => {
-    let query = ExpenseModel.find({});
+    let query = ExpenseModel.find({}).populate(`Category`);
 
     query
       .then(expenses => {
@@ -24,8 +24,8 @@ router
   })
   .post((req, res) => {
     // do some error checks
-    if (req.body.title === undefined) {
-      res.status(400).json({ error: `Please enter an expense title` });
+    if (req.body.amount === undefined) {
+      res.status(400).json({ error: `Please enter an expense amount` });
       return;
     }
 
@@ -46,6 +46,10 @@ router
 
     // create a Expense Model
     const expense = new ExpenseModel(req.body);
+
+    // push in the budget id and category id
+    expense.budget.push(req.body.budget_id);
+    expense.category.push(req.body.category_id);
 
     expense
       .save()
