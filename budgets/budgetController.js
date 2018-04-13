@@ -13,7 +13,7 @@ router
           });
       })
     .post((req, res) => {
-        const {amount, description} = req.body
+        const {description, amount} = req.body;
         if(!description || !amount){
             res.status(400).json({err: 'Please provide description, amount for the Budget'})
         }
@@ -26,7 +26,17 @@ router
             })
             .catch(err => res.status(500).json({err:'There was an error while saving the Budget to the database.'}));
     })
-
+router
+    .route('/:id')
+    .get((req, res) => {
+        Friend.findById(req.params.id)
+        .then(friends => {
+            res.status(200).json(friends);
+        })
+        .catch(err => {
+            res.status(500).json({err: 'The friends information could not be retrieved'});
+        });
+    })
     .put((req, res) =>{
         const {amount, description} = req.body;
         Budget

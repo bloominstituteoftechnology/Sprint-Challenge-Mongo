@@ -7,7 +7,7 @@ const server = express();
 
 // add your server code
 mongoose
-  .connect('mongodb:localhost/budgetDb')
+  .connect('mongodb://localhost/budgetDb')
   .then(() => console.log('\n=== connected to mongo ===\n'))
   .catch(err => console.log('error connecting to mongo'))
 const budgetController = require('./budgets/budgetController');
@@ -17,6 +17,10 @@ const expenseController = require('./budgets/expenseController');
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' });
 });
+
+server.use(express.json());
+server.use(helmet());
+server.use(cors());
 
 server.use('/api/budgets', budgetController);
 server.use('/api/budgets', categoryController);
