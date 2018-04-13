@@ -2,9 +2,9 @@ const express = require("express"); // remember to install your npm packages
 const helmet = require("helmet");
 
 const db = require("./data/db.js");
-const budgetRouter = require(".budget/budgetRouter.js");
-const categoryRouter = require(".category/categoryROuter.js");
-const expenseRouter = require("expense/expenseRouter.js");
+const budgetRouter = require("./budget/budgetRouter.js");
+const categoryRouter = require("./category/categoryROuter.js");
+const expenseRouter = require("./expense/expenseRouter.js");
 
 const server = express();
 
@@ -18,8 +18,8 @@ db
 server.use(helmet());
 server.use(express.json());
 server.use("/api/budgets", budgetRouter);
-server.use("/api/categories", categoryRouter);
-server.use("/api/expenses", expenseRouter);
+//server.use("/api/categories", categoryRouter);
+//server.use("/api/expenses", expenseRouter);
 
 server.get("/", (req, res) => res.send("API running.."));
 

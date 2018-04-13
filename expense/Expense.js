@@ -1,4 +1,4 @@
-const express = require("express");
+const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Type.ObjectId;
 
 const Expense = mongoose.Schema({
