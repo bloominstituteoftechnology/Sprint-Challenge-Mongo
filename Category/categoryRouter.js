@@ -5,9 +5,9 @@ const mongoose = require("mongoose");
 
 router.route('/').get(async (req, res) => {
     try{
-        const categories = await Category.title.find({})
-
-        res.json({categories})
+        const categories = await Category.find({})
+        const mappedCategories = categories.map(title => title.title);
+        res.status(200).json({mappedCategories})
     } catch(error){
         res.status(500).json({error: getError});
     }
