@@ -28,7 +28,7 @@ router
 router
   .route('/:id')
   .get((req, res) => {
-    Expense.findById(req.params.id)
+    Expense.findById(req.params.id).populate('budget')
       .then(expenses => {
         res.status(200).json(expenses);
       })

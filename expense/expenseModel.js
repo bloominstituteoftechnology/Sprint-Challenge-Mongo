@@ -8,14 +8,14 @@ const Expense = new mongoose.Schema({
     description: {
         type: String,
     },
-    budget: { 
+    budget: [{ 
         type: ObjectId, 
         ref: 'Budget' 
-    },
-    category: { 
+    }],
+    category: [{ 
         type: ObjectId, 
         ref: 'Category' 
-    },
+    }],
 });
 
 module.exports = mongoose.model('Expense', Expense);
