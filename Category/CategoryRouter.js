@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Category = require('./CategorySchema');
+const Category = require('./Category');
 
 const router = express.Router();
 

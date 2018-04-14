@@ -14,4 +14,9 @@ router.post('/', (req, res) => {
     .catch(error => res.status(400).json(error));
 });
 
+router.get('/', (req, res) => {
+  Budget.find({})
+    .then(budgets => res.send(budgets))
+    .catch(err => res.send(404).json(err));
+});
 module.exports = router;

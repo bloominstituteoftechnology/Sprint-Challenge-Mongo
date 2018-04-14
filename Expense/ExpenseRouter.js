@@ -1,11 +1,30 @@
-const express = require('express');
+import { print } from 'util';
 
-const Expense = require('./ExpenseSchema');
+const express = require('express');
+const mongoose = require('mongoose');
+const Expense = require('./Expense');
+const Category = require('../Category/Category');
+const Budget = require('../Budget/Budget');
 
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  const expense = new Expense(req.body);
+  let { amount, description, budget, category } = req.body;
+  // find the objectId of the budget provided
+  let budgetID = Budget.find({ title: budget });
+
+  budgetID = budgetID.id;
+
+  //find the objectId of the category provided
+  let categoryID = Category.find({ title: category });
+
+  categoryID = categoryID.id;
+  const expense = new Expense({
+    amount: amount,
+    description: description,
+    budget: mongoose.Types.ObjectId(budgetID),
+    category: mongoose.Types.ObjectId(categoryID)
+  });
   expense
     .save()
     .then(response => {
@@ -16,7 +35,8 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
   Expense.find({})
-    .select('title')
+    // .select()
+    .populate('budget', 'category')
     .then(expenses => res.send(expenses))
     .catch(err => res.send(404).json(err));
 });
