@@ -7,6 +7,7 @@ const server = express();
 
 // add your server code
 const budgetRouter = require('./Budget/BudgetRouter.js');
+const categoryRouter = require('./Category/CategoryRouter.js');
 
 mongoose
   .connect('mongodb://localhost/finance')
@@ -18,6 +19,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/budgets', budgetRouter);
+server.use('/api/categories', categoryRouter);
 
 server.get('/', (req, res) => res.send('API running...'));
 

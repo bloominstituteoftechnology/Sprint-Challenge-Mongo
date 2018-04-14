@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Budget = require('./BudgetSchema');
+const Budget = require('./Budget');
 
 const router = express.Router();
 
