@@ -7,7 +7,9 @@ const db_thrown_error = require(`./db_thrown_error`);
 router
   .route(`/`)
   .get((req, res) => {
-    let query = ExpenseModel.find({}).populate(`Category`);
+    let query = ExpenseModel.find({})
+      .populate(`category`)
+      .populate(`budget`);
 
     query
       .then(expenses => {
