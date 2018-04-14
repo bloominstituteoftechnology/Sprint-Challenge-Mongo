@@ -1,5 +1,6 @@
 const express = require('express'); // remember to install your npm packages
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 
 const server = express();
 const db = require('./database/db.js');
@@ -8,12 +9,10 @@ const budgetsRouter = require('./budgets/budgetsRouter.js');
 const categoriesRouter = require('./categories/categoriesRouter.js');
 const expensesRouter = require('./expenses/expensesRouter.js');
 
-db
-  .connectTo('budget')
-  .then(() => console.log('\n... Database Connected ...\n'))
-  .catch(err =>
-    console.log('\n*** ERROR: Could not connect to Database ***\n', err)
-  );
+mongoose
+  .connect('mongodb://localhost/budgetdb')
+  .then(() => console.log('Connected to Mongo'))
+  .catch(() => console.log('An error occurred when connecting to mongo'));
 
 // add your server code
 server.use(express.json());
