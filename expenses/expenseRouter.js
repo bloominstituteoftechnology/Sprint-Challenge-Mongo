@@ -6,7 +6,8 @@ router
   .route('/')
   .get((req, res) => {
     Expense.find({})
-      .populate('budget', 'category')
+      .populate('budget')
+      .populate('category')
       .then(expenses => res.status(200).json(expenses))
       .catch(err => res.status(500).json(err));
   })
