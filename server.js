@@ -20,9 +20,9 @@ server.use(cors());
 
 // add your server code
 
-// server.use('/api/budgets', budgetsRouter);
-// server.use('/api/categories', categoriesRouter);
-// server.use('/api/expenses', expensesRouter);
+server.use('/api/budgets', budgetsRouter);
+server.use('/api/categories', categoriesRouter);
+server.use('/api/expenses', expensesRouter);
 
 server.get('/', (req, res) => res.send('API stunning'));
 
