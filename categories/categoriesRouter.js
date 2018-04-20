@@ -8,9 +8,10 @@ const router = express.Router();
 //endpoints
 router.get("/", (req, res) => {
   Category.find({})
-    .select("title")
-       .populate('budget')
-       .populate('expense')
+    .select("title key")
+    // Not working for some reason
+    .populate("budget", "title")
+    .populate("expense", "description")
     .then(budgets => res.status(200).json(budgets))
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
