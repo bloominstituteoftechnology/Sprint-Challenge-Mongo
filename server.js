@@ -5,6 +5,10 @@ const server = express();
 
 // add your server code
 
+const budgetRouter = require('./budget/budgetRouter.js');
+const categoryRouter = require('./category/categoryRouter.js');
+const expenseRouter = require('./expense/expenseRouter.js');
+
 mongoose
   .connect('mongodb://localhost/budgetdb')
   .then(mongo => {
