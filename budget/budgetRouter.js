@@ -58,4 +58,26 @@ router.route("/").post((req, res) => {
   }
 });
 
+// PUT /:id
+router.route("/:id").put((req, res) => {
+  const { id } = req.params;
+  const update = req.body;
+
+  Budget.findByIdAndUpdate(id, update)
+    .then(budget => {
+      if (budget) {
+        res.status(200).json(budget);
+      } else {
+        res.status(404).json({
+          error: "Budget not found!"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error updating the budget."
+      });
+    });
+});
+
 module.exports = router;
