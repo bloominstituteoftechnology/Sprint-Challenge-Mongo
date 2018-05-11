@@ -57,6 +57,19 @@ server.post('/categories', (req, res) => {
   })
 })
 
+// GET all of the categories
+server.get('/categories', (req, res) => {
+
+  Category
+  .find().select('title -_id')
+  .then(categories => {
+    res.json(categories)
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
 // GET expenses
 server.get('/expenses', (req, res) => {
 
