@@ -4,7 +4,7 @@ const Category = require('./Category');
 const router = express.Router();
 
 // POST to create a new category
-router.post('/categories', (req, res) => {
+router.post('/', (req, res) => {
     const categoryData = req.body;
     const category = new Category(categoryData);
   
@@ -19,7 +19,7 @@ router.post('/categories', (req, res) => {
 })
   
   // GET all of the categories
-router.get('/categories', (req, res) => {
+router.get('/', (req, res) => {
   
     Category
     .find().select('title -_id')
