@@ -4,11 +4,11 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const Expense = new mongoose.Schema({
 amount:{type:Number, required:true},
 description:String,
-budget:{type:ObjectId,ref:'Budget'},
-category:{type:ObjectId,ref:'Category'}
+budgets:[{type:ObjectId,ref:'Budget'}],
+categorys:[{type:ObjectId,ref:'Category'}]
 
 
 
 
 })
-module.exports = mongoose.model(Expense, Expense)
+module.exports = mongoose.model("Expense", Expense)

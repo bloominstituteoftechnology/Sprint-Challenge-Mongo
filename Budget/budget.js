@@ -7,4 +7,4 @@ budgetAmount:{type:Number, required:true}
 
 
 })
-module.exports = mongoose.model(Budget, Budget)
+module.exports = mongoose.model("Budget", Budget)
