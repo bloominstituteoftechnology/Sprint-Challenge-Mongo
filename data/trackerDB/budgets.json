@@ -1,0 +1,13 @@
+{ 
+    "_id" : ObjectId("5af5b5b2be11544107161076"), 
+    "title" : "Budget", 
+    "budgetAmount" : "3000"
+}
+{ 
+    "_id" : ObjectId("5af5e085197dd54308a90226"), 
+    "title" : "Budget2", 
+    "budgetAmount" : "5000", 
+    "createdAt" : ISODate("2018-05-11T18:27:17.961+0000"), 
+    "updatedAt" : ISODate("2018-05-11T18:27:17.961+0000"), 
+    "__v" : NumberInt(0)
+}

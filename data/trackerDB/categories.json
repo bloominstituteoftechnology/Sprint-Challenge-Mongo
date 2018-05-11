@@ -1,0 +1,39 @@
+{ 
+    "_id" : ObjectId("5af5b83ebe1154410716107b"), 
+    "title" : "Groceries", 
+    "type" : "fruites and veggies", 
+    "quality" : "organic"
+}
+{ 
+    "_id" : ObjectId("5af5bc1bbe1154410716107e"), 
+    "title" : "cleaner", 
+    "type" : "hygiene", 
+    "quality" : "synthetic"
+}
+{ 
+    "_id" : ObjectId("5af5bd9cbe1154410716107f"), 
+    "title" : "baverages", 
+    "type" : " drinks", 
+    "qualtiy" : "synthetic "
+}
+{ 
+    "_id" : ObjectId("5af5be36be11544107161080"), 
+    "title" : "cookies", 
+    "type" : "others", 
+    "quality" : "half-organic"
+}
+{ 
+    "_id" : ObjectId("5af5c7c0be115441071610ac"), 
+    "title" : "others", 
+    "type" : "any", 
+    "qyality" : "any"
+}
+{ 
+    "_id" : ObjectId("5af5e1459b54b1431112d375"), 
+    "title" : "autoparts", 
+    "type" : " maintenance ", 
+    "quality" : "original ", 
+    "createdAt" : ISODate("2018-05-11T18:30:29.805+0000"), 
+    "updatedAt" : ISODate("2018-05-11T18:30:29.805+0000"), 
+    "__v" : NumberInt(0)
+}

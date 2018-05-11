@@ -1,0 +1,70 @@
+{ 
+    "_id" : ObjectId("5af5b61fbe11544107161078"), 
+    "amount" : "35", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5b83ebe1154410716107b"), 
+    "description" : "potatoes"
+}
+{ 
+    "_id" : ObjectId("5af5c139be11544107161081"), 
+    "amount" : "60", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5b83ebe1154410716107b"), 
+    "description" : "watermelon"
+}
+{ 
+    "_id" : ObjectId("5af5c19cbe11544107161082"), 
+    "amount" : "100", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5b83ebe1154410716107b"), 
+    "description" : "tomatos"
+}
+{ 
+    "_id" : ObjectId("5af5c1d3be11544107161083"), 
+    "amount" : "300", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5bd9cbe1154410716107f"), 
+    "description" : "soda"
+}
+{ 
+    "_id" : ObjectId("5af5c247be11544107161084"), 
+    "amount" : "700", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5c7c0be115441071610ac"), 
+    "description" : "rent"
+}
+{ 
+    "_id" : ObjectId("5af5c277be11544107161085"), 
+    "amount" : "200", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5bc1bbe1154410716107e"), 
+    "decription" : "bleach"
+}
+{ 
+    "_id" : ObjectId("5af5c2febe11544107161087"), 
+    "amount" : "200", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5bc1bbe1154410716107e"), 
+    "description" : "wipes"
+}
+{ 
+    "_id" : ObjectId("5af5c36fbe11544107161089"), 
+    "amount" : "300", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5be36be11544107161080"), 
+    "description" : "french bread"
+}
+{ 
+    "_id" : ObjectId("5af5c3b0be1154410716108a"), 
+    "amount" : "50", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5bc1bbe1154410716107e"), 
+    "descreption" : "lesterine"
+}
+{ 
+    "_id" : ObjectId("5af5c3e4be1154410716108b"), 
+    "amount" : "70", 
+    "budget" : ObjectId("5af5b5b2be11544107161076"), 
+    "category" : ObjectId("5af5b83ebe1154410716107b"), 
+    "description " : "broccoli"
+}
