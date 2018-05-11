@@ -5,7 +5,7 @@ const Category = require('../data/Category');
 router.get('/', (req, res) => {
     Category
     .find()
-    // .select('title -_id')
+    .select('title')
     .then(categories => {
         res.status(200).json(categories);
     })
