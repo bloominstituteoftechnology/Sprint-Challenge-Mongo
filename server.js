@@ -2,6 +2,9 @@ const express = require("express"); // remember to install your npm packages
 const helmet = require("helmet");
 const db = require("./data/db.js");
 
+const budgetRouter = require("./budget/BudgetController.js");
+const expenseRouter = require("./expense/ExpenseController.js");
+
 const server = express();
 
 // add your server code
@@ -12,6 +15,9 @@ db
 
 server.use(helmet());
 server.use(express.json());
+
+server.use("/budgets", budgetRouter);
+server.use("/expenses", expenseRouter);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
