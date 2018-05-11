@@ -24,9 +24,18 @@ export default class Budget extends Component {
   }
 
   render() {
+    if (!this.state.budget) {
+      return "Loading...";
+    }
+
     return (
       <div>
         <h1>List of Budgets:</h1>
+        <Link to="/">
+          <button>Return to Front Page</button>
+        </Link>
+        <br />
+        <br />
         {this.state.budget.map(eachBudget => (
           <Link key={eachBudget._id} to={`/api/budgets/${eachBudget._id}`}>
             <div>
