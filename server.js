@@ -4,12 +4,14 @@ const server = express();
 
 const budgetRouter = require('./budget/budgetController');
 const expenseRouter = require('./expenses/expenseController');
+const categoryRouter = require('./category/categoryController');
 
 server.use(helmet());
 server.use(express.json());
 
 server.use('/budget', budgetRouter);
 server.use('/expenses', expenseRouter);
+server.use('/category', categoryRouter);
 
 server.get('/', (req, res) => res.send("Server is running."));
 
