@@ -6,7 +6,7 @@ router
   .route('/')
   .get((req, res) => {
     Budget
-    .find({})
+    .find()
     .then((budget) => {
         res.status(200).json(budget)
       })
