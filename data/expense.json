@@ -1,2 +1,7 @@
-{"_id":{"$oid":"503c2b66bcf86cs793443564","amount": 35,"description": "potatoes", "budget":{"$oid":"507f1f77bcf86cd799439011"},"category":{"$oid":"543d2c72gsb23cd657438921"}}
-  
+{
+    "_id":{"$oid":"503c2b66bcf86cs793443564"},
+    "amount": 35,
+    "description": "potatoes",
+    "budget":{"$oid":"507f1f77bcf86cd799439011",
+    "category":{"$oid":"543d2c72gsb23cd657438921"}
+  }
