@@ -14,6 +14,17 @@ router.post('/', (req, res) => {
     })
 })
 
-
+router.get('/', (req, res) => {
+    Expense
+    .find()
+    .populate('budget', {title:1},)
+    .populate('category', {title:1})
+    .then(response => {
+        res.status(200).json(response)
+    })
+    .catch(err => {
+        res.status(500).json({ errorMessage: "The friends information could not be retrieved." })
+    })
+})
 
 module.exports = router;
