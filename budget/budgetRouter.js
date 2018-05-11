@@ -27,4 +27,21 @@ router.post('/', (req, res) => {
         });
 });
 
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Budget
+        .findByIdAndRemove(id)
+        .then(budget => {
+            if (budget) {
+                res.status(200).end();
+            } else {
+                res.status(404).json({ message: "Specific budget ID does not exist." })
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        });
+});
+
 module.exports = router;
