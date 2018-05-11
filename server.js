@@ -1,5 +1,5 @@
 const express = require('express'); // remember to install your npm packages
-const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 //new db file
 const db = require('./db');
@@ -10,11 +10,26 @@ const categoryRouter = require('./categories/categoryRouter'); // category route
 
 const server = express();
 
-// add your server code
+//server code
 
 db
-.connectTo()
+.connectTo('budgetTracker')
+.then(() => {
+  console.log('\n...Connection success!...\n')
+})
+.catch(err => {
+  console.log('\n...ERROR: Connection failure...\n')
+});
 
+server.use(helmet());
+server.use(express.json());
+server.use('/api/budgets', budgetRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenses', expenseRouter);
+
+server.get('/', (req, res) => {
+  res.send('Working');
+});
 
 
 const port = process.env.PORT || 5000;
