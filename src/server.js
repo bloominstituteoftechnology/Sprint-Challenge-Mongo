@@ -14,6 +14,14 @@ server.post('/budgets', (req, res, next) => {
     .catch(() => next(errors.server))
 })
 
+server.post('/categories', (req, res, next) => {
+  const { title } = req.body
+  if (!title) { next(errors.categoryTitle) }
+  Category.create({ title })
+    .then(category => res.send(category))
+    .catch(() => next(errors.server))
+})
+
 server.use((err, req, res, next) => {
   res.status(err.status).send({ error: err.message })
 })
