@@ -1,0 +1,3 @@
+1. Database hold collections of documents. You can have multiple Databases, collections, and documents each inside the other respectively.
+To achieve the pattern of relationship we must either embed or link (ref) inside of our schema to the specified data coming from elsewhere.
+We used express to break up our api into a bunch of seperate files.. i think that's what is meant by sub-applications. Oh and router!
