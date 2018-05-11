@@ -1,5 +1,4 @@
 const express = require('express'); // remember to install your npm packages
-const helmet = require('helmet');
 
 //new db file
 const db = require('./db');
