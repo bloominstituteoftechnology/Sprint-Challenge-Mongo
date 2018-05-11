@@ -9,7 +9,7 @@ mongoose
 
 // const budgetController = require('');
 // const categoryController = require('');
-// const expenseController = require('');
+const expenseController = require('./controllers/expenseController');
 
 // remember to install your npm packages
 
@@ -26,7 +26,7 @@ server.get('/', (req, res) => {
 
 // server.use('/api/budgets', budgetController);
 // server.use('/api/categories', categoryController);
-// server.use('/api/expenses', expenseController);
+server.use('/api/expenses', expenseController);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
