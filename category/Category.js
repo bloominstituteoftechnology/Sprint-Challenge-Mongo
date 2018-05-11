@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Category = mongoose.Schema({
     // Insert Data Here
+    title: String,
 });
 
 // Module Export
