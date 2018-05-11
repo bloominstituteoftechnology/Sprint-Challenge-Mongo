@@ -2,12 +2,12 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 const server = express();
 
-// const router = require('router_path')
+const budgetRouter = require('./budget/budgetController');
 
 server.use(helmet());
 server.use(express.json());
 
-// server.use('/path', routers)
+server.use('/budget', budgetRouter);
 
 server.get('/', (req, res) => res.send("Server is running."));
 

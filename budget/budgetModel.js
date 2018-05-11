@@ -9,4 +9,4 @@ const Budget = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.Model('Budget', Budget, 'budgets'); // mondel_name, schema, optional_collection_name
+module.exports = mongoose.model('Budget', Budget, 'budgets'); // mondel_name, schema, optional_collection_name
