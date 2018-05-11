@@ -6,6 +6,19 @@ const router = express.Router();
 
 // /api/budgets
 
+// GET /
+router.route("/").get((req, res) => {
+  Budget.find({})
+    .then(budgets => {
+      res.status(200).json(budgets);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error getting budgets."
+      });
+    });
+});
+
 // POST /
 router.route("/").post((req, res) => {
   const { title, budgetAmount } = req.body;

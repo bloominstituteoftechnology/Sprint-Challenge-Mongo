@@ -40,7 +40,7 @@ router.route("/").post((req, res) => {
   } else {
     res.status(404).json({
       error:
-        "Please provide an AMOUNT, DESCRIPTION, BUDGET, and CATEGORY to continue."
+        "Please provide an AMOUNT, DESCRIPTION, BUDGET ID, and CATEGORY ID to continue."
     });
   }
 });
