@@ -19,7 +19,11 @@ mongoose
   server.use(express.json());
 
   //api server.use here
-  server.use('api/budget')
+  server.use('api/budget', budgetRouter);
+  server.use('api/expense', expenseRouter);
+  server.use('api/category', categoryRouter);
+
+  server.get('/', (req, res) => res.send('Api running!'));
 
 
 const port = process.env.PORT || 5000;
