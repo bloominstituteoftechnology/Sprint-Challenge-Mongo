@@ -22,10 +22,12 @@ server.use(express.json())
 
 // add your server code
 
+// GET for initial page
 server.get('/', (req, res) => {
   res.send('Server is up and running')
 })
 
+// POST to create an initial budget
 server.post('/budgets', (req, res) => {
   const budgetData = req.body;
   const budget = new Budget(budgetData);
@@ -39,6 +41,23 @@ server.post('/budgets', (req, res) => {
     res.json(err)
   })
 })
+
+// POST to create a new  category
+server.post('/categories', (req, res) => {
+  const categoryData = req.body;
+  const category = new Category(categoryData);
+
+  category
+  .save()
+  .then(category => {
+    res.json(category)
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
+
+
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
