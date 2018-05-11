@@ -5,4 +5,4 @@ const budgetSchema = mongoose.Schema({
   budgetAmount: Number
 });
 
-module.exports = mongoose.model('Character', budgetSchema);
+module.exports = mongoose.model('Budget', budgetSchema);
