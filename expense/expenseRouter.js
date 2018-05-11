@@ -22,18 +22,18 @@ router.route("/").get((req, res) => {
 
 // GET /:id
 router.route("/:id").get((req, res) => {
-    const { id } = req.params;
-  
-    Expense.findById(id)
-      .then(expense => {
-        res.status(200).json(expense);
-      })
-      .catch(error => {
-        res.status(500).json({
-          error: "There was an error getting the specified expense."
-        });
+  const { id } = req.params;
+
+  Expense.findById(id)
+    .then(expense => {
+      res.status(200).json(expense);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error getting the specified expense."
       });
-  });
+    });
+});
 
 // POST /
 router.route("/").post((req, res) => {
@@ -58,6 +58,28 @@ router.route("/").post((req, res) => {
         "Please provide an AMOUNT, DESCRIPTION, BUDGET ID, and CATEGORY ID to continue."
     });
   }
+});
+
+// PUT /:id
+router.route("/:id").put((req, res) => {
+  const { id } = req.params;
+  const update = req.body;
+
+  Expense.findByIdAndUpdate(id, update)
+    .then(expense => {
+      if (expense) {
+        res.status(200).json(expense);
+      } else {
+        res.status(404).json({
+          error: "Expense not found!"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error updating the expense."
+      });
+    });
 });
 
 module.exports = router;
