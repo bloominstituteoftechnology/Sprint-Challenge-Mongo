@@ -1,6 +1,5 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express');
 const helmet = require('helmet');
-// const cors = require('cors');
 
 const mongoose = require('mongoose');
 
@@ -9,8 +8,6 @@ const categoryRouter = require('./category/categoryRouter');
 const expenseRouter = require('./expense/expenseRouter');
 
 const server = express();
-
-// add your server code
 
 mongoose
   .connect('mongodb://localhost/budgetdb')
@@ -22,7 +19,6 @@ mongoose
   });
 
 server.use(helmet());
-// server.use(cors());
 server.use(express.json());
 
 server.use('/api/budget', budgetRouter);
