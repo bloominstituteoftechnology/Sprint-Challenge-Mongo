@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const definition = {
-  amount: { type: String, require: true },
+  amount: { type: Number, require: true },
+  description: String,
   budget: {
     type: ObjectId,
     ref: "Budget"
