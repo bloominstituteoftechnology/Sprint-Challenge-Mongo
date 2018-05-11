@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.ObjectId
+const ObjectId = mongoose.Schema.ObjectId
 
 // Clear out mongoose's model cache to allow --watch to work for tests:
 // https://github.com/Automattic/mongoose/issues/1251
@@ -25,7 +25,7 @@ const CategorySchema = new mongoose.Schema({
 })
 
 module.exports = {
-  Budget: mongoose.model('Posts', PostSchema),
+  Budget: mongoose.model('Budgets', BudgetSchema),
   Expense: mongoose.model('Expenses', ExpenseSchema),
   Category: mongoose.model('Categories', CategorySchema)
 }
