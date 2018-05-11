@@ -26,27 +26,55 @@ router.post("/", (req, res) => {
       res.status(201).json(newBudget);
     })
     .catch(err => {
-      if (
-        budget.title === undefined ||
-        budget.budgetAmount === undefined
-      ) {
+      if (budget.title === undefined || budget.budgetAmount === undefined) {
         res.status(400).json({
           errorMessage:
             "Please provide 'title' and 'budgetAmount' for the budget."
         });
       }
       if (budget.budgetAmount < 0) {
-        res
-          .status(400)
-          .json({
-            errorMessage:
-              "Budget must be 0 or higher, unless you're losing money already."
-          });
+        res.status(400).json({
+          errorMessage:
+            "Budget must be 0 or higher, unless you're losing money already."
+        });
       } else {
         res
           .status(500)
           .json("Something went wrong while saving the budget.", err);
       }
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+
+  Budget.findByIdAndRemove(id)
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const budgetEdit = req.body;
+  Budget.findByIdAndUpdate(id, budgetEdit)
+    .then(response => {
+      if (response === null) {
+        res.status(404).json({ message: "Budget info not found (Edit)" });
+      } else {
+        res.status(200).json(response);
+      }
+    })
+    .catch(err => {
+      if (err.name === "CastError") {
+        res.status(400).json({
+          message: "invalid ID, check and try again."
+        });
+      }
+      res.status(500).json(err);
     });
 });
 
