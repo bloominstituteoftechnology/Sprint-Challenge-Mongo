@@ -2,6 +2,7 @@ const express = require('express'); // remember to install your npm packages
 const server = express();
 const helmet = require('helmet');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const Budget = require('./Budget');
 const Category = require('./Category');
@@ -12,8 +13,8 @@ mongoose
 .then(mongo => console.log('\n Connected to BudgetDB \n'))
 .catch( err => console.log('Error connecting to BudgetDB'))
 
-
 server.use(helmet());
+server.use(cors());
 server.use(express.json());
 
 server.post('/budgets', (req, res) => { // POSTS NEW BUDGET 
@@ -42,10 +43,11 @@ server.post('/categories', (req, res) => { // POSTS NEW CATEGORY
 })
 
 server.get('/expenses', (req, res) => { // GET EXPENSES 
- expense = Expense.find()
+ expense = Expense
+ .find()
   
-  // .populate("budget", "title")
-  // .populate('budget')
+  .populate("budget", "title -_id")
+  .populate("category", "-_id")
 
   // const {budget, category } = req.query;
   
@@ -55,7 +57,7 @@ server.get('/expenses', (req, res) => { // GET EXPENSES
   // }
 
  .then(expense => res.status(200).json(expense))
-  .catch(err => res.status(500).json({ err: err.message }))
+  // .catch(err => res.status(500).json({ err: err.message }))
 })
 
 server.post('/expenses', (req, res) => { // POST EXPENSES 
