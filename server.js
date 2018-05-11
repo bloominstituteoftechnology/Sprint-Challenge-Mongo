@@ -14,8 +14,23 @@ const server = express();
 // add your server code
 
 db
-.connectTo()
+.connectTo('budgetTracker')
+.then(() => {
+  console.log('\n...Successful connection! Good job!...\n')
+})
+.catch(err => {
+  console.log('\n...ERROR: UhOh! Connection failed...\n')
+});
 
+server.use(helmet());
+server.use(express.json());
+server.use('/api/budgets', budgetRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenes', expenseRouter);
+
+server.get('/', (req, res) => {
+  res.send('Were rollin...Good work!');
+});
 
 
 const port = process.env.PORT || 5000;
