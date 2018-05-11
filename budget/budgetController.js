@@ -26,7 +26,27 @@ router.post("/", (req, res) => {
       res.status(201).json(newBudget);
     })
     .catch(err => {
-      res.status(500).json(err);
+      if (
+        budget.title === undefined ||
+        budget.budgetAmount === undefined
+      ) {
+        res.status(400).json({
+          errorMessage:
+            "Please provide 'title' and 'budgetAmount' for the budget."
+        });
+      }
+      if (budget.budgetAmount < 0) {
+        res
+          .status(400)
+          .json({
+            errorMessage:
+              "Budget must be 0 or higher, unless you're losing money already."
+          });
+      } else {
+        res
+          .status(500)
+          .json("Something went wrong while saving the budget.", err);
+      }
     });
 });
 

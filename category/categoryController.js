@@ -5,8 +5,7 @@ const Category = require("./categoryModel");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  let query = Category.find()
-  .select("title"); // selector
+  let query = Category.find().select("title"); // selector
 
   query
     .then(category => {
@@ -27,7 +26,15 @@ router.post("/", (req, res) => {
       res.status(201).json(newCategory);
     })
     .catch(err => {
-      res.status(500).json(err);
+      if (category.title === undefined) {
+        res.status(400).json({
+          errorMessage: "Please provide 'title' for your category."
+        });
+      } else {
+        res
+          .status(500)
+          .json("Something went wrong while saving the category.", err);
+      }
     });
 });
 
