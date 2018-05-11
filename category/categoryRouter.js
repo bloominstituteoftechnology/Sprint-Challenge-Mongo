@@ -20,6 +20,21 @@ router.route("/").get((req, res) => {
     });
 });
 
+// GET /:id
+router.route("/:id").get((req, res) => {
+    const { id } = req.params;
+  
+    Category.findById(id)
+      .then(category => {
+        res.status(200).json(category);
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "There was an error getting the specified category."
+        });
+      });
+  });
+
 // POST /
 router.route("/").post((req, res) => {
   const { title } = req.body;
