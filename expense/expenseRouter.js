@@ -5,8 +5,7 @@ const model = require('./Expense');
 
 router.get('/', (req,res) => {
   model.find()
-  .populate("budget", "title budgetAmount")
-  .populate("category", "title")
+  .populate("budget category")
   .then(expns => res.json(expns))
   .catch(err => console.log(err))
 })
