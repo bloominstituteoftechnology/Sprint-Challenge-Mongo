@@ -1,19 +1,16 @@
 const mongoose = require('mongoose');
-const ObjectId = mongooese.Schema.Types.ObjectId;
-
-const Budget = require('./budget');
-const Category = require('./Category');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const expenseSchema = mongoose.Schema({
   amount: Number,
   description: String,
   budget: {
     type: ObjectId,
-    ref: Budget
+    ref: 'Budget'
   },
   category: {
     type: ObjectId,
-    ref: Category
+    ref: 'Category'
   }
 }); 
 
