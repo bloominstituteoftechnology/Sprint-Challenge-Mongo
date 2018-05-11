@@ -2,7 +2,7 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 
-const db = require('./data/db.js');
+// const db = require('./data/db.js');
 const budgetRouter = require('./budget/budgetRouter.js');
 const categoryRouter = require('./category/budgetRouter.js');
 const expenseRouter = require('./expense/budgetRouter.js');
@@ -10,8 +10,8 @@ const expenseRouter = require('./expense/budgetRouter.js');
 
 const server = express();
 
-db
-  .connectTo(budget)
+mongoose
+  .connect('mongodb://localhost/budget')
   .then(() => console.log('\n... API Connected to Database ...\n'))
   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 // add your server code
