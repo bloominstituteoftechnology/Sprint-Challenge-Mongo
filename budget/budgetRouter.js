@@ -19,4 +19,18 @@ router.post('/', (req, res) => {
     })
 })
 
+// DELETE a budget
+router.delete('/:_ id', (req, res) => {
+    const id = req.params._id;
+
+    Budget
+    .findByIdAndRemove(id)
+    .then(deleted => {
+        res.json(`1 budget deleted`);
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
+
 module.exports = router;   

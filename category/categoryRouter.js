@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     })
 })
   
-  // GET all of the categories
+// GET all of the categories
 router.get('/', (req, res) => {
   
     Category
@@ -29,6 +29,11 @@ router.get('/', (req, res) => {
     .catch(err => {
       res.json(err)
     })
+})
+
+// DELETE a category
+router.delete('/:_id', (req, res) => {
+    
 })
   
 module.exports = router;
