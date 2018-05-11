@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Budget = require('./Budget.js');
+const Category = require('./Category.js');
 
 // Express Router
-const route = express.Router();
+const router = express.Router();
 
 // Set Endpoints Here
 
