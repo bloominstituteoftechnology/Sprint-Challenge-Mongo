@@ -12,11 +12,13 @@ const expenseSchema = new mongoose.Schema({
   },
   budget: {
     type: ObjectId,
-    ref: "Budget"
+    ref: "Budget",
+    required: [true, "Missing id of budget"]
   },
   category: {
     type: ObjectId,
-    ref: "Category"
+    ref: "Category",
+    required: [true, "Missing id of category"]
   }
 });
 
