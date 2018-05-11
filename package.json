@@ -4,7 +4,7 @@
   "description": "MongoDB Sprint Challenge",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "Lambda School",
