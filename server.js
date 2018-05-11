@@ -1,7 +1,7 @@
 const express = require('express'); // remember to install your npm packages
 const mongoose = require('mongoose');
-const Budget = require('./budget/Budget.js');
-const Category = require('./category/Category.js');
+const budgetRouter = require('./budget/budgetRouter.js')
+const categoryRouter = require('./category/categoryRouter.js');
 const Expense = require('./expense/Expense.js');
 
 // Connect to mongo
@@ -18,6 +18,8 @@ const server = express();
 
 // Middleware
 server.use(express.json())
+server.use('/budgets', budgetRouter);
+server.use('/categories', categoryRouter);
 
 
 // add your server code
@@ -25,21 +27,6 @@ server.use(express.json())
 // GET for initial page
 server.get('/', (req, res) => {
   res.send('Server is up and running')
-})
-
-// POST to create an initial budget
-server.post('/budgets', (req, res) => {
-  const budgetData = req.body;
-  const budget = new Budget(budgetData);
-
-  budget
-  .save()
-  .then(budget => {
-    res.json({budget})
-  })
-  .catch(err => {
-    res.json(err)
-  })
 })
 
 // POST to create a new category
