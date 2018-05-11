@@ -2,7 +2,7 @@ const express = require('express'); // remember to install your npm packages
 const mongoose = require('mongoose');
 const budgetRouter = require('./budget/budgetRouter.js')
 const categoryRouter = require('./category/categoryRouter.js');
-const Expense = require('./expense/Expense.js');
+const expenseRouter = require('./expense/expenseRouter.js');
 
 // Connect to mongo
 mongoose
@@ -20,6 +20,7 @@ const server = express();
 server.use(express.json())
 server.use('/budgets', budgetRouter);
 server.use('/categories', categoryRouter);
+server.use('/expenses', expenseRouter);
 
 
 // add your server code
@@ -28,36 +29,6 @@ server.use('/categories', categoryRouter);
 server.get('/', (req, res) => {
   res.send('Server is up and running')
 })
-
-// GET expenses
-server.get('/expenses', (req, res) => {
-
-  Expense
-  .find().populate('budget category')
-  .then(expense => {
-    res.json(expense)
-  })
-  .catch(err => {
-    res.json(err)
-  }) 
-})
-
-// POST expenses
-server.post('/expenses', (req, res) => {
-  const expenseData = req.body;
-  const expense = new Expense(expenseData)
-
-  expense
-  .save()
-  .then(expense => {
-    res.json(expense)
-  })
-  .catch(err => {
-    res.json(err)
-  });
-});
-
-
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
