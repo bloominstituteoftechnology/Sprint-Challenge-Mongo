@@ -6,7 +6,22 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    res.send("Expense router is functional.")
+    Expense
+      .find()
+      .populate('budget', '-_id title')
+      .populate('category', '-_id title')
+      .then(expense => res.status(200).json(expense))
+      .catch(err => res.status(500).json(err))
+  })
+
+  .post((req, res) => {
+    const { amount, description, budget, category } = req.body;
+
+    const expense = new Expense(req.body);
+    expense
+      .save()
+      .then(expense => res.status(201).json(expense))
+      .catch(err => res.status(500).json("Error."))
   })
 
 module.exports = router;
