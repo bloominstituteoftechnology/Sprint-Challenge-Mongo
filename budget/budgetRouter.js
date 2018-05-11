@@ -19,6 +19,21 @@ router.route("/").get((req, res) => {
     });
 });
 
+// GET /:id
+router.route("/:id").get((req, res) => {
+  const { id } = req.params;
+
+  Budget.findById(id)
+    .then(budget => {
+      res.status(200).json(budget);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error getting the specified budget."
+      });
+    });
+});
+
 // POST /
 router.route("/").post((req, res) => {
   const { title, budgetAmount } = req.body;
