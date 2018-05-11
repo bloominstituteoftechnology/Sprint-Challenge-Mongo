@@ -2,10 +2,11 @@ const router = require('express').Router();
 const Category = require('../data/Category');
 
 //set end points here
+//Postman test ok! http://localhost:5000/api/category
 router.get('/', (req, res) => {
     Category
     .find()
-    // .populate('title -_id -createdAt')
+    .select('title')
     .then(categories => {
         res.status(200).json(categories);
     })
@@ -14,6 +15,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//Postman test ok! 4 categories created successfully
 router.post('/', (req, res) => {
     const { title } = req.body;
     const newCategory = { title };
