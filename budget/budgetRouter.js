@@ -6,15 +6,21 @@ const Budget = require('./budget.js');
 
 // ============Post===================
 router.post('/', (req, res) => {
-    const budget = new Budget(req.body);
+    if (req.body.title && req.body.budgetAmount){
 
-    budget.save()
-    .then(budget => {
-        res.status(201).json(budget)
-    })
-    .catch(err => {
-        res.status(500).json({ error: 'Could Not Get Budget!' })
-    })
+        const budget = new Budget(req.body);
+    
+        budget.save()
+        .then(budget => {
+            res.status(201).json(budget)
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'Could Not Get Budget!' })
+        })
+    }
+    else {
+        res.status(400).json({ errorMessage: 'All Fields Are Required!'})
+    }
 })
 
 router.get('/', (req, res) => {
