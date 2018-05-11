@@ -1,6 +1,4 @@
 const express = require('express'); // remember to install your npm packages
-const helmet = require('helmet');
-const cors = require('cors');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/budget')
@@ -11,9 +9,9 @@ mongoose.connect('mongodb://localhost/budget')
     console.log('error connecting to database', err);
   });
 
-const budgetController = require('./budget/budgetController');
-const categoryController = require('./budget/categoryController');
-const expenseController = require('./budget/expenseController');
+const budgetController = require('./budget/budgetRouter');
+const categoryController = require('./category/catergoryRouter');
+const expenseController = require('./expense/expenseRouter');
 
 const server = express();
 
@@ -30,17 +28,15 @@ errorHandler = (err, req, res, next) => {
   }
 }
 
-server.use(helmet());
-server.use(cors());
 server.use(express.json());
+
+server.use('/api/budget', budgetController);
+server.use('/api/category', categoryController);
+server.use('/api/expense', expenseController);
 
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' });
 });
-
-server.use('/api/budget', budgetController);
-// server.use('/api/budget', categoryController);
-// server.use('/api/budget', expenseController);
 
 server.use(errorHandler);
 
