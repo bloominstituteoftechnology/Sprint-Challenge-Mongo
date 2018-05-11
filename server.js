@@ -26,7 +26,7 @@ server.use(helmet());
 server.use(express.json());
 server.use('/api/budgets', budgetRouter);
 server.use('/api/categories', categoryRouter);
-server.use('/api/expenes', expenseRouter);
+server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req, res) => {
   res.send('Were rollin...Good work!');
