@@ -4,31 +4,32 @@ const Expense = require('../Models/ExpenseModel.js');
 
 const expenseRouter = express.Router();
 
-categoryRouter.get('/', (req, res) => {
-    Category.find({})
-      .select('title')
-      .then(categories => {
-        res.status(200).json({ Categories: categories });
-      })
-      .catch(err => {
-        res.status(500).json({ err: 'Error displaying Categories' });
-      })
-  });
+expenseRouter.get('/', (req, res) => {
+    Expense.find({})
+        .populate('budget category', 'budgetAmount title')
+        .then(expenses => {
+            res.status(200).json({ Expenses: expenses });
+        })
+        .catch(error => {
+            res.status(500).json({ error: 'Error Displaying Budgets '});
+        })
+});
   
-  categoryRouter.post('/', (req, res) => {
-    const { title } = req.body;
+expenseRouter.post('/', (req, res) => {
+    const { amount, description, budget, category } = req.body;
   
-    if (!title) {
-      res.status(500).json({ err: 'Category Title Required!' });
+    if (!amount || !description || !budget || !category) {
+        res.status(500).json({ error: 'Amount, Description, Budget and Category Required!'})
     }
-    const category = new Category({ title });
-    category.save()
-      .then(savedCategory => {
-        res.status(200).json({ CategorySaved: savedCategory });
-      })
-      .catch(err => {
-        res.status(500).json({ err: 'Error saving new Category'});
-      })
-  });  
+  
+    const expense = new Expense({ amount, description, budget, category });
+    expense.save()
+        .then(savedExpense => {
+            res.status(200).json({ SavedExpense: savedExpense });
+        })
+        .catch(error => {
+            res.status(400).json({ error: 'Error Saving Expense' });
+        })
+});
 
 module.exports = expenseRouter;

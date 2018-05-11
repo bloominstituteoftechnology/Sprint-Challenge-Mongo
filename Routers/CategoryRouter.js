@@ -27,7 +27,7 @@ categoryRouter.post('/', (req, res) => {
             res.status(200).json({ CategorySaved: savedCategory });
         })
         .catch(err => {
-            res.status(500).json({ err: 'Error saving new Category'});
+            res.status(500).json({ err: 'Error Saving New Category'});
         })
 });
 
