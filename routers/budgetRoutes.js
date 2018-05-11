@@ -16,6 +16,15 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const { title, budgetAmount } = req.body;
     const newBudget = { title, budgetAmount };
+
+    if(!title || !budgetAmount) {
+        res.status(400).json({ error: 'Title and budget are required.' });
+    }
+
+    if(budgetAmount <= 0) {
+        res.status(400).json({ error: 'Budget must be greater than 0' });
+    }
+
     const budget = new Budget(newBudget);
     budget.save().then(budget => {
         res.status(201).json(budget);

@@ -17,6 +17,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const { title } = req.body;
     const newCategory = { title };
+
+    if(!title) {
+        res.status(400).json({ error: 'Title is required.' });
+    }
+
     const category = new Category(newCategory);
     category.save().then(category => {
         res.status(201).json(category);
