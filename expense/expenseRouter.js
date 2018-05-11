@@ -20,6 +20,21 @@ router.route("/").get((req, res) => {
     });
 });
 
+// GET /:id
+router.route("/:id").get((req, res) => {
+    const { id } = req.params;
+  
+    Expense.findById(id)
+      .then(expense => {
+        res.status(200).json(expense);
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "There was an error getting the specified expense."
+        });
+      });
+  });
+
 // POST /
 router.route("/").post((req, res) => {
   const { amount, description, budget, category } = req.body;
