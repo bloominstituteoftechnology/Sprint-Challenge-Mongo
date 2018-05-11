@@ -24,7 +24,7 @@ server.use(express.json());
 
 server.use('/api/Budget', BudgetRouter);
 server.use('/api/Category', CategoryRouter);
-// server.use('/api/Expense', ExpenseRouter);
+server.use('/api/Expense', ExpenseRouter);
 
 server.get('/', (req, res) => res.send('API Running...'));
 
