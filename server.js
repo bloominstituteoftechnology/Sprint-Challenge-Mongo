@@ -4,6 +4,7 @@ const db = require("./data/db.js");
 
 const budgetRouter = require("./budget/BudgetController.js");
 const expenseRouter = require("./expense/ExpenseController.js");
+const categoryRouter = require("./category/CategoryController.js");
 
 const server = express();
 
@@ -18,6 +19,7 @@ server.use(express.json());
 
 server.use("/budgets", budgetRouter);
 server.use("/expenses", expenseRouter);
+server.use("/category", categoryRouter);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
