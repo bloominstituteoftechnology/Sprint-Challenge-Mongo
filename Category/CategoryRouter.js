@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 	const category = req.body;
 	Category.create(category)
-		.then(category => res.status(201).json(`Saved: ${category}`))
+		.then(category => res.status(200).json(`Saved: ${category}`))
 		.catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
