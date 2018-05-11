@@ -6,11 +6,11 @@ const Expense = mongoose.Schema ({
     description: 'String',
     budget: {
         type: ObjectId,
-        ref: 'Monthly Spending'
+        ref: 'Budget'
     }, // Monthly Spending
     category: {
         type: ObjectId,
-        ref: 'Groceries',
+        ref: 'Category',
     }, // Groceries
 });
 
