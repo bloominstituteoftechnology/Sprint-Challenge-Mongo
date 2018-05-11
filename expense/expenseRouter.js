@@ -30,3 +30,5 @@ router
                 res.status(500).json("Error finding expenses.");
             });
     });
+
+module.exports = router;
