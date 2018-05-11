@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
         res.status(200).json(response)
     })
     .catch(err => {
-        res.status(500).json({ errorMessage: "The friends information could not be retrieved." })
+        res.status(500).json({ errorMessage: "Could Not Retrieve the Budgets!" })
     })
 })
 
