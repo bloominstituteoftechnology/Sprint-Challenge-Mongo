@@ -7,12 +7,15 @@ const expenseRouter = require("./expense/expenseRouter.js");
 
 const server = express();
 
-const db = mongoose.connect(`mongodb://localhost/sprint`);
-
-db
-  .connectTo("starwars")
-  .then(() => console.log("\n... API Connected to Database ...\n"))
-  .catch(err => console.log("\n*** ERROR Connecting to Database ***\n", err));
+mongoose
+  .connect("mongodb://localhost/sprintdb")
+  
+  .then(mongo => {
+    console.log("connected to db");
+  })
+  .catch(err => {
+    console.log("errorconnecting to db", err);
+  });
 
 server.use(express.json());
 
