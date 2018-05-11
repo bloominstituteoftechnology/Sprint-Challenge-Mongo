@@ -13,7 +13,7 @@ server.use('/category', Category);
 server.use('/expense', Expense);
 
 mongoose
-.connect('mongodb://localhost/mongoSprintChallenge')
+.connect('mongodb://localhost/BudgetTrackerApp')
 .then(connect => console.log('Successful connection to MongoDB.'))
 .catch(err => console.exception('Connection to database failed.'));
 
