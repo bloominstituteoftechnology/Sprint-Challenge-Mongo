@@ -59,4 +59,26 @@ router.route("/").post((req, res) => {
   }
 });
 
+// PUT /:id
+router.route("/:id").put((req, res) => {
+    const { id } = req.params;
+    const update = req.body;
+  
+    Category.findByIdAndUpdate(id, update)
+      .then(category => {
+        if (category) {
+          res.status(200).json(category);
+        } else {
+          res.status(404).json({
+            error: "Category not found!"
+          });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "There was an error updating the category."
+        });
+      });
+  });
+
 module.exports = router;
