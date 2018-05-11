@@ -80,4 +80,25 @@ router.route("/:id").put((req, res) => {
     });
 });
 
+// DELETE /:id
+router.route("/:id").delete((req, res) => {
+  const { id } = req.params;
+
+  Budget.findByIdAndRemove(id)
+    .then(budget => {
+      if (budget) {
+        res.status(200).json(budget);
+      } else {
+        res.status(404).json({
+          error: "Budget not found!"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error deleting the budget."
+      });
+    });
+});
+
 module.exports = router;
