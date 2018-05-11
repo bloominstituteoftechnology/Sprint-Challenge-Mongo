@@ -42,7 +42,7 @@ server.post('/budgets', (req, res) => {
   })
 })
 
-// POST to create a new  category
+// POST to create a new category
 server.post('/categories', (req, res) => {
   const categoryData = req.body;
   const category = new Category(categoryData);
@@ -56,6 +56,34 @@ server.post('/categories', (req, res) => {
     res.json(err)
   })
 })
+
+// GET expenses
+server.get('/expenses', (req, res) => {
+
+  Expense
+  .find()
+  .then(expense => {
+    res.json(expense)
+  })
+  .catch(err => {
+    res.json(err)
+  }) 
+})
+
+// POST expenses
+server.post('/expenses', (req, res) => {
+  const expenseData = req.body;
+  const expense = new Expense(expenseData)
+
+  expense
+  .save()
+  .then(expense => {
+    res.json(expense)
+  })
+  .catch(err => {
+    res.json(err)
+  });
+});
 
 
 
