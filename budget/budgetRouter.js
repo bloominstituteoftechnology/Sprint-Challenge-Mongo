@@ -23,6 +23,8 @@ router.post('/', (req, res) => {
     }
 })
 
+// ====================Get=================
+
 router.get('/', (req, res) => {
     Budget
     .find()

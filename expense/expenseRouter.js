@@ -2,6 +2,10 @@ const router = require('express').Router();
 
 const Expense = require('./expense.js');
 
+// ===========Endpoints===================
+
+// ============Post=========================
+
 router.post('/', (req, res) => {
     const expense = new Expense(req.body);
 
@@ -13,6 +17,8 @@ router.post('/', (req, res) => {
         res.status(500).json({ error: 'Could Not Post Expense!' })
     })
 })
+
+// =================Get/Populate===================
 
 router.get('/', (req, res) => {
     Expense

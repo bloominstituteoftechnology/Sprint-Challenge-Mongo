@@ -2,6 +2,10 @@ const router = require('express').Router();
 
 const Category = require('./category.js');
 
+// ===================Endpoints=============================
+
+// ===============Post=============================
+
 router.post('/', (req, res) => {
     if (req.body.title) {
 
@@ -19,6 +23,8 @@ router.post('/', (req, res) => {
         res.status(400).json({ errorMessage: 'Title Field Required' })
     }
 })
+
+// ==================Get========================
 
 router.get('/', (req, res) => {
     Category
