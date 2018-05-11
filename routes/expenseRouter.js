@@ -14,17 +14,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-    const aggQuery = req.query;
-    let query;
-
-    if (aggQuery.aggregatedBy === 'category') {
-        query = expense.aggregate([
-            { $group: { _id: '$category', total: {$sum: '$amount' }}},
-            { $sort: { total: -1 }},
-        ])
-    } else {
-        query = Expense.find({}).populate('budget category')
-    }
+   
 
     query
     .then(data => res.json({ data }))

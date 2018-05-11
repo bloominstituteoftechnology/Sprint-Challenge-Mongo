@@ -13,14 +13,12 @@ router.post('/', (req, res) => {
     .catch(err => res.status(500).json({ error: err}).end());
 });
 
-router.get('/:id/summary', (req, res) => {
+router.get('/:id', (req, res) => {
     const { id } = req.params;
 
     Budget.findById(id)
-    .then(budget => {
-        Expense.aggregate([
-            { $group: { _id: 'amount', total: { $sum: '$amount' }}},
-        ])
+    
+        
         .then(total => {
             const totalExpenses = total[0].total;
             const totalBudget = budget.budgetAmount;
@@ -29,6 +27,6 @@ router.get('/:id/summary', (req, res) => {
         })
         .catch(err => res.status(500).json({ error: err }));
     });
-});
+
 
 module.exports = router;
