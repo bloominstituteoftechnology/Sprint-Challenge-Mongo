@@ -5,11 +5,21 @@ const Expense = require('../Models/ExpenseModel.js');
 
 const budgetRouter = express.Router();
 
+budgetRouter.get('/', (req, res) => {
+    Budget.find({})
+        .then(budgets => {
+            res.status(200).json({ Budgets: budgets });
+        })
+        .catch(err => {
+            res.status(500).json({ err: 'Error Displaying Budgets' });
+        })
+});
+
 budgetRouter.post('/', (req, res) => {
     const { title, budgetAmount } = req.body;
   
     if (!title || !budgetAmount) {
-        res.status(500).json({ error: 'Title and Budget Amount Required!'});
+        res.status(500).json({ err: 'Title and Budget Amount Required!'});
     }
   
     const budget = new Budget({ title, budgetAmount });
@@ -17,8 +27,8 @@ budgetRouter.post('/', (req, res) => {
         .then(savedBudget => {
             res.status(200).json({ BudgetSaved: savedBudget });
         })
-        .catch(error => {
-            res.status(500).json({ error: 'Error Saving New Budget'})
+        .catch(err => {
+            res.status(500).json({ err: 'Error Saving New Budget'})
         })
 });
 

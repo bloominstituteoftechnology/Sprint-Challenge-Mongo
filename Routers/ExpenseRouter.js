@@ -28,7 +28,7 @@ expenseRouter.post('/', (req, res) => {
             res.status(200).json({ SavedExpense: savedExpense });
         })
         .catch(error => {
-            res.status(400).json({ error: 'Error Saving Expense' });
+            res.status(500).json({ error: 'Error Saving Expense' });
         })
 });
 
