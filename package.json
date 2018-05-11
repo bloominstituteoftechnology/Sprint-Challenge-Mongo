@@ -4,12 +4,15 @@
   "description": "MongoDB Sprint Challenge",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "Lambda School",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.1.0"
+  },
   "devDependencies": {
     "nodemon": "^1.17.2"
   }
