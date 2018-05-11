@@ -3,6 +3,7 @@ const Budget = require('./budget');
 const router = express.Router();
 
 router
+    .route('/')
     .post((req, res) => {
         const budgetData = req.body;
 
