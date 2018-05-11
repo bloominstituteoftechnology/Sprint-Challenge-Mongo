@@ -8,7 +8,7 @@ const router = express.Router();
 
 // POST /
 router.route("/").post((req, res) => {
-  const { title, budgetAmount } = req.params;
+  const { title, budgetAmount } = req.body;
   const budget = new Budget(req.body);
 
   // Make sure title and budgetAmout provided

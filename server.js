@@ -3,6 +3,7 @@ const helmet = require("helmet");
 
 const db = require("./data/db");
 const budgetRouter = require("./budget/budgetRouter");
+const expenseRouter = require("./expense/expenseRouter");
 
 const server = express();
 
@@ -16,6 +17,7 @@ server.use(helmet());
 server.use(express.json());
 
 server.use("/api/budgets", budgetRouter);
+server.use("/api/expenses", expenseRouter);
 
 server.get("/", (req, res) => res.send("... API Running ..."));
 
