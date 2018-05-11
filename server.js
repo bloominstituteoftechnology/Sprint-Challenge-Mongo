@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 
-const db = require("./data/db.js");
+const db = require("./data/db");
 const budgetRouter = require("./budget/budgetRouter");
 const expenseRouter = require("./expense/expenseRouter");
 const categoryRouter = require("./category/categoryRouter");
@@ -23,6 +23,8 @@ server.use(express.json());
 server.use(cors());
 
 // Routes
+server.use("/api/budget", budgetRouter);
+server.use("/api/category", categoryRouter);
 
 server.get("/", (req, res) => {
 	res.send("API Running...");
