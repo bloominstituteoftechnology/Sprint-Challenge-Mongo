@@ -82,4 +82,25 @@ router.route("/:id").put((req, res) => {
     });
 });
 
+// DELETE /:id
+router.route("/:id").delete((req, res) => {
+  const { id } = req.params;
+
+  Expense.findByIdAndRemove(id)
+    .then(expense => {
+      if (expense) {
+        res.status(200).json(expense);
+      } else {
+        res.status(404).json({
+          error: "Expense not found!"
+        });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error deleting the expense."
+      });
+    });
+});
+
 module.exports = router;
