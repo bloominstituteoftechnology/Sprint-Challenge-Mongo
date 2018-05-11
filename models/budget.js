@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const characterSchema = mongoose.Schema({
+const budgetSchema = mongoose.Schema({
   title: String,
   budgetAmount: Number
 });
 
-module.exports = mongoose.model('Character', characterSchema);
+module.exports = mongoose.model('Character', budgetSchema);
