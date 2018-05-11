@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
+import BudgetCard from "./budgetCard";
 
 export default class Budget extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       budget: []
     };
@@ -16,21 +19,20 @@ export default class Budget extends Component {
         this.setState(() => ({ budget: response.data }));
       })
       .catch(err => {
-        console.error("Server Error:", err);
+        console.error(err);
       });
   }
 
   render() {
-    console.log(this.state);
-
     return (
       <div>
         <h1>List of Budgets:</h1>
         {this.state.budget.map(eachBudget => (
-          <div key={eachBudget._id}>
-            <div>{eachBudget.title}</div>
-            <div>{eachBudget.budgetAmount}</div>
-          </div>
+          <Link key={eachBudget._id} to={`/api/budgets/${eachBudget._id}`}>
+            <div>
+              <BudgetCard mainProp={eachBudget} />
+            </div>
+          </Link>
         ))}
       </div>
     );

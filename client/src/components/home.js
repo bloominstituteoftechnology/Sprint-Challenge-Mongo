@@ -19,7 +19,10 @@ const Home = () => {
       <br />
       <br />
       <div>
-        <img src="http://doablefinance.com/wp-content/uploads/2015/01/Remember-These-Five-Items-When-Closing-Your-Project.jpg" />
+        <img
+          src="http://doablefinance.com/wp-content/uploads/2015/01/Remember-These-Five-Items-When-Closing-Your-Project.jpg"
+          alt="React keeps complaining about this img tag not having any alt text. So here it is."
+        />
       </div>
     </div>
   );
