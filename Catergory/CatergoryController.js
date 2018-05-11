@@ -4,7 +4,7 @@ const Catergory = require('./catergory')
 
 router
   .route('/')
-  .get((req, res)=> {
+  .get((req, res) => {
     Catergory
       .find()
       .then( catergory => {

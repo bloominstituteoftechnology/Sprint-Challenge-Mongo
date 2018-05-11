@@ -8,4 +8,4 @@ const Expense = mongoose.Schema({
  category: {type: ObjectId, ref :'Catergory' },
 })
 
-module.export = mongoose.model('Expense', Expense )
+module.exports = mongoose.model('Expense', Expense )
