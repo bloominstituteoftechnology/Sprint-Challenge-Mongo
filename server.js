@@ -7,6 +7,7 @@ const server = express();
 // api require
 const db = require('./data/db');
 const budgetController = require('./controllers/BudgetController');
+const categoryController = require('./controllers/CategoryController');
 
 // connect to database
 db.conntectTo('budgetTracker')
@@ -24,6 +25,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/budgets', budgetController);
+server.use('/api/categories', categoryController);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
