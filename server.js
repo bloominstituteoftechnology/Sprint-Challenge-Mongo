@@ -1,5 +1,7 @@
 const express = require("express"); // remember to install your npm packages
 
+const db = require('./data/db');
+
 const server = express();
 
 // add your server code
