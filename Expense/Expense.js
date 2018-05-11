@@ -7,7 +7,8 @@ const Expense = new mongoose.Schema({
     description: String,
     budget: {
         type: ObjectId,
-        ref: "Budget"
+        ref: "Budget",
+        index: true
     }, // Monthly Spending
     category: {
         type: ObjectId,
