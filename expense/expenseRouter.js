@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
 
     Expense
         .find()
+        .populate('budget')
+        .populate('category')
         .then(exp => res.status(200).json(exp))
         .catch(err => {
             res.status(500).json(err);
