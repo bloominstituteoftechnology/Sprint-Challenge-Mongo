@@ -25,4 +25,16 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  const newCategory = new Category(req.body);
+  newCategory
+    .save()
+    .then(category => {
+      res.status(201).json(category);
+    })
+    .catch(err => {
+      res.status(500).json({ errorMessage: "Could not post category." });
+    });
+});
+
 module.exports = router;
