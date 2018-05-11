@@ -5,9 +5,9 @@ const router = express.Router()
 
 
 router.get('/', (req, res)=> {
-let query = Expense.find()
-    .populate('budget', 'title budgetAmount')
-    .populate('expense', 'title')
+let query = Expense.find().sort('amount')
+    .populate('budgets', 'title budgetAmount')
+    .populate('categorys', 'title')
    query.then(response => {
       res.status(200).json(response);
     })
