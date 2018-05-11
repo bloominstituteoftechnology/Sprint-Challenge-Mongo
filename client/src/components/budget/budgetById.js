@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import BudgetExpend from "./budgetExpend";
 
 export default class Budget extends Component {
   constructor() {
@@ -36,7 +37,7 @@ export default class Budget extends Component {
   };
 
   render() {
-    console.log(this.state.totalExpenditure);
+    console.log(this.state.budget);
     if (!this.state.budget) {
       return (
         <div>
@@ -50,18 +51,16 @@ export default class Budget extends Component {
     const totalExpenditure = this.state.totalExpenditure;
     return (
       <div>
-        <br />
-        <Link to="/api/budgets">
-          <button>Return to list</button>
-        </Link>
         <h1>Title: {title}</h1>
+
         <div>Budget Amount: ${budgetAmount}</div>
-        <div>Total Expenditure: ${totalExpenditure}</div>
+        <Link to={`/api/budgets/${this.state.budget.budget._id}/expenses`}>
+          <BudgetExpend mainProps={this.props} />
+          <div>Total Expenditure: ${totalExpenditure}</div>
+        </Link>
         <br />
 
         <div>Net difference: ${budgetAmount - totalExpenditure}</div>
-        <br />
-        <br />
         <br />
         <p>Current financial situation:</p>
         {totalExpenditure > budgetAmount ? (
@@ -69,6 +68,10 @@ export default class Budget extends Component {
         ) : (
           <h3>We Good.</h3>
         )}
+
+        <Link to="/api/budgets">
+          <button>Return to list</button>
+        </Link>
       </div>
     );
   }

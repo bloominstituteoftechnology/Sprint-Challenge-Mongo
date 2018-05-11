@@ -5,6 +5,7 @@ const BudgetCard = props => {
     <div>
       <div>Name: {props.mainProp.title}</div>
       <div>Current Budget: ${props.mainProp.budgetAmount}</div>
+      <br />
     </div>
   );
 };
