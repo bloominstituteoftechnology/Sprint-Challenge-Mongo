@@ -1,6 +1,7 @@
 const express = require("express");
 
 const Budget = require("./budgetModel");
+const Expense = require("../expense/expenseModel");
 
 const router = express.Router();
 
@@ -19,10 +20,14 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  Budget.findById(id)
-    .select("title budgetAmount") //selector
-    .then(budget => {
-      res.status(201).json(budget);
+  const budgetFilter = Budget.findById(id);
+  const expenseFilter = Expense.find({ budget: id });
+
+  // need more practice with Promise.all
+  Promise.all([budgetFilter, expenseFilter])
+    .then(results => {
+      const [budget, expense] = results;
+      res.status(200).json({ budget, expense });
     })
     .catch(err => {
       res.status(500).json(err);

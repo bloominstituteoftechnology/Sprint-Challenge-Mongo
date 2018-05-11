@@ -7,7 +7,7 @@ const Home = () => {
       <h1>Welcome to the front Page!</h1>
       <h3>Sort by:</h3>
       <Link to="/api/budgets">
-        <button>Budgets</button>
+        <button>Budget</button>
       </Link>
       <Link to="/api/expenses">
         <button>Expense</button>
