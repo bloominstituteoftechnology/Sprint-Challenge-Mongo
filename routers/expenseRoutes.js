@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Expense = require('../data/Expense');
 
 //set end points here
+//Postman Test ok! http://localhost:5000/api/expenses 
 router.get('/', (req, res) => {
     Expense
     .find()
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//Postman Test ok! http://localhost:5000/api/expenses (4 expenses successfully logged to budget/categories)
 router.post('/', (req, res) => {
     const { amount, description, budget, category } = req.body;
     const newExpense = { amount, description, budget, category };

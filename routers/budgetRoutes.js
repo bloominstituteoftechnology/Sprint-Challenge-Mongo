@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Budget = require('../data/Budget');
 
 //set end points here
+//Postman Test ok! http://localhost:5000/api/budgets 
 router.get('/', (req, res) => {
     Budget
     .find()
