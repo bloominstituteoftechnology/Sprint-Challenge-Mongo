@@ -3,3 +3,5 @@
   Document - An object containing all related information to
   a particular thing such as a persons account information
 
+2. We create a reference to the related item in the schema, giving it a type of ObjectId and setting it's ref property to the associated model.
+
