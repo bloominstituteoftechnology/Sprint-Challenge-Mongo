@@ -29,7 +29,7 @@ router
       })
       .catch(err => {
         res.status(500).json({
-          message: "There was an error getting the budgets from the server."
+          message: "Server Error."
         });
       });
   });

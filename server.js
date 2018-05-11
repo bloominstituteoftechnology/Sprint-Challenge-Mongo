@@ -2,9 +2,9 @@ const express = require("express"); // remember to install your npm packages
 const helmet = require("helmet");
 const mongoose = require("mongoose");
 
-const budgetController = require("./budget/budgetController");
-const categoryController = require("./category/categoryController");
-const expenseController = require("./expense/expenseController");
+const budgetController = require("./budget/budgetController.js");
+const categoryController = require("./category/categoryController.js");
+const expenseController = require("./expense/expenseController.js");
 
 mongoose
   .connect("mongodb://localhost/budgetdb")
