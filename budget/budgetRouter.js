@@ -4,13 +4,14 @@ const Budget = require("./Budget");
 
 const router = express.Router();
 
-// /api/budget
+// /api/budgets
 
 // POST /
 router.route("/").post((req, res) => {
   const { title, budgetAmount } = req.params;
   const budget = new Budget(req.body);
 
+  // Make sure title and budgetAmout provided
   if (title && budgetAmount) {
     budget
       .save()

@@ -15,7 +15,7 @@ db
 server.use(helmet());
 server.use(express.json());
 
-server.use("/api/budget", budgetRouter);
+server.use("/api/budgets", budgetRouter);
 
 server.get("/", (req, res) => res.send("... API Running ..."));
 
