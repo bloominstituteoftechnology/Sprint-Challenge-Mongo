@@ -3,6 +3,11 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const budgetRouter = require('./budget/budgetRouter.js');
+const categoryRouter = require('./category/categoryRouter.js');
+const expenseRouter = require('./expense/expenseRouter.js');
+
+const server = express();
 
 // add your server code
 mongoose
@@ -14,11 +19,14 @@ mongoose
   console.log('Error connecting to database', err);
 });
 
-const server = express();
 
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
+
+server.use('/api/budget', budgetRouter);
+server.use('/api/category', categoryRouter);
+server.use('/api/expense', expenseRouter);
 
 server.get('/', function(req, res) {
   res.status(200).json({ api: 'running' });
