@@ -22,6 +22,13 @@ server.post('/categories', (req, res, next) => {
     .catch(() => next(errors.server))
 })
 
+server.get('/categories', (req, res, next) => {
+  Category.find()
+    .select('title -_id')
+    .then(categories => res.send(categories.map(c => c.title)))
+    .catch(() => next(errors.server))
+})
+
 server.use((err, req, res, next) => {
   res.status(err.status).send({ error: err.message })
 })
