@@ -4,13 +4,14 @@
   Questions_ commonly asked about Mongo.
 * Answers to your written questions will be recorded in _Answers.md_
 * This is to be worked on alone but you can use outside resources. You can
-  _reference_ any old code you may have, and the React Documentation, however,
+  _reference_ any old code you may have, and the Mongo Documentation, however,
   please refrain from copying and pasting any of your answers. Try and
   understand the question and put your responses in your own words. Be as
   thorough as possible when explaining something.
 * **Just a friendly Reminder** Don't fret or get anxious about this, this is a
   no-pressure assessment that is only going to help guide you here in the near
   future. This is NOT a pass/fail situation.
+
   ## Start by forking and cloning this repository.
   ## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future.
 
@@ -68,7 +69,7 @@
 * A category can be something as simple as `groceries`.
 * Your relationship to consider here is the relationship between `Expenses` and
   `Categories`
-* An example of a category object after it is saved to the databse:
+* An example of a category object after it is saved to the database:
 
 ```
 {
@@ -114,7 +115,7 @@ Add your code to `server.js`. Remember to install any npm packages you need.
 
 ## Stretch Goal
 
-You are **not required** to work on the stretch goal, but if you're done with the main project go ahead an try to figure out how to use MongoDB's Aggregation Framework.
+You are **not required** to work on the stretch goal, but if you're done with the main project go ahead and try to figure out how to use MongoDB's Aggregation Framework.
 
 1. Add as many CRUD endpoints as you can and break the application into separate Routers.
 1. Validate the data at the endpoint, before saving it to the database.
