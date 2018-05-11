@@ -4,9 +4,18 @@ const Category = require("./categoryModel");
 
 const router = express.Router();
 
-// router.get("/", (req, res) => {
-//   let query = Category.find();
-// });
+router.get("/", (req, res) => {
+  let query = Category.find()
+  .select("title"); // selector
+
+  query
+    .then(category => {
+      res.status(200).json(category);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 router.post("/", (req, res) => {
   const categoryInput = req.body;

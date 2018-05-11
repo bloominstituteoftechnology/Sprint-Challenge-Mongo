@@ -25,9 +25,9 @@ server.use(cors());
 server.use(express.json());
 
 // routes
-server.use("/api/budget", budgetRouter);
-server.use("/api/category", categoryRouter);
-server.use("/api/expense", expenseRouter);
+server.use("/api/budgets", budgetRouter);
+server.use("/api/categories", categoryRouter);
+server.use("/api/expenses", expenseRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json({ API: "running" });
