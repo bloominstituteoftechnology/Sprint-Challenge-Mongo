@@ -1,7 +1,6 @@
 const express = require('express');
 
 const Category = require('./categoryModel');
-// const Budget = require('../budget/budgetModel');
 
 const router = express.Router();
 
