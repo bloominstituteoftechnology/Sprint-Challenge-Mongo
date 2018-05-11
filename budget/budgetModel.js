@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const Budget = new mongoose.Schema({
 
   title: { type: String, required: true },
-  budget: { type: Number, required: true },
+  budget: { type: Number, required: true, min: 1 },
   createdOn: { type: Date, default: Date.now }
 
 });
