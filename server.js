@@ -61,7 +61,7 @@ server.post('/categories', (req, res) => {
 server.get('/expenses', (req, res) => {
 
   Expense
-  .find()
+  .find().populate('budget category')
   .then(expense => {
     res.json(expense)
   })
