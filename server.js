@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const model = require('./budget/Budget');
 const BudgetRouter = require('./budget/budgetRouter');
 const CategoryRouter = require('./category/categoryRouter');
+const ExpenseRouter = require('./expense/expenseRouter');
 
 server.use(helmet());
 server.use(express.json());
@@ -28,7 +29,8 @@ mongoose
 //endpoints
 
 server.use('/budgets',BudgetRouter);
-server.use('/categories', CategoryRouter); 
+server.use('/categories', CategoryRouter);
+server.use('/expenses', ExpenseRouter); 
 
 // server.post('/budget', (req, res) => {
 //   const newBudget = new model(req.body);
