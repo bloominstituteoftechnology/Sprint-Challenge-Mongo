@@ -3,7 +3,9 @@ const Category = require('../data/Category');
 
 //set end points here
 router.get('/', (req, res) => {
-    Category.find()
+    Category
+    .find()
+    // .populate('title -_id -createdAt')
     .then(categories => {
         res.status(200).json(categories);
     })

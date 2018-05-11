@@ -19,8 +19,8 @@ const Expense = new mongoose.Schema({
     category: {
         type: ObjectId,
         ref: 'Category'
-    }
-}, { timestamps: true });
+    },
+});
 
 //module export
 module.exports = mongoose.model('Expense', Expense);

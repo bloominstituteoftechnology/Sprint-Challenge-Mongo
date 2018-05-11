@@ -6,8 +6,8 @@ title: {
         type: String,
         required: true,
         unique: true
-        }
-    }, { timestamps: true });
+        },
+    });
 
 //module export
 module.exports = mongoose.model('Category', Category, 'categories');

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 //Postman Test ok! http://localhost:5000/api/budgets (3000 budget created)
 router.post('/', (req, res) => {
-   const { title, budgetAmount } = req.body;
+    const { title, budgetAmount } = req.body;
     const newBudget = { title, budgetAmount };
     const budget = new Budget(newBudget);
     budget.save().then(budget => {
