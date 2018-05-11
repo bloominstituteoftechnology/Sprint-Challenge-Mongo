@@ -1,18 +1,18 @@
 const express = require('express');
 
-const Category = require('./categoryModel.js');
+const Budget = require('../Models/budgetModel.js');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  Category.find()
+  Budget.find()
     .then(response => {
       res.json(response);
     })
 })
 router.post ('/', (req, res) => {
-  const category = new Category(req.body);
-  category.save()
+  const budget = new Budget(req.body);
+  budget.save()
     .then(response => {
       res.status(201).json(response);
     })
@@ -20,5 +20,4 @@ router.post ('/', (req, res) => {
       res.status(400).json({error: 'error, bad request did you fill out all required fields?'})
     })
 })
-
 module.exports = router;

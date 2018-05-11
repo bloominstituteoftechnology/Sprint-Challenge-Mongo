@@ -1,21 +1,18 @@
 const express = require('express');
 
-const Expense = require('./expenseModel.js');
+const Category = require('../Models/categoryModel.js');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  Expense.find()
-    .populate('category')
-    .populate('budget')
+  Category.find()
     .then(response => {
       res.json(response);
     })
 })
-
 router.post ('/', (req, res) => {
-  const expense = new Expense(req.body);
-  expense.save()
+  const category = new Category(req.body);
+  category.save()
     .then(response => {
       res.status(201).json(response);
     })

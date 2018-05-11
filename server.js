@@ -2,9 +2,9 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const connect = require('./data/connect.js');
-const categoryController = require('./MVC/Category/categoryController.js');
-const budgetController = require('./MVC/Budget/budgetController.js');
-const expenseController = require('./MVC/Expense/expenseController.js');
+const categoryController = require('./MVC/Controllers/categoryController.js');
+const budgetController = require('./MVC/Controllers/budgetController.js');
+const expenseController = require('./MVC/Controllers/expenseController.js');
 
 const server = express();
 
