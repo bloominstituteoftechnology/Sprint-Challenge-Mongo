@@ -35,5 +35,4 @@ router.post('/', (req, res) => {
 		.then(budg => res.status(201).json(`Saved: ${budg}`))
 		.catch(error => res.status(500).json(`Error from server: ${error}`));
 });
-
 module.exports = router;
