@@ -1,4 +1,5 @@
-const express = require('express'); // remember to install your npm packages
+const express = require('express'); 
+const mongoose = require('mongoose');
 
 const server = express();
 
