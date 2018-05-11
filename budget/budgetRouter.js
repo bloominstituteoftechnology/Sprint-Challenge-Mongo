@@ -6,7 +6,7 @@ const router = require('express').Router();
 
 router
     .route('/')
-    // .get(get)
+    .get(get)
     .post(post)
 router
     .route('/:id')
