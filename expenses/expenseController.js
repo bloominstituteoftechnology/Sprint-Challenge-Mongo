@@ -16,7 +16,6 @@ router.route('/')
 
   .post((req, res) => {
     const { amount, description, budget, category } = req.body;
-
     const expense = new Expense(req.body);
     expense
       .save()
