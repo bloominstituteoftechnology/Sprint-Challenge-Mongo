@@ -15,3 +15,5 @@
     Refs are of type ObjectId, which is a special data type supported by Mongo, and they represent links to related data. In order to "fill" in the appropriate relational data with mongoose, devs use the populate() method to replace the refs with data.
 
 3.  Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
+
+    We used Express's Routers to break up an API into Sub-Applications.
