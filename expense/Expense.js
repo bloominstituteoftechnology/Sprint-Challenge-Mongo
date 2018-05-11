@@ -1,5 +1,5 @@
-const mongooose = require('mongoose');
-const ObjectId = mongooose.Schema.Types.ObjectId;
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const Expense = mongoose.Schema({
   amount: Number,
