@@ -3,15 +3,22 @@ const router = express.Router();
 
 const Category = require("./Category");
 
-// POST to '/categories'
-// you can write a getter 'get' method that simply returns all the categories. Filter out any unuseful information here, meaning we just want the title of the categories.
-// create a minimum of 4 categories so that when you create your expenses, you can assign where they go!
-// example of categories could be: Food/Dining Gas/Auto Date Nights Mortgage
-
 router
 	.route("/")
 	.get(get)
 	.post(post);
+
+function get(req, res) {
+	const query = Category.find().select({ title: 1, _id: 0 });
+
+	query
+		.then(categories => {
+			res.status(200).json(categories);
+		})
+		.catch(err => {
+			res.status(500).json({ errorMessage: "Categories can not be retrieved" });
+		});
+}
 
 function post(req, res) {
 	const newCategory = req.body;
@@ -34,3 +41,5 @@ function post(req, res) {
 			});
 	}
 }
+
+module.exports = router;
