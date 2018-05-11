@@ -6,6 +6,7 @@ const server = express();
 
 // api require
 const db = require('./data/db');
+const budgetController = require('./controllers/BudgetController');
 
 // connect to database
 db.conntectTo('budgetTracker')
@@ -21,6 +22,8 @@ server.use(express.json());
 server.get('/', (req, res) => {
   res.status(201).json('Server is running')
 });
+
+server.use('/api/budgets', budgetController);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
