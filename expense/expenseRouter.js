@@ -17,14 +17,19 @@ router.post("/", function post(req, res) {
 });
 
 router.get("/", function get(req, res) {
-  Expense.find().then(expenses => {
-    res.status(200).json(expenses);
-  });
+  Expense.find()
+    .populate("budget")
+    .populate("category")
+    .then(expenses => {
+      res.status(200).json(expenses);
+    });
 });
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   Expense.findById(id)
+    .populate("budget")
+    .populate("category")
     .then(expenses => {
       res.status(200).json(expenses);
     })

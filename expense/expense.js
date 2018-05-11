@@ -11,8 +11,8 @@ const definition = {
     category: { type: ObjectId, ref: 'Category' }
 };
 
-const expenseSchema = new mongoose.Schema(definition); 
+const expenseSchema = new mongoose.Schema(definition);
 
-const expenseModel = mongoose.model('Expense', expenseSchema, 'expenses'); 
+const expenseModel = mongoose.model('Expense', expenseSchema, 'expenses');
 
 module.exports = expenseModel;
