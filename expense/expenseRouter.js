@@ -16,8 +16,19 @@ router.get('/', (req, res) => {
         });
 })
 
-// router.post('/', (req, res) => {
-//     const id = req.params;
-// })
+router.post('/', (req, res) => {
+    const expenseData = req.body;
+
+    const expense = new Expense(expenseData);
+
+    expense
+        .save()
+        .then(expense => {
+            res.status(200).json(expense)
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        });
+});
 
 module.exports = router;
