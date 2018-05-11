@@ -30,13 +30,13 @@ errorHandler = (err, req, res, next) => {
 
 server.use(express.json());
 
-server.use('/api/budget', budgetController);
-server.use('/api/category', categoryController);
-server.use('/api/expense', expenseController);
-
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' });
 });
+
+server.use('/api/budgets', budgetController);
+server.use('/api/categories', categoryController);
+server.use('/api/expenses', expenseController);
 
 server.use(errorHandler);
 

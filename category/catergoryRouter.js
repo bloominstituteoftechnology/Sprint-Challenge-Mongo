@@ -12,13 +12,13 @@ router
 
 function get(req, res) {
     Category.find()
-    .select('category')
-    .then(category => {
-        res.status(200).json(category);
-    })
-    .catch(err => {
-        res.status(500).json(err);
-    });
+        .select('title')
+        .then(category => {
+            res.status(200).json(category);
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
 }
 
 function post(req, res) {
@@ -29,9 +29,7 @@ function post(req, res) {
     category
         .save()
         .then(category => {
-            Character.find().then(category => {
-                res.status(200).json(category);
-            });
+            res.status(200).json(category);
         })
         .catch(err => {
             res.status(500).json(err);
