@@ -6,6 +6,7 @@ const Category = require('./categoryModel');
 router.route('/')
   .get((req, res) => {
     Category.find()
+      .select('-_id -__v')
       .then(categories => res.json(categories))
       .catch(err => res.status(500).json(err));
   })
