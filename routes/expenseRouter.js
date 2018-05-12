@@ -2,16 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const Expense = require('../models/expense.js');
-const Category = require('../models/category.js');
 const Budget = require('../models/budget.js');
 
 router.post('/', (req, res) => {
-    const expItem = req.body;
-    const expense = new Expense(expItem);
+    Expense.create(req.body)
 
-    expense.save()
     .then(item => res.status(201).json(item))
-    .catch(err => res.status(500).json({ error: err }).end());
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 router.get('/:id', (req, res) => {

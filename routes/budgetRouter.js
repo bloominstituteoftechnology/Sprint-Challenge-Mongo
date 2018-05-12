@@ -11,14 +11,14 @@ router.post('/', (req, res) => {
 
     budget.save()
         .then(item => res.status(201).json(item))
-        .catch(err => res.status(500).json({ error: err }).end());
+        .catch(err => res.status(500).json({ error: err }));
 });
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
     Budget.findById(id)
-        .then(item => {res.status(200).json(item);
+        .then(item => {res.status(201).json(item);
         })
         .catch(err => res.status(500).json({ error: err }));
 });

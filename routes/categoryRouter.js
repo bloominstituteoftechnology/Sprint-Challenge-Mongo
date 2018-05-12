@@ -9,7 +9,7 @@ router.post('/', (req, res) => {
 
     category.save()
     .then(item => res.status(201).json(item))
-    .catch(err => res.status(500).json({ error: err }).end());
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 router.get('/', (req, res) => {
