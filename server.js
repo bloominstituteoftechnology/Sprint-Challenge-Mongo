@@ -7,8 +7,8 @@ mongoose
   .then(() => console.log('connected to mongo'))
   .catch(err => console.log('could not connect to mongo'));
 
-// const budgetController = require('');
-// const categoryController = require('');
+const budgetController = require('./controllers/budgetController');
+const categoryController = require('./controllers/categoryController');
 const expenseController = require('./controllers/expenseController');
 
 // remember to install your npm packages
@@ -24,8 +24,8 @@ server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' });
 });
 
-// server.use('/api/budgets', budgetController);
-// server.use('/api/categories', categoryController);
+server.use('/api/budgets', budgetController);
+server.use('/api/categories', categoryController);
 server.use('/api/expenses', expenseController);
 
 const port = process.env.PORT || 5000;
