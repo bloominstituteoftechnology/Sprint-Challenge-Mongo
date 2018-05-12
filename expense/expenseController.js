@@ -13,7 +13,8 @@ router
       req.body.category
     ) {
       const expense = new Expense(req.body);
-      expense.save().then(savedExpense => {
+      expense.save()
+      .then(savedExpense => {
         res.json(savedExpense);
       });
     } else {
