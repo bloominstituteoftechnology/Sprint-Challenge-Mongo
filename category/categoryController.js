@@ -6,8 +6,7 @@ const router = express.Router();
 router.route('/')
   .get((req, res) => {
     Category
-    // .find({}, { title: 1, _id: 0 }) // find all existing categories and return them with only their title
-    .find()
+    .find({}, { title: 1, _id: 1 }) // find all existing categories and return them with only their title
     .then(categories => res.status(200).json(categories))
     .catch(err => res.status(500).json({ error: "Cannot fetch any categories at this time." }))
   })
