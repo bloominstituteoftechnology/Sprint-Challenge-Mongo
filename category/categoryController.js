@@ -7,6 +7,7 @@ router.route('/')
   .get((req, res) => {
     Category
     .find({}, { title: 1, _id: 1 }) // find all existing categories and return them with only their title
+    .populate('budget', 'title') // populate 'budget' and only show 'title'
     .then(categories => res.status(200).json(categories))
     .catch(err => res.status(500).json({ error: "Cannot fetch any categories at this time." }))
   })
@@ -15,9 +16,8 @@ router.route('/')
     const { title, budget } = req.body; // pass ObjectId from existing budget as a string
     if (!title || title === "") { res.status(400).send("A title is required to create a category.") }
   
-    const category = new Category({ title, budget });
-    category
-      .save()
+    Category
+      .create(req.body) // returns a promise
       .then(savedCategory => res.status(201).json(savedCategory))
       .catch(err => res.status(500).json({ error: "There was an issue saving your category." }))
   })
@@ -27,7 +27,7 @@ router.route('/:id')
     const { id } = req.params;
     Category
       .findById(id)
-      .populate('budget')
+      .populate('budget', 'title')
       .then(cat => res.send(cat))
       .catch(err => res.send("Error."))
   })
@@ -42,9 +42,10 @@ router.route('/:id')
 
   .put((req, res) => {
     const { id } = req.params;
-    const updates = req.body; // should only need to pass the fields that you're updating
+    const updates = req.body; // should only need to pass the field(s) that you're updating
     Category
       .findByIdAndUpdate(id, updates, { new: true })
+      .populate('budget', 'title')
       .then(updated => res.status(200).json(updated))
       .catch(err => res.status(500).json({ error: "Cannot update this category. Verify the provided ID." }))    
   })
