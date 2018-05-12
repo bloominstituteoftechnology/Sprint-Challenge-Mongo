@@ -7,6 +7,7 @@ router
   .get("/:id", (req, res) => {
     const id = req.params.id;
     Budget.findById(id)
+      .select('-__v')
       .then(budgets => {
         res.status(200).json(budgets);
       })
