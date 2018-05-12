@@ -23,13 +23,21 @@ router.route('/')
       .catch(err => res.status(500).json("Error."))
   })
 
-router.route('/:id').get((req, res) => {
-  Expense
-    .findById(req.params.id)
-    .populate('budget')
-    .populate('category')
-    .then(expense => res.status(200).json(expense))
-    .catch(err => res.status(500).json(err))
-})
+router.route('/:id')
+  .get((req, res) => {
+    Expense
+      .findById(req.params.id)
+      .populate('budget')
+      .populate('category')
+      .then(expense => res.status(200).json(expense))
+      .catch(err => res.status(500).json(err))
+  })
+
+  .delete((req, res) => {
+    Expense
+      .findOneAndRemove({ _id: req.params.id })
+      .then(removed => res.status(200).json(removed))
+      .catch(err => res.status(500).json({ error: "Cannot remove expense with the provided ID." }))
+  })
 
 module.exports = router;
