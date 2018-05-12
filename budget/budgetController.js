@@ -25,11 +25,19 @@ router.route('/')
   })
 
 router.route('/:id').get((req, res) => {
-  Budget
-    .findById(req.params.id)
-    .populate('categories')
-    .then(budget => res.status(200).json(budget))
-    .catch(err => res.status(500).json(err))
+  const { id } = req.params;
+  
+  Budget.findById(id)
+    .then(budget => {
+      Category
+        .find()
+        .where('budget', id)
+        .select('title -_id')
+        .then(cats => {
+          const budgetz = { ...budget._doc, categories: cats };
+          res.status(200).json(budgetz);
+        }).catch(() => res.status(500).send("Error fetching associated categories for this budget."))
+    }).catch(err => res.status(500).json("Cannot locate any budgets with the given ID."))
 })
 
 module.exports = router;
