@@ -27,8 +27,7 @@ router.route('/:id')
   .get((req, res) => {
     Expense
       .findById(req.params.id)
-      .populate('budget')
-      .populate('category')
+      .populate({ path: 'budget category', select: 'title -_id' }) // successfully updated both budget and category
       .then(expense => res.status(200).json(expense))
       .catch(err => res.status(500).json(err))
   })
@@ -38,6 +37,14 @@ router.route('/:id')
       .findOneAndRemove({ _id: req.params.id })
       .then(removed => res.status(200).json(removed))
       .catch(err => res.status(500).json({ error: "Cannot remove expense with the provided ID." }))
+  })
+
+  .put((req, res) => {
+    Expense
+      .findByIdAndUpdate(req.params.id, req.body, { new: true }) // returns updated object when 'new' is set to true
+      .populate({ path: 'budget category', select: { title: 1, _id: 0 } })
+      .then(updated => res.status(200).json(updated))
+      .catch(err => res.status(500).json({ error: "Invalid input. Check ID and updated fields." }))
   })
 
 module.exports = router;
