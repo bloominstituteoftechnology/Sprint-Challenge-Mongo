@@ -8,4 +8,4 @@
 * 1-Many typically utilizes references (linking) to different collections
 
 ### Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
-* nesting multiple schemas within a model/document
+* routes based on application resources 
