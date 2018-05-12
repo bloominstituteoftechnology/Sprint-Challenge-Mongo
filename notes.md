@@ -132,7 +132,7 @@ Parameters:
     .populate({ match: { field: "value", field2: value2 } })
     ```
 
-  * [**options**] - object - options for the population query
+  * [**options**] - object - display options for the returned population query
     ```
     .populate({ options: { sort: {field: -1} } })
     ```
@@ -149,6 +149,13 @@ Pattern:
     2. a seperate query for each specified population path is executed
     3. a response from each query is returned
     4. optional callback is executed
+    ```
+    ModelName
+      .find() // returns a query
+      .populate()
+      .then()
+      .catch()
+    ```
 
 ## model.**populate()**
   * returns a **promise**

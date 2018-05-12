@@ -8,6 +8,8 @@ router.route('/')
   .get((req, res) => {
     Expense
       .find() // returns array of expenses
+      .populate({ path: 'budget', select: 'title -_id' })
+      .populate({ path: 'category', select: { title: 1, _id: 0 } })
       .then(expense => res.status(200).json(expense))
       .catch(err => res.status(500).json(err))
   })
