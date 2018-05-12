@@ -4,7 +4,6 @@ const Category = require('../category/categoryModel');
 const router = express.Router();
 
 router.route('/')
-  // .get((req, res) => res.send("Budget router is functional."))
   .get((req, res) => {
     Budget
       .find()
@@ -17,27 +16,42 @@ router.route('/')
     if (!title || title === "") { res.status(400).json({ error: "Title is required." }) }
     if (!budget || budget <= 0) { res.status(400).json({ error: "Budget is required. Value must be a number greater than zero." }) }
 
-    const newBudget = new Budget(req.body);
-    newBudget
-      .save()
+    Budget
+      .create(req.body)
       .then(savedBudget => res.status(201).json(savedBudget))
       .catch(err => res.status(500).json({ error: "A problem was encountered while saving this budget." }))
   })
 
-router.route('/:id').get((req, res) => {
-  const { id } = req.params;
-  
-  Budget.findById(id)
-    .then(budget => {
-      Category
-        .find()
-        .where('budget', id)
-        .select('title -_id')
-        .then(cats => {
-          const budgetz = { ...budget._doc, categories: cats };
-          res.status(200).json(budgetz);
-        }).catch(() => res.status(500).send("Error fetching associated categories for this budget."))
-    }).catch(err => res.status(500).json("Cannot locate any budgets with the given ID."))
-})
+router.route('/:id')
+  .get((req, res) => {
+    const { id } = req.params;
+    Budget
+      .findById(id) // cant populate without any object id's
+      .then(budget => {
+        Category
+          .find({ budget: { _id: id } }, { title: 1, _id: 0 })
+          .then(cats => {
+            const view = { ...budget._doc, categories: cats };
+            res.status(200).json(view);
+          }).catch(err => res.send("error locating categories"))
+      }).catch(err => res.status(500).json("Cannot find this budget."))
+  })
+
+  .delete((req, res) => {
+    const { id } = req.params;
+    Budget
+      .findByIdAndRemove(id)
+      .then(removed => res.status(200).json(removed))
+      .catch(err => res.status(500).json("Cannot remove this budget. Please check your ID."))
+  })
+
+  .put((req, res) => {
+    const { id } = req.params;
+    const updates = req.body;
+    Budget
+      .findByIdAndUpdate(id, updates, { new: true })
+      .then(updated => res.status(200).json(updated))
+      .catch(err => res.status(500).json("Encountered an error while updating."))
+  })
 
 module.exports = router;
