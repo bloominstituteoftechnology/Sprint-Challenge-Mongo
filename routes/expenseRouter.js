@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Expense = require('../models/expense.js');
 const Category = require('../models/category.js');
+const Budget = require('../models/budget.js');
 
 router.post('/', (req, res) => {
     const expItem = req.body;
@@ -13,12 +14,17 @@ router.post('/', (req, res) => {
     .catch(err => res.status(500).json({ error: err }).end());
 });
 
-router.get('/', (req, res) => {
-   
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
 
-    query
-    .then(data => res.json({ data }))
-    .catch(err => console.log(err).res.status(500).json({ error: err }));
+    Expense.findById(id)
+    .populate('category', '-_id')
+    .populate('budget', '-_id')
+
+    .then(expItem => {
+        res.status(201).json(expItem);
+    })
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 module.exports = router;
