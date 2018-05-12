@@ -7,7 +7,6 @@ const Category = new mongoose.Schema({
         type: String,
         required: true,
     },
-
 })
 
 module.exports = mongoose.model('Category', Category);

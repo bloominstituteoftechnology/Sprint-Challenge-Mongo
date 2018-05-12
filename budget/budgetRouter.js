@@ -4,7 +4,7 @@ const Budget = require('./budgetModel');
 router
     .post('/', function post(req, res) {
         const budgetData = req.body;
-        const budget = new Budget (budgetData);
+        const budget = new Budget(budgetData);
 
         budget
             .save()
