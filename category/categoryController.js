@@ -40,6 +40,15 @@ router.route('/:id')
       .catch(err => res.status(500).json({ error: "Please verify that the provided ID is accurate." }))
   })
 
+  .put((req, res) => {
+    const { id } = req.params;
+    const updates = req.body; // should only need to pass the fields that you're updating
+    Category
+      .findByIdAndUpdate(id, updates, { new: true })
+      .then(updated => res.status(200).json(updated))
+      .catch(err => res.status(500).json({ error: "Cannot update this category. Verify the provided ID." }))    
+  })
+
 
 module.exports = router;
 
