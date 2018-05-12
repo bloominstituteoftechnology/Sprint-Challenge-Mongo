@@ -54,9 +54,7 @@ const categoriesGetAllRoute = async (req, res, next) => {
 server.get('/categories', asyncRouteGenerator(categoriesGetAllRoute));
 
 const expensesPostRoute = async (req, res, next) => {
-  const {
-    body: { budget, category, description, amount }
-  } = req.body;
+  const { budget, category, description, amount } = req.body;
 
   const expense = await new ExpenseModel({
     budget,
