@@ -9,7 +9,9 @@
     "build": "babel src -d dist"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   },
   "keywords": [],
   "author": "Lambda School",

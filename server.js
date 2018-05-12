@@ -1,19 +1,32 @@
 import express from 'express'; // remember to install your npm packages
 import helmet from 'helmet';
+import mongoose from 'mongoose';
+
+import { BudgetModel } from './models/budget';
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log('connected'))
+  .catch(err => console.error(err));
 
 const server = express();
 
 // add your server code
-const app = express();
 
-app.use(helmet());
-app.use(express.json());
+server.use(helmet());
+server.use(express.json());
 
-// async error catcher
-const asyncMiddleware = fn => (error, req, res, next) => {
-  const isPromise = fn instanceof Promise;
-  if (!isPromise) return next(error);
-};
+server.post('/budgets', async (req, res) => {
+  const { body } = req;
+  // validate body
+
+  const newBudget = await new BudgetModel(body);
+  console.log(newBudget);
+  await res.send('hey');
+});
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
