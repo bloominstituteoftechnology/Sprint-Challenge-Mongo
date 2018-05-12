@@ -94,6 +94,7 @@ collection.findOne({ field: value })
 #
 
 ## model.**create( object )**
+  * returns a **promise**
   * creates and saves a new document to a collection
   * essentially a shortcut for:
     ``` 

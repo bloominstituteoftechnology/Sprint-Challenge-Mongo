@@ -8,17 +8,15 @@ router.route('/')
   .get((req, res) => {
     Expense
       .find() // returns array of expenses
-      .populate({ path: 'budget', select: 'title -_id' })
-      .populate({ path: 'category', select: { title: 1, _id: 0 } })
+      .populate({ path: 'budget category', select: 'title -_id' })
       .then(expense => res.status(200).json(expense))
       .catch(err => res.status(500).json(err))
   })
 
   .post((req, res) => {
     const { amount, description, budget, category } = req.body;
-    const expense = new Expense(req.body);
-    expense
-      .save()
+    Expense
+      .create(req.body) // returns a promise
       .then(expense => res.status(201).json(expense))
       .catch(err => res.status(500).json("Error."))
   })
