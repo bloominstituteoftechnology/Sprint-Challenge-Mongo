@@ -5,13 +5,11 @@
   "main": "server.js",
   "scripts": {
     "babel-node": "babel-node --presets=env",
-    "start": "nodemon --exec npm run babel-node -- src/server.js",
+    "start": "nodemon --exec npm run babel-node -- server.js",
     "build": "babel src -d dist"
   },
   "babel": {
-    "presets": [
-      "env"
-    ]
+    "presets": ["env"]
   },
   "keywords": [],
   "author": "Lambda School",
