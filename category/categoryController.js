@@ -22,14 +22,23 @@ router.route('/')
       .catch(err => res.status(500).json({ error: "There was an issue saving your category." }))
   })
 
-router.route('/:id').get((req, res) => {
-  const { id } = req.params;
-  Category
-    .findById(id)
-    .populate('budget')
-    .then(cat => res.send(cat))
-    .catch(err => res.send("Error."))
-})
+router.route('/:id')
+  .get((req, res) => {
+    const { id } = req.params;
+    Category
+      .findById(id)
+      .populate('budget')
+      .then(cat => res.send(cat))
+      .catch(err => res.send("Error."))
+  })
+
+  .delete((req, res) => {
+    const { id } = req.params;
+    Category
+      .findByIdAndRemove(id)
+      .then(removed => res.status(200).json(removed))
+      .catch(err => res.status(500).json({ error: "Please verify that the provided ID is accurate." }))
+  })
 
 
 module.exports = router;
