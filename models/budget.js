@@ -13,4 +13,7 @@ const BudgetDefinition = {
 };
 
 export const BudgetSchema = new Schema(BudgetDefinition);
+/**
+ * @type mongoose.Model<mongoose.Document>
+ */
 export const BudgetModel = mongoose.model('Budget', BudgetSchema);

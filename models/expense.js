@@ -15,4 +15,7 @@ const ExpenseDefinition = {
 };
 
 export const ExpenseSchema = new Schema(ExpenseDefinition);
+/**
+ * @type mongoose.Model<mongoose.Document>
+ */
 export const ExpenseModel = mongoose.model('Expense', ExpenseSchema);
