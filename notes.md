@@ -106,6 +106,8 @@ collection.findOne({ field: value })
 
 # Populate
 
+Population has to do with GET requests, not POST.
+
 Parameters:
   * **path** - either the path to populate (string), or an object specifying all parameters (object)
     ```
@@ -136,10 +138,9 @@ Parameters:
     ```
 
 Pattern:
-  ```
-  Collection
-    .find() 
-  ```
+  * populate a model - `ModelName.populate()`
+  * populate a query - `ModelName.find().populate()`
+  * shorthand - `something.populate('path', 'select', model, match, options)`
 
 ## query.**populate()**
   * returns a **query**
@@ -190,18 +191,13 @@ Pattern:
   * returns the populated document
   * parameters include ...
     * [**path**] - either the path to populate (string), or an options object
-    ```
-    document.populate('field', cb)
-    document.populate(reference_to_options_object, cb)
-    ```
+      ```
+      document.populate('field', cb)
+      document.populate(reference_to_options_object, cb)
+      ```
     * [**callback**] - invokes population when passed
       * population does not occur unless a callback is passed or you use `.execPopulate()`
-    ```
-    document.populate(callback) // returns a query
-    document.populate(options).execPopulate() // returns a promise
-    ```
-
-***
-***
-***
-population has to do with GET , not POST
+      ```
+      document.populate(callback) // returns a query
+      document.populate(options).execPopulate() // returns a promise
+      ```
