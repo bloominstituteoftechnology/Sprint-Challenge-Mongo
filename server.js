@@ -1,4 +1,4 @@
-const express = require('express'); // remember to install your npm packages
+import express from 'express'; // remember to install your npm packages
 
 const server = express();
 
