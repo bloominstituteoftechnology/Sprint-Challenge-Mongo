@@ -7,9 +7,7 @@ const router = express.Router();
 router.route('/')
   .get((req, res) => {
     Expense
-      .find()
-      .populate('budget', '-_id title')
-      .populate('category', '-_id title')
+      .find() // returns array of expenses
       .then(expense => res.status(200).json(expense))
       .catch(err => res.status(500).json(err))
   })
@@ -22,5 +20,14 @@ router.route('/')
       .then(expense => res.status(201).json(expense))
       .catch(err => res.status(500).json("Error."))
   })
+
+router.route('/:id').get((req, res) => {
+  Expense
+    .findById(req.params.id)
+    .populate('budget')
+    .populate('category')
+    .then(expense => res.status(200).json(expense))
+    .catch(err => res.status(500).json(err))
+})
 
 module.exports = router;

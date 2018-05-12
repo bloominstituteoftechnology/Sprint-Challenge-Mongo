@@ -5,6 +5,7 @@ const Budget = new mongoose.Schema({
 
   title: { type: String, required: true },
   budget: { type: Number, required: true, min: 1 },
+  categories: [{ type: ObjectId, ref: 'Category' }],
   createdOn: { type: Date, default: Date.now }
 
 });

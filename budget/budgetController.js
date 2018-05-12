@@ -1,5 +1,6 @@
 const express = require('express');
 const Budget = require('./budgetModel');
+const Category = require('../category/categoryModel');
 const router = express.Router();
 
 router.route('/')
@@ -22,5 +23,13 @@ router.route('/')
       .then(savedBudget => res.status(201).json(savedBudget))
       .catch(err => res.status(500).json({ error: "A problem was encountered while saving this budget." }))
   })
+
+router.route('/:id').get((req, res) => {
+  Budget
+    .findById(req.params.id)
+    .populate('categories')
+    .then(budget => res.status(200).json(budget))
+    .catch(err => res.status(500).json(err))
+})
 
 module.exports = router;

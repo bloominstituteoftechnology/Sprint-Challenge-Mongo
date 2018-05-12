@@ -7,7 +7,7 @@ const Expense = new mongoose.Schema({
   description: { type: String, required: true },
   budget: { type: ObjectId, ref: 'Budget' },
   category: { type: ObjectId, ref: 'Category' },
-  createdOn: { type: Date, default: Date.now }
+  // createdOn: { type: Date, default: Date.now }
 
 });
 
