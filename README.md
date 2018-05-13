@@ -121,4 +121,7 @@ You are **not required** to work on the stretch goal, but if you're done with th
 1. Add a React front end.
 
 **Good Luck!**
+
 **Testing GPG Key**
+
+**Testing GPG Key and script from IDE**
