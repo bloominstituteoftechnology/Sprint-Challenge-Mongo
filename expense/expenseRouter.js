@@ -3,8 +3,8 @@ const Expense = require('./expenseModel');
 
 router.get('/', function get(req, res) {
     Expense.find()
-    // .populate('budget', 'title budgetAmount')
-    // .populate('category', 'title ')
+    .populate('budget', 'title budgetAmount -_id')
+    .populate('category', 'title -_id')
      .then(expenses =>
         res.status(200).json(expenses))
     //  .catch(err =>
@@ -22,5 +22,20 @@ router.post('/', function post(req, res) {
       })
       .catch(err => res.status(500).json({errorMessage: 'Cant Mang.'}));
     });
+
+    router.delete('/:id', (req, res) => {
+        const { id } = req.params;
+
+        Expense.findByIdAndRemove(id)
+          .then(expense => {
+            if (expense) {
+              res.status(204).end();
+            } else {
+              res.status(404).json({ msg: 'whaaa?' });
+            }
+          })
+          .catch(err => res.status(500).json(err));
+      });
+
 
 module.exports = router;
