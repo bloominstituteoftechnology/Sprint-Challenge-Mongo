@@ -1,6 +1,12 @@
 const express = require('express'); // remember to install your npm packages
 const helmet = require("helmet");
 const mongoose = require("mongoose");
+
+
+const budgets = require("./routes/budgets");
+const categories = require("./routes/categories");
+const expenses = require("./routes/expenses");
+
 const server = express();
 
 mongoose.connect("mongodb://localhost/budgetTracker")
@@ -12,9 +18,12 @@ mongoose.connect("mongodb://localhost/budgetTracker")
   })
 
 server.use(helmet());
-server.use(express());
+server.use(express.json());
 
-// add your server code
+server.use("/api/budgets", budgets);
+server.use("/api/categories", categories);
+server.use("/api/expenses", expenses);
+
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

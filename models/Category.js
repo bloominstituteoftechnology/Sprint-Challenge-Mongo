@@ -8,4 +8,4 @@ const Category = new Schema({
   }
 });
 
-mondule.exports = mongoose.model("Category", Category);
+module.exports = mongoose.model("Category", Category);
