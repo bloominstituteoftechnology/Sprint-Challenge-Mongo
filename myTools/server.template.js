@@ -2,10 +2,19 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 const db = require('./data/IDBCursor.js');
 
+/**
+ * IMPORT ROUTERS: import any needed Router.
+ */
 const Model = require('./Model/Model.model');
 
+/**
+ * DEFINE: Server.
+ */
 const server = express();
 
+/**
+ * CONNECT TO DATABASE: Connect to MongoDB.
+ */
 db.connectTo('budget_tracker')
   .then(() => console.log('\n... API Connected to Database ...\n'))
   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
