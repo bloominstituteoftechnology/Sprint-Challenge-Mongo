@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Budget = require('./Budget');
+const Budget = require('./Budget.js');
 
 router
     .route('/')

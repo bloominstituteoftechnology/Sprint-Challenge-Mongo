@@ -11,7 +11,8 @@ mongoose
     console.log('Error connecting to database', err);
   })
 
-const budgetController = require('./budget/budgetRouter');
+const budgetController = require('./budget/budgetRouter.js');
+
 
 
 const server = express();
