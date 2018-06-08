@@ -20,11 +20,11 @@ const definition = {
             type: ObjectId, 
             ref: 'Category'
         }
-}
+};
 
 const options = {
     timestamps: true
-}
+};
 
 const expenseSchema = new Schema(definition, options);
 

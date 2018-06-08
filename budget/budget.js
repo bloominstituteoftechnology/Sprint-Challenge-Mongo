@@ -12,7 +12,7 @@ const definition = {
             type: Number,
             required: true
         }
-}
+};
 
 const options = {
     timestamps: true
