@@ -9,4 +9,4 @@ const Expense = new mongoose.Schema({
   category: {type: ObjectId, ref: "Category" }
 });
 
-module.exports = mongoose.model('Expense', Expense);
+module.exports = mongoose.model('Expense', Expense, "Expenses");
