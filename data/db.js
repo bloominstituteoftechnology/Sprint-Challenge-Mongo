@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-module.exports = {
-    connectTo: function (database = 'sandbox', host = 'localhost') {
-        return mongoose.connect(`mongod://${host}/${database}`)
-    },
-};
+// module.exports = {
+//     connectTo: function (database = 'sandbox', host = 'localhost') {
+//         return mongoose.connect(`mongod://${host}/${database}`)
+//     },
+// };
 
