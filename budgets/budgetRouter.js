@@ -1,6 +1,9 @@
 const express = require('express')
 const Budget = require('./Budget.js')
+const Expense = require('../expenses/Expense.js')
 const router = express.Router()
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 
 router
     .route('/')
@@ -28,6 +31,61 @@ router
         Budget.find()
             .then( budgets => {
                 res.status(200).json(budgets)
+            })
+            .catch( err => {
+                res.status(500).json({
+                    error: err.message
+                })
+            })
+    })
+
+router
+    .route('/:id')
+    .get((req, res) => {
+        const { id } = req.params
+        Budget.findOne({ _id: { $eq: ObjectId(id) } })
+            .then( budget => {
+                let totalSpent = 0
+                Expense.find({ budget: { $eq: ObjectId(id) } })
+                    .then( expenses => {
+                        totalSpent = expenses.reduce( ( acc, curr ) => {
+                            return acc + curr.amount
+                        }, 0)
+                        const remaining = budget.budgetAmount - totalSpent
+                        res.json({...budget._doc, remainingBalance: remaining})
+                    })
+                    .catch( err => {
+                        res.status(500).json({
+                            error: err.message
+                        })
+                    })
+            })
+            .catch( err => {
+                res.status(500).json({
+                    error: err.message
+                })
+            })
+    })
+
+    .put((req, res) => {
+        const { id } = req.params
+        const changes = { budgetAmount, title } = req.body
+        Budget.findByIdAndUpdate(id, changes, { new: true })
+            .then( updatedBudget => {
+                res.status(200).json(updatedBudget)
+            })
+            .catch( err => {
+                res.status(500).json({
+                    error: err.message
+                })
+            })
+    })
+
+    .delete((req, res) => {
+        const { id } = req.params
+        Budget.findByIdAndRemove(id)
+            .then( deletedBudget => {
+                res.status(200).json(deletedBudget)
             })
             .catch( err => {
                 res.status(500).json({
