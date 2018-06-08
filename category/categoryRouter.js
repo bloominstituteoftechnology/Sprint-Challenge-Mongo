@@ -2,13 +2,15 @@ const express = require("express");
 const router = require("express").Router();
 const Category = require("./Category");
 
+const Budget = require("../budget/Budget.js");
+
 router
   .route("/")
   .post((req, res) => {
-    const categoryItem = req.body;
-    const category = new Category(categoryItem);
-    category
-      .save()
+    const { title } = req.body;
+    const catItem = { title };
+    //const category = new Category(categoryItem);
+    Category.create(catItem)
       .then(item => {
         res.status(201).json(item);
       })
