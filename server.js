@@ -6,7 +6,7 @@ const db = require('./data/db.js');
  * IMPORT ROUTERS: import any needed Router.
  */
 const Budget = require('./budget/Budget.model');
-const Categorie = require('./categories/Categorie.model');
+const Category = require('./categories/Category.model');
 const Expense = require('./expenses/Expense.model');
 
 /**
