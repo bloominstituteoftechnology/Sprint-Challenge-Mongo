@@ -5,4 +5,4 @@ const Budget = mongoose.Schema({
   budgetAmount: { type: Number, required: true }
 });
 
-module.exports = mongoose.model("Budget", budget);
+module.exports = mongoose.model("Budget", Budget);
