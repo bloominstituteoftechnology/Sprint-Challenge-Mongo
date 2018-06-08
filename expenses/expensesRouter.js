@@ -7,19 +7,10 @@ const router = express.Router();
 router
   .route('/')
   .get((req, res) => {
-    // if (req.query.category) {
-    //   Expense.find()
-    //     .where({ category: new RegExp(req.query.category, "gi")})
-    //     .populate("categories")
-    //     .populate("budgets")
-    //     .then(expense => {
-    //       res.status(200).json(expense);
-    //     })
-    //     .catch(err => {
-    //       res.status(500).json([{ error: err.message }]);
-    //     })
-    // }
     Expense.find()
+      .select('-_id -__v')
+      .populate({ path: 'budget', select: 'title budgetAmount -_id'})
+      .populate({ path: 'category', select: 'title -_id'})
       .then(expenses => {
         res.status(200).json(expenses);
       })
@@ -50,12 +41,10 @@ router
       });
   });
 
-// {
-//   _id: ObjectId('503c2b66bcf86cs793443564'),
-//     amount: 35,
-//       description: 'potatoes',
-//         budget: ObjectId('507f1f77bcf86cd799439011'), // Monthly Spending
-//           category: ObjectId('543d2c72gsb23cd657438921') // Groceries
-// }
+router
+  .route('/:id')
+  .get((req, res) => {
+
+  })
 
 module.exports = router;
