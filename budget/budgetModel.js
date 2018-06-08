@@ -12,9 +12,7 @@ const budgetSchema = new mongoose.Schema({
         type: Number,
         required: true,
         unique: true,
-    }
-
-
+    },
 
 });
 

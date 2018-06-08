@@ -8,9 +8,31 @@ const categorySchema = new mongoose.Schema({
         required: true,
         unique: true,
 
-    }
+    },
 
+    FoodandDining: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    
+    GasandAuto: {
+        type: String,
+        required: true,
+        unique: true,
+    },
 
+    DateNights: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+
+    Mortgage: {
+        type: String,
+        required: true,
+        unique: true,
+    },
 });
 
 const options = {
