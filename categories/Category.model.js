@@ -8,6 +8,7 @@ const Category = new Schema({
     required: true,
     unique: true,
   },
+  expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }],
 });
 
 module.exports = mongoose.model('Category', Category, 'categories');

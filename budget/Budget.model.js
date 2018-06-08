@@ -18,6 +18,7 @@ const Budget = new Schema({
       message: 'Budget must be equal or greater than zero',
     },
   },
+  expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }],
 });
 
 module.exports = mongoose.model('Budget', Budget);
