@@ -7,9 +7,9 @@ const server = express();
 
 // add your server code
 
-const budgetRouter = require('./budget/budgetRouter');
-const categoryRouter = require('./category/categoryRouter');
-const expenseRouter = require('./expense/expenseRouter');
+const budgetRouter = require('./budget/budgetRouter.js');
+const categoryRouter = require('./category/categoryRouter.js');
+const expenseRouter = require('./expense/expenseRouter.js');
 
 server.use(helmet()); 
 server.use(cors());
@@ -30,8 +30,7 @@ mongoose.connect(
   'mongodb://localhost/dbBudget',
    {}, 
    error => {
-     if (error) console.log(error); 
-     console.log(error)
+     if (error) console.log({error: error.message });      
      console.log('Mongoose connected us to our database!'); 
    }
 ); 

@@ -1,6 +1,5 @@
 const express = require('express'); 
 const Budget = require('./Budget.js'); 
-
 const router = express.Router(); 
 
 router
@@ -15,6 +14,10 @@ router
     .post((req, res) => {
         const { title , budgetAmount } = req.body;
         const newBudget = new Budget ({ title , budgetAmount });
+        if (!title || !budgetAmount) {
+            res.status(400).json({ error: 'Please provide title and budget amount.' });
+            return;
+        }
         newBudget
             .save()
             .then(savedBudget => {
