@@ -1,5 +1,6 @@
 const middleware = require('../middleware.js');
 const Budget = require('./Budget.js');
+const Expense = require('../expenses/Expense.js');
 const express = require('express');
 const router = express.Router();
 
@@ -20,5 +21,21 @@ router
   .delete(middleware.deleteMiddleware(Budget), (req, res) => {
     res.json(req.deleteResult);
   });
+
+  router
+    .route('/:id/remaining')
+    .get(middleware.getMiddleware(Budget), (req, res) => {
+
+
+      req.getResult.then((budget) => {
+        Expense.find()
+          .where('budget').in([req.params.id])
+          .then((expenses) => {
+            let remaining = budget.budgetAmount;
+            expenses.forEach((expense) => remaining -= expense.amount);
+            res.json({ remaining })
+          })
+      })
+    })
 
 module.exports = router;
