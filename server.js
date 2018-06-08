@@ -2,7 +2,7 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 
 const db = require('./db.js');
-// const budgetsRouter = require('./budgets/budgetsRouter.js');
+const budgetsRouter = require('./budgets/budgetsRouter.js');
 const categoriesRouter = require('./categories/categoriesRouter.js');
 const expensesRouter = require('./expenses/expensesRouter.js');
 
@@ -17,7 +17,7 @@ db
 server.use(helmet());
 server.use(express.json());
 
-// server.use('/budgets', budgetsRouter);
+server.use('/budgets', budgetsRouter);
 server.use('/categories', categoriesRouter);
 server.use('/expenses', expensesRouter);
 
