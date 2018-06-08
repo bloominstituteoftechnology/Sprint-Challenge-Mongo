@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Budget = require("./Budget");
 
 router.route("/").post((req, res) => {
-  budgetItem = req.body;
+  const budgetItem = req.body;
   const budget = new Budget(budgetItem);
   budget
     .save()

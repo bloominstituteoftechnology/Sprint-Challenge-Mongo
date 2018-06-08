@@ -5,7 +5,7 @@ const Category = require("./Category");
 router
   .route("/")
   .post((req, res) => {
-    categoryItem = req.body;
+    const categoryItem = req.body;
     const category = new Category(categoryItem);
     category
       .save()
