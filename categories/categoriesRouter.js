@@ -10,7 +10,7 @@ router.route('/').get(get).post(post)
 
 function get(req, res) {
     Category.find()
-        .selet('-__v -_id')
+        .select('-__v -_id')
         .then(category => {
             res.status(200).json({category})
         })

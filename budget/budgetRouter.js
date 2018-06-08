@@ -5,7 +5,7 @@ const userErr = (status, message, res) => {
     res.status(status).json({error: message});
     return;
 };
-router.route('/').post(post)
+router.route('/').post(post).get(get)
 
 function post (req, res){
     const budgetDb = req.body
@@ -23,5 +23,13 @@ function post (req, res){
                 userErr(500, err.message, res)
             })
     }
+}
+function get (req, res){
+    Budget.find()
+        .select('-__v -_id')
+        .then(budget => {
+            res.status(200).json({budget})
+        })
+        .catch(err => userErr(500, err.message, res))
 }
 module.exports = router;
