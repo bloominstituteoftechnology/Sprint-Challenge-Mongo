@@ -1,6 +1,8 @@
 * 1.  Describe the following: `DataBase`, `Collection` , `Document`
-    * DataBase: Structured set of data. Repository of resources that can be accessed. 
-    
+    * DataBase: Structured set of data. Repository of resources that can be accessed.
+    * Document: The document is the unit of storing data in a MongoDB database.  
+    * Collection: A collection may store a number of documents. A collection is analogous to a table of an RDBMS.
+
 * 1.  Describe how one can achieve the pattern of _relationships_ in MongoDB. What
     needs to take place at the schema level? How do we _'fill'_ in the
     appropriate relational data using mongoose?
