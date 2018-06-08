@@ -9,8 +9,26 @@ const getMiddleware = (goose) => {
   }
 }
 
+const postMiddleware = (goose) => {
+  return (req, res, next) => {
+    if (req.params.id) res.status(400).json({ errorMessage: "Cannot post to specific ID" })
+    else {
+      const postGoose = new goose(req.saneBody);
+      postGoose
+        .save()
+        .then(postedGoose => {
+          req.postResult = postedGoose;
+          next();
+        })
+        .catch(error => {
+          res.status(500).json({ error: error });
+        });
+    }
+  }
+}
+
 //middleware to sanitize the body
-const sanitizeMiddleWare = (type) => {
+const sanitizeMiddleware = (type) => {
   return (req, res, next) => {
     if (type === "budget") {
       const budget = ({ title, budgetAmount } = req.body);
@@ -35,15 +53,13 @@ const sanitizeMiddleWare = (type) => {
       }
       req.saneBody = expense;
     }
-
     next();
   }
 }
 
+
 module.exports = {
-  getMiddleware: getMiddleware
+  sanitizeMiddleware: sanitizeMiddleware,
+  getMiddleware: getMiddleware,
+  postMiddleware: postMiddleware
 };
-
-
-
-const friend = ({ firstName, lastName, age, contactInfo } = req.body);
