@@ -23,7 +23,7 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-server.use('/api/budget', budgetController);
+server.use('/api/budgets', budgetController);
 server.use('/api/categories', categoryController);
 server.use('/api/expenses', expenseController);
 
