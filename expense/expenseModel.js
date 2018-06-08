@@ -19,8 +19,8 @@ description: {
     type: String,
     require: true
 },
-budgets: [{ type: ObjectId, ref: "Budget" }], 
-categories: [{ type: ObjectId, ref: "Category" }]
+budget: [{ type: ObjectId, ref: "Budget", required: true }], 
+category: [{ type: ObjectId, ref: "Category", required: true }]
 });    
 
 
