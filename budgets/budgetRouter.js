@@ -24,4 +24,16 @@ router
         }
     })
 
+    .get((req, res) => {
+        Budget.find()
+            .then( budgets => {
+                res.status(200).json(budgets)
+            })
+            .catch( err => {
+                res.status(500).json({
+                    error: err.message
+                })
+            })
+    })
+
 module.exports = router
