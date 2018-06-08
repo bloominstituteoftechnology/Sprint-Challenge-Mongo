@@ -7,6 +7,8 @@ router
     .route('/')
     .post((req, res) => {
         const { title } = req.body
+        // Data Sanitization: 
+        title === undefined || typeof (title) != "number" ? res.status(400).json({ error: "Please provide correct data" }) : null
         newCategory = new Category({ title })
         newCategory.save()
             .then(result => res.status(201).json(result))

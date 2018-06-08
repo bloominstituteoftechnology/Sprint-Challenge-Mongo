@@ -7,6 +7,9 @@ router
     .route('/')
     .post((req, res) => {
         const { title, budget } = req.body
+        // Data Sanitization: 
+        title === undefined || typeof (title) != "string" ? res.status(400).json({ error: "Please provide an adequate title" }) : null
+        budet === undefined || typeof (budget) != "number" || budget < 0 ? res.status(400).json({ error: "Please provide an adequate budget" }) : null
         const newBudget = new Budget({ title, budget })
         newBudget.save()
             .then(result => {

@@ -10,7 +10,6 @@ const Expense = mongoose.Schema({
     description: { type: String },
     category: { type: ObjectId, ref: 'Category' },
     budget: { type: ObjectId, ref: 'Budget' },
-
 })
 
 module.exports = mongoose.model('Expense', Expense)
