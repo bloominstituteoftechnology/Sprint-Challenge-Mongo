@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const Expense = mongoose.Schema({
-    amount: Number,
+    amount: {
+        type: Number,
+        default: 0
+    },
     description: String,
-    spending: [{ type: ObjectId, ref: 'Budget' }],
-    groceries: [{ type: ObjectId, ref: 'Category' }]
+    budget: [{ type: ObjectId, ref: 'Budget' }],
+    category: [{ type: ObjectId, ref: 'Category' }]
 })
 
 module.exports = mongoose.model('Expense', Expense);
