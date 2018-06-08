@@ -15,4 +15,4 @@ const Expense = new mongoose.Schema ({
   }
 });
 
-module experts = mongoose.model('Expenses', Expense);
+module.exports = mongoose.model('Expense', Expense);
