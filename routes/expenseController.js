@@ -19,7 +19,7 @@ router
                     Budget.findById(budget)
                         .then(result => {
                             newbudget = result.budget - expense.amount
-                            console.log(newbudget)
+                            // console.log(newbudget)
                             Budget.findByIdAndUpdate(budget, { budget: newbudget })
                                 .then(old => console.log(old))
                                 .catch(err => console.log("update", err.message))

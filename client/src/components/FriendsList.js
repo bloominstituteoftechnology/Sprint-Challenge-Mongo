@@ -18,7 +18,7 @@ const FilmList = (props) => {
                             <CardTitle>{e.description}</CardTitle>
                             <CardText>Budget: {e.budget.title}</CardText>
                             <CardText>Category: {e.category.title}</CardText>
-                            <CardText>Money Spent: {e.amount}</CardText>
+                            <CardText>Money Spent: {e.amount}$</CardText>
                             <CardText></CardText>
                             {/* <CardText>{ghUser && ghUser}</CardText>
                             <CardText>{facebookUser && facebookUser}</CardText> */}

@@ -39,6 +39,8 @@ class App extends Component {
       })
 
       .catch(err => console.log(err))
+
+    setTimeout(this.componentDidMount, 15000);
   }
 
   render() {
