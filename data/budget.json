@@ -1,0 +1,1 @@
+{ "_id": { "$oid": "5ab095a3b97194b732c167ab" }, "title": "Grocery", "budgetAmount": 3000 } { "_id": { "$oid": "5ab095a3b98094b732c167ab" }, "title": "Holidays", "budgetAmount": 5000 } { "_id": { "$oid": "5ab095a3b96694b732c167ab" }, "title": "Personal", "budgetAmount": 1000 } { "_id": { "$oid": "5ab095a3b97004b732c167ab" }, "title": "Car", "budgetAmount": 8000 }
