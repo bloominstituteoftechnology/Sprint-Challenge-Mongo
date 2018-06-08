@@ -11,8 +11,16 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 // }
 
 const Expense = new mongoose.Schema({
-
-
+amount: {
+    type: Number,
+    required: true
+}, 
+description: {
+    type: String,
+    require: true
+},
+budgets: [{ type: ObjectId, ref: "Budget" }], 
+categories: [{ type: ObjectId, ref: "Category" }]
 });    
 
 

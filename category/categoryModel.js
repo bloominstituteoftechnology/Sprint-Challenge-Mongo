@@ -8,8 +8,11 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 // }
 
 const Category = new mongoose.Schema({
-
-
+title: {
+    type: String,
+    required: true
+},
+expenses: [{ type: ObjectId, ref: 'Expense' }]
 });    
 
 
