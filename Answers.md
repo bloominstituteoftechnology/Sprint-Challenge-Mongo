@@ -26,3 +26,5 @@ Person.find()
 ```
 
 3. Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
+
+The tool we use to break up an API into sub-applications is `express.Router()`.
