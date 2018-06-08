@@ -1,16 +1,34 @@
-const router = require('express').Router();
-const budgetModel = require('./budgetModel.js');
+const express = require('express');
+const Budget = require('./Budget.js');
+const router = express.Router();
 
 router
-  .route('/').post((req, res) => {
-    const newBudget = new budgetModel(req.body);
-    newBudget.save()
-      .then(savedBudget => {
-	res.status(201).json(savedBudget);
+  .route('/')
+  .get((req, res) => {
+    Budget.find()
+      .then(budget => {
+	console.log(budget);
+	res.status(200).json(budget);
       })
       .catch(err => {
-	res.status(500).json({ error: 'The data could not be posted to budget'});
+	res.status(500).json({ error: 'There was an error accessing the budget' });
       });
+  })
+
+  .post((req, res) => {
+    const { title, budgetAmount } = req.body;
+    const newBudget = new Budget({ title, budgetAmount });
+    if (!req.body.title) {
+      res.status(400).json({ error: 'Please enter a title and budget amount.'});
+    } else {
+      newBudget.save()
+      .then(savedBudget => {
+	res.status(201).json({ savedBudget });
+      })
+      .catch(err => {
+	res.status(500).json({ error: 'There was an error posting to the database.'});
+      });
+    }
   });
 
 module.exports = router;
