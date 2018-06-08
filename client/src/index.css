@@ -64,5 +64,29 @@ button {
   color: black;
   background: darkgray;
 }
-
-  
+.budget {
+margin: 30px 0px;
+font-weight: bold;
+}
+.add-button {
+    background: lightgreen;
+    height: 40px;
+    margin: 22px 0px 0px 20px;
+  }
+form {
+   align-self: center;
+   margin-top: 50px;
+  }
+#description {
+  width: 500px;
+}
+.Dropdown-control {
+  margin-bottom: 10px;
+}
+.second-header {
+  display: flex;
+  flex-direction: row;
+}
+.btn {
+  margin-left: 50px;
+}

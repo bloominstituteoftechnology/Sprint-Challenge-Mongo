@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import FilmList from './components/FriendsList'
 import Header from './components/Header'
 import axios from 'axios'
+import { Route, Link } from 'react-router-dom'
+import InputField from './components/Input'
+import Header2 from './components/secondHeader'
 
-// import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// 
 
 class App extends Component {
   constructor(props) {
@@ -16,14 +19,13 @@ class App extends Component {
   //   this.setState({
   //     [e.target.name]: e.target.value
   //   })
-  // }
-
+  // // }
   destroy = (id) => {
     console.log(id)
     axios.delete(`http://localhost:5000/api/expenses/${id}`)
       .then(response => {
         axios.get('http://localhost:5000/api/expenses')
-          .then(res => this.setState({ friends: res.data }))
+          .then(res => this.setState({ films: res.data }))
           .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
@@ -40,32 +42,21 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.films[this.state.films.length - 1])
     return (
       <div className="App">
-        <Header />
-        <FilmList films={this.state.films} destroy={this.destroy} />
+
+        <Route path="/" component={Header} />
+        <Route exact path="/" render={(props) => <Header2 films={this.state.films} />} />
+        <Route exact path="/" render={(props) => <FilmList {...props} films={this.state.films} destroy={this.destroy} />} />
+        <Route exact path="/input" component={InputField} />
       </div>
     );
   }
 }
 
 
-// submitUser = (e) => {
-//   e.preventDefault();
-//   let newFriend = {
-//     firstName: this.state.firstName,
-//     lastName: this.state.lastName,
-//     age: Number(this.state.age)
-//   }
-//   axios.post('http://localhost:5000/api/films', newFriend)
-//     .then(response => {
-//       let friends = [...this.state.friends]
-//       friends.push(response.data.friend)
-//       console.log(response)
-//       this.setState({ friends, age: '', lastName: '', firstName: '', })
-//     })
-//     .catch(err => console.log(err))
-// }
+
 
 
 // <FormGroup>

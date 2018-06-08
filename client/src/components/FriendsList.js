@@ -10,8 +10,9 @@ const FilmList = (props) => {
     return (
         <div className="friendslist-container">
             {props.films.map(e => {
+                console.log(e._id)
                 return (
-                    <Card key={e._id}>
+                    < Card key={e._id} >
                         <CardImg top width="100%" src={`https://robohash.org/${e.description}?size=318x180`} alt="Card image cap" />
                         <CardBody>
                             <CardTitle>{e.description}</CardTitle>
