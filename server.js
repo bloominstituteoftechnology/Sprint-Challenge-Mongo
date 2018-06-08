@@ -3,7 +3,7 @@ const helmet = require('helmet');
 
 const db = require('./db.js');
 // const budgetsRouter = require('./budgets/budgetsRouter.js');
-// const categoriesRouter = require('./categories/categoriesRouter.js');
+const categoriesRouter = require('./categories/categoriesRouter.js');
 const expensesRouter = require('./expenses/expensesRouter.js');
 
 const server = express();
@@ -18,7 +18,7 @@ server.use(helmet());
 server.use(express.json());
 
 // server.use('/budgets', budgetsRouter);
-// server.use('/categories', categoriesRouter);
+server.use('/categories', categoriesRouter);
 server.use('/expenses', expensesRouter);
 
 server.get('/', (req, res) => res.send('API Running...'));
