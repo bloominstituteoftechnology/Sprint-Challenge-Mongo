@@ -1,4 +1,4 @@
-const express =  require('express');
+const express = require('express');
 
 const Budget = require('./budgetModel');
 
@@ -15,7 +15,7 @@ router
                 res.json(budgets)
             })
             .catch(err => {
-                res.status(500).json({ error: 'error fetching budgets'})
+                res.status(500).json({ error: 'error fetching budgets' })
             });
     })
     // POST
