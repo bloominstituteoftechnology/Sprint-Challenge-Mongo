@@ -21,5 +21,8 @@ router
   .put(middleware.sanitizeMiddleware("expense"), middleware.putMiddleware(Expense), (req, res) => {
     res.json(req.putResult);
   })
+  .delete(middleware.deleteMiddleware(Expense), (req, res) => {
+    res.json(req.deleteResult);
+  });
 
 module.exports = router;
