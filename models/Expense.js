@@ -11,7 +11,7 @@ const Expense = new Schema({
     type: String,
     required: true
   },
-  butget: {type: ObjectId, ref: "Budget"},
+  budget: {type: ObjectId, ref: "Budget"},
   category: {type: ObjectId, ref: "Category"}
 });
 
