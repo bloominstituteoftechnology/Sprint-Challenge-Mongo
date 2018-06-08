@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Category = require('./CategoryModel.js');
 
 router
-    .router('/')
+    .route('/')
     .get((req, res) => {
         Category.find()
             .then(categories => {
@@ -43,5 +43,35 @@ router
             })
             .catch(error => res.status(404).json(error.message))
     })
+    .delete((req, res) => {
+        const { id } = req.params;
+        Category.findByIdAndRemove(id)
+            .then(removeCategory => {
+                if (removeCategory === null) {
+                    res.status(404).json('The requested category ID could not be found.');
+                    return;
+                }
+                else {
+                    res.status(200).json(removeCategory);
+                }
+            })
+            .catch(error => res.status(404).json(error.message))
+    })
+    .put((req, res) => {
+        const { id } = req.params;
+        const updates = ({ title } = req.body);
+        Category.findByIdAndUpdate(id, updates, { new: true, runValidators: true })
+            .then(updatedCategory => {
+                if (updatedCategory === null) {
+                    res.status(404).json('The requested category ID could not be found.');
+                    return;
+                }
+                else {
+                    res.status(200).json(updatedCategory);
+                }
+            })
+            .catch(error => res.status(404).json(error.message))
+    })
+
 
 module.exports = router; 

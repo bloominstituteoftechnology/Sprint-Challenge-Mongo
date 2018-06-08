@@ -1,6 +1,7 @@
 const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 const cors = require('cors'); 
+const mongoose = require('mongoose'); 
 const budgetRouter = require('./Budget/budgetRouter.js');
 const expenseRouter = require('./Expense/expenseRouter.js');
 const categoryRouter = require('./Category/categoryRouter.js');
