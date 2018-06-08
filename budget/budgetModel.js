@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 // Budget Schema for post 
 const BudgetSchema = new mongoose.Schema({
-    budget: {
+    title: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        minlength: 1
     },
     budgetAmount: {
         type: Number,

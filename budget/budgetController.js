@@ -2,16 +2,18 @@ const router = require('express').Router();
 
 const Budget = require('./budgetModel');
 
-// GET /api/budget
+// POST /api/budgets
 router
     .route('/')
-    .get((req, res) => {
-        Budget
-        .find()
-        .then(budget => {
-            res.status(200).json(budget)
-        })
-        .catch(err => res.status(500).json({error: 'Your budget could not be retrieved'}))
+    .post((req, res) => {
+        console.log(req.body)
+        const { title, budgetAmount } = req.body;
+        const budget = new Budget({
+            title: req.body.title,
+            budgetAmount: req.body.budgetAmount
+        });
+        res.status(200).json(budget)
+        .catch(err => res.status(500).json({error: 'Could not save new budget'}))
     })
 
 
