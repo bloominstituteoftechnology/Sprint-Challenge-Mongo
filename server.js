@@ -1,11 +1,22 @@
 const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
-const db = require('./data/IDBCursor.js');
+const db = require('./data/db.js');
 
-const Model = require('./Model/Model.model');
+/**
+ * IMPORT ROUTERS: import any needed Router.
+ */
+const Budget = require('./budget/Budget.model');
+const Categorie = require('./categories/Categorie.model');
+const Expense = require('./expenses/Expense.model');
 
+/**
+ * DEFINE: Server.
+ */
 const server = express();
 
+/**
+ * CONNECT TO DATABASE: Connect to MongoDB.
+ */
 db.connectTo('budget_tracker')
   .then(() => console.log('\n... API Connected to Database ...\n'))
   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
@@ -14,7 +25,7 @@ db.connectTo('budget_tracker')
  * DEFINE: global Pre-Middlewares is any.
  */
 server.use(helmet());
-server.URLSearchParams(express.json());
+server.use(express.json());
 
 /**
  * DEFINE: Endpoints.
