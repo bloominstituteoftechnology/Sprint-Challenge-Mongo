@@ -1,6 +1,7 @@
 const routerFactory = function(router, db) {
   console.log('inside Routerfactory');
   let toPopulate = [];
+  let setProjection;
 
   router
     .route('/')
@@ -33,7 +34,8 @@ const routerFactory = function(router, db) {
   }
   function handleGET(req, res, next) {
     const { id } = req.params;
-    let fetching = !id ? db.find({}) : db.find({ _id: id });
+    console.log(setProjection);
+    let fetching = !id ? db.find({}, { ...setProjection }) : db.find({ _id: id }, { ...setProjection });
 
     toPopulate.forEach(join => fetching.populate(join));
 
@@ -167,16 +169,19 @@ const routerFactory = function(router, db) {
     }
     return missingFields;
   }
-  return function(...arg) {
-    arg.forEach(arg => toPopulate.push(arg));
-    console.log(toPopulate);
-  };
-  // return {
-  //   setPopulate: function(...arg) {
-  //     arg.forEach(arg => toPopulate.push(arg));
-  //     console.log(toPopulate);
-  //   },
+  // return function(...arg) {
+  //   arg.forEach(arg => toPopulate.push(arg));
+  //   console.log(toPopulate);
   // };
+  return {
+    setPopulate: function(...arg) {
+      arg.forEach(arg => toPopulate.push(arg));
+      console.log(toPopulate);
+    },
+    setProjection: function(obj) {
+      setProjection = obj;
+    },
+  };
 };
 
 module.exports = { routerFactory };
