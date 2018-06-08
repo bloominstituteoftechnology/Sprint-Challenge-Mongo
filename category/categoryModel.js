@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 const definition = {
     title: {
         type: String, 
-        required: true
+        required: true,
+        unique: true
     }
 };
 
