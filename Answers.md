@@ -22,7 +22,7 @@ User = mongoose.Schema({
 
 ```js
 User.find()
-  .populate('friends')
+  .populate('friends') // whatever we pass into `populate` needs to refer specifically to the field we are referencing in our `User` schema
   // ...logic
 ```
 > Without the `populate` field, we would only return the ID's of each friend. Now that we speciify that we want to populate the `friends` field, we will instead return each friends information.
