@@ -6,7 +6,7 @@ const myFactory = require('../myTools/routerFactory');
 
 const router = express.Router();
 
-router.route('/').get(noAllowed);
+// router.route('/').get(noAllowed);
 
 router
   .route('/:id')
