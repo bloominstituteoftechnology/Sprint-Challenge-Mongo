@@ -22,4 +22,4 @@ const budgetSchema = new Schema(definition, options);
 
 const budgetModel = mongoose.model('Budget', budgetSchema); // name of collection will default to budgets
 
-module.exports = mongoose.model('Budget', Budget);
+module.exports = budgetModel;
