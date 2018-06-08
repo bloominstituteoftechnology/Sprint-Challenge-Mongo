@@ -13,7 +13,14 @@ router
   .get(noAllowed) // TODO: make this Router aggregate the info.
   .put(noAllowed);
 
-myFactory.routerFactory(router, Budget)('expenses');
+routerFactory = myFactory.routerFactory(router, Budget);
+routerFactory.setPopulate('expenses');
+routerFactory.setProjection({
+  expenses: 1,
+  title: 1,
+  budgetAmount: 1,
+  _id: 0,
+});
 
 module.exports = router;
 
