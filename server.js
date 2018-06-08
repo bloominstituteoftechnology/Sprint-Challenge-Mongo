@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const budgetRouter = require('./budgets/budgetRouter');
 const categoryRouter = require('./categories/categoryRouter');
-// const expenseRouter = require('./expenses/expenseRouter');
+const expenseRouter = require('./expenses/expenseRouter');
 const localHost = 'localhost:27017';
 const database = 'budgetdb';
 const server = express();
@@ -24,7 +24,7 @@ server.use(cors());
 server.use(express.json());
 server.use('/api/budget', budgetRouter);
 server.use('/api/categories', categoryRouter);
-// server.use('/api/expenses', expenseRouter);
+server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req, res) => {
   res.status(200).json({ API: 'running' });
