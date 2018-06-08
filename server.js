@@ -12,8 +12,13 @@ server.use(helmet());
 server.use(express.json());
 
 const budgetController = require('./budgets/budgetsController.js')
+const expenseController = require("./expenses/expensesController.js");
+const categoryController = require("./categories/categoriesController.js");
 
 server.use('/budgets', budgetController)
+server.use("/expenses", expenseController);
+server.use("/categories", categoryController);
+
 
 
 server.get("/", (req, res) => res.send("API Running..."));
