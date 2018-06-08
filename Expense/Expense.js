@@ -5,7 +5,8 @@ const Expense = mongoose.Schema({
   amount: Number,
   description: String,
   budget: {type: ObjectId, ref: 'Budget'},
-  category: {type: ObjectId, ref: 'Category'}
+  category: {type: ObjectId, ref: 'Category'},
+  dateAdded:{type: Date, default: Date.now()}
   
 })
 
