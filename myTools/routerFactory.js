@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const routerFactory = function(router, db) {
   console.log('inside Routerfactory');
   let toPopulate = [];
@@ -6,7 +8,7 @@ const routerFactory = function(router, db) {
   router
     .route('/')
     .get(handleGET)
-    .post(validateParameters, handlePOST);
+    .post(validateParameters, linkCollections, handlePOST);
 
   router
     .route('/:id')
@@ -34,16 +36,18 @@ const routerFactory = function(router, db) {
   }
   function handleGET(req, res, next) {
     const { id } = req.params;
-    console.log(setProjection);
-    let fetching = !id ? db.find({}, { ...setProjection }) : db.find({ _id: id }, { ...setProjection });
+    let fetching = !id ? db.find({}, {}) : db.find({ _id: id }, {});
 
-    toPopulate.forEach(join => fetching.populate(join));
+    // Populate the query
+    toPopulate.forEach(join => fetching.populate(join[0], join[1]));
+    // Project the query
+    fetching.select(setProjection);
 
     fetching.exec(function(err, response) {
       if (err) {
         !id
-          ? next(createError(500, 'The friends information could not be retrieved.'))
-          : next(500, 'The friend information could not be retrieved.');
+          ? next(createError(500, 'The information could not be retrieved.'))
+          : next(500, 'The information could not be retrieved.');
       } else {
         res.status(200).json(response);
       }
@@ -130,10 +134,10 @@ const routerFactory = function(router, db) {
     console.log(requiredPaths.length, requiredPaths);
 
     /**
-     * If there are no missing required fields: ? next() : next('custom-error')
+     * If there are no missing required paths: ? next() : next('custom-error')
      * If the required field is in the body but has no value: error handle by the Schema validators.
      */
-    requiredPaths.length === 0 || !areMissingPathsInParams(requiredPaths, parameters)
+    requiredPaths.length === 0 || !areThereMissingPathsInParams(requiredPaths, parameters)
       ? next()
       : next(createError(400, `The following field are required: ${requiredPaths.join(' ')}`));
   }
@@ -154,32 +158,53 @@ const routerFactory = function(router, db) {
     req.toUpdate = toUpdate;
     next();
   }
+  function linkCollections(req, res, next) {
+    const enpoint = req.baseUrl;
+    const entries = Object.entries(db.schema.paths);
+    const aux = mongoose.connection.db;
+    console.log(aux);
+
+    res.status(300).json({ entries });
+  }
 
   /**
-   * Schema middlewares: Custom Pre, Post middlewares
+   * Schema middlewares: Custom Pre, Post middlewares for mongoose.
    */
 
   /**
    * OTHER Helpers: auxiliar functions
    */
-  function areMissingPathsInParams(paths, parameters) {
+  function areThereMissingPathsInParams(paths, parameters) {
     let missingFields = false;
     for (let path of paths) {
       if (!parameters.hasOwnProperty(path)) missingFields = true;
     }
     return missingFields;
   }
+
+  /**
+   * RETURN: Helper functions that push data into this closure from other closures.
+   */
   // return function(...arg) {
   //   arg.forEach(arg => toPopulate.push(arg));
   //   console.log(toPopulate);
   // };
   return {
     setPopulate: function(...arg) {
-      arg.forEach(arg => toPopulate.push(arg));
-      console.log(toPopulate);
+      arg.forEach(arg => {
+        switch (typeof arg) {
+          case 'string':
+            toPopulate.push([arg, {}]);
+            break;
+          case 'object':
+            const path = Object.keys(arg)[0];
+            toPopulate.push([path, arg[path]]);
+        }
+      });
+      console.log('toPopulate', toPopulate);
     },
-    setProjection: function(obj) {
-      setProjection = obj;
+    setProjection: function(projections) {
+      setProjection = projections;
     },
   };
 };
