@@ -6,6 +6,7 @@ const db = require('./data/db.js'); //Creates a db server connection promise
 // const modelsRouter = require('./models/modelsRouter.js');
 const budgetsRouter = require('./budgets/budgetsRouter.js');
 const categoriesRouter = require('./categories/categoriesRouter.js');
+const expensesRouter = require('./expenses/expensesRouter.js');
 
 
 const server = express();
@@ -25,6 +26,8 @@ server.get('/', (req, res) => res.send('Budget tracker API Running...')); //Main
 
 server.use('/api/budgets', budgetsRouter);
 server.use('/api/categories', categoriesRouter);
+server.use('/api/expenses', expensesRouter);
+
 
 
 
