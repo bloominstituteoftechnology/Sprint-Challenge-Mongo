@@ -2,7 +2,7 @@ const express = require('express');
 
 const Category = require('./Category.model.js');
 
-const myFactory = require('../RouterFactory/routerFactory');
+const myFactory = require('../myTools/routerFactory');
 
 const router = express.Router();
 

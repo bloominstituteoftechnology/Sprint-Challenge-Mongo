@@ -5,9 +5,9 @@ const db = require('./data/db.js');
 /**
  * IMPORT ROUTERS: import any needed Router.
  */
-const Budget = require('./budget/Budget.model');
-const Category = require('./categories/Category.model');
-const Expense = require('./expenses/Expense.model');
+const budgetRouter = require('./budget/budget.router');
+const categoriesRouter = require('./categories/categories.router');
+const expensesRouter = require('./expenses/expenses.router');
 
 /**
  * DEFINE: Server.
@@ -31,6 +31,9 @@ server.use(express.json());
  * DEFINE: Endpoints.
  */
 server.get('/', (req, res) => res.send('API Running...'));
+server.use('/api/budget', budgetRouter);
+server.use('/api/expenses', expensesRouter);
+server.use('/api/categories', categoriesRouter);
 
 /**
  * DEFINE: global Post-Middlewares if any
