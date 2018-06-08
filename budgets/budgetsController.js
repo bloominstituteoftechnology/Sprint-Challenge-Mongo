@@ -19,7 +19,7 @@ router
     const { title, budgetAmount } = req.body;
     const newBudget = new Budget({ title, budgetAmount });
     if (!title || !budgetAmount) {
-      res.status(400).json([{ error: "Missing required information." }]);
+      res.status(400).json([{ error: "Title and budget amount required." }]);
       return;
     }
     newBudget
@@ -27,7 +27,7 @@ router
       .then(() => {
         Budget.find()
           .then(budgets => {
-            res.status(200).json(budgets);
+            res.status(201).json(budgets);
           })
           .catch(err => {
             res.status(500).json([{ error: err.message }]);
