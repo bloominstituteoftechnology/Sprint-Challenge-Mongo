@@ -3,9 +3,9 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 
 const db = require("./data/db");
-// const budgetsRouter = require("./budget/budgetsRouter.js");
-// const categoriesRouter = require("./category/categoriesRouter.js");
-// const expensesRouter = require("./expense/expensesRouter.js");
+const budgetsRouter = require("./budget/budgetsRouter.js");
+const categoriesRouter = require("./category/categoriesRouter.js");
+const expensesRouter = require("./expense/expensesRouter.js");
 
 const server = express();
 
@@ -18,9 +18,9 @@ db.connectTo("budgetTrackerDB")
 server.use(helmet());
 server.use(express.json());
 
-// server.use("./budgets", budgetsRouter);
-// server.use("/categories", categoriesRouter);
-// server.use("/expenses", expensesRouter);
+server.use("./budgets", budgetsRouter);
+server.use("/categories", categoriesRouter);
+server.use("/expenses", expensesRouter);
 
 server.get("/", (req, res) => res.send("budgetTracker API Running..."));
 
