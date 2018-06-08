@@ -3,7 +3,18 @@ const Budget = require('./Budget.js')
 const router = express.Router()
 
 router
-    .route('/')
+.route('/')
+    .get((req, res) => {
+        Budget.find()
+            .then( budgets => {
+                res.status(200).json(budgets)
+            })
+            .catch( err => {
+                res.status(500).json({
+                    error: err.message
+                })
+            })
+    })
     .post((req, res) => {
         const { title, budgetAmount } = req.body
         const newBudget = new Budget({ title, budgetAmount })
