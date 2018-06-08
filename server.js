@@ -1,8 +1,31 @@
 const express = require('express'); // remember to install your npm packages
+const helmet = require('helmet');
+const mongoose = require('mongoose');
+
+mongoose
+  .connect('mongodb://localhost/dbBears')
+  .then(mongo => {
+    console.log('connected to database');
+  })
+  .catch(err => {
+    console.log('Error connecting to database', err);
+  })
+
+const budgetController = require('./budget/budgetRouter');
+
 
 const server = express();
 
 // add your server code
+
+server.use(helmet());
+server.use(express.json());
+
+server.get('/', function(req, res) {
+  res.status(200).json({api: 'running'});
+});
+
+server.use('/api/budgets', budgetController);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
@@ -30,3 +53,14 @@ server.listen(port, () => {
 //   _id: ObjectId('543d2c72gsb23cd657438921'),
 //   title: 'Groceries',
 // }
+
+//workflow
+// connect to api to mongo
+// define schema
+// compile the schema into a modal
+// create mongoose document by instantiating (calling new on) the modal
+// use the mongoose modal to interact with the document
+
+// db.shutdownServer()
+
+
