@@ -4,9 +4,9 @@ const helmet = require('helmet');
 const server = express();
 
 const db = require('./data/db.js');
-const budgetRouter = require('./routes/budgetRouter.js');
-const expenseRouter = require('./routes/expenseRouter.js');
-const categoryRouter = require('./routes/categoryRouter.js');
+const budgetController = require('./routes/budgetController.js');
+const expenseController = require('./routes/expenseController.js');
+const categoryController = require('./routes/categoryController.js');
 
 
 db

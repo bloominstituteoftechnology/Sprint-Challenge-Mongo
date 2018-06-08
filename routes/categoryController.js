@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Category = require('./category.js');
+const Category = require('./Category.js');
 
 router
   .route('/')

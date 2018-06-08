@@ -6,7 +6,6 @@ const router = express.Router();
 router
   .route('/')
   .get((req, res) => {
-    console.log(Budget)
     Budget
       .find({})
       .then(response => res.status(200).json({
