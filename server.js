@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const budgetRouter = require('./budgets/budgetRouter');
-// const categoryRouter = require('./categories/categoryRouter');
+const categoryRouter = require('./categories/categoryRouter');
 // const expenseRouter = require('./expenses/expenseRouter');
 const localHost = 'localhost:27017';
 const database = 'budgetdb';
@@ -23,7 +23,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 server.use('/api/budget', budgetRouter);
-// server.use('/api/categories', categoryRouter);
+server.use('/api/categories', categoryRouter);
 // server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req, res) => {
