@@ -1,6 +1,9 @@
 const express = require('express'); // remember to install your npm packages
-
+const helmet = require("helmet");
 const server = express();
+
+server.use(helmet());
+server.use(express());
 
 // add your server code
 
