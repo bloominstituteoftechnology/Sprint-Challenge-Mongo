@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router
-  .route('/')
+  .route(['/', '/:id'])
   .get(middleware.getMiddleware(Category), (req, res) => {
     req.getResult.then((categories) => {
       res.json({ categories });

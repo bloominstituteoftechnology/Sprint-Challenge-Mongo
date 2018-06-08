@@ -3,7 +3,8 @@
 
 const getMiddleware = (goose) => {
   return (req, res, next) => {
-    req.getResult = goose.find();
+    if (req.params.id) req.getResult = goose.findById(req.params.id);
+    else req.getResult = goose.find();
     next();
   }
 }

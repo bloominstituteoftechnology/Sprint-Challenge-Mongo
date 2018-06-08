@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 router
-  .route('/')
+  .route(['/', '/:id'])
   .get(middleware.getMiddleware(Expense), (req, res) => {
     req.getResult.then((expenses) => {
       res.json({ expenses });

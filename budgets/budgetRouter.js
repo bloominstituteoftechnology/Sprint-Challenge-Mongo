@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router
-  .route('/')
+  .route(['/', '/:id'])
   .get(middleware.getMiddleware(Budget), (req, res) => {
     req.getResult.then((budgets) => {
       res.json({ budgets });
