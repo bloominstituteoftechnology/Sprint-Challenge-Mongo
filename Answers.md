@@ -6,7 +6,9 @@ Document: objects containing field and value pairs. Used to store data as BSON f
 2. Describe how one can achieve the pattern of relationships in MongoDB. What needs to take place at 
 the schema level? How do we 'fill' in the appropriate relational data using mongoose?
 
+we declare a field to have a type: ObjectID and a ref to another model
 
 
 
 Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
+express router 
