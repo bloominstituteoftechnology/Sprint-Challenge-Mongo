@@ -5,14 +5,33 @@ router
   .route('/')
   .get((req, res) => {
     //==>
-    Category.find(req.query, { "_id":0, "title": 1})
+    Category.find(req.query, { "_id":1, "title": 1})
       .then(categories => res.json(categories))
       .catch(err => res.status(500).json({ error: err.message }))
   })
   .post((req, res) => {
+    // Data Validation
     const { title } = req.body;
+    if (!title || typeof title !== "string") {
+      res.status(400).json({ error: "Field 'title' is required and must be type 'string'"});
+      return;
+    }
     //==>
     Category.create({ title })
+      .then(category => res.status(201).json(category))
+      .catch(err => res.status(500).json({ error: err.message }))
+  });
+
+router
+  .route('/:_id')
+  .put((req, res) => {
+    const { _id } = req.params; 
+    const { title } = req.body;
+    if (!title || typeof title !== "string") {
+      res.status(400).json({ error: "Field 'title' is required and must be type 'string'"});
+      return;
+    }
+    Category.findOneAndUpdate({ _id },{ title },{ new: true })
       .then(category => res.status(201).json(category))
       .catch(err => res.status(500).json({ error: err.message }))
   });

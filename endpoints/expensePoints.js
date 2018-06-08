@@ -13,6 +13,18 @@ router
   })
   .post((req, res) => {
     const { amount, description, budget, category } = req.body;
+    if (!amount || !description || !budget || !category) {
+      res.status(400).json({ error: "Fields 'amount', description', 'budget', and 'category' are required."});
+      return;
+    }
+    if (typeof amount !== "number" || typeof description !== "string" || typeof budget !== "string" || typeof category !== "string") {
+      res.status(400).json({ error: "Field 'amount' must be type 'number'. Field 'description', 'budget', and 'category' must be type 'string'."});
+      return;
+    }
+    if (budget.length !== 24 || category.length !== 24) {
+      res.status(400).json({ error: "Fields 'budget' and 'category' must be valid ID's (ObjectId) of the related documents."});
+      return;
+    }
     //==>
     Expense.create({ amount, description, budget, category })
       // .populate('budget')
@@ -20,6 +32,19 @@ router
       .then(expense => res.status(201).json(expense))
       .catch(err => res.status(500).json(err => { error: err.message }));
   })
+
+// router
+//   .route('/:_id')
+//   .get((req, res) => {
+//     const { _id } = req.params;
+//     //==>
+//     Expense.aggregate([
+//       { $match: { _id }},
+//       { $group : {
+        
+//       }}
+//     ])
+//   })
 
 module.exports = router;
 /*

@@ -12,7 +12,7 @@ A collection is a group of related documents. Multiple `expense` documents can b
 
 * `database`
 
-A database is a group of related collections. To put it another way, a database is a collection of information that is organized for efficient retrieval and processing. The structure that has been outlined here hints at this organization that makes retrieval and aggregation easier to do.
+A database is a group of related collections. To put it another way, a database is a collection of information that is organized for efficient retrieval and processing<sup>1</sup>. The structure that has been outlined here hints at this organization that makes retrieval and aggregation easier to do.
 
 ## Describe how one can achieve the pattern of *relationships* in MongoDB. What needs to take place at the schema level? How do we '*fill*' in the appropriate relational data using mongoose?
 
@@ -25,3 +25,5 @@ In Mongoose, a normal `find()` will return just the ObjectId's of the related do
 You can break an API into Sub-Apps by routes. You can do this subdivision by taking advantage of `express.Router()`.
 
 ---
+
+<sup>1</sup>: [University System of Georgia](https://www.usg.edu/galileo/skills/unit04/primer04_01.phtml)
