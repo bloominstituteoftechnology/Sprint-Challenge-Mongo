@@ -4,8 +4,8 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const Expense = new mongoose.Schema ({
   amount: { type: Number, required: true },
   description: { type: String, required: true },
-  budget_key: Number,
-  category_key: Number,
+ // budget_key: Number,
+ // category_key: Number,
   budget: [{
     type: ObjectId,
     ref: 'Budget'

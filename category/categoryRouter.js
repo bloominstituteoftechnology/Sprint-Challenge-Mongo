@@ -5,8 +5,7 @@ const router = express.Router();
 router
   .route('/')
   .get((req, res) => {
-    Category.find({})
-      .select('title -_id')
+    Category.find()
       .then(categories => {
 	res.status(200).json(categories);
       })

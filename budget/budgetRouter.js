@@ -7,7 +7,6 @@ router
   .get((req, res) => {
     Budget.find()
       .then(budget => {
-	console.log(budget);
 	res.status(200).json(budget);
       })
       .catch(err => {

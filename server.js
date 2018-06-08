@@ -17,9 +17,9 @@ server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' });
 });
 
-server.use('api/budgets', budgetRouter);
-server.use('api/expenses', expenseRouter);
-server.use('api/categories', categoryRouter);
+server.use('/api/budgets', budgetRouter);
+server.use('/api/expenses', expenseRouter);
+server.use('/api/categories', categoryRouter);
 
 const port = process.env.PORT || 5000;
 
