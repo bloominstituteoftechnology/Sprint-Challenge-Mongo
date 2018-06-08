@@ -22,7 +22,7 @@ server.get('/', (req, res) => res.send('API Running...'));
 const port = process.env.PORT || 5000;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/dbFriends', {}, (error) => {
+mongoose.connect('mongodb://localhost/dbBudgets', {}, (error) => {
   if (error) console.log(error);
   console.log('Mongoose connected to our DB');
 })
