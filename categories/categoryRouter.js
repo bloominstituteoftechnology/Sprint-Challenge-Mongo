@@ -8,7 +8,8 @@ const router = express.Router();
 router
   .route(['/', '/:id'])
   .get(middleware.getMiddleware(Category), (req, res) => {
-    req.getResult.then((categories) => {
+    req.getResult
+    .then((categories) => {
       if (categories) res.json({ categories });
       else res.status(404).json({ errorMessage: "No documents found" });
     })
