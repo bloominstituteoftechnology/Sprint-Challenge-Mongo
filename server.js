@@ -1,7 +1,10 @@
 const express = require('express'); 
 const helmet = require('helmet');
+const cors = require('cors');
 const mongoose = require('mongoose');
-// remember to bring in my controllers
+const budgetRouter = require('./budgets/budgetRouter');
+// const categoryRouter = require('./categories/categoryRouter');
+// const expenseRouter = require('./expenses/expenseRouter');
 const localHost = 'localhost:27017';
 const database = 'budgetdb';
 const server = express();
@@ -17,8 +20,11 @@ mongoose
   });
 
 server.use(helmet());
+server.use(cors());
 server.use(express.json());
-// server.use('api/PLACEHOLDER', PLACEHOLDER_controller)
+server.use('/api/budget', budgetRouter);
+// server.use('/api/categories', categoryRouter);
+// server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req, res) => {
   res.status(200).json({ API: 'running' });
