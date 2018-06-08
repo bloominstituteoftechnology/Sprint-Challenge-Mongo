@@ -6,7 +6,7 @@ router
     .get((req, res) => {
         Expense
             .find()
-            .select('amount description', '-_id')
+            .select('amount description -_id')
             .populate('budget', 'budgetAmount -_id title')
             .populate('category', 'title -_id')
             .then(expenses => {
