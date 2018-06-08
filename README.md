@@ -81,7 +81,7 @@
 
 Add your code to `server.js`. Remember to install any npm packages you need.
 
-### `POST to '/budgets'`
+### `POST to '/budgets'` *Done*
 
 * Used to save a new budget to the database.
 * Only worry about creating `ONE` budget for now.
@@ -92,7 +92,7 @@ Add your code to `server.js`. Remember to install any npm packages you need.
   information for us. We want to keep our budget total `'pure'` and unaffected
   by our queries.
 
-### `POST to '/categories'`
+### `POST to '/categories'` *Done*
 
 * to `create` a category you should have a `'post'` method that stores the
   category information.
@@ -104,7 +104,7 @@ Add your code to `server.js`. Remember to install any npm packages you need.
 * example of categories could be: `Food/Dining` `Gas/Auto` `Date Nights`
   `Mortgage`
 
-### `'/expenses'`
+### `'/expenses'` *done*
 
 * your expense should have a `'post'` method for creating the expense. To save
   an expense you'll need an `'budget'` `_id` and a `'category'` `_id` so that we

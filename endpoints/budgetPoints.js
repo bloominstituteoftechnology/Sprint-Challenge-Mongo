@@ -3,14 +3,20 @@ const Budget = require('../models/budgetModel.js');
 
 router
   .route('/')
+  .get((req, res) => {
+    Budget.find(req.query)
+      .then(budget => res.json(budget))
+      .catch(err => res.status(500).json({ error: err.message }));
+  })
   .post((req, res) => {
     Budget.create(req.body)
       .then(budget => {
-        res.json(budget);
+        res.status(201).json(budget);
       })
       .catch(err => res.status(500).json({ error: err.message }));
   })
 
+module.exports = router;
 /*
 POST to '/budgets'
   Used to save a new budget to the database.
