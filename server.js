@@ -18,8 +18,8 @@ server.use(express.json());
 server.get('/', (req, res) => res.send('API Running...'));
 
 server.use('/api/budgets', budgetRouter);
-// server.use('api/categories', categoryRouter);
-// server.use('/api/expenses', expenseRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenses', expenseRouter);
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/dbTracker', {}, err => {
