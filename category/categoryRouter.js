@@ -1,25 +1,25 @@
 const express = require('express');
-const Budget = require('./Budget.js');
+const Category = require('./Category.js');
 const router = express.Router();
 
 router
     .route('/')
     .get((req, res) => {
-        Budget
+        Category
             .find()
-            .then(budgets => {
-                res.status(200).json(budgets);
+            .then(categories => {
+                res.status(200).json(categories);
             })
             .catch(error => res.status(500).json({ error: error.message}));
     })
     .post((req, res) => {
-        const { title, budgetAmount } = req.body;
-        const newBudget = new Budget ({ title, budgetAmount });
-        if (!title || !budgetAmount) {
-            res.status(400).json({ error: 'Please provide title and budget amount.' });
+        const { title } = req.body;
+        const newCategory = new Category ({ title });
+        if (!title) {
+            res.status(400).json({ error: 'Please provide title' });
             return;
         }
-        newBudget
+        newCategory
             .save()
             .then(response => {
                 console.log(response);
