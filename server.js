@@ -3,6 +3,10 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const budgetRouter = require('./budget/budgetRouter');
+const expenseRouter = require('./expense/expenseRouter');
+const categoryRouter = require('./category/categoryRouter')
+
 const server = express();
 
 // add your server code
@@ -10,6 +14,11 @@ const server = express();
 server.use(helmet());
 server.use(cors())
 server.use(express.json());
+
+server.use('/api/budget', budgetRouter);
+server.use('/api/expenses', expenseRouter);
+server.use('/api/categories', categoryRouter);
+
 
 server.get('/', (req, res) => {
   res.status(200).json({ api: 'running' })
