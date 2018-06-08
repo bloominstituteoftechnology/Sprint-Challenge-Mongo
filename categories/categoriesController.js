@@ -39,4 +39,32 @@ router
       });
   });
 
+  router
+    .route("/:id")
+    .delete((req, res) => {
+      const { id } = req.params;
+      Category.findByIdAndRemove(id)
+        .then(category => {
+          if (category === null) {
+            res
+              .status(404)
+              .json({
+                error: `No category with id${id} found. Can't delete it!`
+              });
+            return;
+          }
+          res.json({
+            success: "Category deleted successfully",
+            removedCategory: category
+          });
+        })
+        .catch(err => {
+          res
+            .status(404)
+            .json({
+              error: `No category with id${id} found. Can't delete it!`
+            });
+        });
+    });
+
 module.exports = router;

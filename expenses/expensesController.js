@@ -8,6 +8,8 @@ router
   .route('/')
   .get((req, res) => {
     Expense.find()
+      .populate("category", "title -_id")
+      .populate("budget", "title budget -_id")
       .then(expenses => {
         res.status(200).json(expenses);
       })
@@ -31,7 +33,7 @@ router
           })
           .catch(err => {
             res.status(500).json([{ error: err.message }]);
-          })
+          });
       })
       .catch(err => {
         res.status(500).json([{ error: err.message }])
