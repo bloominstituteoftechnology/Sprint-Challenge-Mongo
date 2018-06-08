@@ -3,12 +3,12 @@ const router = require('express').Router();
 const Expense = require('./categoryModel');
 
 router.route('/').get((req, res) => {
-    Category.find({})
+    Category.find()
         .then(title => {
             res.status(201).json(title);
         })
         .catch(error => {
-            res.status(500).json({ error: err });
+            res.status(500).json({ error: 'error getting title' });
         });
 
 
