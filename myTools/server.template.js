@@ -5,7 +5,7 @@ const db = require('./data/db.js');
 /**
  * IMPORT ROUTERS: import any needed Router.
  */
-const Model = require('./Model/Model.model');
+const Router = require('./model/model.router');
 
 /**
  * DEFINE: Server.
