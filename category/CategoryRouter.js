@@ -6,9 +6,12 @@ router
     .route('/')
     .post((req, res) => {
         const { title } = req.body;
-        const newCategory = new Category({ title });
+        if (title === undefined || typeof(title) !== 'number') {
+            res.status(400).json({ error: "A title is required."});
+        }
 
-        newBudget
+        newCategory = new Category({ title })
+        newCategory
             .save()
                 .then(response => {
                     res.status(201).json(response);
@@ -16,6 +19,12 @@ router
                 .catch(error => {
                     res.status(500).json(error);
                 })
+    })
+    .get((req, res) => {
+        Category.find({}, { title: 1, _id: 0 })
+            .then(records => {
+                res.json(records)
+        })
     })
 
 module.exports = router;
