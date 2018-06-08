@@ -4,25 +4,24 @@ import {
     CardTitle
 } from 'reactstrap';
 
-const FriendsList = (props) => {
-
+const FilmList = (props) => {
+    console.log(props)
 
     return (
         <div className="friendslist-container">
-            {props.friends.map(e => {
-                let { email, phone, facebookUser, ghUser } = e.contact
+            {props.films.map(e => {
                 return (
                     <Card key={e._id}>
-                        <CardImg top width="100%" src={`https://robohash.org/${e.firstName}?size=318x180`} alt="Card image cap" />
+                        <CardImg top width="100%" src={`https://robohash.org/${e.description}?size=318x180`} alt="Card image cap" />
                         <CardBody>
-                            <CardTitle>{e.firstName} {e.lastName}</CardTitle>
-                            <CardText>Age: {e.age}</CardText>
-                            <CardText>Joined: {e.createdOn}</CardText>
-                            <CardText>{email && email}</CardText>
-                            <CardText>{phone && phone}</CardText>
-                            <CardText>{ghUser && ghUser}</CardText>
-                            <CardText>{facebookUser && facebookUser}</CardText>
-                            <button type="button" onClick={() => props.delete(e._id)}>DELETE</button>
+                            <CardTitle>{e.description}</CardTitle>
+                            <CardText>Budget: {e.budget.title}</CardText>
+                            <CardText>Category: {e.category.title}</CardText>
+                            <CardText>Money Spent: {e.amount}</CardText>
+                            <CardText></CardText>
+                            {/* <CardText>{ghUser && ghUser}</CardText>
+                            <CardText>{facebookUser && facebookUser}</CardText> */}
+                            <button type="button" onClick={() => props.destroy(e._id)}>DELETE</button>
                         </CardBody>
                     </Card>
                 );
@@ -31,4 +30,4 @@ const FriendsList = (props) => {
     )
 }
 
-export default FriendsList
+export default FilmList
