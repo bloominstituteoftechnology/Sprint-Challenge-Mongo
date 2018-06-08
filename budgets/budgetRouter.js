@@ -25,16 +25,17 @@ router
   router
     .route('/:id/remaining')
     .get(middleware.getMiddleware(Budget), (req, res) => {
-
-
       req.getResult.then((budget) => {
-        Expense.find()
-          .where('budget').in([req.params.id])
-          .then((expenses) => {
-            let remaining = budget.budgetAmount;
-            expenses.forEach((expense) => remaining -= expense.amount);
-            res.json({ remaining })
-          })
+        if (budget) {
+          Expense.find()
+            .where('budget').in([req.params.id])
+            .then((expenses) => {
+              let remaining = budget.budgetAmount;
+              expenses.forEach((expense) => remaining -= expense.amount);
+              res.json({ remaining })
+            })
+        }
+        else res.status(404).json({ errorMessage: "No documents found" });
       })
     })
 
