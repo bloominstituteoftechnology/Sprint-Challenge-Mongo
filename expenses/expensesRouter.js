@@ -7,6 +7,18 @@ const router = express.Router();
 router
   .route('/')
   .get((req, res) => {
+    // if (req.query.category) {
+    //   Expense.find()
+    //     .where({ category: new RegExp(req.query.category, "gi")})
+    //     .populate("categories")
+    //     .populate("budgets")
+    //     .then(expense => {
+    //       res.status(200).json(expense);
+    //     })
+    //     .catch(err => {
+    //       res.status(500).json([{ error: err.message }]);
+    //     })
+    // }
     Expense.find()
       .then(expenses => {
         res.status(200).json(expenses);
