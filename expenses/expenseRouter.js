@@ -8,7 +8,10 @@ const router = express.Router();
 router
   .route(['/', '/:id'])
   .get(middleware.getMiddleware(Expense), (req, res) => {
-    req.getResult.then((expenses) => {
+    req.getResult
+      .populate('budget')
+      .populate('category')
+      .then((expenses) => {
       res.json({ expenses });
     })
   })
