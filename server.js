@@ -1,6 +1,15 @@
 const express = require('express'); // remember to install your npm packages
 const helmet = require("helmet");
+const mongoose = require("mongoose");
 const server = express();
+
+mongoose.connect("mongodb://localhost/budgetTracker")
+  .then(() => {
+    console.log("Mongoose connected to Mongo Database");
+  })
+  .catch(err => {
+    console.log("There is an error connecting Mongoose to Mongo", err);
+  })
 
 server.use(helmet());
 server.use(express());
