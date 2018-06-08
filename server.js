@@ -4,21 +4,24 @@ const helmet = require('helmet');
 const db = require('./data/db.js'); //Creates a db server connection promise
 //Create API sub-applications routers here
 // const modelsRouter = require('./models/modelsRouter.js');
+const budgetsRouter = require('./budgets/budgetsRouter.js');
 
 const server = express();
 
 //connects to the database
 db
-  .connectTo()
-  .then()
-  .catch()
+  .connectTo('dbBudget')
+  .then(() => console.log('\n... API Connected to Database ...\n'))
+  .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 
 server.use(helmet());
 server.use(express.json());
 
 // Create API routes
 // server.use('route', subAPIRouter);
-server.get('/', (req, res) => res.send('API Running...')); //Main route
+server.get('/', (req, res) => res.send('Budget tracker API Running...')); //Main route
+
+server.use('/api/budgets', budgetsRouter);
 
 
 const port = process.env.PORT || 5000;

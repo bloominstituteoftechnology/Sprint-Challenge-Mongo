@@ -1,7 +1,7 @@
-const moongoose = require('mongoose');
-const ObjectId = moongoose.Schema.Types.ObjectId;
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const Budget = new Mongoose.Schema ( {
+const Budget = new mongoose.Schema ( {
   title: {
     type: String,
     required: true
