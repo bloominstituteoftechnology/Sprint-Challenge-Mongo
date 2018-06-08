@@ -6,6 +6,8 @@ router
     .route('/')
     .get((req, res) => {
         Expense.find()
+            .populate('budget', 'title budgetAmount')
+            .populate('category', 'title')
             .then(expenses => {
                 if (expenses.length === 0) {
                     res.status(404).json('There are no expenses in the database.');
