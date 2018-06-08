@@ -4,17 +4,11 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 
 const server = express();
-// const db = require('./db.js');
-
-// db
-//   .connectTo('budgetTracker')
-//   .then(() => console.log('\n... API Connected to Database ...\n'))
-//   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 
 mongoose
   .connect('mongodb://localhost/budgetdb')
-  .then(() => console.log('connected to db'))
-  .catch(error => console.log('error connecting to db', error))
+  .then(() => console.log('Connected to DB'))
+  .catch(error => console.log('Error connecting to DB', error))
 
 server.use(express.json());
 server.use(cors());
