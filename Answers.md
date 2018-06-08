@@ -14,7 +14,7 @@
 
     In Mongo we can achieve relationships by creating in a model schema a property with the key and a reference to the model who we want to retreive the information.
 
-      movies: [{type: ObjectId, ref: 'Film'}],
+        movies: [{type: ObjectId, ref: 'Film'}],
 
     And to fill the data we can use the method populate() with our query with the data fields whe need to be populated.
 
