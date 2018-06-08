@@ -6,20 +6,26 @@ router
     .get((req, res) => {
         Expense
             .find()
-            .then(expense => {
-                res.status(200).json(expense)
+            .select('amount description', '-_id')
+            .populate('budget', 'budgetAmount -_id title')
+            .populate('category', 'title -_id')
+            .then(expenses => {
+                res.status(200).json(expenses)
             })
             .catch(error => {
                 res.status(500).json({ error: error.message })
             })
     })
-    .post((req, res) => { // I am missing the budget id and category id
-        const { amount, description } = req.body;
-        const newExpense = new Expense({ amount, description });
+    .post((req, res) => { 
+        const { amount, description, budget, category } = req.body;
+        const newExpense = new Expense({ amount, description, budget, category });
         newExpense
             .save()
             .then(new_expense => {
                 res.status(201).json({ success: "New Expense Added", new_expense})
+            })
+            .catch(error => {
+                res.status(500).json({ error: error.message })
             })
     })
 
