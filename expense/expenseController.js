@@ -13,7 +13,7 @@ router
         })
         .catch(err => res.status(500).json({error: 'Your expenses could not be retrieved'}))
     })
-// POST /api/categories
+// POST /api/expense
 router
     .route('/')
     .post((req, res) => {
