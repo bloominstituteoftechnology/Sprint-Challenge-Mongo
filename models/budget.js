@@ -6,7 +6,7 @@ const budgetSchema = new mongoose.Schema({
     type: String,
     unique: true,
     minlength: [1, 'Please include a title for your budget'],
-    maxlength: [128, 'Budget title may not exceed 128 characters']
+    maxlength: [128, 'The budget title may not exceed 128 characters']
 
   },
   budgetAmount: {
