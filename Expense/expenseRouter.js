@@ -8,7 +8,7 @@ router
     .get((req, res) => {
       Expense.find({}, '-_id -__v')
         .populate('budget', '-_id -__v')
-        .populate('category', '-_id -__v')
+        .populate('category', '-_id -__v -expenses')
         .then(exp => {
           res.json(exp)
         })
@@ -35,7 +35,7 @@ router
       ])
       // .populate('_id:')
       .then(tot => {
-        console.log(tot)
+        // console.log(tot)
         res.json(tot)
       })
     })
