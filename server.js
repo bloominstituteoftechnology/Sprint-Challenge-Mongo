@@ -13,6 +13,10 @@ server.use('/budgets', budgetsRouter);
 server.use('/categories', categoriesRouter);
 server.use('/expenses', expensesRouter);
 
+server.get('/', (req, res) => {
+  res.status(200).send('Budget Tracker API');
+})
+
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
