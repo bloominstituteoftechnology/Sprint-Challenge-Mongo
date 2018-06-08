@@ -9,15 +9,18 @@ const expenseSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: [true, 'Please include a description for your expense'],
     minlength: [1, 'Please include a description for your expense'],
     maxlength: [128, 'The expense description may not exceed 128 characters']
   },
   budget: {
     type: ObjectId,
+    required: [true, 'Please include an id for the budget that this expense belongs to'],
     ref: 'Budget'
   },
   category: {
     type: ObjectId,
+    required: [true, 'Please include an id for the category that this expense belongs to'],
     ref: 'Category'
   }
 });
