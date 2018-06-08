@@ -5,7 +5,8 @@ const Budget= require('./budget');
 router
     .route('/')
     .get((req, res) => {
-       Budget.find()
+        Budget
+        .find()
         .then(response => {
             res.status(200).json(budget);
         })
@@ -22,7 +23,7 @@ router
                 res.status(201).json(savedBudget);
             })
             .catch(err => {
-                res.status(422).json({ error: 'Error saving budget'});
+                res.status(500).json({ error: 'Error saving budget'});
             });
     });
 
