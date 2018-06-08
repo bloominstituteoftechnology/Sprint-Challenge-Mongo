@@ -4,10 +4,9 @@ const uniqueValidator = require('mongoose-unique-validator');
 const budgetSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: [true, 'Please include a title for your budget'],
     unique: true,
     minlength: [1, 'Please include a title for your budget'],
-    maxlength: [128, 'Titles may not exceed 128 characters']
+    maxlength: [128, 'Budget title may not exceed 128 characters']
 
   },
   budgetAmount: {
