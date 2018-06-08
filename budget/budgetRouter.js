@@ -32,4 +32,11 @@ function get (req, res){
         })
         .catch(err => userErr(500, err.message, res))
 }
+// router
+//     .route('/:id')
+//     .delete((req, res) => {
+//         const {id} = req.params;
+//         console.log(id);
+//         if ()
+//     })
 module.exports = router;
