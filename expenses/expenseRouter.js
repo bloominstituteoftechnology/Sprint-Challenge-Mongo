@@ -12,8 +12,9 @@ router
       .populate('budget')
       .populate('category')
       .then((expenses) => {
-      res.json({ expenses });
-    })
+        if (expenses) res.json({ expenses });
+        else res.status(404).json({ errorMessage: "No documents found" });
+      })
   })
   .post(middleware.sanitizeMiddleware("expense"), middleware.postMiddleware(Expense), (req, res) => {
     res.json(req.postResult);

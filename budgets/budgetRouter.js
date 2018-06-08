@@ -7,7 +7,8 @@ router
   .route(['/', '/:id'])
   .get(middleware.getMiddleware(Budget), (req, res) => {
     req.getResult.then((budgets) => {
-      res.json({ budgets });
+      if (budgets) res.json({ budgets });
+      else res.status(404).json({ errorMessage: "No documents found" });
     })
   })
   .post(middleware.sanitizeMiddleware("budget"), middleware.postMiddleware(Budget), (req, res) => {

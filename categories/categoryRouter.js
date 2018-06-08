@@ -9,7 +9,8 @@ router
   .route(['/', '/:id'])
   .get(middleware.getMiddleware(Category), (req, res) => {
     req.getResult.then((categories) => {
-      res.json({ categories });
+      if (categories) res.json({ categories });
+      else res.status(404).json({ errorMessage: "No documents found" });
     })
   })
   .post(middleware.sanitizeMiddleware("category"), middleware.postMiddleware(Category), (req, res) => {
