@@ -11,7 +11,7 @@ const getMiddleware = (goose) => {
 
 const postMiddleware = (goose) => {
   return (req, res, next) => {
-    if (req.params.id) res.status(400).json({ errorMessage: "Cannot post to specific ID" })
+    if (req.params.id) res.status(400).json({ errorMessage: "Cannot post to specific ID" });
     else {
       const postGoose = new goose(req.saneBody);
       postGoose
@@ -26,6 +26,25 @@ const postMiddleware = (goose) => {
     }
   }
 }
+
+const putMiddleware = (goose) => {
+  return (req, res, next) => {
+    if (!req.params.id) res.status(400).json({ errorMessage: "Please specify an ID in the url" });
+    else {
+      goose
+        .findByIdAndUpdate(req.params.id, req.saneBody)
+        .then(editedGoose => {
+          if (editedGoose) {
+            req.putResult = editedGoose;
+            next();
+          }
+          else res.status(422).json({ error: 'No such document found' });
+        })
+        .catch(error => res.status(500).json({ error: 'Error editing document' }));
+    }
+  }
+}
+
 
 //middleware to sanitize the body
 const sanitizeMiddleware = (type) => {
@@ -61,5 +80,6 @@ const sanitizeMiddleware = (type) => {
 module.exports = {
   sanitizeMiddleware: sanitizeMiddleware,
   getMiddleware: getMiddleware,
-  postMiddleware: postMiddleware
+  postMiddleware: postMiddleware,
+  putMiddleware: putMiddleware
 };

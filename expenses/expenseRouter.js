@@ -18,5 +18,8 @@ router
   .post(middleware.sanitizeMiddleware("expense"), middleware.postMiddleware(Expense), (req, res) => {
     res.json(req.postResult);
   })
+  .put(middleware.sanitizeMiddleware("expense"), middleware.putMiddleware(Expense), (req, res) => {
+    res.json(req.putResult);
+  })
 
 module.exports = router;

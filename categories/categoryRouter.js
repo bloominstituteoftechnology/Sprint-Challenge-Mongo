@@ -15,5 +15,8 @@ router
   .post(middleware.sanitizeMiddleware("category"), middleware.postMiddleware(Category), (req, res) => {
     res.json(req.postResult);
   })
+  .put(middleware.sanitizeMiddleware("category"), middleware.putMiddleware(Category), (req, res) => {
+    res.json(req.putResult);
+  })
 
 module.exports = router;
