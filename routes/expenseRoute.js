@@ -1,10 +1,12 @@
 const router = require('express').Router();
 
-const Category = require('../database/Category');
+const Expense = require('../database/Expense');
 
 router
   .get('/', (req, res) => {
-    Category.find()
+    Expense.find()
+      .populate('budget', '-_id, title')
+      .populate('category', '-_id, title')
       .exec((err, raw) => {
         if (err)
           return res.status(500).json(err);
@@ -14,10 +16,10 @@ router
   })
 
   .post('/', (req, res) => {
-    const { title } = req.body;
-    const category = { title };
+    const { amount, description, budget, category } = req.body;
+    const expense = { amount, description, budget, category };
     
-    Category.create(category, (err, raw) => {
+    Expense.create(expense, (err, raw) => {
       if (err)
         return res.status(500).json(err);
 

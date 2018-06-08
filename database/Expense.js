@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const model = mongoose.model;
 
 const Expense = new Schema({
   amount: { type: Number, required: true },
@@ -9,4 +8,4 @@ const Expense = new Schema({
   category: [{ type: Schema.Types.ObjectId, ref: 'Category' }]
 });
 
-module.exports = model('Expense', Expense);
+module.exports = mongoose.model('Expense', Expense);
