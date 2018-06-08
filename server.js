@@ -3,7 +3,8 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 
 const budgetController = require('./budget/budgetController');
-const categoriesController = require('./categories/categoriesController')
+const categoriesController = require('./categories/categoriesController');
+const expenseController = require('./expense/expenseController');
 
 const server = express();
 
@@ -16,9 +17,10 @@ server.get('/', (req, res) => {
   res.status(200).json({api: 'running'})
 });
 
-// GET /api/budget for all routes and route for root route to return budgetController
+// GET /api/budget for all routes and route for root route to return budgetController/
 server.use('/api/budgets', budgetController)
 server.use('/api/categories', categoriesController)
+server.use('/api/expenses', expenseController)
 
 
 // connecting mongoose to local host
