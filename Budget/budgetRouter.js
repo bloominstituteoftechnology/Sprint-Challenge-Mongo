@@ -41,7 +41,7 @@ router
                     res.status(200).json(foundBudget);
                 }
             })
-            .catch(error => res.status(404).json(error.message))
+            .catch(error => res.status(404).json(error.message));
     })
     .delete((req, res) => {
         const { id } = req.params;
@@ -58,8 +58,10 @@ router
             .catch(error => res.status(404).json(error.message))
     })
     .put((req, res) => {
+
         const { id } = req.params;
         const updates = ({ title, budgetAmount } = req.body);
+
         Budget.findByIdAndUpdate(id, updates, { new: true, runValidators: true })
             .then(updatedBudget => {
                 if (updatedBudget === null) {
@@ -70,7 +72,7 @@ router
                     res.status(200).json(updatedBudget);
                 }
             })
-            .catch(error => res.status(404).json(error.message))
+            .catch(error => res.status(404).json(error.message));
     })
 
 module.exports = router;

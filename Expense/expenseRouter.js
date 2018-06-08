@@ -34,6 +34,8 @@ router
     .get((req, res) => {
         const { id } = req.params;
         Expense.findById(id)
+            .populate('budget', 'title budgetAmount')
+            .populate('category', 'title')
             .then(foundExpense => {
                 if (foundExpense === null) {
                     res.status(404).json('The requested expense ID could not be found.');
