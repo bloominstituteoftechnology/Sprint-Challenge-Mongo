@@ -68,7 +68,7 @@
 * A category can be something as simple as `groceries`.
 * Your relationship to consider here is the relationship between `Expenses` and
   `Categories`
-* An example of a category object after it is saved to the databse:
+* An example of a category object after it is saved to the database:
 
 ```
 {
@@ -97,7 +97,7 @@ Add your code to `server.js`. Remember to install any npm packages you need.
 * to `create` a category you should have a `'post'` method that stores the
   category information.
 * you can write a `getter` `'get'` method that simply returns all the
-  categories. Filter out any unuseful information here, meaning we just want
+  categories. Filter out any un-useful information here, meaning we just want
   the title of the categories.
 * create a minimum of 4 categories so that when you create your expenses, you
   can assign where they go!
