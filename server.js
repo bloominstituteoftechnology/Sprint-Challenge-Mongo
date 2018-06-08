@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 // remember to bring in my controllers
 const localHost = 'localhost:27017';
 const database = 'budgetdb';
-
 const server = express();
 const port = process.env.PORT || 5000;
 
