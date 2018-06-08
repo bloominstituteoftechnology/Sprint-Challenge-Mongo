@@ -20,4 +20,17 @@ router
                 .catch(err => res.json(err))
         })
 
+router
+    .route('/category_totals')
+        .get((req, res) => {
+            Expense.aggregate([{
+                $group: {
+                    _id: "$category",
+                    total: {$sum : "$amount"}
+                }
+            }])
+                .then(totals => res.json( {totals} ))
+                .catch(err => res.json(err))
+        })
+
 module.exports = router;
