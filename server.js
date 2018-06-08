@@ -17,9 +17,15 @@ server.use('/api/budget', budgetRouter);
 server.use('/api/category', categoryRouter);
 server.use('/api/expense', expenseRouter);
 
+server.get('/', (req, res) => {
+  res.json({ api: running });
+})
+
 const port = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost/budget");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost/budgetApp", {});
+
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
 });
