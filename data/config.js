@@ -1,6 +1,6 @@
 const secret = {
-    dbuser: 'rosalind',
-    dbpassword: 'rosalind2018', //phamros@lind
+    dbuser: 'admin',
+    dbpassword: 'admin1', //phamros@lind
     dbname: 'side_projects_db'
 }
 
