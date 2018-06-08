@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const categorySchema = new Schema({
-  title: String
+  title: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model('Category', categorySchema);

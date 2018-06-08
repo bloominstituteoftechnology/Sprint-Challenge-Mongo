@@ -3,15 +3,23 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const expenseSchema = new Schema({
-  amount: Number,
-  description: String,
+  amount: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
   budget: {
     type: ObjectId,
-    ref: 'Budget'
+    ref: 'Budget',
+    required: true
   },
   category: {
     type: ObjectId,
-    ref: 'Category'
+    ref: 'Category',
+    required: true
   }
 });
 
