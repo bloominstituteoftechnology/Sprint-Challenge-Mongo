@@ -8,6 +8,7 @@ const categoryRoutes = require('./category/Category.js');
 const expenseRoutes = require('./expense/Expense.js');
 const Budget = require('./budget/Budget');
 const Expense = require('./expense/Expense');
+const Category = require('./category/Category')
 
 const server = express();
 
@@ -52,6 +53,24 @@ server.post('/api/expenses', (req, res) => {
     })
     .catch(err => {
       res.status(500).json(err)
+    })
+})
+
+server.get('/api/categories', (req, res) => {
+  Category.find()
+    .then(category => {
+      res.status(200).json(category)
+    })
+})
+server.post('/api/categories', (req, res) => {
+  const category = req.body;
+
+  let query = Category.create(category)
+  .then(category => {
+        res.status(200).json(category)
+    })
+    .catch(err => {
+      res.status(500).json(err);
     })
 })
 // server.use('/api/budgets', budgetRoutes);
