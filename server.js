@@ -24,6 +24,9 @@ server.use('/api/budget', budgetRouter)
 server.use('/api/category', categoryRouter)
 server.use('/api/expense', expenseRouter)
 
+server.get('/', (req, res) =>{
+  res.send('Api Running...')
+});
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
   console.log(`Server up and running on ${port}`);
