@@ -2,13 +2,9 @@ import { Request, Response, Router } from 'express';
 
 const router: Router = Router()
 
-router.get('/', (req: Request, res: Response) => {
-  res.send('Hello, World!')
-})
-
-router.get('/:name', (req: Request, res: Response) => {
+router.get('/:name?', (req: Request, res: Response) => {
   const { name } = req.params
-  res.send(`Hello, ${name}!`)
+  name ? res.send(`Hello, ${name}!`) : res.send('Hello, World!')
 })
 
-export const WelcomeController: Router = router
+export const WelcomeCtrl: Router = router
