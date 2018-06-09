@@ -2,9 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 
-const budgets = require('./budgets/router.js');
-const categories = require('./categories/router.js');
-const expenses = require('./expenses/router.js');
+const budgets = require('./routes/budgets');
+const categories = require('./routes/categories');
+const expenses = require('./routes/expenses');
 
 const server = express();
 

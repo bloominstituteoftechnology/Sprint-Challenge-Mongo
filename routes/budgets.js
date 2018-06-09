@@ -1,5 +1,5 @@
 const express = require('express');
-const Budget = require('./model.js');
+const Budget = require('../models/Budget');
 
 const router = express.Router();
 
