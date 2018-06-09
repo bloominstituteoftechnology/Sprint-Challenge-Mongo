@@ -6,7 +6,8 @@ const db = require('./data/db');
 // const budgetRoutes = require('./budget/Budget.js');
 const categoryRoutes = require('./category/Category.js');
 const expenseRoutes = require('./expense/Expense.js');
-const Budget = require('./budget/Budget')
+const Budget = require('./budget/Budget');
+const Expense = require('./expense/Expense');
 
 const server = express();
 
@@ -40,6 +41,18 @@ server.post('/api/budgets', (req, res) => {
         .catch(err => {
             res.status(500).json(err);
         })
+})
+
+server.post('/api/expenses', (req, res) => {
+  const expense = req.body;
+
+  Expense.create(expense) 
+    .then(expense => {
+      res.status(200).json(expense);
+    })
+    .catch(err => {
+      res.status(500).json(err)
+    })
 })
 // server.use('/api/budgets', budgetRoutes);
 // server.use('/api/categories', categoryRoutes);
