@@ -58,6 +58,7 @@ server.post('/api/expenses', (req, res) => {
 
 server.get('/api/categories', (req, res) => {
   Category.find()
+    .select('title -_id')
     .then(category => {
       res.status(200).json(category)
     })
