@@ -45,8 +45,9 @@ server.post('/api/budgets', (req, res) => {
 })
 
 server.get('/api/expenses', (req, res) => {
-  Expense.find()
+  let query = Expense.find()
     .select('amount description -_id')
+    .populate('budget', 'title budgetAmount')
     .then(expenses => {
       res.status(200).json(expenses);
     })
