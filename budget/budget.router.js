@@ -14,13 +14,21 @@ router
   .put(noAllowed);
 
 routerFactory = myFactory.routerFactory(router, Budget);
+
+// Set Paths to be populated
 routerFactory.setPopulate('expenses');
-routerFactory.setProjection({
-  expenses: 1,
-  title: 1,
-  budgetAmount: 1,
-  _id: 0,
-});
+
+// Define Projection for the Model
+routerFactory.setProjection('expenses title budgetAmount -_id');
+// THIS IS ANOTHER WAY TO ACHIEVE A PROJECTION
+/*
+  routerFactory.setProjection({
+    expenses: 1,
+    title: 1,
+    budgetAmount: 1,
+    _id: 0,
+  });
+*/
 
 module.exports = router;
 

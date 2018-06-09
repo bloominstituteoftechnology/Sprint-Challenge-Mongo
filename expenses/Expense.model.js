@@ -18,7 +18,9 @@ const Expense = new Schema({
     required: true,
   },
   budget: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Budget' }],
+  budgetUnique: { type: mongoose.Schema.Types.ObjectId, ref: 'Budget' },
   category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
+  categoryUnique: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
 });
 
 module.exports = mongoose.model('Expense', Expense);

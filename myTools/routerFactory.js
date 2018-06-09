@@ -8,7 +8,7 @@ const routerFactory = function(router, db) {
   router
     .route('/')
     .get(handleGET)
-    .post(validateParameters, linkCollections, handlePOST);
+    .post(validateParameters, handlePOST, linkCollections);
 
   router
     .route('/:id')
@@ -27,8 +27,10 @@ const routerFactory = function(router, db) {
     const toPost = new db(parameters);
     toPost
       .save()
-      .then(response => {
-        res.status(201).json(response);
+      .then(newDocument => {
+        // res.status(201).json(newDocument);
+        req.newDocument = newDocument;
+        next();
       })
       .catch(e => {
         next(e);
@@ -112,21 +114,21 @@ const routerFactory = function(router, db) {
     let requiredPaths = [];
 
     // Get Schema paths and path's properties:
-    const entries = Object.entries(db.schema.paths);
+    const pathsANDschema = Object.entries(db.schema.paths);
 
     /**
      * Filter the required paths: and push them to the 'requiredPaths' variable
      */
-    entries.forEach(entrie => {
+    pathsANDschema.forEach(entrie => {
       const pathName = entrie[0];
-      const pathProperties = entrie[1];
-      pathProperties.validators.length === 1 && requiredPaths.push(pathName);
+      const pathSchema = entrie[1];
+      pathSchema.validators.length === 1 && requiredPaths.push(pathName);
 
       /**
        * If there a several 'validators': => filter if one of them are of type 'required: true'
        */
-      if (pathProperties.validators.length > 1) {
-        pathProperties.validators.forEach(validator => {
+      if (pathSchema.validators.length > 1) {
+        pathSchema.validators.forEach(validator => {
           validator.type == 'required' && requiredPaths.push(pathName);
         });
       }
@@ -160,11 +162,12 @@ const routerFactory = function(router, db) {
   }
   function linkCollections(req, res, next) {
     const enpoint = req.baseUrl;
+    const document = req.newDocument || req.updatedDocument;
     const entries = Object.entries(db.schema.paths);
-    const aux = mongoose.connection.db;
-    console.log(aux);
 
-    res.status(300).json({ entries });
+    if (hasLinkedPaths(document)[0]) return res.status(200).json({ Document: document });
+
+    res.status(300).json({ Entries: entries });
   }
 
   /**
@@ -180,6 +183,29 @@ const routerFactory = function(router, db) {
       if (!parameters.hasOwnProperty(path)) missingFields = true;
     }
     return missingFields;
+  }
+  function hasLinkedPaths(document) {
+    const paths_schemas = Object.entries(db.schema.paths);
+    let linkedPath = [];
+    let aux = false;
+    paths_schemas.forEach(path_schema => {
+      // console.log('--------------PATH---------------------------');
+      // console.log(path_schema[0], 'PATH', path_schema[1].options.type);
+      // console.log('--------------SCHEMA---------------------------');
+      // console.log('SCHEMA', path_schema[1].options.type[0]);
+      // console.log('SCHEMA', path_schema[1].options.ref);
+      // console.log('SCHEMA', path_schema[1].caster.options.ref && true);
+      if (path_schema[1].options.ref || path_schema[1].options.type[0]) {
+        aux = true;
+        linkedPath.push(path_schema[0]);
+      }
+    });
+    return [aux, linkedPath];
+  }
+  function findInOtherCollections(collection, query, cb) {
+    mongoose.connection.db.collection(collection, function(err, collection) {
+      return collection.find(query);
+    });
   }
 
   /**
