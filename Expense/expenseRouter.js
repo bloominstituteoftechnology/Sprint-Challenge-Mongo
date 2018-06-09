@@ -30,6 +30,9 @@ router.route("/")
 
     .get((req, res) => {
         Expense.find()
+        .select('amount description budget category -_id')
+        .populate({path: 'budget', select: 'title budgetAmount -_id'})
+        .populate({path: 'category', select: 'title -_id'})
         .then(expenses => {
             res.status(200).json(expenses)
         })
