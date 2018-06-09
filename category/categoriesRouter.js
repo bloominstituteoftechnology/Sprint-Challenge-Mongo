@@ -8,6 +8,7 @@ router
   .route('/')
   .get((req, res) => {
     Category.find()
+      .select('title')
       .then( category => {
         res.status(200).json(category);
       })
