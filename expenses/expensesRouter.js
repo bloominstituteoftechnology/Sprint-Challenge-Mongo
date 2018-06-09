@@ -32,5 +32,38 @@ router
       )
   })
 
+router
+  .route('/totals')
+  .get((req, res) => {
+    Expense
+    .aggregate()
+    .group({
+      _id: "$category",
+      totalAmount: {
+        $sum: "$amount"
+      },
+    })
+    .lookup({
+      from: "categories",
+      localField: "_id",
+      foreignField: "_id",
+      as: "totalExpenses"
+    })
+    .addFields({
+      title: {
+        $arrayElemAt: [ "$totalExpenses.title", 0 ]
+      }
+    })
+    .project({
+      totalExpenses: 0
+    })
+    .then(foundExpenses => 
+      res.json(foundExpenses)
+    )
+    .catch(err => 
+      res.status(500).json(err)
+    )
+  })
+
 
 module.exports = router;
