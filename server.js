@@ -44,6 +44,16 @@ server.post('/api/budgets', (req, res) => {
         })
 })
 
+server.get('/api/expenses', (req, res) => {
+  Expense.find()
+    .select('amount description -_id')
+    .then(expenses => {
+      res.status(200).json(expenses);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    })
+})
 server.post('/api/expenses', (req, res) => {
   const expense = req.body;
 
