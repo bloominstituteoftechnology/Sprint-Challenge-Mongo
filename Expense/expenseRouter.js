@@ -29,14 +29,21 @@ router
 router  
   .route('/total')
     .get((req, res) =>{
-      Expense.aggregate([
-        {$group: { _id: '$category', total: { $sum: '$amount'}}},
-        { $project: { _id: 1, total: 1, truncatedValue: {$trunc: "$total"} }}
+      Expense.aggregate([        
+        { $lookup: { from: 'categories', localField:'category', foreignField: '_id', as: 'cat'}},
+        { $unwind: '$cat'},
+        // { $project: { _id: 1, total: 1, cat: 1, truncatedValue: {$trunc: "$total"} }},        
+        {$project: {category:1, amount: 1, cat:'$cat.title'}},
+        {$group: { _id: '$cat', total: { $sum: '$amount'}}},
+        // {$project: {cat: 1, total:1}},
       ])
+      
       // .populate('_id:')
       .then(tot => {
         // console.log(tot)
         res.json(tot)
       })
+      .catch(err => res.json({error: err.message}))
     })
 module.exports = router;
+
