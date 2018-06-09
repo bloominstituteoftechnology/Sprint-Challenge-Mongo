@@ -10,8 +10,8 @@ const definition = {
         type: String,
         required: true
     },
-    budget: [{type: ObjectId, ref: 'Budget'}],
-    category: [{type: ObjectId, ref: 'Category'}]
+    budget: [{type: ObjectId, ref: 'Budget', required: true}],
+    category: [{type: ObjectId, ref: 'Category', required: true}]
 }
 
 const ExpenseSchema = mongoose.Schema(definition)

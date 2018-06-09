@@ -8,7 +8,10 @@ const definition = {
         type: String,
         required: true
     },
-    budgetAmount: Number
+    budgetAmount: { 
+        type: Number,
+        required: true
+}
 }
 const BudgetSchema = new mongoose.Schema(definition)
 

@@ -35,5 +35,45 @@ function post (req, res) {
     }
 }
 
+router.route('/:id').get(getId).delete(deleteId).put(updateId)
+
+function getId (req, res) {
+    const { id } = req.params
+    Category.findById(id)
+        .select('-__v -_id')
+        .then(category => {
+            if (category !== null) {
+            res.json({ category })
+        } else {
+            sendUserError(404, "This category is no longer in our database.", res)
+        }})
+        .catch(err => sendUserError(500, err.message, res))
+    }
+
+function deleteId (req, res) {
+    const { id } = req.params
+    Category.findByIdAndRemove(id)
+    .then(deletedCategory => {
+        if (deletedCategory !== null) {
+            res.json({ deletedCategory })
+        } else {
+        sendUserError(404, "This category has already been removed", res)
+    }})
+    .catch(err => {
+        sendUserError(500, err.message, res)
+    })
+}
+
+function updateId (req, res) {
+    const { id } = req.params;
+    const updates = ( title ) = req.body
+    Category.findByIdAndUpdate(id, updates, { new: true })
+        .then(updatedCategory => {
+            res.status(200).json({ updatedCategory })
+        })
+        .catch(err => {
+            sendUserError(500, err.message, res)
+        })
+}
 
 module.exports = router
