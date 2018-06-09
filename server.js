@@ -14,7 +14,7 @@ const db = mongoose.connect('mongodb://localhost/budget')
 
 const Budget = require('./budgetModel');
 const Category = require('./categoryModel');
-
+const Expense = require('./expenseModel');
 server.use(express.json());
 // ENDPOINTS
 
@@ -62,7 +62,7 @@ server.post('/budgets', (req, res) => {
 
 server.get('/categories', (req, res) => {
   let query = Category.find()
- // query.select({ id: -_id, v: -_v })
+  query.select('title -_id')
   .then(category => {
     res.send(category);
   })
@@ -70,6 +70,38 @@ server.get('/categories', (req, res) => {
     res.send(error);
   });
 });
+
+/* ### `'/expenses'`
+
+* your expense should have a `'post'` method for creating the expense. To save
+  an expense you'll need an `'budget'` `_id` and a `'category'` `_id` so that we
+  can build out a relationship between those other collections and our expenses.
+* your expense route should also have a `'get'` method that returns all the
+  expenses with the populated data. */
+
+  server.post('/expense', (req, res) => {
+    const { amount, description, budget, category } = req.body;
+    const expense = new expense(req.body);
+    Expense.create(expense)
+    .then(saveExpense => {
+      res.send(201).json(saveExpense);
+    })
+    .catch(err => {
+      res.status(500).json({error: 'Error addind expense to the database'});
+    });
+  });
+
+  server.get('/expense', (req, res) => {
+    Expense.find()
+    .populate('budget')
+    .populate('category')
+    .then(expenses => {
+      res.status(201).json(expenses);
+    })
+    .catch(error => {
+      res.status(500).json({error: 'Expense not found'});
+    })
+  })
 
 
 
