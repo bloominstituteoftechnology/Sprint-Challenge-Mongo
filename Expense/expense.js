@@ -4,19 +4,21 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const ExpenseSchema = mongoose.Schema({
     amount: {
         type: Number,
-        required: true
+        required: [true, "Amount is required."]
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Description is required."]
     },
     budget: {
         type: ObjectId,
-        ref: 'Budget'
+        ref: 'Budget',
+        required: [true, "Budget is required."]
     },
     category: {
         type: ObjectId,
-        ref: 'Category'
+        ref: 'Category',
+        required: [true, "Category is required."]
     }
 })
 

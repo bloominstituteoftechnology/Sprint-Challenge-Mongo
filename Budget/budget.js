@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const BudgetSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: [true, "Title is required."]
     },
     budgetAmount: {
         type: Number,
-        required: true
+        required: [true, "Amount is required."]
     }
 })
 
