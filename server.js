@@ -21,13 +21,13 @@ server.use('/api/budget', budgetRoutes);
 server.use('/api/category', categoryRoutes);
 server.use('/api/expense', expenseRoutes);
 
-server.get('/', (req, res) => {
-  res.send('Working!!!')
-})
+// server.get('/', (req, res) => {
+//   res.send('Working!!!')
+// })
 
-server.post('/', (req, res) => {
-  res.send('Working!!!')
-})
+// server.post('/', (req, res) => {
+//   res.send('Working!!!')
+// })
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
