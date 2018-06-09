@@ -24,6 +24,7 @@ router.route("/")
 
     .get((req, res) => {
         Category.find()
+        .select('title -_id')
         .then(categories => {
             res.status(200).json(categories);
         })
