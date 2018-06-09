@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Budget = require('./Budget/budget.js');
 const budgetRouter = require('./Budget/budgetRouter.js');
 const Category = require('./Category/category.js');
+const categoryRouter = require('./Category/categoryRouter.js');
 const Expense = require('./Expense/expense.js');
 
 const server = express();
@@ -28,3 +29,4 @@ server.listen(port, () => {
 });
 
 server.use("/budgets", budgetRouter);
+server.use("/categories", categoryRouter);
