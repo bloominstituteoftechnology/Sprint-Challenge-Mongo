@@ -11,11 +11,21 @@ const expenseRouter = require('./expense/expenserouter.js')
 
 const server = express();
 
-module.exports = {
-  connectTo: function(database = 'sandbox', host = 'localhost') {
-    return mongoose.connect(`mongodb://${host}/${database}`)
-  }
-}
+mongoose.connect('mongodb://localhost/budgets')
+.then(() => {
+  const port = process.env.PORT || 5000;
+  server.listen(port, () => console.log(`Server up and running on ${port}`));
+
+})
+.catch(err => {
+console.log('error starting mongo database')
+})
+
+// module.exports = {
+//   connectTo: function(database = 'sandbox', host = 'localhost') {
+//     return mongoose.connect(`mongodb://${host}/${database}`)
+//   }
+// }
 
 server.use(helmet());
 server.use(express.json())
@@ -27,7 +37,7 @@ server.use('/api/expense', expenseRouter)
 server.get('/', (req, res) =>{
   res.send('Api Running...')
 });
-const port = process.env.PORT || 5000;
-server.listen(port, () => {
-  console.log(`Server up and running on ${port}`);
-});
+// const port = process.env.PORT || 5000;
+// server.listen(port, () => {
+//   console.log(`Server up and running on ${port}`);
+// });
