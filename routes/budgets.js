@@ -17,18 +17,31 @@ router
       })
   })
   .get('/',  (req, res) => {
-    Expense.aggregate([
-      { $group: { _id: "$budget", total: { $sum: "$amount" } } },
-      { $lookup: { from: "budgets", localField: "_id", foreignField: "_id", as: "budgetDetails" } },
-      { $unwind: "$budgetDetails" },
-      { $project: { _id: 0, title: "$budgetDetails.title", budgetAmount: "$budgetDetails.budgetAmount", totalExpenses: "$total", amountRemaining: { $subtract: ["$budgetDetails.budgetAmount", "$total"] } } }
-    ])
+    Expense.aggregate()
+      .group({
+        _id: "$budget",
+        total: { $sum: "$amount" }
+      })
+      .lookup({
+        from: "budgets",
+        localField: "_id",
+        foreignField: "_id",
+        as: "budgetDetails"
+      })
+      .unwind("$budgetDetails")
+      .project({
+        _id: 0,
+        title: "$budgetDetails.title",
+        budgetAmount: "$budgetDetails.budgetAmount",
+        totalExpenses: "$total",
+        amountRemaining: { $subtract: ["$budgetDetails.budgetAmount", "$total"] }
+      })
       .then(results => {
         res.send(results);
       })
       .catch(error => {
         res.status(500).json(error);
-      })
+      });
   })
 
 module.exports = router;
