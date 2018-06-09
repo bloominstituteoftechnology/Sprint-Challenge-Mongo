@@ -7,6 +7,7 @@ const budgetRouter = require('./Budget/budgetRouter.js');
 const Category = require('./Category/category.js');
 const categoryRouter = require('./Category/categoryRouter.js');
 const Expense = require('./Expense/expense.js');
+const expenseRouter = require('./Expense/expenseRouter.js');
 
 const server = express();
 server.use(express.json());
@@ -30,3 +31,4 @@ server.listen(port, () => {
 
 server.use("/budgets", budgetRouter);
 server.use("/categories", categoryRouter);
+server.use("/expenses", expenseRouter);
