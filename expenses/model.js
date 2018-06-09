@@ -12,11 +12,13 @@ const definition = {
   },
   budget: {
     type: ObjectId,
-    ref: 'Budget'
+    ref: 'Budget',
+    required: true,
   },
   category: {
     type: ObjectId,
-    ref: 'Category'
+    ref: 'Category',
+    requried: true,
   }
 }
 

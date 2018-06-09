@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    Expense.find().populate()
+    Expense.find()
+     .populate('budget', 'budgetAmount -_id').populate('category', 'title -_id')
      .then(expenses => {
        res.status(200).json(expenses)
      })
