@@ -4,3 +4,5 @@ const router = express.Router()
 const Category = require('./Category.js')
 
 // add endpoints here
+router.get('/')
+module.exports = router

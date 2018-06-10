@@ -6,3 +6,5 @@ const router = express.Router()
 
 // add endpoints here
 router.post('/')
+
+module.exports = router
