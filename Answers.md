@@ -13,4 +13,7 @@
   * We can add fields into one schema with and ObjectId that references data from another schema. 
   * We can then use the mongoose .populate() method.
 
-  
+  3. Explain a way to break up an API into Sub-Applications, which tool did
+  we use to do that?
+  * We can break up an API by creating routes and sub routes. We use express
+  to do that, but we can also use other middleware.
