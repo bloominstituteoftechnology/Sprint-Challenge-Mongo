@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     Category
       .find()
-      .select('-_id title')
+      .select('title')
       .then(foundCategories => 
         res.json(foundCategories)
       )

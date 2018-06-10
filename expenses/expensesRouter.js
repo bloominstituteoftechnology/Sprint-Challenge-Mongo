@@ -41,7 +41,7 @@ router
       _id: "$category",
       totalAmount: {
         $sum: "$amount"
-      },
+      }
     })
     .lookup({
       from: "categories",
@@ -50,8 +50,14 @@ router
       as: "totalExpenses"
     })
     .addFields({
+      icon: {
+        $arrayElemAt: [ "$totalExpenses.icon", 0 ]
+      },
       title: {
         $arrayElemAt: [ "$totalExpenses.title", 0 ]
+      },
+      budget: {
+        $arrayElemAt: [ "$totalExpenses.budget", 0 ]
       }
     })
     .project({

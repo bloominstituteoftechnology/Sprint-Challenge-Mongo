@@ -5,16 +5,21 @@ class Budget extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: 'empty',
+      current: 0,
+      icon: "face", //"account_balance"
+      total: 100
     }
   }
 
   render() { 
+
     return (
       <div className={this.props.className}>
         <div className="App-title">
-          Budget
+          Budget: {this.props.title}
         </div>
-        <ProgressBar current="40" icon="account_balance" total="100" />
+        <ProgressBar current={this.props.current} icon={this.props.icon} total={this.props.total} />
     </div>
     )
   }

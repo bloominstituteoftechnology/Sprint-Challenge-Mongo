@@ -6,6 +6,14 @@ const Category = new mongoose.Schema ({
     type: String,
     required: true,
     unique: true
+  },
+  budget: {
+    type: Number,
+    required: true,
+  },
+  icon: {
+    type: String,
+    required: true,
   }
 });
 

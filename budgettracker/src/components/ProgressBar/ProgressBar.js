@@ -30,6 +30,10 @@ class ProgressBar extends Component {
     return `$${ this.state.value } of $${ this.props.total }`;
   }
 
+  totalLeft() {
+    return `$${ this.props.total - this.state.value} left`;
+  }
+
   setValue = (e) => {
     this.setState({value: e.target.value});
   }
@@ -54,7 +58,7 @@ class ProgressBar extends Component {
         <div className={ classes }>
           <div className="labels">
             <span className="completion">{ this.completion() }</span>
-            <span className="percentage">{ `$${ 100 - this.percentage() } left` }</span>
+            <span className="total">{ this.totalLeft() }</span>
           </div>
           <div className="bar">
             <div style={{ width: this.percentage() + "%" }} className="fill"></div>

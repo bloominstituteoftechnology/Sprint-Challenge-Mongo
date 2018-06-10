@@ -8,6 +8,7 @@ const router = express.Router();
 router
   .route('/')
   .get((req, res) => {
+    console.log("get data api");
     Budget
       .find()
       .then(foundBudgets => 

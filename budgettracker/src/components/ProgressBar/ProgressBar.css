@@ -47,6 +47,9 @@
 .react-progress-bar .percentage {
   float: right;
 }
+.react-progress-bar .total {
+  float: right;
+}
 .react-progress-bar .bar {
   background: #eee;
   height: 10px;
