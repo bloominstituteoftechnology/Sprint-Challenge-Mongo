@@ -4,12 +4,17 @@ const express = require('express')
 
 const helmet = require('helmet')
 // const cors = require('cors')
-const mongoose = require('mongoose')
-// const Character = require('./characters/character')
-// const Starship = require('./starships/starship')
-mongoose.connect('mongodb://localhost/budgetTracker')
 
-const db = require('./data/db.js')
+// load and connect to mongoose
+const mongoose = require('mongoose')
+
+const db = mongoose
+  .connect('mongodb://localhost/budgetTracker')
+  .then(mongo => {
+    console.log('Mongoose is up and running...')
+  })
+
+// const db = require('./data/db.js')
 const budgetRouter = require('./budget/budgetRouter.js')
 const categoryRouter = require('./category/categoryRouter.js')
 const expenseRouter = require('./expense/expenseRouter.js')
