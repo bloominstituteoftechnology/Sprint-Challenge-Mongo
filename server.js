@@ -3,14 +3,14 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 
 const budgets = require('./budget/budgetRouter');
-// const categories = require('./Category/categoryRouter');
-// const expenses = require('./Expense/expenseRouter');
+const category = require('./Category/categoryRouter');
+const expenses = require('./Expense/expenseRouter');
 
 const server = express();
 server.use(helmet());
 server.use(express.json());
 
-mongoose.connect('mongodb://localhost/budgetTrackerdb')
+mongoose.connect('mongodb://localhost/budgetTracker')
   .then(connection => {
     console.log('Connected to MongoDB.');
   })
@@ -19,8 +19,8 @@ mongoose.connect('mongodb://localhost/budgetTrackerdb')
   })
 
   server.use('/budgets', budgets);
-  // server.use('/categories', categories);
-  // server.use('/expenses', expenses);
+  server.use('/category', category);
+  server.use('/expenses', expenses);
 
   server.get('/', (req, res) => {
     res.status(200).json({ api: '!=== API IS RUNNING ===!' });

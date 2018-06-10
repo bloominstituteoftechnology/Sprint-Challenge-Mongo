@@ -1,5 +1,5 @@
 const express = require('express');
-const Budget = require('../Budget/Budget');
+const Budget = require('./Budget.js');
 
 const router = express.Router();
 
@@ -15,7 +15,8 @@ router
         })
     })
     .post((req, res) => {
-        const budgetData = req.body;
+        const { title, budgetAmount } = req.body;
+        const budgetData = { title, budgetAmount}
         const budget = new Budget(budgetData);
 
         budget.save()

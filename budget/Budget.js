@@ -5,7 +5,7 @@ const budgetDefinition = {
         type: String,
         required: true,
     },
-    amount: {
+    budgetAmount: {
         type: Number,
         required: true,
     },
@@ -13,6 +13,4 @@ const budgetDefinition = {
 
 const budgetSchema = new mongoose.Schema(budgetDefinition);
 
-const budgetModel = mongoose.model('Budget', budgetDefinition, 'Budgets');
-
-module.exports = budgetModel;
+module.exports = mongoose.model('Budget', budgetSchema)

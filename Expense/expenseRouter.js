@@ -1,5 +1,5 @@
 const express = require('express');
-const Expense = require('../Expense/Expense');
+const Expense = require('./Expense.js');
 
 const router = express.Router();
 
@@ -7,6 +7,7 @@ router
     .route('/')
     .get((req, res) => {
         Expense.find()
+        .populate('budget', 'title budgetAmount')
         .then(expenseObj => {
             res.status(200).json(expenseObj);
         })
@@ -15,15 +16,16 @@ router
         })
     })
     .post((req, res) => {
-        const budgetData = req.body;
-        const budget = new Budget(budgetData);
+        const { amount, description, budget: budget_ObjectId } = req.body;
 
-        budget.save()
-        .then(newBudget => {
-            res.status(201).json(newBudget);
+        const newExpense = new Expense({ amount, budget: budget_ObjectId, description })
+
+        newExpense.save()
+        .then(newExpense => {
+            res.status(201).json(newExpense);
         })
         .catch(err => {
-            res.status(500).json({ err: 'Could not create a budget.'});
+            res.status(500).json({ err: 'Could not create an expense.'});
         })
     });
 

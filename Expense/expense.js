@@ -14,16 +14,14 @@ const expenseDefinition = {
     },
     budget: {
         type: ObjectId,
-        ref: 'budgetModel',
+        ref: 'Budget',
     },
     category: {
         type: ObjectId,
-        ref: 'categoryModel',
+        ref: 'Category',
     },
 };
 
 const expenseSchema = new mongoose.Schema(expenseDefinition);
 
-const expenseModel = mongoose.model('Expense', ExpenseDefinition, 'Expenses');
-
-module.exports = expenseModel;
+module.exports = mongoose.model('Expense', expenseSchema);
