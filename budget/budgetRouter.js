@@ -1,20 +1,20 @@
-// const express = require('express')
-const router = express.Router()
-
+const express = require('express')
 const Budget = require('./Budget')
+
+const router = express.Router()
 
 // add endpoints here
 /* EXTRAS
 router
-  .route('/')
-  .get(get)
-  .post(post)
+.route('/')
+.get(get)
+.post(post)
 
 router
-  .route('/:id')
-  .get(getById)
-  .delete(deleteBudget)
-  .put(editBudget)
+.route('/:id')
+.get(getById)
+.delete(deleteBudget)
+.put(editBudget)
 END EXTRAS */
 
 // const {budget} = req.body
@@ -45,7 +45,7 @@ router
   })
 
 router
-  .router('/:id')
+  .route('/:id')
   .get((req, res) => {
     res.status(200).json({ route: '/api/budget/' + req.params.id })
   })
