@@ -1,7 +1,8 @@
 const express = require('express')
-const router = express.Router()
 
 const Expense = require('./Expense.js')
+
+const router = express.Router()
 
 // add endpoints here
 router.post('/')

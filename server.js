@@ -8,23 +8,17 @@ const helmet = require('helmet')
 // load and connect to mongoose
 const mongoose = require('mongoose')
 
-const db = mongoose
-  .connect('mongodb://localhost/budgetTracker')
-  .then(mongo => {
+mongoose.connect('mongodb://localhost/budgetTracker')
+  .then(() => {
     console.log('Mongoose is up and running...')
   })
+  .catch((err) => { console.log(`Couldn't connect to MongoDB: Error ${err.message}`) })
 
-// const db = require('./data/db.js')
 const budgetRouter = require('./budget/budgetRouter.js')
 const categoryRouter = require('./category/categoryRouter.js')
 const expenseRouter = require('./expense/expenseRouter.js')
 
 const server = express()
-
-db
-  .connectTo('budgetTracker')
-  .then(() => console.log('\n... API Connected to budgetTracker Database ...\n'))
-  .catch(err => console.log('\n*** ERROR Connecting to budgetTracker Database ***\n', err))
 
 server.use(helmet())
 server.use(express.json())
