@@ -36,7 +36,7 @@ class Expense extends Component {
             expense: this.state
         }
         return (
-            <div key={this.props.expense.id}>
+            <div key={this.props.expense._id}>
                 <div className={"textLink"}>
                     <Link
                         to={`/expenses/edit/${this.props.expense.id}`}
