@@ -7,7 +7,11 @@ export type BudgetModel = Document & {
 
 const budgetSchema = new Schema({
   budgetAmount: Number,
-  title: { type: String, unique: true }
+  title: {
+    required: true,
+    type: String,
+    unique: true
+  }
 })
 
 const Budget = model('Budget', budgetSchema)

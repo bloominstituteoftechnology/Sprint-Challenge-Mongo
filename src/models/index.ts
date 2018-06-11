@@ -1,3 +1,3 @@
-export { BudgetModel, default as Budget } from './Budget'
-export * from './Category'
-export * from './Expense'
+export { default as Budget } from './Budget'
+export { CategoryModel, default as Category } from './Category'
+export { ExpenseModel, default as Expense } from './Expense'

@@ -1,9 +1,13 @@
 import mongoose from 'mongoose'
 
-export = (config: any) => {
+interface Config {
+  db: string
+}
+
+export = (config: Config): void => {
   mongoose
     .connect(config.db)
     .then(() => console.log('📙 connected to MongoDB'))
-    .catch(err => console.log(err.message))
+    .catch((err: Error) => console.log(err.message))
   mongoose.Promise = global.Promise
 }

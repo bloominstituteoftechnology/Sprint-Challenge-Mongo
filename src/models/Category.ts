@@ -5,7 +5,11 @@ export type CategoryModel = Document & {
 }
 
 const categorySchema = new Schema({
-  title: { type: String, unique: true }
+  title: {
+    required: true,
+    type: String,
+    unique: true
+  }
 })
 
 const Category = model('Category', categorySchema)

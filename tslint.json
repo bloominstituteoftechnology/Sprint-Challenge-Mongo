@@ -6,6 +6,8 @@
     "jsRules": {},
     "rules": {
         "arrow-parens": false,
+        "curly": false,
+        "interface-name": false,
         "no-console": false,
         "no-var-requires": false,
         "quotemark": false,

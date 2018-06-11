@@ -1,35 +1,34 @@
-import { Request, Response, Router } from 'express'
-import { check, validationResult } from 'express-validator/check'
+import { Request, Response } from 'express'
 
 import { Budget } from '../models'
 
-const router: Router = Router()
+/**
+ * POST /api/budget
+ * Create a new budget.
+ */
+export const post = async (req: Request, res: Response) => {
+  req.assert('budgetAmount', 'Budget amount is not valid').isNumeric()
+  req
+    .assert('title', 'Title must be valid word characters')
+    .isLength({ min: 1 })
+    .matches(/\w/g)
 
-router.post('/', [
-  check('budgetAmount', 'Budget amount is not valid').isNumeric(),
-  check('title', 'Title cannot be blank').isLength({ min: 1 }).matches(/\w/)
-], async (req: Request, res: Response) => {
-  try {
-    const { budgetAmount, title } = req.body
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.mapped() })
-    }
-    const budget = new Budget({ budgetAmount, title })
-    const response = await budget.save()
-    res.status(201).json(response)
-  } catch (err) {
-    res.status(500).json({ message: 'Unable to save budget', error: err.message })
-  }
-})
+  const errors = req.validationErrors()
 
-router.get('/', async (req: Request, res: Response) => {
-  try {
-    const response = await Budget.find()
-    response.length ? res.json(response) : res.json({ error: 'No budgets found' })
-  } catch (err) {
-    res.status(500).json({ message: 'Unable to retrieve budgets', error: err.message })
-  }
-})
+  if (errors) return res.status(422).json({ errors })
 
-export const BudgetCtrl: Router = router
+  const budget = new Budget(req.body)
+  const promise = await budget.save()
+  res.status(201).json(promise)
+}
+
+/**
+ * GET /api/budget
+ * Fetch all budgets.
+ */
+export const get = async (req: Request, res: Response) => {
+  const promise = await Budget.find().select('-__v').exec()
+  promise && promise.length
+    ? res.json(promise)
+    : res.status(404).json({ error: 'No budgets found' })
+}
