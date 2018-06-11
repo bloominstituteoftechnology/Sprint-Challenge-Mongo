@@ -5,7 +5,10 @@ const router = express.Router();
 router
     .route('/')
     .get((req, res) => {
-        Expense.find()            
+        Expense.find() 
+            .select('amount description -_id')
+            .populate('budget', 'budgetAmount -_id title')
+            .populate('category', 'title -_id')           
             .then(expenses => {
                 res.status(200).json(expenses);
             })

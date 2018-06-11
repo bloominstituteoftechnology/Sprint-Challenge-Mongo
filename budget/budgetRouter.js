@@ -1,6 +1,9 @@
 const express = require('express'); 
-const Budget = require('./Budget.js'); 
+
 const router = express.Router(); 
+
+const Budget = require('./Budget.js'); 
+
 
 router
     .route('/')
@@ -21,7 +24,7 @@ router
         newBudget
             .save()
             .then(savedBudget => {
-                res.status(201).json(savedBudget); 
+                res.status(201).json({ savedBudget }); 
             })
             .catch(error => {
                 res.status(500).json({ error: error.message });
