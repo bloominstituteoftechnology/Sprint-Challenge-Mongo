@@ -30,7 +30,7 @@ class Expenses extends Component {
                                 <CardBody>
                                     <CardTitle>{expense.description.substring(0, 21)}</CardTitle>
                                     <hr className="my-2" />
-                                    <CardText>{expense.amount.substring(0, 150)}</CardText>
+                                    <CardText>{expense.amount}</CardText>
                                 </CardBody>
                             </Link>
                         </Card>

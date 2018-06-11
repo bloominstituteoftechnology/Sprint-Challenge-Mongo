@@ -52,8 +52,8 @@ class Expense extends Component {
                     </Link>
                 </div>
                 <div>
-                    <div className={"expense-title"}>
-                        <p>{this.props.expense.title}</p>
+                    <div className={"expense-description"}>
+                        <p>{this.props.expense.decription}</p>
                     </div>
                 </div>
                 <div>
