@@ -1,31 +1,23 @@
 const express = require('express');
 
-const Budget = require('./Budget.js');
+const Budget = require('./Budget');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    // Budget.find()
-    //     .then(budget => {
-            res.send('Working!!!')
-            // res.status(200).json({message: 'Working'})
-        // })
-        // .catch(err => {
-        //     res.status(500).json(err)
-        // })
+router.post('/', (req, res) => {
+    let newBudget = req.body;
+    console.log(newBudget);
+    if (newBudget.title === undefined || newBudget.budgetAmount === undefined) {
+        res.status(400).json({ message: 'Please enter both a title and budget amount.' })
+    }
+    const budget = new Budget(newBudget);
+    budget.save()
+        .then(budget => {
+            res.status(201).json(budget)
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'Error posting budget' })
+        })
 })
-
-// router.post('/', (req, res) => {
-//     const { title, budgetAmount } = req.body;
-//     const budget = new Budget(req.body);
-
-//     Budget.create(budget)
-//         .then(newBudget => {
-//             res.status(200).json(newBudget)
-//         })
-//         .catch(err => {
-//             res.status(500).json(err);
-//         })
-// })
 
 module.exports = router;

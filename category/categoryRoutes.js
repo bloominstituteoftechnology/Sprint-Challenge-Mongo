@@ -1,13 +1,13 @@
 const express = require('express');
 
-const Category = require('./Category.js')
+const Category = require('./Category');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
     Category.find()
-        .then(res => {
-            res.status(200).json(res)
+        .then(categories => {
+            res.status(200).json(categories)
         })
         .catch(err => {
             res.status(500).json(err);
@@ -15,14 +15,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const { categoryItem } = req.params;
+    let newCategory = req.body;
 
-    Category.insertOne({ categoryItem })
-        .then(categoryItem => {
-            res.status(200).json(categoryItem)
+    const category = new Category(newCategory);
+    category.save()
+        .then(category => {
+            res.status(201).json(category)
         })
         .catch(err => {
-            res.status(500).json(err);
+            res.status(500).json(err)
         })
 })
 
