@@ -29,8 +29,8 @@ server.use(helmet());
 server.use(cors());
 
 server.use('/api/budget', budgetRouter);
-// server.use('/api/category', categoryRouter);
-// server.use('/api/expense', expenseRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req, res) => {
   res.send('API Running...')

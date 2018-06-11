@@ -7,42 +7,42 @@ router
     .get(get)
     .post(post);
 
-router.get('/:id', (req, res) => {
-    const { title, budgetAmount } = req.query;
-    let query = Budget.find()
-        .sort('title')
-        .select('title budget')
-    if (budgetAmount !== undefined) {
-        const filter = new RegExp(budgetAmount, 'i')
-        query.where({ budgetAmount: filter })
-    }
-    query.then(budget => {
-        res.status(200).json(budget)
+const msgNotExists = {
+    message: "The id you provided does not exist"
+}
+
+router
+    .route('/:id')
+    .get((req, res) => {
+        const objId = req.params.id;
+        Budget.findById(objId)
+            .then(budget => {
+                if (budget) {
+                    res.status(201).json({ budget })
+                } else {
+                    return res.status(404).json(msgNotExists)
+                }
+            })
+            .catch(err => {
+                res.status(500).json({ errorMessage: "Your budget could not be retrieved, try again later." })
+            })
     })
-        .catch(err => {
-            res.status(500).json(err)
+    .delete((req, res) => {
+    const objId = req.params.id;
+        Budget.findByIdAndDelete(objId)
+        .then(deleted => {
+            if (deleted) {
+                res.status(201).json({ message: "You've deleted your budget! We hope it's because you're making more money", objId })
+            } else {
+                return res.status(404).json(msgNotExists)
+            }
         })
-})
-
-// router.get('/:id', (req, res) => {
-//     // find all films produced by Gary Kurtz(/apit/films?producer=gary+kurtz)
-//     const { producer, released } = req.query;
-//     // producer: 'Gary Kurtz'
-//     const query = Film.find()
-//     if (producer !== undefined) {
-//         query.where({ producer: { $regex: producer, $options: 'i' } })
-//     }
-//     if (released !== undefined) {
-//         let releasedFilter = new RegExp(released, 'i');
-//         query.where({ release_date: releasedFilter })
-//     }
-//     //Film.find().where({producer: producer})
-
-//     query.then(films => res.status(200).json(films))
-//         .catch(err => res.sendStatus(500));
-
-
-// })
+        .catch(err => {
+            res.status(500).json({
+                errorMessage: "There was an error, please try again later!"
+            })
+        })
+});
 
 function get(req, res) {
     Budget.find().then(budgets => {
@@ -53,6 +53,7 @@ function get(req, res) {
 
         });
 }
+
 
 function post(req, res) {
     const budgetData = req.body;
@@ -71,6 +72,8 @@ function post(req, res) {
             res.status(500).json({ errorMessage: "There was an error while saving the budget to the database" });
         });
 }
+
+
 
 
 
