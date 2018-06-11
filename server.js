@@ -5,9 +5,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const db = require('./data/db.js');
-const budgetRouter = require('./budget/budgetRouter.js');
-const categoryRouter = require('./category/categoryRouter.js');
-const expenseRouter = require('./expense/expenseRouter.js');
+const budgetRouter = require('./budgetapp/src/components/budget/budgetRouter.js');
+const categoryRouter = require('./budgetapp/src/components/category/categoryRouter.js');
+const expenseRouter = require('./budgetapp/src/components/expense/expenseRouter.js');
 
 const server = express();
 

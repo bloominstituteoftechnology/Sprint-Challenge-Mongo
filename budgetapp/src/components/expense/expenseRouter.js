@@ -1,5 +1,5 @@
 const express = require('express');
-const Expenses = require('./Expense.js');
+const Expenses = require('./ExpenseSchema.js');
 const router = express.Router();
 
 router
@@ -24,40 +24,6 @@ router.get('/:id', (req, res) => {
         })
 })
 
-// router.get('/:id', (req, res) => {
-//         // /api/characters?minheight=100&gender=female
-//     const { id } = req.params;
-//     Expense.findById(id)
-//         .populate('budget', 'title')
-//         .populate('category', 'title')
-//         .then(exp => {
-//             res.status(200).json(exp)
-//          })
-//         .catch(err => {
-//             res.status(500).json(err)
-//         })
-//     })
-
-
-// router.get('/:id', (req, res) => {
-//     // find all films produced by Gary Kurtz(/apit/films?producer=gary+kurtz)
-//     const { producer, released } = req.query;
-//     // producer: 'Gary Kurtz'
-//     const query = Film.find()
-//     if (producer !== undefined) {
-//         query.where({ producer: { $regex: producer, $options: 'i' } })
-//     }
-//     if (released !== undefined) {
-//         let releasedFilter = new RegExp(released, 'i');
-//         query.where({ release_date: releasedFilter })
-//     }
-//     //Film.find().where({producer: producer})
-
-//     query.then(films => res.status(200).json(films))
-//         .catch(err => res.sendStatus(500));
-
-
-// })
 
 function get(req, res) {
     let query = Expenses.find()
@@ -74,7 +40,7 @@ function get(req, res) {
 
 function post(req, res) {
     const expenseData = req.body;
-    const expense = new Expense(expenseData);
+    const expense = new Expenses(expenseData);
 
     if (!expenseData.description || !expenseData.amount) {
         return res.status(400).json({

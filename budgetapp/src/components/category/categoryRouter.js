@@ -1,5 +1,5 @@
 const express = require('express');
-const Category = require('./Category.js');
+const Category = require('./CategorySchema.js');
 const router = express.Router();
 
 router
@@ -25,26 +25,6 @@ router
                 res.status(500).json({ errorMessage: "The category information could not be retrieved.", err })
             })
     })
-
-// router.get('/:id', (req, res) => {
-//     // find all films produced by Gary Kurtz(/apit/films?producer=gary+kurtz)
-//     const { producer, released } = req.query;
-//     // producer: 'Gary Kurtz'
-//     const query = Film.find()
-//     if (producer !== undefined) {
-//         query.where({ producer: { $regex: producer, $options: 'i' } })
-//     }
-//     if (released !== undefined) {
-//         let releasedFilter = new RegExp(released, 'i');
-//         query.where({ release_date: releasedFilter })
-//     }
-//     //Film.find().where({producer: producer})
-
-//     query.then(films => res.status(200).json(films))
-//         .catch(err => res.sendStatus(500));
-
-
-// })
 
 function get(req, res) {
    let query = Category.find()
