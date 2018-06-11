@@ -3,7 +3,7 @@ import './Expenses.css';
 // import '../components/Expenses.css';
 import { Container, Row, Col } from 'reactstrap';
 
-import { getExpenses } from '.../src/actions/index.js';
+import { getExpenses } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -22,7 +22,7 @@ class Expenses extends Component {
         return (
             <div>
                 <h5>Your Expenses:</h5>
-                {this.props.notes.map(expense => {
+                {this.props.expenses.map(expense => {
                     return (
                         <Card>
                             <Link to={`/expenses/${expense.id}`}

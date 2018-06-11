@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { deleteExpense, getExpense, startEditing } from '../actions';
+import { deleteExpense, getExpense, startEditing } from '../../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import DeleteModal from '../Modal';
-import "./Expense.css";
+import './Expense.css';
 
 
 class Expense extends Component {
@@ -57,8 +57,8 @@ class Expense extends Component {
                     </div>
                 </div>
                 <div>
-                    <div className={"expense-content"}>
-                        <p>{this.props.expense.content}</p>
+                    <div className={"expense-amount"}>
+                        <p>{this.props.expense.amount}</p>
                     </div>
 
                 </div>
