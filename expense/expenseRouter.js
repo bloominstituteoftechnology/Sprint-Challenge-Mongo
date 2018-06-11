@@ -1,5 +1,5 @@
 const express = require('express');
-const Expense = require('./Expense.js');
+const Expenses = require('./Expense.js');
 const router = express.Router();
 
 router
@@ -9,7 +9,7 @@ router
 
 router.get('/:id', (req, res) => {
     const { title, budgetAmount } = req.query;
-    let query = Expense.find()
+    let query = Expenses.find()
         .sort('category')
         .select('category amount budget')
     if (budgetAmount !== undefined) {
@@ -60,9 +60,12 @@ router.get('/:id', (req, res) => {
 // })
 
 function get(req, res) {
-    Expense.find().then(expenses => {
-        res.status(200).json(expenses);
-    })
+    let query = Expenses.find()
+        .populate('category', 'title -_id')
+        .populate('budget', 'title amount -_id')
+        .then(expenses => {
+            res.status(200).json(expenses)
+        })
         .catch(err => {
             res.status(500).json({ errorMessage: "The expenses could not be retrieved.", err });
 

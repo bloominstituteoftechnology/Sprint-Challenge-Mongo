@@ -47,8 +47,10 @@ router
 // })
 
 function get(req, res) {
-    Category.find().then(categories => {
-        res.status(200).json(categories);
+   let query = Category.find()
+       .select('title -_id')
+       .then(categories => {
+            res.status(200).json(categories);
     })
         .catch(err => {
             res.status(500).json({ errorMessage: "The categories could not be retrieved.", err });
