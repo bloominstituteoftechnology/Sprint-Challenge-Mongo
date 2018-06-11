@@ -34,7 +34,7 @@ router
   })
   .post((req, res) => {
     const { body } = req
-    const budget = new Budget(body)
+    const budget = new Budget(body.title, body.budgetAmount)
     budget.save()
       .then(budget => {
         res.status(201).json(budget)
