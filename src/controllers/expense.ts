@@ -9,7 +9,7 @@ import { Budget, Category, Expense } from '../models'
 export const post = async (req: Request, res: Response) => {
   const { amount, description } = req.body
   let { budget, category } = req.body
-  console.log(budget, category)
+
   req.assert('amount', 'Invalid amount').isNumeric()
   req
     .assert('description', 'Description must be valid word characters')

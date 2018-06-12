@@ -1,5 +1,5 @@
 import express from 'express'
-import expressValidator from "express-validator";
+import expressValidator from 'express-validator'
 import helmet from 'helmet'
 
 import { handleError } from '../utils/errors'
