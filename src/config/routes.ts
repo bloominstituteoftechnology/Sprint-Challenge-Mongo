@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import {
+  aggregate,
   getBudget,
   getCategory,
   getExpense,
@@ -24,6 +25,7 @@ router.get('/category', catchError(getCategory))
 router.post('/category', catchError(postCategory))
 
 /* Expense Endpoints */
+router.get('/aggregate', catchError(aggregate))
 router.get('/expense', catchError(getExpense))
 router.post('/expense', catchError(postExpense))
 
