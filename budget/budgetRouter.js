@@ -22,38 +22,25 @@ END EXTRAS */
 
 // create budget
 router
-  .route('/')
-  .get((req, res) => {
-    Budget.find()
-      .then(budgets => {
-        res.status(200).json(budgets);
-      })
-      .catch(err => {
-        res.status(500).json({ errorMessage: 'Error geting budgets', err })
-      })
-  })
-  .post((req, res) => {
-    const { body } = req
-    const budget = new Budget(body.title, body.budgetAmount)
+  // .route('/')
+  // .get((req, res) => {
+  //   Budget.find()
+  //     .then(budgets => {
+  //       res.status(200).json(budgets)
+  //     })
+  //     .catch(err => {
+  //       res.status(500).json({ errorMessage: 'Error geting budgets', err })
+  //     })
+  // })
+  .post('/budget', (req, res) => {
+    const budget = new Budget(req.body)
     budget.save()
       .then(budget => {
         res.status(201).json(budget)
+          .catch(err => {
+            res.status(500).json({ errorMessage: 'Budget item could not be posted', err })
+          })
       })
-      .catch(err => {
-        res.status(500).json({ errorMessage: 'Budget item could not be posted', err })
-      })
-  })
-
-router
-  .route('/:id')
-  .get((req, res) => {
-    res.status(200).json({ route: '/api/budget/' + req.params.id })
-  })
-  .delete((req, res) => {
-    res.status(200).json({ status: '/api/budget/' + req.params.id })
-  })
-  .put((req, res) => {
-    res.status(200).json({ route: '/api/budget/' + req.params.id })
   })
 
 module.exports = router
