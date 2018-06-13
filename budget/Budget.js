@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 /* APPROACH A - direct declaration creates schema definition inline.  Fine for simple schemas.  Schemas with many fields may be more managable using  APPROACH B in margin notes
 */
 const Budget = new mongoose.Schema({
-  // _id: ObjectId,
   title: String,
   budgetAmount: Number
 })
