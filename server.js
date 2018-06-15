@@ -2,13 +2,15 @@ const express = require('express'); // remember to install your npm packages
 const mongoose = require('mongoose');
 
 const server = express();
-const routes = require('./routes.js');
+const budgetRouter = require('./budgetRouter.js');
+const categoryRouter = require('./categoryRouter.js');
+const expenseRouter = require('./expenseRouter.js');
 
 // add your server code
 server.use(express.json())
-server.use('/api/budgets', routes);
-server.use('/api/categories', routes);
-server.use('/api/expenses', routes);
+server.use('/api/budgets', budgetRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenses', expenseRouter);
 
 
 const port = process.env.PORT || 5000;
