@@ -8,7 +8,7 @@ const schemaDef = {
 }
 
 const options = {
-    timestamps = true
+    timestamps:true
 };
 
 const categorySchema = new mongoose.Schema(schemaDef, options);

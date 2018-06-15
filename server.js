@@ -18,12 +18,16 @@ server.use(cors());
 server.use(express.json());
 
 const budgetRouter = require('./budget/budgetRouter');
+const categoryRouter = require('./category/categoryRouter');
+const expenseRouter = require('./expense/expenseRouter');
 
 server.get('/', (req, res) =>{
   res.status(200).json({api:'running successfully'});
 })
 
 server.use('/api/budget', budgetRouter);
+server.use('/api/category', categoryRouter);
+server.use('/api/expenses', expenseRouter);
 
 const port = process.env.PORT || 5000;
 server.listen(port, () => {

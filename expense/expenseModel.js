@@ -9,14 +9,16 @@ const schemaDef = {
         type: String,
         required: true
     },
-    budget: {
+    budget: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true
-     }, // Monthly Spending
-    category: {
+        ref: "Budget"
+        
+     }], // Monthly Spending
+    category: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true
-    } // Groceries for example
+        ref: "Category"
+        
+    }] // Groceries for example
 }
 
 const options = {

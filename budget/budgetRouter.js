@@ -4,13 +4,13 @@ const Budget = require("./budgetModel");
 const sendUserError = (status, message, res, err=err.message) =>{
     res.status(status).json({Error: message, err});
     return;
-}
+};
 
 const get = (req, res) =>{
     Budget
     .find()
     .then(budget =>{
-        res.json({budget})
+        res.json({budget});
     })
     .catch(err =>{
         sendUserError(500, "There was an error in retrieving budgets", res, err);
