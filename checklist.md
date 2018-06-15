@@ -1,12 +1,12 @@
 ###Sprint Challenge Checklist
 
-- [X] Questions in Answers.md filled out
-- [X] Files created for budgetModel, categoryModel, and expenseModel and their respective routers.
-- [X]  Create Schemas
-    - [X] BudgetSchema
-    - [X] category Schema
-    - [X] expense Schema
-- [X] Add endpoint code to server.js. Remember to install any npm packages you need.
+- [ ] Questions in Answers.md filled out
+- [ ] Files created for budgetModel, categoryModel, and expenseModel and their respective routers.
+- [ ]  Create Schemas
+    - [ ] BudgetSchema
+    - [ ] category Schema
+    - [ ] expense Schema
+- [ ] Add endpoint code to server.js. Remember to install any npm packages you need.
     - [ ] budgets
         - [ ] `POST to '/budgets'`
     - [ ] categories
