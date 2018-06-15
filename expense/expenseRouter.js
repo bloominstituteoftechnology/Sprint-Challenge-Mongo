@@ -9,6 +9,8 @@ router
     .get((req, res) => {
         Expense
             .find()
+            .populate('budget', '_id title budgetAmount')
+            .populate('category', '_id title')
             .then(expenses => {
                 res.status(200).json({ expenses })
             })
