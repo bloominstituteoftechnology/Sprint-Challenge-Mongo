@@ -2,16 +2,17 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require('helmet');
 const server = express();
 const cors = require('cors');
+const mongoose = require('mongoose');
 // const db = require('./db.js')
 server.use(helmet());
 server.use(express.json());
 
 server.get('/', (req, res) => res.send('MONGO sprint API Running on PORT 5000...'));
 
-// db
-//   .connectTo('sprintMongo')
-//   .then(() => console.log('\n... API Connected to Database ...\n'))
-//   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
+mongoose.connect('mongodb://localhost/budget', {useMongoClient: true})
+  // .connectTo('sprintMongo')
+  .then(() => console.log('\n... API Connected to Database ...\n'))
+  .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 
 // add your server code
 

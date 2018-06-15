@@ -20,10 +20,9 @@ Category.find()
     } );
 } )
 
-.post( ( req, res ) =>
-{
+.post( ( req, res ) => {
 const { title } = req.body;
-const newCategory = new Budget( { title } );
+const newCategory = new Category( { title } );
     if (!title ) {
         res.status(400).json({ error: 'Please provide title.' });
         return;

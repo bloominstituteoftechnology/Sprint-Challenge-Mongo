@@ -10,6 +10,8 @@ router
 .get( ( req, res ) =>
 {
 Expense.find()
+    .populate('budget', '_id title budgetAmount')
+    .populate('category', '_id title')
     .then( expenses =>
     {
     res.status( 200 ).json( expenses );
@@ -23,7 +25,7 @@ Expense.find()
 .post( ( req, res ) =>
 {
 const { amount, description, budget, category } = req.body;
-const newExpense = new Expense( { title } );
+const newExpense = new Expense( { amount, description, budget, category } );
     if (!amount || !description || !budget || !category) {
         res.status(400).json({ error: 'Please provide an amount, description, budget, and category.' });
         return;
