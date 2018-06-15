@@ -1,4 +1,4 @@
-const express = require('expense');
+const express = require('express');
 const router = express.Router();
 
 const Expense = require('./Expense.js');

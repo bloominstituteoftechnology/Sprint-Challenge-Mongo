@@ -5,18 +5,19 @@ const mongoose = require('mongoose');
 
 const server = express();
 
-//const budgetRouter = require('./budget/budgetRouter.js');
-//const categoryRouter = require('./category/categoryRouter.js');
-//const expenseRouter = require('./expense/expenseRouter.js');
+//set variable to eact router for server.use line 17.
+const budgetRouter = require('./budget/budgetRouter.js');
+const categoryRouter = require('./category/categoryRouter.js');
+const expenseRouter = require('./expense/expenseRouter.js');
 
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
 // add your server code
-// server.use('/api/budgets', budgetRouter);
-// server.use('/api/categories', categoryRouter);
-// server.use('/api/expenses', expenseRouter);
+server.use('/api/budgets', budgetRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/expenses', expenseRouter);
 
 server.get('/', (req,res) => res.send('API Running...'))
 
