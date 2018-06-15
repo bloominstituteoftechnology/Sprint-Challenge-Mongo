@@ -6,10 +6,9 @@ const routes = require('./routes.js');
 
 // add your server code
 server.use(express.json())
-server.use('./api/budgets', routes);
-server.use('./api/categories', routes);
-server.use('./api/expenses', routes);
-
+server.use('/api/budgets', routes);
+server.use('/api/categories', routes);
+server.use('/api/expenses', routes);
 
 
 const port = process.env.PORT || 5000;
