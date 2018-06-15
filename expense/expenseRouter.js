@@ -11,6 +11,8 @@ const sendUserError = (status, message, res, err=err.message) =>{
 const get = (req, res) =>{
     Expense
     .find()
+    .populate("budget",{title:1})
+    .populate("category",{categoryTitle:1})
     .then(expense =>{
         res.json({expense});
     })
@@ -38,7 +40,8 @@ const getId = (req, res) =>{
 
     Expense
     .findById(id)
-    .select({ _id:0, amount:1, description:1})
+    .populate("budget")
+    .select({ _id:1, amount:1, description:1})
     .then(found =>{
         
         res.json(found);
@@ -54,7 +57,7 @@ const postBudget = (req, res) =>{
 
     Budget.findOne({ _id: id })
         .then(foundBudget =>{
-            foundBudget.expenses = [...foundBudget.expenses, budgetId];
+            foundBudget.expense = [...foundBudget.expense, budgetId];
             foundBudget
                 .save()
                 .then(savedBudget =>{

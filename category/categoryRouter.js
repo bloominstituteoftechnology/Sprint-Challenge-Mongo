@@ -9,7 +9,7 @@ const sendUserError = (status, message, res, err=err.message) =>{
 const get = (req, res) =>{
     Category
     .find()
-    .select({categoryTitle:1, _id:0})
+    .select({categoryTitle:1, _id:1})
     .sort({categoryTitle:1})
     .then(category =>{
         res.json({category});

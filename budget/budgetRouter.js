@@ -22,6 +22,7 @@ const post = (req, res) =>{
     const budget = new Budget({title, budgetAmount});
     budget
     .save()
+    .select({_id:1, title:1})
     .then(budget =>{
         res.status(201).json({budget});
     })
