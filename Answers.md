@@ -13,3 +13,4 @@ Mongo DB stores documents in collections. Each document can have any number of a
     Mongoose allows us to create a schema so we can define document attributes, validation of data, and class methods. We then create a model from the schema. This model has methods for CRUD operations.
 
 1.  Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
+We can use middleware such as Express Router.
