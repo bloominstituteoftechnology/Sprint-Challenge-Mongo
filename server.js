@@ -22,7 +22,7 @@ server.use('/api/expenses', expenseRouter);
 server.get('/', (req,res) => res.send('API Running...'))
 
 //need to connect mongoose here
-mongoose.connect('mongodb://localhost/budgetTracker', {}, (error) => {
+mongoose.connect('mongodb://localhost/budgetTracker', {useMongoClient: true}, (error) => {
   if(error) console.log(error);
   console.log('Mongoose connected us to our DB');
 })
