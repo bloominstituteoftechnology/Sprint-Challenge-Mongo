@@ -12,13 +12,17 @@
   no-pressure assessment that is only going to help guide you here in the near
   future. This is NOT a pass/fail situation.
   ## Start by forking and cloning this repository.
-  ## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future.
+  ## Questions - Self Study - You can exercise your Google-Fu for this and any other _Sprint Challenge_ in the future. X
 
-1.  Describe the following: `DataBase`, `Collection` , `Document`
+1.  Describe the following: `DataBase`, `Collection` , `Document` 
+    - [X] Answered
 1.  Describe how one can achieve the pattern of _relationships_ in MongoDB. What
     needs to take place at the schema level? How do we _'fill'_ in the
-    appropriate relational data using mongoose?
-1.  Explain a way to break up an API into Sub-Applications, which tool did we use to do that?
+    appropriate relational data using mongoose? X
+    - [X] Answered
+
+1.  Explain a way to break up an API into Sub-Applications, which tool did we use to do that? X
+    - [X] Answered
 
 # Project description
 
@@ -30,6 +34,8 @@
 
 * For this project you'll need three different models, budget, Expense and
   Category.
+
+  - [X] Files Created
 
 ### **Budget**
 
