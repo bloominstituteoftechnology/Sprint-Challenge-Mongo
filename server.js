@@ -1,5 +1,7 @@
 const express = require('express'); // remember to install your npm packages
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/budget');
+
 
 const server = express();
 const budgetRouter = require('./budgetRouter.js');

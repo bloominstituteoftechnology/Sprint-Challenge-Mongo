@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Expense = newSchema({
+const ExpenseSchema = new Schema({
     amount: 35,
     description: 'potatoes',
     budget: {
@@ -14,4 +14,4 @@ const Expense = newSchema({
     }
 });
 
-module.exports = mongoose.model('Expense', Expense);
+module.exports = mongoose.model('Expense', ExpenseSchema);

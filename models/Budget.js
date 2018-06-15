@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Budget = newSchema({
+const BudgetSchema = new Schema({
   title: {
     type: String, 
     required: true,
@@ -10,4 +10,4 @@ const Budget = newSchema({
   budgetAmount: Number
 });
 
-module.exports = mongoose.model('Budget', Budget);
+module.exports = mongoose.model('Budget', BudgetSchema);
