@@ -16,8 +16,8 @@ const ExpenseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    category: [{type: ObjectID, ref: 'expenseController'}],
-    budget: [{type: ObjectID, ref: 'budgetController'}]  
+    category: [{type: ObjectID, ref: 'Category'}],
+    budget: [{type: ObjectID, ref: 'Budget'}]  
 })
 
 
