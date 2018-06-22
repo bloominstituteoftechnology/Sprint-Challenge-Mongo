@@ -53,4 +53,38 @@ router
         })
 })
 
+    .put( ( req, res ) =>
+    {
+        const { id } = req.params;
+        const updates = ( { firstName, lastName, age } = req.body );
+        // findByIdAndUpdate
+        Friend
+            .findByIdAndUpdate( id, updates, { firstName, lastName, age } = req.body )
+            .then( friend =>
+            {
+                res.json( friend );
+            } )
+            .catch( err =>
+            {
+                res.status( 500 ).json( { status: 'error didnt find what your looking for' } );
+            } )
+        // res.json(200).json({ status: 'please implement PUT functionality' });
+    } )
+    .delete( ( req, res ) =>
+    {
+        const { id } = req.params;
+        const updates = ( { firstName, lastName, age } = req.body );
+        // findByIdAndUpdate
+        Friend
+            .findByIdAndRemove( id, updates, { firstName, lastName, age } = req.body )
+            .then( friendRemoved =>
+            {
+                res.json( friendRemoved );
+            } )
+            .catch( err =>
+            {
+                res.status( 500 ).json( { status: 'error didnt find what your looking for' } );
+            } )
+        // res.json(200).json({ status: 'please implement PUT functionality' });
+    } )
 module.exports = router;
