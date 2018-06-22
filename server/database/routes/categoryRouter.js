@@ -9,7 +9,7 @@ router
     .get( ( req, res ) =>
     {
         Category.find()
-            .sort('title')
+            // .sort('title')
             .then( category =>
             {
                 res.status( 200 ).json( category );

@@ -6,9 +6,15 @@
   "scripts": {
     "start": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "Lambda School",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FireInjun/Sprint-Challenge-mongo.git"
+  },
+  "keywords": [
+    "mongo"
+  ],
+  "author": "FireInjun",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.4",

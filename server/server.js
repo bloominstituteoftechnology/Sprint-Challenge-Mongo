@@ -1,8 +1,9 @@
 const express = require('express'); // remember to install your npm packages
 const helmet = require( 'helmet' );
 const cors = require( 'cors' );
+const mongoose = require( 'mongoose' )
 
-const db = require( './database/db' )
+const db = require( './database/db.js' )
 const budgetRouter = require('./database/routes/budgetRouter')
 const categoryRouter = require( './database/routes/categoryRouter' )
 const expenseRouter = require( './database/routes/expenseRouter' )
@@ -18,6 +19,7 @@ db
 // add your server code
 server.use( helmet() );
 server.use( express.json() );
+server.use( cors() );
 
 server.use( '/api/budget', budgetRouter );
 server.use( '/api/category', categoryRouter );
@@ -27,5 +29,5 @@ server.use( '/api/expense', expenseRouter );
 server.get( '/', ( req, res ) => res.send( 'API Running...' ) );
 
 server.listen(port, () => {
-  console.log(`Server up and running on ${port}`);
+  console.log(`Server up and running on http://localhost:${port}`);
 });
