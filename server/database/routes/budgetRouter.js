@@ -19,21 +19,21 @@ router
         } );
 } )
 
-    // .post( ( req, res ) =>
-    // {
-    //     const { title } = req.body;
-    //     const newBud = new Budget( { title } );
-    //     newBud
-    //         .save()
-    //         .then( addedBud =>
-    //         {
-    //             res.status( 201 ).json( addedBud );
-    //         } )
-    //         .catch( err =>
-    //         {
-    //             res.status( 422 ).json( { error: 'err' } );
-    //         } )
-    // } )
+    .post( ( req, res ) =>
+    {
+        const { title } = req.body;
+        const newBud = new Budget( { title } );
+        newBud
+            .save()
+            .then( addedBud =>
+            {
+                res.status( 201 ).json( addedBud );
+            } )
+            .catch( err =>
+            {
+                res.status( 422 ).json( { error: 'err' } );
+            } )
+    } )
 
 
 router
