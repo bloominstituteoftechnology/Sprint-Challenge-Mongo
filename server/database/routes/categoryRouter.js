@@ -8,11 +8,12 @@ router
     .route( '/' )
     .get( ( req, res ) =>
     {
-        Category.find()
+        Category
+            .find()
             // .sort('title')
-            .then( category =>
+            .then( categories =>
             {
-                res.status( 200 ).json( category );
+                res.status( 200 ).json( categories );
             } )
             .catch( err =>
             {
