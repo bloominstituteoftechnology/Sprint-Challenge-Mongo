@@ -21,13 +21,13 @@ router
 
     .post( ( req, res ) =>
     {
-        const { name, gender, height, skin_color, hair_color, eye_color } = req.body;
-        const newChar = new Character( { name, gender, height, skin_color, hair_color, eye_color } );
-        newChar
+        const {amount, description, budget, category} = req.body;
+        const newExp = new Character( {amount, description, budget, category} );
+        newExp
             .save()
-            .then( addedChar =>
+            .then( addedExp =>
             {
-                res.status( 201 ).json( addedChar );
+                res.status( 201 ).json( addedExp );
             } )
             .catch( err =>
             {

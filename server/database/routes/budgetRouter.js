@@ -22,12 +22,12 @@ router
     .post( ( req, res ) =>
     {
         const { title } = req.body;
-        const newBudget = new Budget( { title } );
-        newBudget
+        const newBud = new Budget( { title } );
+        newBud
             .save()
-            .then( addedBudget =>
+            .then( addedBud =>
             {
-                res.status( 201 ).json( addedBudget );
+                res.status( 201 ).json( addedBud );
             } )
             .catch( err =>
             {

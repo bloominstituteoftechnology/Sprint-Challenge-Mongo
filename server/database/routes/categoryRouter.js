@@ -22,12 +22,12 @@ router
     .post( ( req, res ) =>
     {
         const { title } = req.body;
-        const newCategory = new Category( { title } );
-        newCategory
+        const newCat = new Category( { title } );
+        newCat
             .save()
-            .then( addedCategory =>
+            .then( addedCat =>
             {
-                res.status( 201 ).json( addedCategory );
+                res.status( 201 ).json( addedCat );
             } )
             .catch( err =>
             {
