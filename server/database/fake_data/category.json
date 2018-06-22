@@ -1,0 +1,18 @@
+
+{"_id":{"$oid": "5aa995d3b97194b732c1680f"}, "title": "Groceries" }
+{"_id":{"$oid": "5aa995d3b97194b732c16804"}, "title": "Electronics" }
+{"_id":{"$oid": "5aa995d3b97194b732c16805"}, "title": "Books" }
+{"_id":{"$oid": "5aa995d3b97194b732c16806"}, "title": "Blanks" }
+{"_id":{"$oid": "5aa995d3b97194b732c16807"}, "title": "Paper" }
+{"_id":{"$oid": "5aa995d3b97194b732c16808"}, "title": "Toiletries" }
+{"_id":{"$oid": "5aa995d3b97194b732c16809"}, "title": "Hygeine" }
+{"_id":{"$oid": "5aa995d3b97194b732c16801"}, "title": "Feminine Hygeine" }
+{"_id":{"$oid": "5aa995d3b97194b732c16802"}, "title": "Cables" }
+{"_id":{"$oid": "5aa995d3b97194b732c16803"}, "title": "Computer Parts" }
+{"_id":{"$oid": "5aa995d3b97194b732c1680a"}, "title": "Furniture" }
+{"_id":{"$oid": "5aa995d3b97194b732c16810"}, "title": "Entertainment" }
+{"_id":{"$oid": "5aa995d3b97194b732c16811"}, "title": "Bills Important" }
+{"_id":{"$oid": "5aa995d3b97194b732c16812"}, "title": "Bills Luxury" }
+{"_id":{"$oid": "5aa995d3b97194b732c16813"}, "title": "Travel" }
+{"_id":{"$oid": "5aa995d3b97194b732c16814"}, "title": "Lodging" }
+{"_id":{"$oid": "5aa995d3b97194b732c16815"}, "title": "Rent" }

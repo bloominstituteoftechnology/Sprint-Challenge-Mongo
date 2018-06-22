@@ -1,0 +1,8 @@
+
+{"_id":{"$oid": "5aa995c2b97194b732c16800"}, "title": "ExampleBudget", "budgetAmount": 87000 }
+{"_id":{"$oid": "5aa995c2b97194b732c16801"}, "title": "OfficeBudget", "budgetAmount": 23000 }
+{"_id":{"$oid": "5aa995c2b97194b732c16802"}, "title": "SchoolBudget", "budgetAmount": 4000 }
+{"_id":{"$oid": "5aa995c2b97194b732c16803"}, "title": "ArtBudget", "budgetAmount": 12000 }
+{"_id":{"$oid": "5aa995c2b97194b732c16804"}, "title": "MarketingBudget", "budgetAmount": 9000 }
+{"_id":{"$oid": "5aa995c2b97194b732c16805"}, "title": "EmergencyBudget", "budgetAmount": 10000 }
+{"_id":{"$oid": "5aa995c2b97194b732c16806"}, "title": "SpecialtyBudget", "budgetAmount": 1000 }

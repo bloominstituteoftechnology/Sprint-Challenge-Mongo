@@ -2,10 +2,10 @@ const express = require('express'); // remember to install your npm packages
 const helmet = require( 'helmet' );
 const cors = require( 'cors' );
 
-const db = require( '../database/db' )
-const budgetRouter = require('../database/routes/budgetRouter')
-const categoryRouter = require( '../database/routes/categoryRouter' )
-const expenseRouter = require( '../database/routes/expenseRouter' )
+const db = require( './database/db' )
+const budgetRouter = require('./database/routes/budgetRouter')
+const categoryRouter = require( './database/routes/categoryRouter' )
+const expenseRouter = require( './database/routes/expenseRouter' )
 
 const server = express();
 const port = process.env.PORT || 8080;
