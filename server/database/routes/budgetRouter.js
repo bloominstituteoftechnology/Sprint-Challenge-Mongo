@@ -9,6 +9,7 @@ router
     .get( ( req, res ) =>
     {
         Budget.find()
+            .sort('title')
             .then( budget =>
             {
                 res.status( 200 ).json( budget );
