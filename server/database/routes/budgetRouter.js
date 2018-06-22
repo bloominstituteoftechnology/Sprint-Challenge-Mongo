@@ -76,9 +76,9 @@ router
         // findByIdAndUpdate
         Budget
             .findByIdAndRemove( id, updates, { title, budget_amount } = req.body )
-            .then( budgetRemoved =>
+            .then( budget =>
             {
-                res.json( budgetRemoved );
+                res.json( budget );
             } )
             .catch( err =>
             {
