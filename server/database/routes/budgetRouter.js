@@ -5,24 +5,24 @@ const Budget = require( '../models/budget' );
 const router = express.Router();
 
 router
-.route( '/' )
-.get( ( req, res ) =>
-{
-    Budget.find()
-        .then( budgets =>
-        {
-            res.status( 200 ).json( budgets );
-        } )
-        .catch( err =>
-        {
-            res.status( 500 ).json( { error: 'Error!' } )
-        } );
-} )
+    .route( '/' )
+    .get( ( req, res ) =>
+    {
+        Budget.find()
+            .then( budgets =>
+            {
+                res.status( 200 ).json( budgets );
+            } )
+            .catch( err =>
+            {
+                res.status( 500 ).json( { error: 'I aint able to see nothin, you wanna try' } )
+            } );
+    } )
 
     .post( ( req, res ) =>
     {
-        const { title } = req.body;
-        const newBud = new Budget( { title } );
+        const { title, budget_amount } = req.body;
+        const newBud = new Budget( { title, budget_amount } );
         newBud
             .save()
             .then( addedBud =>
@@ -31,7 +31,7 @@ router
             } )
             .catch( err =>
             {
-                res.status( 422 ).json( { error: 'err' } );
+                res.status( 422 ).json( { errorMessage: 'Do what now? This aint workin, you sure you usin this right?' } );
             } )
     } )
 
@@ -44,46 +44,45 @@ router
         Budget
             .findById( id )
             .then( foundBudget =>
-        {
-            res.status( 200 ).json( foundBudget );    
+            {
+                res.status( 200 ).json( foundBudget );
             } )
             .catch( err =>
             {
-                res.status( 500 ).json( { errorMessage: "That budget does not seem to be here." } );
-        })
-})
+                res.status( 500 ).json( { errorMessage: "I aint got a budget called that...." } );
+            } )
+    } )
 
     .put( ( req, res ) =>
     {
         const { id } = req.params;
-        const updates = ( { firstName, lastName, age } = req.body );
-        // findByIdAndUpdate
-        Friend
-            .findByIdAndUpdate( id, updates, { firstName, lastName, age } = req.body )
-            .then( friend =>
+        const updates = ( { title, budget_amount } = req.body );
+        Budget
+            .findByIdAndUpdate( id, updates, { title, budget_amount } = req.body )
+            .then( budget =>
             {
-                res.json( friend );
+                res.json( budget );
             } )
             .catch( err =>
             {
-                res.status( 500 ).json( { status: 'error didnt find what your looking for' } );
+                res.status( 500 ).json( { status: 'I aint gonna be able to update what aint here buddy!' } );
             } )
         // res.json(200).json({ status: 'please implement PUT functionality' });
     } )
     .delete( ( req, res ) =>
     {
         const { id } = req.params;
-        const updates = ( { firstName, lastName, age } = req.body );
+        const updates = ( { title, budget_amount } = req.body );
         // findByIdAndUpdate
-        Friend
-            .findByIdAndRemove( id, updates, { firstName, lastName, age } = req.body )
-            .then( friendRemoved =>
+        Budget
+            .findByIdAndRemove( id, updates, { title, budget_amount } = req.body )
+            .then( budgetRemoved =>
             {
-                res.json( friendRemoved );
+                res.json( budgetRemoved );
             } )
             .catch( err =>
             {
-                res.status( 500 ).json( { status: 'error didnt find what your looking for' } );
+                res.status( 500 ).json( { status: 'That budget aint here buddy. Check your bank account to make sure you still have money!' } );
             } )
         // res.json(200).json({ status: 'please implement PUT functionality' });
     } )
