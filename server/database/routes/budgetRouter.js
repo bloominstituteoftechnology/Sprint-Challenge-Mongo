@@ -56,9 +56,9 @@ router
     .put( ( req, res ) =>
     {
         const { id } = req.params;
-        const updates = ( { title, budget_amount } = req.body );
+        const   { title, budget_amount } = req.body ;
         Budget
-            .findByIdAndUpdate( id, updates, { title, budget_amount } = req.body )
+            .findByIdAndUpdate( id, { title, budget_amount })
             .then( budget =>
             {
                 res.json( budget );
@@ -67,23 +67,21 @@ router
             {
                 res.status( 500 ).json( { status: 'I aint gonna be able to update what aint here buddy!' } );
             } )
-        // res.json(200).json({ status: 'please implement PUT functionality' });
     } )
+    
     .delete( ( req, res ) =>
     {
         const { id } = req.params;
-        const updates = ( { title, budget_amount } = req.body );
-        // findByIdAndUpdate
+        const   { title, budget_amount } = req.body ;
         Budget
-            .findByIdAndRemove( id, updates, { title, budget_amount } = req.body )
-            .then( budget =>
+            .findByIdAndRemove( id, { title, budget_amount } = req.body )
+            .then( budgetRemoved =>
             {
-                res.json( budget );
+                res.json( budgetRemoved );
             } )
             .catch( err =>
             {
                 res.status( 500 ).json( { status: 'That budget aint here buddy. Check your bank account to make sure you still have money!' } );
             } )
-        // res.json(200).json({ status: 'please implement PUT functionality' });
     } )
 module.exports = router;
