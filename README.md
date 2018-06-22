@@ -7,7 +7,7 @@
 
 1. `server`: This is where the `required` work will be done
 
-1. `database`: This is where all of the database files (example: schemas/models, routers, ect.) will be.
+        database: This is where all of the database files (example: schemas/models, routers, ect.) will be.
 
 
 
