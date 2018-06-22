@@ -10,9 +10,10 @@ router
     {
         Expense
             .find()
-            .populate( 'budget', '_id title' )
+            // .populate( 'budget', '_id title' )
+            .populate( { path: 'budget', select: '_id title', sort: -1 })
             .populate( 'category', '_id title' )
-            .sort( 'amount' )
+            .sort('budget')
             .then( expenses =>
             {
                 res.status( 200 ).json( expenses );
