@@ -1,34 +1,34 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Category = require('./Category.js');
-
-// Express Router
 const router = express.Router();
+
+const Category = require('./Category');
 
 // Set Endpoints Here
 router
     .route('/')
     .get((req, res) => {
-        Category.find({})
+        Category
+        .find({}, {'title': 1, '_id': 0 })
         .then(categories => {
-            res.status(200).json(categories);
+            res.status(200).json({ categories })
         })
-        .catch(err => {
-            res.status(500).json(err);
+        .catch(error => {
+            res.status(500).json({ error: error.message })
         })
     })
-    .post((req, res) => {
-        const category = new Category(req.body);
 
-        category
+    .post((req, res) => {
+        const { title } = req.body;
+        const newCategory = new Category({ title });
+        newCategory
             .save()
             .then(newCategory => {
-                if(newCategory === null) {
-                  res.status(404).json(newCategory);  
-                }
-            })
-            .catch(err => res.status(500).json(err));
+                  res.status(201).json({ newCategory })  
+                })
+            .catch(error => {
+                res.status(500).json({ error: error.message })
     })
+});
 
 // Module Export
 module.exports = router;

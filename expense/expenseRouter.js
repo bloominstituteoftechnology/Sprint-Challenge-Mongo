@@ -1,37 +1,36 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Expense = require('./Expense.js');
-
-// Express Router
 const router = express.Router();
+
+const Expense = require('./expenseModel');
 
 // Set Endpoints Here
 router
-.route('/')
-
+    .route('/')
     .get((req, res) => {
-        Expense.find({})
-        .populate('budget category')
-        .then(expenses => {
-            res.status(200).json(expenses);
+        Expense
+            .find({})
+            .populate('budget', '_id title budgetAmount' )
+            .populate('category', '_id title')
+            .then(expenses => {
+            res.status(200).json({ expenses })
         })
-        .catch(err => {
-            res.status(500).json(err);
+        .catch(error => {
+            res.status(500).json({ error: error.message })
         })
     })
+
     .post((req, res) => {
-        const expense = new Expense(req.body);
-        expense
+        const { amount, description, budget, category } = req.body;
+        const newExpense = new Expense({ amount, description, budget, category });
+        newExpense
         .save()
         .then(newExpense => {
-            if(newExpense === null) {
-                res.status(404).json(newExpense);
-            } else {
-                res.status(201).json(newExpense);
-            }
-        })
-    .catch(err => res.status(500).json(err));
+            res.status(201).json({ newExpense });
+            })
+        .catch(error => {
+            res.status(500).json({ error: error.message })
     })
+});
 
 // Module Export
 module.exports = router;

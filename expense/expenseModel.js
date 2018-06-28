@@ -3,8 +3,14 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const Expense = mongoose.Schema({
     // Insert Data Here
-    amount: Number,
-    description: String,
+    amount: {
+        type: Number,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
     budget: { type: ObjectId, ref: 'Budget'},
     category: { type: ObjectId, ref: 'Category'}
 });
