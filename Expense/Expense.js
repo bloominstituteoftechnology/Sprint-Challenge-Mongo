@@ -4,6 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 
 const Expense = new mongoose.Schema({
+    _id: ObjectId,
     amount: Number,
     description: String,
     budget: {

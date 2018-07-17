@@ -35,7 +35,8 @@ router.get("/", (req, res) => {
         })
       }).catch(err => {
         res.status(500).json({
-          errorMessage: "There was an error while saving the budget to the database."
+          errorMessage: "There was an error while saving the budget to the database.",
+          err
         })
       })
   })
