@@ -5,7 +5,7 @@ const Category = require('./Category.js');
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    Category.find({}, {"title": 1, "_id": 0}).then(categories => {
+    Category.find({}, {"title": 1}).then(categories => {
       res.status(200).json(categories)
     }).catch(err => {
       res.status(500).json({
