@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es2018"],
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": false,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    },
+    "esModuleInterop": true
+  }
+}
