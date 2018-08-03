@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.react-progress-bar .labels {
+  *zoom: 1;
+}
+.react-progress-bar .labels:before, .react-progress-bar .labels:after {
+  display: table;
+  content: "";
+}
+.react-progress-bar .labels:after {
+  clear: both;
+}
+.react-progress-bar {
+  flex-grow: 2;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 50px rgb(219, 219, 219);
+}
+
+.react-progress-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 50px rgb(219, 219, 219);
+}
+.react-progress-bar-container .material-icons {
+  padding: 10px;
+  margin: 10px;
+  font-size: 42px;
+  color:  rgba(69, 172, 153, 0.822);
+}
+
+.react-progress-bar .labels {
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 10px;
+  -webkit-font-smoothing: antialiased;
+}
+.react-progress-bar .completion {
+  float: left;
+}
+.react-progress-bar .percentage {
+  float: right;
+}
+.react-progress-bar .total {
+  float: right;
+}
+.react-progress-bar .bar {
+  background: #eee;
+  height: 10px;
+  border-radius: 30px;
+}
+.react-progress-bar .bar .fill {
+  height: 10px;
+  background: #aaa;
+  border-radius: 30px;
+  transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1) 0.1s;
+}
+.react-progress-bar.danger .bar .fill {
+  background: #da5347;
+}
+.react-progress-bar.warning .bar .fill {
+  background: #ffcf50;
+}
+.react-progress-bar.ok .bar .fill {
+  background: #75ba50;
+}
