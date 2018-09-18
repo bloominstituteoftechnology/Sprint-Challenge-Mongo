@@ -28,17 +28,6 @@ server.use('/api/categories', categoryRouter);
 
 server.get('/', (req, res) => res.send('API running...'));
 
-// mongoose.Promise = global.Promise;
-
-// mongoose
-//   .connect('mongodb://localhost/sprintMongo')
-//   .then(mongo => {
-//     console.log('Mongoose connected us to our database.');
-//   })
-//   .catch(error => {
-//     console.log('Database connection failed.', error);
-//   })
-
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => {

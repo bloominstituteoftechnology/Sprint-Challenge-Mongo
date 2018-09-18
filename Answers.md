@@ -1,6 +1,6 @@
-Questions and Answers:
+### Questions and Answers:
 
-1. Describe the following: DataBase, Collection , Document
+1. Describe the following: Database, Collection, and Document
 
 A database is a collection of data that you can retrieve, create or add to, modify or update, and delete.
 
