@@ -2,6 +2,7 @@ const express = require('express');
 const Budget = require('./Budget.js');
 const router = express.Router();
 
+// Creating API endpoints.
 router
     .route('/')
     .get((req, res) => {
