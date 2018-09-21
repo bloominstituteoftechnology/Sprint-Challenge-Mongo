@@ -9,8 +9,16 @@
   "keywords": [],
   "author": "Lambda School",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "mongod": "^2.0.0",
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.4"
+  },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.5"
   }
 }
