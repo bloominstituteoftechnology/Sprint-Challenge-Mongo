@@ -6,7 +6,6 @@ const router = express.Router();
 
 router.post('/', (req, res) => {
     let newBudget = req.body;
-    console.log(newBudget);
     if (newBudget.title === undefined || newBudget.budgetAmount === undefined) {
         res.status(400).json({ message: 'Please enter both a title and budget amount.' })
     }

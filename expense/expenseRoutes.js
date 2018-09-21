@@ -6,6 +6,9 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     Expense.find()
+        .select('amount description -_id')
+        .populate('budget', 'amount -_id title')
+        .populate('category', "title")
         .then(expenses => {
             res.status(200).json(expenses)
         })
@@ -16,8 +19,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const expenseData = req.body;
-
-    if (!expenseData.description || !expenseData.amount || !expenseData.budget || !expenseData.category) {
+    const { amount, description, budget, category } = req.body;
+    if (!amount || !description || !budget || !category) {
         res.status(400).json({ error: 'Please provide all of the required data' })
     }
 
