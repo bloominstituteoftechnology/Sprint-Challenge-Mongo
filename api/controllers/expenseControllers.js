@@ -18,8 +18,8 @@ const createExpense = (req, res) => {
 
 const listExpenses = (req, res) => {
     Expense.find({})
-        .select('amount', 'description', 'category')
         .populate('category', 'title')
+        .populate('budget', 'title')
         .exec()
         .then(expenses => {
             if(expenses.length === 0) {

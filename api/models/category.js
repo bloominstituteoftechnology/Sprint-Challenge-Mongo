@@ -4,11 +4,6 @@ const CategorySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-    },
-    budget: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Budget',
-        required: true,
     }
 });
 
