@@ -1,6 +1,16 @@
 const express = require('express'); // remember to install your npm packages
+const mongoose = require('mongoose')
+const BudgetController = require('./Budget/budgetController')
+const CategoryController = require('./Category/categoryController')
+const ExpenseController = require('./Expense/expenseRoutes')
 
+mongoose.connect('mongodb://localhost/budgetdb');
 const server = express();
+server.use(express.json());
+server.use('/budgets',BudgetController);
+server.use('/categories',CategoryController);
+ server.use('/expenses',ExpenseController);
+
 
 // add your server code
 
