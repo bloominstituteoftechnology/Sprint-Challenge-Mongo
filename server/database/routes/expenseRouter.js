@@ -1,45 +1,37 @@
-const express = require( 'express' );
+const express = require("express");
 
-const Expense = require( '../models/expense' );
+const Expense = require("../models/expense");
 
 const router = express.Router();
 
 router
-    .route( '/' )
-    .get( ( req, res ) =>
-    {
-        Expense
-            .find()
-            // .populate( 'budget', '_id title' )
-            .populate( { path: 'budget', select: '_id title', sort: -1 })
-            .populate( 'category', '_id title' )
-            .sort('budget')
-            .then( expenses =>
-            {
-                res.status( 200 ).json( expenses );
-            } )
-            .catch( err =>
-            {
-                res.status( 500 ).json( { error: 'err' } )
-            } );
-    } )
+  .route("/")
+  .get((req, res) => {
+    Expense.find()
+      // .populate( 'budget', '_id title' )
+      .populate({ path: "budget", select: "_id title", sort: -1 })
+      .populate("category", "_id title")
+      .sort("budget")
+      .then(expenses => {
+        res.status(200).json(expenses);
+      })
+      .catch(err => {
+        res.status(500).json({ error: "err" });
+      });
+  })
 
-    .post( ( req, res ) =>
-    {
-        const {amount, description, budget, category} = req.body;
-        const newExp = new Expense ( {amount, description, budget, category} );
-        newExp
-            .save()
-            .then( addedExp =>
-            {
-                res.status( 201 ).json( addedExp );
-            } )
-            .catch( err =>
-            {
-                res.status( 422 ).json( { error: 'err' } );
-            } )
-    } )
-
+  .post((req, res) => {
+    const { amount, description, budget, category } = req.body;
+    const newExp = new Expense({ amount, description, budget, category });
+    newExp
+      .save()
+      .then(addedExp => {
+        res.status(201).json(addedExp);
+      })
+      .catch(err => {
+        res.status(422).json({ error: "err" });
+      });
+  });
 
 // router
 //     .route( '/:id' )
