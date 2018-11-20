@@ -5,7 +5,7 @@ const Category = require('../categories/Category.js');
 const router = express.Router();
 
 router
-  .route('/')
+  .route('/expense')
   .post((req, res) => {
     const expenseData = ({ amount, description, budget, category } = req.body)
     const newExpense = new Expense(expenseData);
@@ -44,4 +44,4 @@ router
       })
   })
 
-module.exports = router;
+module.exports = expenserouter;

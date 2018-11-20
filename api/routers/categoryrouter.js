@@ -1,12 +1,12 @@
 const express = require('express');
-const Category = require('./Category.js');
-const Expense = require('../expenses/Expense.js');
+const Category = require('../models/category.js');
+const Expense = require('../models/expense.js');
 const router = express.Router();
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 
 router
-  .route('/')
+  .route('/category')
   .post((req, res) => {
     const { title } = req.body;
     const newCategory = new Category({ title });
@@ -71,4 +71,4 @@ router
       })
   })
   
-module.exports = router;
+module.exports = categoryrouter;

@@ -1,12 +1,10 @@
 const express = require('express');
-const Budget = require('./Budget.js');
-const Expense = require('../expenses/Expense.js');
-const router = express.Router();
-const mongoose = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
+const Budget = require('../models/budget.js');
 
-router
-  .route('/')
+const BudgetRouter = express.Router();
+
+BudgetRouter
+  .route('/budget')
   .post((req, res) => {
     const { title, budgetAmount } = req.body;
     const newBudget = new Budget({ title, budgetAmount });
@@ -95,4 +93,4 @@ router
       })
   })
 
-module.exports = router;
+module.exports = budgetrouter;
