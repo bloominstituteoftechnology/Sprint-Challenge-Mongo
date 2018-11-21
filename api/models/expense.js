@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const Category = require('./category.js');
-const Budget = require('./budget.js');
 
 const ExpenseSchema = new mongoose.Schema ({
   amount: {
