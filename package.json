@@ -9,8 +9,17 @@
   "keywords": [],
   "author": "Lambda School",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "mongoose": "^5.1.4",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
+  },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.5"
   }
 }
