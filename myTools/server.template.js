@@ -5,9 +5,7 @@ const db = require('./data/db.js');
 /**
  * IMPORT ROUTERS: import any needed Router.
  */
-const budgetRouter = require('./budget/budget.router');
-const categoriesRouter = require('./categories/categories.router');
-const expensesRouter = require('./expenses/expenses.router');
+const Router = require('./model/model.router');
 
 /**
  * DEFINE: Server.
@@ -17,7 +15,7 @@ const server = express();
 /**
  * CONNECT TO DATABASE: Connect to MongoDB.
  */
-db.connectTo('budget_tracker')
+db.connectTo('database_name')
   .then(() => console.log('\n... API Connected to Database ...\n'))
   .catch(err => console.log('\n*** ERROR Connecting to Database ***\n', err));
 
@@ -31,9 +29,6 @@ server.use(express.json());
  * DEFINE: Endpoints.
  */
 server.get('/', (req, res) => res.send('API Running...'));
-server.use('/api/budget', budgetRouter);
-server.use('/api/expenses', expensesRouter);
-server.use('/api/categories', categoriesRouter);
 
 /**
  * DEFINE: global Post-Middlewares if any
