@@ -1,0 +1,46 @@
+const express = require('express');
+
+const Expense = require('./expenseModel.js');
+
+const router = express.Router();
+
+router
+    .route('/')
+    .get((req, res) => {
+        Expense.find()
+            .populate("category", "title -_id")
+            .populate("budget", "title budget -_id")
+            .then(expenses => {
+                res.status(200).json(expenses);
+            })
+            .catch(err => {
+                res.status(500).json([{ error: err.message }]);
+            });
+    })
+    .post((req, res) => {
+        const { amount, description, budget, category } = req.body;
+        const newExpense = new Expense({ amount, description, budget, category })
+        if (!amount || !description || !budget || category) {
+            res.status(400).json([{ error: "ammount, description, budget and/or category required" }])
+        }
+
+        newExpense
+            .save()
+            .then(() => {
+                Expense
+                    .find()
+                    .then(savedExpense => {
+                        res.status(201).json(savedExpense);
+                    })
+                    .catch(err => {
+                        res.status(500).json({ error: err.message })
+                    })
+            })
+            .catch(err => {
+                res.status(500).json({ error: err.message })
+            })
+    })
+
+
+
+module.exports = router;
